@@ -45,70 +45,96 @@ export const adConfig = {
     spineColor: '#05080F',
   },
 
-  scene1: {
-    line1: 'Votre enfant utilise ChatGPT…',
-    line2: `mais apprend-il vraiment${NBSP}?`,
-    /** Mot du line2 surligné. */
-    highlight: 'vraiment',
-    chatQuestion: 'Fais mon exercice de maths',
-    chatAnswerLabel: 'Réponse générée',
+  /** Scène 1 (0–6 s) — le coût du soutien scolaire. Aucun montant affiché. */
+  hook: {
+    lineA: 'Vous payez un répétiteur chaque mois…',
+    lineB: `Mais savez-vous vraiment si votre enfant progresse${NBSP}?`,
+    highlight: ['progresse'],
+    months: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin'],
+    ledgerLabel: 'Cours de répétition',
+    chartLabel: 'Progrès de votre enfant',
   },
 
-  scene2: {
-    problems: [
-      {icon: 'homework', label: 'Des devoirs difficiles à suivre'},
-      {icon: 'confused', label: 'Des leçons mal comprises'},
-      {icon: 'revision', label: 'Des révisions inefficaces'},
-      {icon: 'copy', label: 'Des réponses copiées sans réflexion'},
+  /** Scène 2 (6–12 s) — les difficultés du parent. */
+  struggle: {
+    kicker: 'Votre quotidien',
+    items: [
+      {icon: 'briefcase', label: 'Votre travail'},
+      {icon: 'home', label: 'Vos responsabilités'},
+      {icon: 'homework', label: 'Les devoirs'},
     ],
-    statementA: 'Obtenir une réponse',
-    statementB: 'ne signifie pas',
-    statementC: 'comprendre.',
+    subjects: ['Maths', 'Français', 'Anglais', 'Physique-Chimie', 'SVT', 'Histoire-Géo'],
+    statement: 'Difficile de tout suivre.',
+    highlight: ['tout', 'suivre.'],
   },
 
-  scene3: {
-    kicker: 'Découvrez',
+  /** Scène 3 (12–19 s) — révélation du livre. */
+  solution: {
+    kicker: 'Découvrez le guide',
+    tagline: 'Le guide pratique pour accompagner autrement votre enfant.',
+    highlight: ['autrement'],
   },
 
-  scene4: {
-    heading: 'Avec ce guide, apprenez à utiliser ChatGPT pour…',
-    benefits: [
-      {
-        icon: 'bulb',
-        title: 'Comprendre les leçons',
-        text: 'Faire expliquer une notion pas à pas, avec des exemples adaptés.',
-      },
-      {
-        icon: 'cards',
-        title: 'Réviser intelligemment',
-        text: 'Créer des quiz, des fiches et des exercices pour s’entraîner.',
-      },
-      {
-        icon: 'stairs',
-        title: 'Développer l’autonomie',
-        text: 'Apprendre à poser les bonnes questions plutôt que copier.',
-      },
-      {
-        icon: 'progress',
-        title: 'Accompagner les progrès de son enfant',
-        text: 'Suivre ses efforts et l’encourager au quotidien.',
-      },
+  /** Scène 4 (19–28 s) — quiz interactifs et chronométrés (usage de ChatGPT enseigné par le livre). */
+  quiz: {
+    heading: 'Des quiz interactifs et chronométrés',
+    demoTag: 'Démonstration · quiz créé avec ChatGPT grâce au guide',
+    subject: 'Mathématiques · 4e',
+    counter: 'Question 3/5',
+    question: `Résous${NBSP}: 3x + 5 = 20. Que vaut x${NBSP}?`,
+    options: ['x = 3', 'x = 5', 'x = 15', 'x = 25/3'],
+    correctIndex: 1,
+    timerSeconds: 30,
+    feedbackTitle: 'Bonne réponse !',
+    feedbackText: '3x = 20 − 5 = 15, donc x = 15 ÷ 3 = 5.',
+    scoreLabel: 'Score du quiz',
+    score: '4/5',
+    scorePercent: 0.8,
+    scoreAdvice: 'À revoir : les équations en deux étapes.',
+  },
+
+  /** Scène 5 (28–36 s) — rapport d'activité. Données fictives (démonstration). */
+  report: {
+    heading: 'Des rapports d’activité clairs',
+    demoTag: 'Exemple fictif · rapport rédigé par ChatGPT à partir des informations que vous lui fournissez',
+    title: 'Rapport de la semaine',
+    student: 'Élève de 4e',
+    stats: [
+      {label: 'Exercices réalisés', value: 12, suffix: ''},
+      {label: 'Temps de révision', value: 3.5, suffix: ' h'},
+      {label: 'Quiz réussis', value: 4, suffix: '/5'},
+      {label: 'Points à renforcer', value: 2, suffix: ''},
     ],
-    note: 'ChatGPT ne remplace ni l’enseignant ni les efforts de l’élève.',
+    chartLabel: 'Évolution des résultats aux quiz',
+    chart: [
+      {label: 'Sem. 1', value: 0.5},
+      {label: 'Sem. 2', value: 0.6},
+      {label: 'Sem. 3', value: 0.65},
+      {label: 'Sem. 4', value: 0.8},
+    ],
+    weakLabel: 'À renforcer',
+    weak: ['Équations', 'Accord du participe passé'],
   },
 
-  scene5: {
-    badge: 'Le guide pratique des parents',
+  /** Scène 6 (36–42 s) — bénéfices pour le parent. */
+  benefits: {
+    heading: 'Pour vous, parent',
+    items: [
+      {icon: 'wallet', title: 'Maîtrisez votre budget', text: 'Des dépenses de soutien mieux ciblées.'},
+      {icon: 'progress', title: 'Suivez ses progrès', text: 'Plus de visibilité sur son travail réel.'},
+      {icon: 'stairs', title: 'Développez son autonomie', text: 'Il apprend à apprendre, pas à copier.'},
+    ],
+    note: 'Le guide complète l’accompagnement de votre enfant : il ne remplace pas forcément un répétiteur et ne garantit pas d’économies.',
+  },
+
+  /** Scène 7 (42–50 s) — offre et appel à l'action. */
+  offer: {
+    kicker: 'Votre guide pratique',
     priceLabel: 'Seulement',
     /** Prix affiché tel quel (gardez l'espace insécable entre milliers). */
     price: `10${NBSP}000`,
     currency: 'FCFA',
-    chips: ['Ebook numérique', 'De la 6e à la Terminale'],
-  },
-
-  scene6: {
-    headline: 'Donnez à votre enfant une meilleure méthode pour apprendre.',
-    button: 'Commandez votre exemplaire',
+    button: 'COMMANDER MAINTENANT',
     /**
      * Contact affiché sous le bouton.
      * type : 'whatsapp' | 'link' | 'none'
@@ -121,6 +147,8 @@ export const adConfig = {
   },
 
   legal: {
+    /** Rappel éthique (affiché en scène 4). */
+    ethics: 'ChatGPT ne remplace ni l’enseignant ni les efforts de l’élève.',
     /** Mention de marque (recommandée : ne pas supprimer). */
     trademark:
       'ChatGPT est une marque d’OpenAI. Ce guide est indépendant, non affilié à OpenAI ni approuvé par OpenAI.',

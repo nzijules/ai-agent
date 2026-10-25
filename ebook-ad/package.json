@@ -12,7 +12,8 @@
     "render:square-vo": "remotion render AdSquareVO out/pub-1080x1080-voixoff.mp4 --codec=h264 --crf=18",
     "render": "npm run render:vertical && npm run render:square",
     "stills": "node scripts/stills.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "voiceover": "node scripts/assemble-voiceover.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",

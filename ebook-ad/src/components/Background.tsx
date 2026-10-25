@@ -5,16 +5,17 @@ import {scenes} from '../timeline';
 
 const keys = [
   scenes.hook.from,
-  scenes.problem.from + 10,
+  scenes.struggle.from + 10,
   scenes.solution.from + 10,
+  scenes.quiz.from + 10,
+  scenes.report.from + 10,
   scenes.benefits.from + 10,
   scenes.offer.from + 10,
-  scenes.cta.from + 10,
 ];
-// Couleurs des halos par scène : accroche, problème, solution, bénéfices, offre, CTA
-const blobA = [colors.violet, '#7A2E55', colors.indigo, '#1C4FA8', '#3B3FC4', colors.violet];
-const blobB = [colors.indigo, colors.coral, colors.sky, colors.mint, colors.amber, colors.amber];
-const base = ['#060E26', '#0B0F26', '#0A1A4A', '#071A3A', '#0B1640', '#0A1440'];
+// Couleurs des halos par scène : coût, quotidien, solution, quiz, rapport, bénéfices, offre
+const blobA = ['#5B3A9E', '#7A2E55', colors.indigo, '#1C4FA8', '#1A3F95', '#1C4FA8', '#3B3FC4'];
+const blobB = [colors.amber, colors.coral, colors.sky, colors.mint, colors.sky, colors.mint, colors.amber];
+const base = ['#090E26', '#0B0F26', '#0A1A4A', '#071A3A', '#081838', '#071A3A', '#0B1640'];
 
 const Particles: React.FC<{count: number}> = ({count}) => {
   const frame = useCurrentFrame();

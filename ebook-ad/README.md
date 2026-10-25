@@ -1,6 +1,6 @@
 # Publicité motion design — « Apprendre à apprendre avec ChatGPT »
 
-Projet **Remotion 4 + React 19 + TypeScript**. Publicité de 40 s, 30 fps, entièrement animée par frames.
+Projet **Remotion 4 + React 19 + TypeScript**. Publicité de **50 s** (version 2 : « bénéfice parent »), 30 fps, entièrement animée par frames.
 
 ## Fichiers livrés
 
@@ -9,10 +9,8 @@ Projet **Remotion 4 + React 19 + TypeScript**. Publicité de 40 s, 30 fps, enti�
 | `out/pub-1080x1920.mp4` | Vertical 1080×1920, H.264, **sans voix off** (musique + effets) |
 | `out/pub-1080x1920-soustitres.mp4` | Vertical, sans voix off, avec sous-titres animés incrustés (lecture sans son) |
 | `out/pub-1080x1080.mp4` | Carré 1080×1080, H.264, sans voix off |
-| `out/pub-1080x1920-voixoff.mp4` | Vertical, **voix off** (ElevenLabs, voix « Sylvestre ») + sous-titres animés |
-| `out/pub-1080x1080-voixoff.mp4` | Carré, voix off + sous-titres animés |
 | `docs/STORYBOARD.md` | Storyboard détaillé, direction artistique, zones de sécurité, conformité |
-| `docs/VOIX-OFF.md` | Script intégral de la voix off + procédure d’intégration |
+| `docs/VOIX-OFF.md` | Script intégral de la voix off v2 + intégration automatique (`npm run voiceover`) |
 | `docs/sous-titres.srt` | Sous-titres de la voix off (fichier séparé) |
 | `src/` | Code source complet |
 
@@ -22,6 +20,7 @@ Projet **Remotion 4 + React 19 + TypeScript**. Publicité de 40 s, 30 fps, enti�
 npm install
 npm run studio          # prévisualisation interactive dans le navigateur
 npm run render          # exporte les versions verticale + carrée (sans voix off)
+npm run voiceover       # recale public/audio/voiceover-source.mp3 sur la timeline
 npm run render:vertical-vo   # version avec voix off + sous-titres (voir docs/VOIX-OFF.md)
 npm run audio           # régénère musique, effets et docs/sous-titres.srt
 npm run stills          # images de contrôle qualité dans out/stills/
@@ -43,10 +42,10 @@ npm run stills          # images de contrôle qualité dans out/stills/
 
 **Tout se fait dans `src/config.ts`.**
 
-- **Prix** : `scene5.price` (ex. `` `7${NBSP}500` ``) et `scene5.currency`. Penser à mettre à jour la voix off (`docs/VOIX-OFF.md`) et `src/captions.ts` si le prix y est prononcé.
-- **Couverture officielle** : déjà intégrée (`public/cover/couverture.jpg`, auteur Jules N’ZI). Le logo ChatGPT de la couverture y est masqué pour respecter la consigne « aucun logo suggérant un partenariat » ; l’original est conservé dans `public/cover/couverture-officielle.png`. Pour changer de couverture : déposer l’image dans `public/cover/`, puis renseigner `book.coverImage` et `book.coverRatio` (hauteur ÷ largeur). Elle remplace automatiquement la couverture provisoire partout (mockups 3D des scènes 3, 5 et 6). Pour garder la couverture provisoire, modifier `coverTitle*`, `coverKicker`, `coverSubtitle`, `coverAuthor`.
-- **Textes** : `scene1` … `scene6` (accroche, problèmes, bénéfices, offre, CTA). Le mot surligné de l’accroche : `scene1.highlight`.
-- **Appel à l’action** : `scene6.button` (texte du bouton) et `scene6.contact` :
+- **Prix** : `offer.price` (ex. `` `7${NBSP}500` ``) et `offer.currency`. Penser à mettre à jour la voix off (`docs/VOIX-OFF.md`) et `src/captions.ts` si le prix y est prononcé.
+- **Couverture officielle** : déjà intégrée (`public/cover/couverture.jpg`, auteur Jules N’ZI). Le logo ChatGPT de la couverture y est masqué pour respecter la consigne « aucun logo suggérant un partenariat » ; l’original est conservé dans `public/cover/couverture-officielle.png`. Pour changer de couverture : déposer l’image dans `public/cover/`, puis renseigner `book.coverImage` et `book.coverRatio` (hauteur ÷ largeur). Elle remplace automatiquement la couverture provisoire partout (mockups 3D des scènes 3 et 7). Pour garder la couverture provisoire, modifier `coverTitle*`, `coverKicker`, `coverSubtitle`, `coverAuthor`.
+- **Textes** : `hook`, `struggle`, `solution`, `quiz`, `report`, `benefits`, `offer` (une clé par scène). Les données du quiz (question, réponses, correction, score) et du rapport fictif (tuiles, graphique, points à renforcer) s'y modifient aussi.
+- **Appel à l’action** : `offer.button` (texte du bouton) et `offer.contact` :
   - WhatsApp : `{type: 'whatsapp', label: 'WhatsApp', value: '+225 07 00 00 00 00'}`
   - Lien : `{type: 'link', label: '', value: 'monsite.com/ebook'}`
   - Masquer : `{type: 'none', …}`
@@ -62,21 +61,23 @@ Après modification : vérifier dans `npm run studio` qu’aucun texte ne débor
 src/
   config.ts          ← textes, prix, couverture, CTA (à éditer)
   theme.ts           ← palette, polices
-  timeline.ts        ← découpage temporel des 6 scènes
+  timeline.ts        ← découpage temporel des 7 scènes (50 s)
   captions.ts        ← script voix off + minutage des sous-titres
   format.ts          ← mise en page vertical / carré, zones de sécurité
   anim.ts            ← springs et easings partagés
   Ad.tsx             ← composition : fond, scènes, sous-titres, audio
   Root.tsx           ← déclaration des 5 compositions
-  components/        ← Background, Book3D, Cover, KineticText, Icons, Captions, SceneWrap, ui
-  scenes/            ← S1Hook … S6CTA
+  components/        ← Background, Book3D, Cover, KineticText, Icons, Captions, SceneWrap, ui,
+                       Commerce (prix, bouton, contact, mentions), ProblemCard
+  scenes/            ← S1Hook, S2Struggle, S3Solution, S4Quiz, S5Report, S6Benefits, S7Offer
 scripts/
   generate-audio.mjs ← synthèse musique + effets + export .srt
+  assemble-voiceover.mjs ← calage automatique de la voix off sur la timeline
   stills.mjs         ← rendu d’images de contrôle
 public/
   fonts/             ← Plus Jakarta Sans & Inter (OFL)
-  audio/             ← music.wav, sfx-*.wav (+ voiceover.mp3 à ajouter)
-  cover/             ← couverture officielle (à ajouter)
+  audio/             ← music.wav, sfx-*.wav (+ voiceover-source.mp3 à ajouter)
+  cover/             ← couverture officielle (logo masqué) + original
 ```
 
 ## Droits

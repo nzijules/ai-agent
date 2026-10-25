@@ -1,6 +1,8 @@
 import React from 'react';
 import {interpolate, interpolateColors, useCurrentFrame} from 'remotion';
 import {clamp, easeOut, sp, SPRING_SNAPPY} from '../anim';
+
+const SPRING_SLAM = {damping: 14, stiffness: 220, mass: 0.7};
 import {colors, fonts} from '../theme';
 
 type Props = {
@@ -20,6 +22,8 @@ type Props = {
   maxWidth?: number;
   font?: string;
   letterSpacing?: number;
+  /** 'rise' : montée douce (défaut) · 'slam' : impact (le mot tombe de plus gros). */
+  effect?: 'rise' | 'slam';
 };
 
 const norm = (w: string) => w.toLowerCase().replace(/[.,…!?:;«» ]/g, '');
@@ -41,6 +45,7 @@ export const KineticText: React.FC<Props> = ({
   maxWidth,
   font = fonts.display,
   letterSpacing = -0.02,
+  effect = 'rise',
 }) => {
   const frame = useCurrentFrame();
   const words = text.split(' ');
@@ -64,7 +69,7 @@ export const KineticText: React.FC<Props> = ({
     >
       {words.map((w, i) => {
         const d = delay + i * stagger;
-        const p = sp(frame, d, SPRING_SNAPPY);
+        const p = sp(frame, d, effect === 'slam' ? SPRING_SLAM : SPRING_SNAPPY);
         const blur = interpolate(frame - d, [0, 8], [10, 0], clamp);
         const isHl = hl.includes(norm(w));
         const mDelay = (markerDelay ?? d + 6) + 0;
@@ -76,7 +81,10 @@ export const KineticText: React.FC<Props> = ({
               display: 'inline-block',
               position: 'relative',
               opacity: p,
-              transform: `translateY(${(1 - p) * size * 0.55}px) rotate(${(1 - p) * 4}deg)`,
+              transform:
+                effect === 'slam'
+                  ? `scale(${1 + (1 - p) * 1.4})`
+                  : `translateY(${(1 - p) * size * 0.55}px) rotate(${(1 - p) * 4}deg)`,
               filter: blur > 0.1 ? `blur(${blur}px)` : undefined,
               color: isHl && !marker ? highlightColor : undefined,
               whiteSpace: 'nowrap',

@@ -11,7 +11,7 @@ import {adConfig} from '../config';
 import {useFormat} from '../format';
 import {colors} from '../theme';
 
-const b = adConfig.book;
+const c = adConfig.solution;
 
 /** Rayons lumineux tournants derrière le livre. */
 export const LightRays: React.FC<{size: number; frame: number; opacity: number; color?: string}> = ({size, frame, opacity, color = colors.sky}) => (
@@ -67,6 +67,8 @@ export const S3Solution: React.FC = () => {
   const flash = interpolate(frame, [0, 4, 22], [0, 0.9, 0], clamp);
   const ring = interpolate(frame, [0, 26], [0, 1], {...clamp, easing: easeOut});
   const kick = sp(frame, 14, SPRING_SOFT);
+  const dolly = interpolate(frame, [0, 210], [1.06, 1]);
+  const streak = interpolate(frame, [6, 14, 34], [0, 1, 0], clamp);
 
   const bookW = fmt.vertical ? 440 : 330;
   const bookH = bookW * coverRatio();
@@ -74,7 +76,7 @@ export const S3Solution: React.FC = () => {
 
   return (
     <SceneWrap enter={6}>
-      <AbsoluteFill>
+      <AbsoluteFill style={{transform: `scale(${dolly})`}}>
         {/* onde de choc + flash */}
         <div
           style={{
@@ -107,30 +109,60 @@ export const S3Solution: React.FC = () => {
           <Book3D width={bookW} rotateY={rotY} rotateX={rotX} sheen={frame < 120 ? sheen : sheen2} glow={rays} />
         </div>
 
+        {/* reflet au sol */}
+        <div
+          style={{
+            position: 'absolute',
+            left: center.x - bookW / 2,
+            top: center.y + bookH / 2 + 6 - floatY,
+            height: bookH * 0.22,
+            width: bookW,
+            overflow: 'hidden',
+            opacity: 0.22 * fly,
+            maskImage: 'linear-gradient(180deg, black 0%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(180deg, black 0%, transparent 100%)',
+          }}
+        >
+          <div style={{transform: `scale(${scale}) scaleY(-1)`, transformOrigin: 'center center'}}>
+            <Book3D width={bookW} rotateY={rotY} rotateX={-rotX} shadow={false} />
+          </div>
+        </div>
+
+        {/* traînée lumineuse horizontale à la révélation */}
+        <div
+          style={{
+            position: 'absolute',
+            left: center.x - 900,
+            top: center.y - 4,
+            width: 1800,
+            height: 8,
+            borderRadius: 8,
+            background: 'linear-gradient(90deg, transparent, rgba(200,225,255,0.9), white, rgba(200,225,255,0.9), transparent)',
+            transform: `scaleX(${0.2 + 0.8 * streak})`,
+            opacity: streak,
+            filter: 'blur(2px)',
+          }}
+        />
+
         {fmt.vertical ? (
           <>
             <div style={{position: 'absolute', top: fmt.safeTop + 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: kick, transform: `translateY(${(1 - kick) * -30}px)`}}>
               <Pill size={42} color={colors.mint}>
-                {adConfig.scene3.kicker}
+                {c.kicker}
               </Pill>
             </div>
-            <div style={{position: 'absolute', top: 1172, left: fmt.padX, right: fmt.padX, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4}}>
-              <KineticText text={`${b.coverTitleTop} ${b.coverTitleMiddle}`} size={74} delay={58} stagger={4} maxWidth={900} />
-              <KineticText text={b.coverTitleAccent} size={74} delay={70} stagger={4} color={colors.amber} maxWidth={900} />
+            <div style={{position: 'absolute', top: 1180, left: fmt.padX, right: fmt.padX, display: 'flex', justifyContent: 'center'}}>
+              <KineticText text={c.tagline} size={58} weight={700} delay={70} stagger={3} highlight={c.highlight} highlightColor={colors.amber} maxWidth={900} lineHeight={1.14} />
             </div>
           </>
         ) : (
-          <div style={{position: 'absolute', top: 150, bottom: 210, left: 560, right: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22}}>
+          <div style={{position: 'absolute', top: 150, bottom: 210, left: 560, right: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 26}}>
             <div style={{opacity: kick, transform: `translateY(${(1 - kick) * -20}px)`}}>
               <Pill size={30} color={colors.mint}>
-                {adConfig.scene3.kicker}
+                {c.kicker}
               </Pill>
             </div>
-            <div style={{display: 'flex', flexDirection: 'column', gap: 4}}>
-              <KineticText text={b.coverTitleTop} size={64} delay={58} align="left" maxWidth={460} />
-              <KineticText text={b.coverTitleMiddle} size={64} delay={62} stagger={4} align="left" maxWidth={460} />
-              <KineticText text={b.coverTitleAccent} size={64} delay={70} stagger={4} color={colors.amber} align="left" maxWidth={460} />
-            </div>
+            <KineticText text={c.tagline} size={50} weight={700} delay={70} stagger={3} highlight={c.highlight} highlightColor={colors.amber} align="left" maxWidth={460} lineHeight={1.14} />
           </div>
         )}
       </AbsoluteFill>

@@ -1,39 +1,32 @@
-# Storyboard & direction artistique
+# Storyboard v2 : « vendre le bénéfice parent »
 
-**Produit** : ebook « Apprendre à apprendre avec ChatGPT » · **Cible** : parents d’élèves (6e → Terminale), Côte d’Ivoire / Afrique francophone · **Durée** : 40 s · **Formats** : 1080×1920 et 1080×1080, 30 fps.
+**Produit** : ebook « Apprendre à apprendre avec ChatGPT » · **Cible** : parents d'élèves (6e → Terminale), Côte d'Ivoire et Afrique francophone · **Durée** : 50 s · **Formats** : 1080×1920 (principal) et 1080×1080, 30 fps.
 
-## Direction artistique
+Le brief prévoyait 45 s. La voix off de l'offre finale demande environ 7 s à un débit naturel, alors que 4 s étaient prévues. Plutôt que d'accélérer la narration, les scènes 6 et 7 durent respectivement 6 s et 8 s.
 
-| Élément | Choix |
-|---|---|
-| Ambiance | EdTech / SaaS premium : fond nuit profonde, halos colorés en mouvement lent, grille en perspective, particules (profondeur et parallaxe) |
-| Palette | Nuit `#07122E`, indigo `#2B3FBF`, violet `#5B4BDB`, **menthe `#2FD6B5`** (apprentissage, réussite), **ambre `#FFB547`** (chaleur, prix, CTA), corail `#FF6B6B` (problème uniquement) |
-| Typographie | *Plus Jakarta Sans* 700–800 pour les titres, *Inter* pour les textes (polices libres OFL, incluses dans `public/fonts`) |
-| Mouvement | Springs amortis (pas de rebond excessif), entrées mot à mot avec flou de mouvement, transitions zoom + flou entre scènes (chevauchement de 8 frames) |
-| Objets | Mockup 3D CSS du livre (couverture, tranche, pages, reflet lumineux), fenêtre de discussion générique « Assistant IA », icônes vectorielles dessinées en direct |
-| Couleur de fond | Évolue avec le récit : violet (question) → teinte corail (problème) → bleu lumineux (solution) → menthe (bénéfices) → ambre (offre/CTA) |
-| Marques | Aucun logo ChatGPT/OpenAI ; mention d’indépendance en fin de vidéo |
+## Intentions
+
+- **Parler d'abord du parent** : budget, temps, matières, visibilité, progrès, autonomie. ChatGPT n'est cité que comme l'outil enseigné par le livre.
+- **Hook en moins de 3 s** : la phrase « Vous payez un répétiteur chaque mois… » est lisible dès la 1re seconde, avec des pièces qui tombent chaque mois.
+- **Démonstrations honnêtes** : le quiz et le rapport portent une étiquette « Démonstration » ou « Exemple fictif ». Ce sont des usages de ChatGPT enseignés par le guide, pas une application incluse.
 
 ## Découpage
 
-| # | Temps | Visuel | Texte à l’écran | Son |
-|---|---|---|---|---|
-| 1 · Accroche | 0–5 s | Le titre surgit mot à mot. Une fenêtre de discussion monte en 3D : l’élève tape « Fais mon exercice de maths », la réponse se génère, un curseur clique « Copier » → « Copié ! ». La fenêtre recule et se floute (mise au point) pendant que la question clé apparaît, « vraiment » est surligné au marqueur ambre. | « Votre enfant utilise ChatGPT… mais apprend-il **vraiment** ? » | Notes de cloche espacées, pop, clic |
-| 2 · Problème | 5–11 s | Bandeau « Le quotidien des parents ». 4 cartes en verre dépoli surgissent en cascade, chacune avec une icône animée (crayon qui griffonne, visage perplexe, chronomètre qui s’emballe, document copié). Léger tremblement. Puis la phrase-clé ; « comprendre. » en menthe, soulignée. | Devoirs difficiles à suivre · Leçons mal comprises · Révisions inefficaces · Réponses copiées sans réflexion · « Obtenir une réponse ne signifie pas **comprendre**. » | Whoosh, pops, pulsation sourde |
-| 3 · Solution | 11–18 s | Flash + onde de choc. Le livre jaillit en rotation 3D (−75° → 22°), rayons lumineux tournants, éclats d’étincelles, reflet qui balaie la couverture, flottement doux. | Pastille « Découvrez » · « Apprendre à apprendre **avec ChatGPT** » | Riser → impact, scintillement, la musique démarre pleinement |
-| 4 · Bénéfices | 18–29 s | Carte principale qui défile (rotation 3D) pour chacun des 4 bénéfices : icône qui se dessine, numéro 01–04, titre, phrase concrète. En dessous, une check-list se coche au fur et à mesure. Rappel éthique en bas. | Comprendre les leçons · Réviser intelligemment · Développer l’autonomie · Accompagner les progrès de son enfant · « ChatGPT ne remplace ni l’enseignant ni les efforts de l’élève. » | Whoosh à chaque carte, tick à chaque coche |
-| 5 · Offre | 29–35 s | Le livre au centre, rayons ambrés, étiquettes flottantes (parallaxe). L’étiquette de prix tombe avec un rebond et un reflet. | « Le guide pratique des **parents** » · « Seulement **10 000 FCFA** » · Ebook numérique · De la 6e à la Terminale | Impact léger + scintillement |
-| 6 · CTA | 35–40 s | Phrase finale, petit livre flottant, bouton ambre qui pulse avec un reflet, un curseur vient cliquer (onde), contact WhatsApp / lien. Mention légale. | « Donnez à votre enfant une **meilleure méthode** pour apprendre. » · bouton « Commandez votre exemplaire » · WhatsApp : +225 … | Pop, clic, accord final |
-
-## Zones de sécurité
-
-- **Vertical** : tout le contenu important entre y = 250 et y = 1360, marges latérales de 90 px. Bande sous-titres 1395–1520. Rien d’essentiel en dessous de 1540 (interfaces TikTok / Reels / Shorts / Statuts).
-- **Carré** : marges de 70 px, bande sous-titres 892–1002.
+| # | Temps | Visuel | Texte à l'écran |
+|---|---|---|---|
+| 1 · Coût | 0–6 s | Calendrier dont les mois défilent (séances cochées, compteur ×1 → ×6), pièces « FCFA » **sans montant** qui s'empilent, parent préoccupé (sourcils froncés, goutte, bulle « ? »). Bascule floutée vers un graphique « Progrès de votre enfant » à la courbe hésitante, terminé par un « ? » pulsant. | « Vous payez un **répétiteur** chaque mois… » puis, en impact mot à mot : « Mais savez-vous vraiment si votre enfant **progresse** ? » |
+| 2 · Quotidien | 6–12 s | 3 cartes synchronisées sur la voix (Votre travail · Vos responsabilités · Les devoirs), horloge dont les aiguilles s'emballent, matières qui tombent (Maths, Français, Anglais, Physique-Chimie, SVT, Histoire-Géo). | « **Difficile de tout suivre.** » (impact, surlignage corail) |
+| 3 · Solution | 12–19 s | Riser, flash, onde de choc, traînée lumineuse horizontale, livre en rotation 3D avec rayons, éclats, reflet au sol et léger travelling avant. | « Découvrez le guide » · « Le guide pratique pour accompagner **autrement** votre enfant. » |
+| 4 · Quiz | 19–28 s | Carte de quiz : matière et niveau, question 3/5, compte à rebours circulaire, 4 choix, curseur qui choisit B, correction pédagogique (« 3x = 20 − 5 = 15, donc x = 5 »), puis écran de score 4/5 (80 %) avec conseil de révision. | « Des quiz **interactifs** et **chronométrés** » · étiquette « Démonstration · quiz créé avec ChatGPT grâce au guide » |
+| 5 · Rapport | 28–36 s | Rapport de la semaine : 4 tuiles chiffrées qui comptent (exercices, temps de révision, quiz réussis, points à renforcer), points faibles en corail, graphique d'évolution avec courbe de tendance. | « Des **rapports d'activité** clairs » · étiquette « Exemple fictif · rapport rédigé par ChatGPT à partir des informations que vous lui fournissez » |
+| 6 · Bénéfices | 36–42 s | 3 cartes qui s'allument tour à tour sur la voix (icônes portefeuille, progression, escalier), coche animée. | Maîtrisez votre budget · Suivez ses progrès · Développez son autonomie · *Le guide complète l'accompagnement de votre enfant : il ne remplace pas forcément un répétiteur et ne garantit pas d'économies.* |
+| 7 · Offre | 42–50 s | Livre au centre (rayons ambrés), étiquette de prix qui tombe, bouton pulsant cliqué par un curseur, contact WhatsApp. Mentions légales. | « Votre guide pratique » · « Seulement **10 000 FCFA** » · **COMMANDER MAINTENANT** · WhatsApp : +225 05 84 06 06 06 |
 
 ## Conformité
 
-- Aucun témoignage, chiffre, note ou résultat scolaire inventé.
-- Aucun logo ChatGPT / OpenAI ; l’assistant de la scène 1 est générique (« Assistant IA »).
-- Mention : « ChatGPT est une marque d’OpenAI. Ce guide est indépendant, non affilié à OpenAI ni approuvé par OpenAI. »
-- Rappel : « ChatGPT ne remplace ni l’enseignant ni les efforts de l’élève. »
-- Musique et effets 100 % synthétisés par `scripts/generate-audio.mjs` (aucun sample tiers) ; polices sous licence OFL.
+- Aucun montant de répétiteur affiché, aucune moyenne inventée : les pièces et le calendrier n'ont pas de valeur.
+- Chiffres du quiz et du rapport : fictifs et étiquetés comme tels.
+- Aucune promesse d'économies ou de remplacement du répétiteur (mention à l'écran, scène 6).
+- « ChatGPT ne remplace ni l'enseignant ni les efforts de l'élève » et la mention de marque OpenAI figurent en scène 7.
+- Couverture officielle utilisée avec le logo ChatGPT masqué.
+- Zones de sécurité : contenu entre y = 250 et y = 1360 en vertical (bande sous-titres 1395–1520), marges de 70 px en carré.

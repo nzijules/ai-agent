@@ -147,6 +147,46 @@ const Progress: React.FC<IconProps> = ({size, p, f, color = colors.white, accent
   );
 };
 
+const Briefcase: React.FC<IconProps> = ({size, p, f, color = colors.white, accent = colors.coral}) => {
+  const tilt = Math.sin(f / 6) * 3;
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100">
+      <g transform={`rotate(${tilt} 50 56)`}>
+        <rect x="14" y="32" width="72" height="50" rx="9" {...stroke(color)} {...draw(p, 0, 0.6)} />
+        <path d="M38 32 V24 a5 5 0 0 1 5 -5 h14 a5 5 0 0 1 5 5 V32" {...stroke(color, 5)} {...draw(p, 0.3, 0.4)} />
+        <path d="M14 52 H86" {...stroke(accent, 4)} {...draw(p, 0.5, 0.4)} />
+        <rect x="44" y="47" width="12" height="10" rx="2" fill={accent} opacity={p} />
+      </g>
+    </svg>
+  );
+};
+
+const Home: React.FC<IconProps> = ({size, p, f, color = colors.white, accent = colors.coral}) => {
+  const smoke = (f % 40) / 40;
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100">
+      <path d="M14 50 L50 18 L86 50" {...stroke(color, 6)} {...draw(p, 0, 0.5)} />
+      <path d="M24 44 V84 H76 V44" {...stroke(color)} {...draw(p, 0.2, 0.5)} />
+      <rect x="42" y="60" width="16" height="24" rx="3" fill={accent} opacity={p} />
+      <path d="M66 30 V18 H74 V38" {...stroke(color, 4)} {...draw(p, 0.4, 0.3)} />
+      <circle cx={72 + smoke * 6} cy={12 - smoke * 10} r={3 + smoke * 3} fill={color} opacity={(1 - smoke) * 0.5 * p} />
+    </svg>
+  );
+};
+
+const Wallet: React.FC<IconProps> = ({size, p, f, color = colors.white, accent = colors.amber}) => {
+  const coin = Math.abs(Math.sin(f / 10));
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100">
+      <circle cx="68" cy={24 - coin * 6} r="11" fill={accent} opacity={interpolate(p, [0.5, 0.8], [0, 1], clamp)} />
+      <text x="68" y={28.5 - coin * 6} textAnchor="middle" fontSize="13" fontWeight="800" fill={colors.ink} opacity={interpolate(p, [0.5, 0.8], [0, 1], clamp)}>F</text>
+      <rect x="12" y="34" width="74" height="50" rx="10" {...stroke(color)} {...draw(p, 0, 0.6)} />
+      <path d="M86 50 H66 a8 8 0 0 0 0 16 H86" {...stroke(accent, 5)} {...draw(p, 0.4, 0.4)} />
+      <circle cx="68" cy="58" r="3.5" fill={accent} opacity={p} />
+    </svg>
+  );
+};
+
 export const iconMap: Record<string, React.FC<IconProps>> = {
   homework: Homework,
   confused: Confused,
@@ -156,6 +196,9 @@ export const iconMap: Record<string, React.FC<IconProps>> = {
   cards: Cards,
   stairs: Stairs,
   progress: Progress,
+  briefcase: Briefcase,
+  home: Home,
+  wallet: Wallet,
 };
 
 export const AnimatedIcon: React.FC<IconProps & {name: string}> = ({name, ...rest}) => {

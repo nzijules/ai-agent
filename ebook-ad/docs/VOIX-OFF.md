@@ -1,35 +1,40 @@
-# Script intégral de la voix off (≈ 40 s)
+# Script intégral de la voix off (50 s)
 
-**Ton** : voix française naturelle, chaleureuse, posée et rassurante — un parent qui parle à un autre parent. Débit ≈ 150 mots/min, sourire dans la voix sur l’offre et le CTA. Prononcer « dix mille francs CFA ».
+**Ton** : voix française naturelle, chaleureuse et rassurante, comme un parent qui parle à un autre parent. Débit posé (environ 150 mots/min), sourire dans la voix sur l'offre. Prononcer « dix mille francs CFA ».
 
 | Temps | Scène | Texte |
 |---|---|---|
-| 0,3 – 4,7 s | Accroche | Votre enfant utilise ChatGPT… *(courte pause)* mais apprend-il **vraiment** ? |
-| 5,2 – 10,8 s | Problème | Devoirs, leçons mal comprises, réponses copiées sans réflexion… *(pause)* Obtenir une réponse ne signifie pas comprendre. |
-| 11,3 – 17,8 s | Solution | Découvrez « Apprendre à apprendre avec ChatGPT », le guide qui en fait un véritable tuteur pédagogique. |
-| 18,3 – 28,8 s | Bénéfices | Aidez votre enfant à comprendre ses leçons, à réviser intelligemment, à développer son autonomie… et accompagnez ses progrès, de la 6e à la Terminale. |
-| 29,4 – 34,7 s | Offre | Le guide pratique des parents, pour seulement dix mille francs CFA. |
-| 35,1 – 39,8 s | CTA | Donnez à votre enfant une meilleure méthode pour apprendre. Commandez votre exemplaire dès aujourd’hui. |
+| 0,2 – 5,8 s | 1 · Coût du soutien scolaire | Chaque mois, vous payez des cours de répétition. *(pause)* Mais votre enfant progresse-t-il vraiment ? |
+| 6,2 – 11,7 s | 2 · Difficultés du parent | Et entre votre travail, vos responsabilités et les devoirs… difficile de tout suivre. |
+| 12,3 – 18,6 s | 3 · Solution | Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique pour accompagner autrement votre enfant. |
+| 19,3 – 26,0 s | 4 · Quiz | Apprenez à créer des quiz interactifs et chronométrés pour l'aider à s'entraîner et vérifier ses connaissances. |
+| 28,3 – 33,5 s | 5 · Rapports d'activité | Et grâce aux rapports d'activité, suivez son travail, ses difficultés et ses progrès. |
+| 36,3 – 41,7 s | 6 · Bénéfices | Moins de dépenses inutiles, plus de visibilité, et un enfant qui apprend à devenir autonome. |
+| 42,3 – 49,8 s | 7 · Offre | « Apprendre à apprendre avec ChatGPT ». Votre guide pratique, à seulement dix mille francs CFA. Commandez maintenant ! |
 
-Texte brut (à coller dans un moteur de synthèse vocale ou à lire au micro) :
+Texte brut à coller dans ElevenLabs ou à lire au micro. Gardez un **saut de ligne entre les paragraphes** : les pauses servent au calage automatique.
 
-> Votre enfant utilise ChatGPT… mais apprend-il vraiment ?
-> Devoirs, leçons mal comprises, réponses copiées sans réflexion… Obtenir une réponse ne signifie pas comprendre.
-> Découvrez « Apprendre à apprendre avec ChatGPT », le guide qui en fait un véritable tuteur pédagogique.
-> Aidez votre enfant à comprendre ses leçons, à réviser intelligemment, à développer son autonomie… et accompagnez ses progrès, de la sixième à la terminale.
-> Le guide pratique des parents, pour seulement dix mille francs CFA.
-> Donnez à votre enfant une meilleure méthode pour apprendre. Commandez votre exemplaire dès aujourd’hui.
+> Chaque mois, vous payez des cours de répétition. Mais votre enfant progresse-t-il vraiment ?
+>
+> Et entre votre travail, vos responsabilités et les devoirs… difficile de tout suivre.
+>
+> Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique pour accompagner autrement votre enfant.
+>
+> Apprenez à créer des quiz interactifs et chronométrés pour l'aider à s'entraîner et vérifier ses connaissances.
+>
+> Et grâce aux rapports d'activité, suivez son travail, ses difficultés et ses progrès.
+>
+> Moins de dépenses inutiles, plus de visibilité, et un enfant qui apprend à devenir autonome.
+>
+> « Apprendre à apprendre avec ChatGPT ». Votre guide pratique, à seulement dix mille francs CFA. Commandez maintenant !
 
-## Voix off actuelle
+Voix utilisée jusqu'ici : ElevenLabs « Sylvestre – calme et chaleureux » (français standard).
 
-Générée avec ElevenLabs (voix « Sylvestre – calme et chaleureux », français standard). Fichier brut : `public/audio/voiceover-source.mp3` (35 s).
-`scripts/assemble-voiceover.mjs` le découpe phrase par phrase (aux pauses) et place chaque phrase sur son animation, puis normalise le volume → `public/audio/voiceover.mp3` (40 s).
+## Intégrer la voix off
 
-## Intégrer une nouvelle voix off
-
-1. Enregistrez ou générez la voix (MP3, 44,1 kHz, ~40 s, en respectant les temps ci-dessus).
-2. Déposez le fichier sous `public/audio/voiceover-source.mp3`, ajustez les découpes `src` de `scripts/assemble-voiceover.mjs` (début/fin de chaque phrase dans la voix brute), puis `node scripts/assemble-voiceover.mjs`.
-3. Si les temps diffèrent, ajustez `src/captions.ts` puis `npm run audio` (régénère `docs/sous-titres.srt`).
-4. `npm run render:vertical-vo` et `npm run render:square-vo` → la musique est automatiquement baissée sous la voix et les sous-titres animés sont incrustés.
-
-Les sous-titres seuls (fichier séparé pour Facebook / YouTube) : `docs/sous-titres.srt`.
+1. Déposez le MP3 brut, lu d'une traite, sous `public/audio/voiceover-source.mp3`.
+2. `npm run voiceover` : le script détecte les pauses, découpe la voix en 16 répliques (celles de `src/captions.ts`), place chaque réplique sur son animation, normalise le volume et écrit `public/audio/voiceover.mp3`. Il affiche le minutage et signale toute réplique qui déborde sur la suivante.
+   - Si le nombre de segments ne correspond pas, essayez `node scripts/assemble-voiceover.mjs -38 0.12` (pause minimale plus courte).
+   - Si une réplique déborde, avancez son `start` dans `src/captions.ts` (ou celui de la suivante), puis relancez.
+3. `npm run audio` régénère `docs/sous-titres.srt` à partir de `src/captions.ts`.
+4. `npm run render:vertical-vo` et `npm run render:square-vo` : la musique est automatiquement baissée sous la voix et les sous-titres animés sont incrustés.
