@@ -126,7 +126,7 @@ const softClip = (x) => Math.tanh(x);
 
 // ------------------------------------------------------------------ musique
 function music() {
-  const DUR = 50.5;
+  const DUR = 55.5;
   const BPM = 100;
   const beat = 60 / BPM;
   const bar = beat * 4;
@@ -145,10 +145,10 @@ function music() {
     G: [55, 59, 62, 67],
     Em: [52, 59, 64, 67],
   };
-  const prog = ['Am', 'F', 'C', 'G', 'Am', 'F', 'F', 'G', 'Am', 'C', 'F', 'G', 'Am', 'Em', 'F', 'G', 'C', 'G', 'F', 'G', 'C', 'C', 'C'];
+  const prog = ['Am', 'F', 'C', 'G', 'Am', 'F', 'G', 'G', 'F', 'G', 'Am', 'C', 'F', 'G', 'Am', 'Em', 'F', 'G', 'C', 'G', 'F', 'G', 'C', 'C', 'C'];
   const chordAt = (t) => chords[prog[Math.min(prog.length - 1, Math.floor(t / bar))]];
-  const DROP = 12.0; // révélation du livre (début de mesure)
-  const OUTRO = 48.6;
+  const DROP = 12.6; // révélation du livre (calé sur un temps)
+  const OUTRO = 53.4;
 
   // ----- Pad (scies désaccordées filtrées)
   const lp = [new Biquad('lp', 800), new Biquad('lp', 800)];
@@ -280,7 +280,7 @@ function music() {
     }
   };
   // intro : notes espacées, mystérieuses
-  [0.0, 1.2, 2.4, 3.6, 4.8, 6.0, 7.2, 8.4, 9.6, 10.8].forEach((t, i) => pluck(t + 0.05, arpNotes(t)[i % 4], 0.1, i % 2 ? 0.3 : 0.7));
+  [0.0, 1.2, 2.4, 3.6, 4.8, 6.0, 7.2, 8.4, 9.6, 10.8, 12.0].forEach((t, i) => pluck(t + 0.05, arpNotes(t)[i % 4], 0.1, i % 2 ? 0.3 : 0.7));
   for (let t = DROP, k = 0; t < OUTRO; t += beat / 2, k++) {
     const notes = arpNotes(t);
     pluck(t, notes[k % notes.length], 0.07 + (k % 4 === 0 ? 0.02 : 0), k % 2 ? 0.25 : 0.75);

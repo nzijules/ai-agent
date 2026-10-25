@@ -1,64 +1,60 @@
 1
-00:00:00,200 --> 00:00:03,000
+00:00:00,200 --> 00:00:02,700
 Chaque mois, vous payez des cours de répétition.
 
 2
-00:00:03,200 --> 00:00:05,800
+00:00:02,800 --> 00:00:05,200
 Mais votre enfant progresse-t-il vraiment ?
 
 3
-00:00:06,200 --> 00:00:09,500
+00:00:06,300 --> 00:00:09,800
 Et entre votre travail, vos responsabilités et les devoirs…
 
 4
-00:00:09,700 --> 00:00:11,700
+00:00:10,000 --> 00:00:11,800
 difficile de tout suivre.
 
 5
-00:00:12,300 --> 00:00:14,900
+00:00:13,400 --> 00:00:16,300
 Découvrez « Apprendre à apprendre avec ChatGPT »,
 
 6
-00:00:15,100 --> 00:00:18,600
+00:00:16,400 --> 00:00:19,400
 le guide pratique pour accompagner autrement votre enfant.
 
 7
-00:00:19,300 --> 00:00:22,300
-Apprenez à créer des quiz interactifs et chronométrés
+00:00:21,500 --> 00:00:26,900
+Apprenez à créer des quiz interactifs et chronométrés pour l’aider à s’entraîner et vérifier ses connaissances.
 
 8
-00:00:22,500 --> 00:00:26,000
-pour l’aider à s’entraîner et vérifier ses connaissances.
-
-9
-00:00:28,300 --> 00:00:29,900
+00:00:31,400 --> 00:00:32,900
 Et grâce aux rapports d’activité,
 
-10
-00:00:30,100 --> 00:00:33,500
+9
+00:00:33,000 --> 00:00:36,200
 suivez son travail, ses difficultés et ses progrès.
 
-11
-00:00:36,300 --> 00:00:37,800
+10
+00:00:41,300 --> 00:00:42,700
 Moins de dépenses inutiles,
 
-12
-00:00:37,900 --> 00:00:39,000
+11
+00:00:42,800 --> 00:00:44,000
 plus de visibilité,
 
-13
-00:00:39,100 --> 00:00:41,700
+12
+00:00:44,100 --> 00:00:46,500
 et un enfant qui apprend à devenir autonome.
 
+13
+00:00:47,300 --> 00:00:49,400
+« Apprendre à apprendre avec ChatGPT ».
+
 14
-00:00:42,300 --> 00:00:45,600
-« Apprendre à apprendre avec ChatGPT ». Votre guide pratique,
+00:00:49,500 --> 00:00:52,400
+Votre guide pratique, à seulement 10 000 francs CFA.
 
 15
-00:00:45,800 --> 00:00:47,700
-à seulement 10 000 francs CFA.
-
-16
-00:00:47,900 --> 00:00:49,800
+00:00:52,500 --> 00:00:54,600
 Commandez maintenant !
 

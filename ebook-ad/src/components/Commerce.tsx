@@ -51,7 +51,9 @@ export const PriceTag: React.FC<{frame: number; start: number; scale: number}> =
 };
 
 /** Bouton d'appel à l'action : pulsation, reflet, clic à `click`. */
-export const CtaButton: React.FC<{frame: number; start: number; click: number; w: number; fontSize: number}> = ({frame, start, click, w, fontSize}) => {
+export const CtaButton: React.FC<{frame: number; start: number; click: number; w: number; fontSize: number; green?: boolean}> = ({frame, start, click, w, fontSize, green}) => {
+  const glow = green ? '#22C55E' : colors.amber;
+  const fg = green ? colors.white : colors.ink;
   const p = sp(frame, start, SPRING_POP);
   const pulse = 1 + 0.025 * Math.sin(Math.max(0, frame - start - 16) / 5);
   const press = interpolate(frame, [click - 2, click, click + 6], [1, 0.94, 1], clamp);
@@ -60,15 +62,15 @@ export const CtaButton: React.FC<{frame: number; start: number; click: number; w
   const h = fontSize * 2.7;
   return (
     <div style={{position: 'relative', width: w, height: h, opacity: p, transform: `scale(${(0.7 + 0.3 * p) * pulse * press})`}}>
-      <div style={{position: 'absolute', inset: -18, borderRadius: 999, background: colors.amber, filter: 'blur(30px)', opacity: 0.35 + 0.15 * Math.sin(frame / 6)}} />
+      <div style={{position: 'absolute', inset: -18, borderRadius: 999, background: glow, filter: 'blur(30px)', opacity: 0.35 + 0.15 * Math.sin(frame / 6)}} />
       <div
         style={{
           position: 'absolute',
           inset: 0,
           borderRadius: 999,
           overflow: 'hidden',
-          background: `linear-gradient(180deg, #FFC86B 0%, ${colors.amber} 55%, #F29A2E 100%)`,
-          boxShadow: '0 18px 40px rgba(242,154,46,0.45), inset 0 2px 0 rgba(255,255,255,0.6)',
+          background: green ? 'linear-gradient(180deg, #4ADE80 0%, #22C55E 50%, #15803D 100%)' : `linear-gradient(180deg, #FFC86B 0%, ${colors.amber} 55%, #F29A2E 100%)`,
+          boxShadow: green ? '0 18px 40px rgba(34,197,94,0.45), inset 0 2px 0 rgba(255,255,255,0.5)' : '0 18px 40px rgba(242,154,46,0.45), inset 0 2px 0 rgba(255,255,255,0.6)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -76,15 +78,18 @@ export const CtaButton: React.FC<{frame: number; start: number; click: number; w
           fontFamily: fonts.display,
           fontWeight: 800,
           fontSize,
-          color: colors.ink,
+          color: fg,
           letterSpacing: '0.02em',
           whiteSpace: 'nowrap',
         }}
       >
+        {green ? <ChatPhone size={fontSize * 1.2} color={colors.white} /> : null}
         {c.button}
-        <svg width={fontSize * 0.9} height={fontSize * 0.9} viewBox="0 0 24 24" style={{transform: `translateX(${Math.sin(frame / 5) * 4}px)`}}>
-          <path d="M5 12 H19 M13 6 L19 12 L13 18" fill="none" stroke={colors.ink} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        {green ? null : (
+          <svg width={fontSize * 0.9} height={fontSize * 0.9} viewBox="0 0 24 24" style={{transform: `translateX(${Math.sin(frame / 5) * 4}px)`}}>
+            <path d="M5 12 H19 M13 6 L19 12 L13 18" fill="none" stroke={fg} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
         {frame > start + 16 ? (
           <div
             style={{

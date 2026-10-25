@@ -9,7 +9,8 @@ import {SceneWrap} from '../components/SceneWrap';
 import {Pill} from '../components/ui';
 import {adConfig} from '../config';
 import {useFormat} from '../format';
-import {colors} from '../theme';
+import {colors, fonts} from '../theme';
+import {localAt} from '../timeline';
 
 const c = adConfig.solution;
 
@@ -70,9 +71,9 @@ export const S3Solution: React.FC = () => {
   const dolly = interpolate(frame, [0, 210], [1.06, 1]);
   const streak = interpolate(frame, [6, 14, 34], [0, 1, 0], clamp);
 
-  const bookW = fmt.vertical ? 440 : 330;
+  const bookW = 380;
   const bookH = bookW * coverRatio();
-  const center = fmt.vertical ? {x: 540, y: 470 + bookH / 2} : {x: 270, y: 150 + bookH / 2};
+  const center = {x: 540, y: 628 + bookH / 2};
 
   return (
     <SceneWrap enter={6}>
@@ -86,15 +87,15 @@ export const S3Solution: React.FC = () => {
             width: 1400 * ring,
             height: 1400 * ring,
             borderRadius: '50%',
-            border: `${6 * (1 - ring) + 1}px solid ${colors.sky}`,
+            border: `${6 * (1 - ring) + 1}px solid ${colors.amber}`,
             opacity: 1 - ring,
           }}
         />
-        <AbsoluteFill style={{background: `radial-gradient(circle at ${center.x}px ${center.y}px, rgba(190,215,255,${flash}) 0%, transparent 55%)`}} />
+        <AbsoluteFill style={{background: `radial-gradient(circle at ${center.x}px ${center.y}px, rgba(255,226,170,${flash}) 0%, transparent 55%)`}} />
 
         <div style={{position: 'absolute', left: center.x, top: center.y}}>
-          <LightRays size={fmt.vertical ? 1500 : 1000} frame={frame} opacity={rays * 0.9} />
-          <Burst frame={frame} start={30} radius={fmt.vertical ? 420 : 300} />
+          <LightRays size={1500} frame={frame} opacity={rays * 0.95} color={colors.amber} />
+          <Burst frame={frame} start={30} radius={400} />
         </div>
 
         <div
@@ -144,27 +145,16 @@ export const S3Solution: React.FC = () => {
           }}
         />
 
-        {fmt.vertical ? (
-          <>
-            <div style={{position: 'absolute', top: fmt.safeTop + 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: kick, transform: `translateY(${(1 - kick) * -30}px)`}}>
-              <Pill size={42} color={colors.mint}>
-                {c.kicker}
-              </Pill>
-            </div>
-            <div style={{position: 'absolute', top: 1180, left: fmt.padX, right: fmt.padX, display: 'flex', justifyContent: 'center'}}>
-              <KineticText text={c.tagline} size={58} weight={700} delay={70} stagger={3} highlight={c.highlight} highlightColor={colors.amber} maxWidth={900} lineHeight={1.14} />
-            </div>
-          </>
-        ) : (
-          <div style={{position: 'absolute', top: 150, bottom: 210, left: 560, right: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 26}}>
-            <div style={{opacity: kick, transform: `translateY(${(1 - kick) * -20}px)`}}>
-              <Pill size={30} color={colors.mint}>
-                {c.kicker}
-              </Pill>
-            </div>
-            <KineticText text={c.tagline} size={50} weight={700} delay={70} stagger={3} highlight={c.highlight} highlightColor={colors.amber} align="left" maxWidth={460} lineHeight={1.14} />
+        <div style={{position: 'absolute', top: fmt.safeTop, left: fmt.padX, right: fmt.padX, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6}}>
+          <div style={{opacity: kick, transform: `translateY(${(1 - kick) * -24}px)`, fontFamily: fonts.display, fontWeight: 700, fontSize: 44, color: colors.white}}>{c.kicker}</div>
+          <div style={{filter: `drop-shadow(0 0 ${18 * rays}px rgba(255,181,71,0.55))`}}>
+            <KineticText text={c.titleTop} size={84} delay={16} stagger={4} effect="slam" color={colors.amber} maxWidth={900} lineHeight={1.0} letterSpacing={-0.01} />
           </div>
-        )}
+          <KineticText text={c.titleBottom} size={72} delay={30} stagger={4} effect="slam" maxWidth={900} lineHeight={1.0} letterSpacing={-0.01} />
+        </div>
+        <div style={{position: 'absolute', top: 1236, left: fmt.padX, right: fmt.padX, display: 'flex', justifyContent: 'center'}}>
+          <KineticText text={c.tagline} size={46} weight={700} delay={localAt('solution', 16.4)} stagger={3} highlight={c.highlight} highlightColor={colors.amber} maxWidth={900} lineHeight={1.14} />
+        </div>
       </AbsoluteFill>
     </SceneWrap>
   );

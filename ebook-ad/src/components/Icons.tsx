@@ -187,6 +187,16 @@ const Wallet: React.FC<IconProps> = ({size, p, f, color = colors.white, accent =
   );
 };
 
+const ClockIcon: React.FC<IconProps> = ({size, p, f, color = colors.white, accent = colors.amber}) => (
+  <svg width={size} height={size} viewBox="0 0 100 100">
+    <circle cx="50" cy="52" r="34" {...stroke(color)} {...draw(p, 0, 0.6)} />
+    <line x1="50" y1="52" x2="50" y2="32" {...stroke(accent, 5)} transform={`rotate(${f * 8} 50 52)`} opacity={p} />
+    <line x1="50" y1="52" x2="64" y2="52" {...stroke(color, 5)} transform={`rotate(${f * 0.7} 50 52)`} opacity={p} />
+    <path d="M30 14 L20 24 M70 14 L80 24" {...stroke(accent, 5)} {...draw(p, 0.5, 0.3)} />
+    <circle cx="50" cy="52" r="4" fill={accent} opacity={p} />
+  </svg>
+);
+
 export const iconMap: Record<string, React.FC<IconProps>> = {
   homework: Homework,
   confused: Confused,
@@ -199,6 +209,7 @@ export const iconMap: Record<string, React.FC<IconProps>> = {
   briefcase: Briefcase,
   home: Home,
   wallet: Wallet,
+  clock: ClockIcon,
 };
 
 export const AnimatedIcon: React.FC<IconProps & {name: string}> = ({name, ...rest}) => {

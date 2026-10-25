@@ -1,6 +1,6 @@
 # Publicité motion design — « Apprendre à apprendre avec ChatGPT »
 
-Projet **Remotion 4 + React 19 + TypeScript**. Publicité de **50 s** (version 2 : « bénéfice parent »), 30 fps, entièrement animée par frames.
+Projet **Remotion 4 + React 19 + TypeScript**. Publicité de **55 s** (version 3, d'après le storyboard visuel fourni), 30 fps, entièrement animée par frames.
 
 ## Fichiers livrés
 
@@ -9,6 +9,8 @@ Projet **Remotion 4 + React 19 + TypeScript**. Publicité de **50 s** (version 2
 | `out/pub-1080x1920.mp4` | Vertical 1080×1920, H.264, **sans voix off** (musique + effets) |
 | `out/pub-1080x1920-soustitres.mp4` | Vertical, sans voix off, avec sous-titres animés incrustés (lecture sans son) |
 | `out/pub-1080x1080.mp4` | Carré 1080×1080, H.264, sans voix off |
+| `out/pub-1080x1920-voixoff.mp4` | Vertical, **voix off** (ElevenLabs « Sylvestre ») + sous-titres animés |
+| `out/pub-1080x1080-voixoff.mp4` | Carré, voix off + sous-titres animés |
 | `docs/STORYBOARD.md` | Storyboard détaillé, direction artistique, zones de sécurité, conformité |
 | `docs/VOIX-OFF.md` | Script intégral de la voix off v2 + intégration automatique (`npm run voiceover`) |
 | `docs/sous-titres.srt` | Sous-titres de la voix off (fichier séparé) |
@@ -61,14 +63,14 @@ Après modification : vérifier dans `npm run studio` qu’aucun texte ne débor
 src/
   config.ts          ← textes, prix, couverture, CTA (à éditer)
   theme.ts           ← palette, polices
-  timeline.ts        ← découpage temporel des 7 scènes (50 s)
+  timeline.ts        ← découpage temporel des 7 scènes (55 s)
   captions.ts        ← script voix off + minutage des sous-titres
-  format.ts          ← mise en page vertical / carré, zones de sécurité
+  format.ts          ← zones de sécurité ; SquareFit affiche la zone sûre verticale réduite en carré
   anim.ts            ← springs et easings partagés
   Ad.tsx             ← composition : fond, scènes, sous-titres, audio
   Root.tsx           ← déclaration des 5 compositions
   components/        ← Background, Book3D, Cover, KineticText, Icons, Captions, SceneWrap, ui,
-                       Commerce (prix, bouton, contact, mentions), ProblemCard
+                       Commerce (prix, bouton, contact, mentions), MiniIcons
   scenes/            ← S1Hook, S2Struggle, S3Solution, S4Quiz, S5Report, S6Benefits, S7Offer
 scripts/
   generate-audio.mjs ← synthèse musique + effets + export .srt
@@ -78,6 +80,7 @@ public/
   fonts/             ← Plus Jakarta Sans & Inter (OFL)
   audio/             ← music.wav, sfx-*.wav (+ voiceover-source.mp3 à ajouter)
   cover/             ← couverture officielle (logo masqué) + original
+  photos/            ← photos extraites de la couverture (scènes 4 et 6)
 ```
 
 ## Droits

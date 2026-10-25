@@ -2,7 +2,7 @@
 //
 // Entrée : public/audio/voiceover-source.mp3 (voix enregistrée ou générée,
 //          lue d'une traite, en suivant docs/VOIX-OFF.md)
-// Sortie : public/audio/voiceover.mp3 (50 s, chaque phrase placée sur son animation)
+// Sortie : public/audio/voiceover.mp3 (55 s, chaque phrase placée sur son animation)
 //
 // Fonctionnement :
 //  1. détection des pauses (ffmpeg silencedetect) → segments de parole ;
@@ -16,7 +16,7 @@ import fs from 'node:fs';
 
 const SRC = 'public/audio/voiceover-source.mp3';
 const OUT = 'public/audio/voiceover.mp3';
-const TOTAL = 50;
+const TOTAL = 55; // durée de la vidéo (src/timeline.ts)
 const noise = process.argv[2] ?? '-38';
 const minPause = process.argv[3] ?? '0.18';
 
