@@ -42,7 +42,7 @@ npm run stills          # images de contrôle qualité dans out/stills/
 **Tout se fait dans `src/config.ts`.**
 
 - **Prix** : `scene5.price` (ex. `` `7${NBSP}500` ``) et `scene5.currency`. Penser à mettre à jour la voix off (`docs/VOIX-OFF.md`) et `src/captions.ts` si le prix y est prononcé.
-- **Couverture officielle** : déposer l’image dans `public/cover/` (portrait 2:3, ex. 1200×1800) puis `book.coverImage: 'cover/couverture.jpg'`. Elle remplace automatiquement la couverture provisoire partout (mockups 3D des scènes 3, 5 et 6). Pour garder la couverture provisoire, modifier `coverTitle*`, `coverKicker`, `coverSubtitle`, `coverAuthor`.
+- **Couverture officielle** : déjà intégrée (`public/cover/couverture.jpg`, auteur Jules N’ZI). Le logo ChatGPT de la couverture y est masqué pour respecter la consigne « aucun logo suggérant un partenariat » ; l’original est conservé dans `public/cover/couverture-officielle.png`. Pour changer de couverture : déposer l’image dans `public/cover/`, puis renseigner `book.coverImage` et `book.coverRatio` (hauteur ÷ largeur). Elle remplace automatiquement la couverture provisoire partout (mockups 3D des scènes 3, 5 et 6). Pour garder la couverture provisoire, modifier `coverTitle*`, `coverKicker`, `coverSubtitle`, `coverAuthor`.
 - **Textes** : `scene1` … `scene6` (accroche, problèmes, bénéfices, offre, CTA). Le mot surligné de l’accroche : `scene1.highlight`.
 - **Appel à l’action** : `scene6.button` (texte du bouton) et `scene6.contact` :
   - WhatsApp : `{type: 'whatsapp', label: 'WhatsApp', value: '+225 07 00 00 00 00'}`

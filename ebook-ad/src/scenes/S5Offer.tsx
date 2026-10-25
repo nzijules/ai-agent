@@ -1,3 +1,4 @@
+import {coverRatio} from '../coverRatio';
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {clamp, easeOut, sp, SPRING_POP, SPRING_SOFT} from '../anim';
@@ -62,10 +63,26 @@ export const S5Offer: React.FC = () => {
   const chipsIn = (i: number) => sp(frame, 40 + i * 8, SPRING_POP);
 
   const bookW = fmt.vertical ? 380 : 300;
-  const bookH = bookW * 1.5;
-  const center = fmt.vertical ? {x: 540, y: 500 + bookH / 2} : {x: 255, y: 175 + bookH / 2};
+  const bookH = bookW * coverRatio();
+  const center = fmt.vertical ? {x: 540, y: 528 + bookH / 2} : {x: 255, y: 175 + bookH / 2};
 
-  const chips = c.chips.map((label, i) => {
+  // Vertical : étiquettes alignées sous le titre (sans masquer la couverture)
+  const chipRow = (
+    <div style={{position: 'absolute', top: 438, left: fmt.padX, right: fmt.padX, display: 'flex', justifyContent: 'center', gap: 24}}>
+      {c.chips.map((label, i) => {
+        const p = chipsIn(i);
+        return (
+          <div key={i} style={{opacity: p, transform: `translateY(${(1 - p) * 20 + Math.sin((frame + i * 30) / 18) * 4}px) scale(${0.6 + 0.4 * p})`}}>
+            <Pill size={29} color={i === 0 ? colors.mint : colors.sky} style={{background: 'rgba(8,16,48,0.85)'}}>
+              {label}
+            </Pill>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const chips = fmt.vertical ? chipRow : c.chips.map((label, i) => {
     const p = chipsIn(i);
     // Étiquettes flottantes autour du livre (parallaxe différente du livre)
     const pos = fmt.vertical

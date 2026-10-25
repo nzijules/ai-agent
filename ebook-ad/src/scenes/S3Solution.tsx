@@ -1,3 +1,4 @@
+import {coverRatio} from '../coverRatio';
 import React from 'react';
 import {AbsoluteFill, interpolate, random, useCurrentFrame} from 'remotion';
 import {clamp, easeOut, sp, SPRING_SOFT} from '../anim';
@@ -68,7 +69,7 @@ export const S3Solution: React.FC = () => {
   const kick = sp(frame, 14, SPRING_SOFT);
 
   const bookW = fmt.vertical ? 440 : 330;
-  const bookH = bookW * 1.5;
+  const bookH = bookW * coverRatio();
   const center = fmt.vertical ? {x: 540, y: 470 + bookH / 2} : {x: 270, y: 150 + bookH / 2};
 
   return (

@@ -24,14 +24,25 @@ export const adConfig = {
     coverKicker: 'Guide pratique pour les parents',
     coverSubtitle: `Accompagner son enfant de la 6e à la Terminale`,
     /** Laisser vide ('') pour masquer. */
-    coverAuthor: 'Nom de l’auteur',
+    coverAuthor: 'Jules N’ZI',
     /**
      * Couverture officielle : déposez l'image dans public/cover/
      * (format portrait, ratio 2:3 conseillé, ex. 1200×1800 px)
-     * puis indiquez son nom, ex. 'cover/couverture.jpg'.
+     * puis indiquez son nom, ex. 'cover/couverture.jpg', et son rapport
+     * hauteur/largeur dans `coverRatio`.
+     * Note : `couverture.jpg` est la couverture officielle dont le logo
+     * ChatGPT a été masqué (consigne : aucun logo suggérant un partenariat).
+     * L'original est conservé dans public/cover/couverture-officielle.png.
      * Laissez null pour utiliser la couverture provisoire générée.
      */
-    coverImage: null as string | null,
+    coverImage: 'cover/couverture.jpg' as string | null,
+    /**
+     * Rapport hauteur / largeur de la couverture (image : 1492 / 1054).
+     * Mettre 1.5 pour la couverture provisoire.
+     */
+    coverRatio: 1492 / 1054,
+    /** Couleur de la tranche du livre 3D (accordée à la couverture). */
+    spineColor: '#05080F',
   },
 
   scene1: {
@@ -105,7 +116,7 @@ export const adConfig = {
     contact: {
       type: 'whatsapp' as 'whatsapp' | 'link' | 'none',
       label: 'WhatsApp',
-      value: `+225${NBSP}00${NBSP}00${NBSP}00${NBSP}00${NBSP}00`,
+      value: `+225${NBSP}05${NBSP}84${NBSP}06${NBSP}06${NBSP}06`,
     },
   },
 

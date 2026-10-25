@@ -1,3 +1,4 @@
+import {coverRatio} from '../coverRatio';
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {adConfig} from '../config';
@@ -9,7 +10,7 @@ import {colors, fonts} from '../theme';
  * - Sinon → couverture provisoire vectorielle (ratio 2:3).
  */
 export const Cover: React.FC<{width: number}> = ({width}) => {
-  const h = width * 1.5;
+  const h = width * coverRatio();
   const u = width / 100; // unité relative
   const b = adConfig.book;
 

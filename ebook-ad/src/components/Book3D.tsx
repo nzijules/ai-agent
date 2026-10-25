@@ -1,3 +1,5 @@
+import {adConfig} from '../config';
+import {coverRatio} from '../coverRatio';
 import React from 'react';
 import {colors} from '../theme';
 import {Cover} from './Cover';
@@ -15,7 +17,7 @@ type Props = {
 
 /** Mockup pseudo-3D du livre (CSS 3D : couverture, tranche, pages, dessus). */
 export const Book3D: React.FC<Props> = ({width, rotateY = 24, rotateX = 6, rotateZ = 0, sheen = -1, glow = 0, shadow = true}) => {
-  const h = width * 1.5;
+  const h = width * coverRatio();
   const t = width * 0.075; // épaisseur
   const face: React.CSSProperties = {position: 'absolute', backfaceVisibility: 'hidden'};
   return (
@@ -86,11 +88,13 @@ export const Book3D: React.FC<Props> = ({width, rotateY = 24, rotateX = 6, rotat
             left: (width - t) / 2,
             top: 0,
             transform: `rotateY(-90deg) translateZ(${width / 2}px)`,
-            background: 'linear-gradient(90deg, #07112E 0%, #102A73 45%, #0A1A4A 100%)',
+            background: adConfig.book.coverImage
+              ? `linear-gradient(90deg, #000 0%, ${adConfig.book.spineColor} 45%, #000 100%)`
+              : 'linear-gradient(90deg, #07112E 0%, #102A73 45%, #0A1A4A 100%)',
           }}
         />
         {/* Quatrième de couverture */}
-        <div style={{...face, width, height: h, transform: `rotateY(180deg) translateZ(${t / 2}px)`, background: '#0A1A4A'}} />
+        <div style={{...face, width, height: h, transform: `rotateY(180deg) translateZ(${t / 2}px)`, background: adConfig.book.coverImage ? adConfig.book.spineColor : '#0A1A4A'}} />
         {/* Couverture */}
         <div
           style={{
