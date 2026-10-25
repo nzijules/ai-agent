@@ -1,0 +1,29 @@
+{
+  "name": "ebook-ad-apprendre-avec-chatgpt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Publicité motion design Remotion — ebook « Apprendre à apprendre avec ChatGPT »",
+  "scripts": {
+    "studio": "remotion studio",
+    "audio": "node scripts/generate-audio.mjs",
+    "render:vertical": "remotion render AdVertical out/pub-1080x1920.mp4 --codec=h264 --crf=18",
+    "render:square": "remotion render AdSquare out/pub-1080x1080.mp4 --codec=h264 --crf=18",
+    "render:vertical-vo": "remotion render AdVerticalVO out/pub-1080x1920-voixoff.mp4 --codec=h264 --crf=18",
+    "render:square-vo": "remotion render AdSquareVO out/pub-1080x1080-voixoff.mp4 --codec=h264 --crf=18",
+    "render": "npm run render:vertical && npm run render:square",
+    "stills": "node scripts/stills.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/plus-jakarta-sans": "^5.1.0",
+    "@remotion/cli": "4.0.538",
+    "remotion": "4.0.538",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.0",
+    "typescript": "5.6.3"
+  }
+}

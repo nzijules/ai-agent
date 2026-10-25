@@ -1,0 +1,138 @@
+import React from 'react';
+import {AbsoluteFill, interpolate, random, useCurrentFrame} from 'remotion';
+import {clamp, easeOut, sp, SPRING_SOFT} from '../anim';
+import {Book3D} from '../components/Book3D';
+import {Sparkle} from '../components/Icons';
+import {KineticText} from '../components/KineticText';
+import {SceneWrap} from '../components/SceneWrap';
+import {Pill} from '../components/ui';
+import {adConfig} from '../config';
+import {useFormat} from '../format';
+import {colors} from '../theme';
+
+const b = adConfig.book;
+
+/** Rayons lumineux tournants derrière le livre. */
+export const LightRays: React.FC<{size: number; frame: number; opacity: number; color?: string}> = ({size, frame, opacity, color = colors.sky}) => (
+  <div
+    style={{
+      position: 'absolute',
+      width: size,
+      height: size,
+      left: -size / 2,
+      top: -size / 2,
+      borderRadius: '50%',
+      background: `repeating-conic-gradient(from ${frame * 0.6}deg, ${color}38 0deg 7deg, transparent 7deg 22deg)`,
+      maskImage: 'radial-gradient(circle, black 0%, transparent 68%)',
+      WebkitMaskImage: 'radial-gradient(circle, black 0%, transparent 68%)',
+      opacity,
+    }}
+  />
+);
+
+/** Éclats d'étincelles qui jaillissent autour du livre. */
+export const Burst: React.FC<{frame: number; start: number; radius: number; count?: number}> = ({frame, start, radius, count = 12}) => {
+  const t = frame - start;
+  if (t < 0 || t > 40) return null;
+  return (
+    <>
+      {new Array(count).fill(0).map((_, i) => {
+        const a = (i / count) * Math.PI * 2 + random(`ba${i}`) * 0.4;
+        const dist = interpolate(t, [0, 40], [radius * 0.3, radius * (0.9 + random(`bd${i}`) * 0.5)], {...clamp, easing: easeOut});
+        const o = interpolate(t, [0, 6, 40], [0, 1, 0], clamp);
+        const s = 18 + random(`bs${i}`) * 26;
+        return (
+          <div key={i} style={{position: 'absolute', left: Math.cos(a) * dist - s / 2, top: Math.sin(a) * dist - s / 2, opacity: o, transform: `rotate(${t * 6}deg)`}}>
+            <Sparkle size={s} color={i % 3 === 0 ? colors.amber : colors.white} />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+export const S3Solution: React.FC = () => {
+  const frame = useCurrentFrame();
+  const fmt = useFormat();
+
+  const fly = sp(frame, 6, {damping: 15, stiffness: 70, mass: 1.1});
+  const rotY = interpolate(fly, [0, 1], [-75, 22]) + Math.sin(frame / 28) * 4;
+  const rotX = interpolate(fly, [0, 1], [25, 6]);
+  const scale = interpolate(fly, [0, 1], [0.35, 1]);
+  const floatY = Math.sin(frame / 22) * 10;
+  const sheen = interpolate(frame, [42, 78], [-0.2, 1.2], clamp);
+  const sheen2 = interpolate(frame, [150, 186], [-0.2, 1.2], clamp);
+  const rays = interpolate(frame, [20, 50], [0, 1], clamp);
+  const flash = interpolate(frame, [0, 4, 22], [0, 0.9, 0], clamp);
+  const ring = interpolate(frame, [0, 26], [0, 1], {...clamp, easing: easeOut});
+  const kick = sp(frame, 14, SPRING_SOFT);
+
+  const bookW = fmt.vertical ? 440 : 330;
+  const bookH = bookW * 1.5;
+  const center = fmt.vertical ? {x: 540, y: 470 + bookH / 2} : {x: 270, y: 150 + bookH / 2};
+
+  return (
+    <SceneWrap enter={6}>
+      <AbsoluteFill>
+        {/* onde de choc + flash */}
+        <div
+          style={{
+            position: 'absolute',
+            left: center.x - 700 * ring,
+            top: center.y - 700 * ring,
+            width: 1400 * ring,
+            height: 1400 * ring,
+            borderRadius: '50%',
+            border: `${6 * (1 - ring) + 1}px solid ${colors.sky}`,
+            opacity: 1 - ring,
+          }}
+        />
+        <AbsoluteFill style={{background: `radial-gradient(circle at ${center.x}px ${center.y}px, rgba(190,215,255,${flash}) 0%, transparent 55%)`}} />
+
+        <div style={{position: 'absolute', left: center.x, top: center.y}}>
+          <LightRays size={fmt.vertical ? 1500 : 1000} frame={frame} opacity={rays * 0.9} />
+          <Burst frame={frame} start={30} radius={fmt.vertical ? 420 : 300} />
+        </div>
+
+        <div
+          style={{
+            position: 'absolute',
+            left: center.x - bookW / 2,
+            top: center.y - bookH / 2 + floatY,
+            transform: `scale(${scale})`,
+            opacity: interpolate(frame, [4, 14], [0, 1], clamp),
+          }}
+        >
+          <Book3D width={bookW} rotateY={rotY} rotateX={rotX} sheen={frame < 120 ? sheen : sheen2} glow={rays} />
+        </div>
+
+        {fmt.vertical ? (
+          <>
+            <div style={{position: 'absolute', top: fmt.safeTop + 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: kick, transform: `translateY(${(1 - kick) * -30}px)`}}>
+              <Pill size={42} color={colors.mint}>
+                {adConfig.scene3.kicker}
+              </Pill>
+            </div>
+            <div style={{position: 'absolute', top: 1172, left: fmt.padX, right: fmt.padX, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4}}>
+              <KineticText text={`${b.coverTitleTop} ${b.coverTitleMiddle}`} size={74} delay={58} stagger={4} maxWidth={900} />
+              <KineticText text={b.coverTitleAccent} size={74} delay={70} stagger={4} color={colors.amber} maxWidth={900} />
+            </div>
+          </>
+        ) : (
+          <div style={{position: 'absolute', top: 150, bottom: 210, left: 560, right: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22}}>
+            <div style={{opacity: kick, transform: `translateY(${(1 - kick) * -20}px)`}}>
+              <Pill size={30} color={colors.mint}>
+                {adConfig.scene3.kicker}
+              </Pill>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'column', gap: 4}}>
+              <KineticText text={b.coverTitleTop} size={64} delay={58} align="left" maxWidth={460} />
+              <KineticText text={b.coverTitleMiddle} size={64} delay={62} stagger={4} align="left" maxWidth={460} />
+              <KineticText text={b.coverTitleAccent} size={64} delay={70} stagger={4} color={colors.amber} align="left" maxWidth={460} />
+            </div>
+          </div>
+        )}
+      </AbsoluteFill>
+    </SceneWrap>
+  );
+};
