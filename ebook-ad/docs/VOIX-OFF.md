@@ -20,10 +20,15 @@ Texte brut (à coller dans un moteur de synthèse vocale ou à lire au micro) :
 > Le guide pratique des parents, pour seulement dix mille francs CFA.
 > Donnez à votre enfant une meilleure méthode pour apprendre. Commandez votre exemplaire dès aujourd’hui.
 
-## Intégrer la voix off
+## Voix off actuelle
+
+Générée avec ElevenLabs (voix « Sylvestre – calme et chaleureux », français standard). Fichier brut : `public/audio/voiceover-source.mp3` (35 s).
+`scripts/assemble-voiceover.mjs` le découpe phrase par phrase (aux pauses) et place chaque phrase sur son animation, puis normalise le volume → `public/audio/voiceover.mp3` (40 s).
+
+## Intégrer une nouvelle voix off
 
 1. Enregistrez ou générez la voix (MP3, 44,1 kHz, ~40 s, en respectant les temps ci-dessus).
-2. Déposez le fichier sous `public/audio/voiceover.mp3`.
+2. Déposez le fichier sous `public/audio/voiceover-source.mp3`, ajustez les découpes `src` de `scripts/assemble-voiceover.mjs` (début/fin de chaque phrase dans la voix brute), puis `node scripts/assemble-voiceover.mjs`.
 3. Si les temps diffèrent, ajustez `src/captions.ts` puis `npm run audio` (régénère `docs/sous-titres.srt`).
 4. `npm run render:vertical-vo` et `npm run render:square-vo` → la musique est automatiquement baissée sous la voix et les sous-titres animés sont incrustés.
 

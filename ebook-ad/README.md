@@ -9,6 +9,8 @@ Projet **Remotion 4 + React 19 + TypeScript**. Publicité de 40 s, 30 fps, enti�
 | `out/pub-1080x1920.mp4` | Vertical 1080×1920, H.264, **sans voix off** (musique + effets) |
 | `out/pub-1080x1920-soustitres.mp4` | Vertical, sans voix off, avec sous-titres animés incrustés (lecture sans son) |
 | `out/pub-1080x1080.mp4` | Carré 1080×1080, H.264, sans voix off |
+| `out/pub-1080x1920-voixoff.mp4` | Vertical, **voix off** (ElevenLabs, voix « Sylvestre ») + sous-titres animés |
+| `out/pub-1080x1080-voixoff.mp4` | Carré, voix off + sous-titres animés |
 | `docs/STORYBOARD.md` | Storyboard détaillé, direction artistique, zones de sécurité, conformité |
 | `docs/VOIX-OFF.md` | Script intégral de la voix off + procédure d’intégration |
 | `docs/sous-titres.srt` | Sous-titres de la voix off (fichier séparé) |
