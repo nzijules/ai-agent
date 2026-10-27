@@ -6,7 +6,7 @@ import { ECRAN } from "../config/script";
 import { EASE_IN, EASE_IN_OUT, prog, useLayout } from "../components/anim";
 import { Block3D } from "../components/Block";
 import { Presse } from "../components/Presse";
-import { MediaFill, Mention, Reveal } from "../components/ui";
+import { MediaFill, Mention, Reveal, Trame } from "../components/ui";
 
 /** A — Accroche : un bloc réel en gros plan, puis la presse. */
 export const SceneA: React.FC = () => {
@@ -68,12 +68,12 @@ export const SceneA: React.FC = () => {
         style={{
           clipPath: `inset(${(1 - fenetre) * 42}% ${(1 - fenetre) * 30}% ${(1 - fenetre) * 42}% ${(1 - fenetre) * 30}%)`,
           opacity: fenetre > 0 ? 1 : 0,
-          background: COLORS.anthraciteClair,
           justifyContent: "center",
           alignItems: vertical ? "center" : "flex-end",
           paddingRight: vertical ? 0 : 260,
         }}
       >
+        <Trame lumiere={[50, 62]} />
         {MEDIA.presse.src ? (
           <MediaFill slot={MEDIA.presse} />
         ) : (

@@ -29,7 +29,7 @@ export const SceneF: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: COLORS.blancCasse }}>
-      <Trame />
+      <Trame lumiere={[50, 55]} numero={4} />
       {MEDIA.cure.src ? (
         <AbsoluteFill style={{ opacity: 0.85 }}>
           <MediaFill slot={MEDIA.cure} />

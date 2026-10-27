@@ -29,7 +29,7 @@ export const SceneD: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: COLORS.blancCasse }}>
-      <Trame />
+      <Trame lumiere={[50, 45]} numero={2} />
       <Chapitre numero={2} titre={t.chapitre} />
 
       {/* Trajectoires d'apport : courtes, rectilignes, contrôlées */}

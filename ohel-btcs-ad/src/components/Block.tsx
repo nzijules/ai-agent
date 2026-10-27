@@ -80,7 +80,16 @@ export const BlockFace: React.FC<{
       height: h,
       backgroundImage: texture(kind, seed, 300),
       backgroundPosition: `${(seed * 97) % 300}px ${(seed * 53) % 300}px`,
-      boxShadow: `inset 0 ${h * 0.06}px ${h * 0.04}px rgba(255,230,200,0.12), inset 0 -${h * 0.08}px ${h * 0.06}px rgba(0,0,0,0.28), inset 0 0 0 9999px rgba(45,18,6,${humide * 0.38})`,
+      boxShadow: [
+        // arêtes : chanfrein éclairé en haut à gauche, ombré en bas à droite
+        `inset ${h * 0.05}px ${h * 0.06}px 0 rgba(255,225,190,0.16)`,
+        `inset -${h * 0.05}px -${h * 0.07}px 0 rgba(40,14,4,0.32)`,
+        `inset 0 -${h * 0.18}px ${h * 0.22}px rgba(0,0,0,0.18)`,
+        `inset 0 0 0 9999px rgba(45,18,6,${humide * 0.38})`,
+        // ombre portée
+        `0 ${h * 0.1}px ${h * 0.22}px rgba(0,0,0,0.45)`,
+      ].join(", "),
+      borderRadius: 2,
       ...style,
     }}
   />

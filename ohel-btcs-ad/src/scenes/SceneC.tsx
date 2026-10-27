@@ -46,7 +46,7 @@ export const SceneC: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: COLORS.blancCasse }}>
-      <Trame />
+      <Trame lumiere={[22, 55]} numero={1} />
       <Chapitre numero={1} titre={t.chapitre} />
 
       {/* Titre d'ouverture */}

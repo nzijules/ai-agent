@@ -73,7 +73,14 @@ export const Presse: React.FC<{ etat: PresseEtat; largeur: number; style?: React
           <stop offset="0.4" stopColor="#E3E6E9" />
           <stop offset="1" stopColor="#7A8189" />
         </linearGradient>
+        <radialGradient id="ombreSol">
+          <stop offset="0" stopColor="#000" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#000" stopOpacity="0" />
+        </radialGradient>
       </defs>
+
+      {/* Ombre au sol */}
+      <ellipse cx="300" cy="872" rx="340" ry="34" fill="url(#ombreSol)" />
 
       {/* Bâti */}
       <rect x="50" y="70" width="60" height="790" fill="url(#acier)" />

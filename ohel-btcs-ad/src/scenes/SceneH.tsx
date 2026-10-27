@@ -30,7 +30,7 @@ export const SceneH: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: COLORS.blancCasse }}>
-      <Trame />
+      <Trame lumiere={[50, 60]} />
 
       {/* Blocs prêts à être approvisionnés */}
       {MEDIA.stock.src ? (
@@ -165,6 +165,31 @@ export const SceneH: React.FC = () => {
             {CONTACT.email ? <div>{CONTACT.email}</div> : null}
           </div>
         </Reveal>
+        {/* Soubassement : trois rangs de blocs posés de bas en haut */}
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: vertical ? 300 : 170, overflow: "hidden" }}>
+          {Array.from({ length: 3 }).map((_, r) => {
+            const bh = vertical ? 92 : 52;
+            const bw = bh * 2.1;
+            const n = Math.ceil(W / bw) + 2;
+            return Array.from({ length: n }).map((__, c) => {
+              const p = prog(frame, fps, CARTON_H + 0.2 + (2 - r) * 0.18 + c * 0.03, 0.35, EASE_IN_OUT);
+              return (
+                <BlockFace
+                  key={`${r}-${c}`}
+                  w={bw - 6}
+                  h={bh - 6}
+                  seed={120 + r * n + c}
+                  style={{
+                    position: "absolute",
+                    left: c * bw - (r % 2 ? bw / 2 : 0),
+                    top: r * bh + (1 - p) * 80,
+                    opacity: p,
+                  }}
+                />
+              );
+            });
+          })}
+        </div>
       </AbsoluteFill>
       {!MEDIA.stock.src && frame < CARTON_H * fps ? <Mention texte="Illustration schématique" /> : null}
     </AbsoluteFill>

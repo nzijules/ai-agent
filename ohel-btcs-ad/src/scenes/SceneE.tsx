@@ -43,7 +43,7 @@ export const SceneE: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: COLORS.blancCasse }}>
-      <Trame />
+      <Trame lumiere={[45, 40]} numero={3} />
       {MEDIA.presse.src ? (
         <AbsoluteFill style={{ opacity: 0.9 }}>
           <MediaFill slot={MEDIA.presse} />
