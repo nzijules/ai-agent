@@ -11,6 +11,18 @@
     "path": null,
     "draft": null
   },
+  "matiereBtcs": {
+    "path": null,
+    "draft": null
+  },
+  "villaChantier": {
+    "path": null,
+    "draft": null
+  },
+  "villaNuit": {
+    "path": "assets/illustrations/villa-nuit.jpg",
+    "draft": null
+  },
   "villaModerne": {
     "path": null,
     "draft": null

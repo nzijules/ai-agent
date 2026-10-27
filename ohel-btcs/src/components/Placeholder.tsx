@@ -7,7 +7,12 @@ import {useFormat} from '../lib/format';
  * Espace réservé explicite pour un média manquant.
  * Jamais remplacé automatiquement par un visuel généré.
  */
-export const Placeholder: React.FC<{expected: string; label: string; authentique?: boolean}> = ({expected, label, authentique}) => {
+export const Placeholder: React.FC<{expected: string; label: string; authentique?: boolean; compact?: boolean}> = ({
+  expected,
+  label,
+  authentique,
+  compact,
+}) => {
   const {u, safe, vertical} = useFormat();
   return (
     <AbsoluteFill
@@ -18,7 +23,7 @@ export const Placeholder: React.FC<{expected: string; label: string; authentique
         alignItems: 'center',
         justifyContent: 'center',
         fontFamily: FONT,
-        padding: `${safe.top}px ${safe.right}px ${safe.bottom}px ${safe.left}px`,
+        padding: compact ? 12 * u : `${safe.top}px ${safe.right}px ${safe.bottom}px ${safe.left}px`,
       }}
     >
       <div style={{textAlign: 'center', maxWidth: vertical ? 820 * u : 1200 * u}}>

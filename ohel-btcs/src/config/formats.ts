@@ -12,4 +12,4 @@ export const COMPOSITIONS = [
  * Scènes développées. Une version n'est rendue en final que si toutes ses scènes
  * en font partie (les autres affichent « en développement »).
  */
-export const READY_SCENES: SceneId[] = ['hook', 'btcs', 'cta'];
+export const READY_SCENES: SceneId[] = ['hook', 'btcs', 'benefits', 'cta'];

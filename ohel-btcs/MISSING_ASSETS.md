@@ -37,6 +37,9 @@
 - [x] Villa contemporaine au crépuscule (illustration, format portrait de préférence) — `assets/illustrations/villa-hook.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D) — `assets/illustrations/villa-hook-premier-plan.png` _(illustration : mention « non contractuelle » ajoutée automatiquement)_  
   _Optionnel : sans lui, la parallaxe se fait sur un seul plan._
+- [ ] Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration) — `assets/illustrations/matiere-btcs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [ ] La même villa en construction, murs en blocs BTCS qui montent (illustration) — `assets/illustrations/villa-chantier.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] La même villa de nuit, fond du CTA (illustration) — `assets/illustrations/villa-nuit.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Villa BTCS contemporaine, rendu final de la scène 4 (illustration) — `assets/illustrations/villa-moderne.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Villa avec piscine, quartier résidentiel ivoirien (illustration) — `assets/illustrations/villa-piscine.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Plan authentique OHEL pour le fond du CTA 15 s (vidéo verticale de préférence) — `assets/chantiers/fond-cta-15s.mp4`  
@@ -59,9 +62,9 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
+- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
-- Plan authentique OHEL pour le fond du CTA 15 s (vidéo verticale de préférence)
 
 ### 30 s — Meta Ads
 
@@ -71,6 +74,8 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
+- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
+- La même villa en construction, murs en blocs BTCS qui montent (illustration)
 - Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
 - Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
 - Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale) **(bloquant)**

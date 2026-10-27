@@ -2,6 +2,7 @@ import {AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVide
 import {AssetMedia} from '../components/AssetMedia';
 import {BtcsWall} from '../components/BtcsBlockAnimation';
 import {KineticTitle} from '../components/KineticTitle';
+import {PhotoPlate} from '../components/PhotoPlate';
 import {Placeholder} from '../components/Placeholder';
 import {QrCode} from '../components/QrCode';
 import {Sfx} from '../components/Sfx';
@@ -66,6 +67,8 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
   const {draft} = useAdProps();
   const shot = segment.shots[0];
   const overMedia = segment.variant === 'overMedia';
+  // Retour à la villa terminée, de nuit : le texte se pose directement sur l'image.
+  const overVilla = segment.variant === 'overVilla';
 
   const card = spring({frame: frame - 2, fps, config: {damping: 200}});
   const logoIn = interpolate(frame, [6, 22], [0, 1], {
@@ -90,13 +93,22 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
 
   const logoBlock = (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <div style={{opacity: logoIn, transform: `scale(${0.96 + 0.04 * logoIn})`, width: logoW}}>
+      <div
+        style={{
+          opacity: logoIn,
+          transform: `scale(${0.96 + 0.04 * logoIn})`,
+          width: logoW,
+          ...(overVilla
+            ? {background: '#fff', borderRadius: 20 * u, padding: `${14 * u}px ${22 * u}px`, boxShadow: '0 20px 50px rgba(0,0,0,0.4)'}
+            : {}),
+        }}
+      >
         {logo.src ? (
           // Logo officiel : jamais redessiné, recoloré ni animé brique par brique.
           <Img src={logo.src} style={{width: '100%', display: 'block'}} />
         ) : (
           <div style={{position: 'relative', width: logoW, height: logoW * 0.55}}>
-            <Placeholder expected={logo.expected} label="Logo officiel" />
+            <Placeholder expected={logo.expected} label="Logo officiel" compact />
           </div>
         )}
       </div>
@@ -106,7 +118,8 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           fontFamily: FONT_SIGNATURE,
           fontWeight: 600,
           fontSize: 70 * u,
-          color: C.red,
+          color: overVilla ? '#FFFFFF' : C.red,
+          textShadow: overVilla ? '0 2px 14px rgba(0,0,0,0.6)' : 'none',
           textAlign: 'center',
           marginTop: 6 * u,
           opacity: sig,
@@ -124,7 +137,7 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           lines={shot.title!}
           from={shot.from + 12}
           frames={shot.frames - 12}
-          tone="onLight"
+          tone={overVilla ? 'onImage' : 'onLight'}
           align="center"
           maxWidth={contentW}
           baseSize={76 * u}
@@ -160,7 +173,7 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           <div style={{border: `${5 * u}px solid ${C.red}`, borderRadius: 12 * u, padding: 8 * u, background: '#fff'}}>
             <QrCode value={whatsappLink()} size={170 * u} />
           </div>
-          <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 34 * u, color: C.steel, lineHeight: 1.25}}>
+          <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 34 * u, color: overVilla ? '#fff' : C.steel, lineHeight: 1.25}}>
             Scannez pour
             <br />
             nous écrire
@@ -168,7 +181,9 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
         </div>
       ) : null}
       {brand.offer ? (
-        <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 44 * u, color: C.black, opacity: extras}}>{brand.offer}</div>
+        <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 44 * u, color: overVilla ? '#fff' : C.black, opacity: extras}}>
+          {brand.offer}
+        </div>
       ) : null}
       {brand.services.length ? (
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12 * u, opacity: extras, maxWidth: contentW}}>
@@ -210,7 +225,18 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
 
   return (
     <AbsoluteFill style={{backgroundColor: C.offWhite}}>
-      {overMedia ? (
+      {overVilla ? (
+        <>
+          <PhotoPlate id="villaNuit" frames={segment.frames} move={{x: [45, 55], scale: [1.1, 1.02]}} shade={0} />
+          <AbsoluteFill
+            style={{
+              background: vertical
+                ? 'linear-gradient(180deg, rgba(5,8,20,0.15) 0%, rgba(5,8,20,0.35) 35%, rgba(5,8,20,0.88) 70%)'
+                : 'linear-gradient(90deg, rgba(5,8,20,0.2) 0%, rgba(5,8,20,0.85) 60%)',
+            }}
+          />
+        </>
+      ) : overMedia ? (
         <>
           {fondCta.src ? <AssetMedia id="fondCta15" /> : <EarthWallBackground />}
           <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55))'}} />
@@ -227,8 +253,9 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           width: innerW,
           height: height - safe.top - safe.bottom,
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: overVilla && !vertical ? 'flex-end' : 'center',
+          justifyContent: overVilla && vertical ? 'flex-end' : 'center',
+          flexDirection: 'column',
         }}
       >
         <div

@@ -53,6 +53,24 @@ export const assets = {
     ia: true,
     note: 'Optionnel : sans lui, la parallaxe se fait sur un seul plan.',
   },
+  matiereBtcs: {
+    label: 'Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)',
+    candidates: exts('assets/illustrations/matiere-btcs', IMG),
+    kind: 'image',
+    ia: true,
+  },
+  villaChantier: {
+    label: 'La même villa en construction, murs en blocs BTCS qui montent (illustration)',
+    candidates: exts('assets/illustrations/villa-chantier', IMG),
+    kind: 'image',
+    ia: true,
+  },
+  villaNuit: {
+    label: 'La même villa de nuit, fond du CTA (illustration)',
+    candidates: exts('assets/illustrations/villa-nuit', IMG),
+    kind: 'image',
+    ia: true,
+  },
   villaModerne: {
     label: 'Villa BTCS contemporaine, rendu final de la scène 4 (illustration)',
     candidates: exts('assets/illustrations/villa-moderne', IMG),
@@ -139,12 +157,15 @@ export type AssetId = keyof typeof assets;
 export const sceneAssets: Record<string, AssetId[]> = {
   hook: ['villaHook', 'villaHookForeground'],
   btcs: ['sfxCompression', 'sfxPose'],
+  'btcs:photo': ['matiereBtcs'],
   benefits: [],
+  'benefits:photo': ['villaChantier'],
   modernite: ['villaModerne'],
   showcase: ['presseAction', 'elevationMurs', 'detailJoints', 'realisation1', 'realisation2'],
   projection: ['villaPiscine'],
   cta: ['logo', 'sfxCta'],
   'cta:overMedia': ['fondCta15'],
+  'cta:overVilla': ['villaNuit'],
 };
 
 export const versionAudio: Record<VersionId, AssetId[]> = {

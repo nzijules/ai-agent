@@ -44,7 +44,7 @@ export type Segment = {
   scene: SceneId;
   transitionIn?: TransitionKind;
   /** Variante de mise en scène (durées raccourcies, fond, etc.). */
-  variant?: 'full' | 'short' | 'overMedia' | 'white';
+  variant?: 'full' | 'short' | 'photo' | 'overMedia' | 'white' | 'overVilla';
   shots: Shot[];
 };
 
@@ -69,14 +69,14 @@ const ad15: VersionScript = {
           vo: 'Une villa moderne… en terre ?',
           textLayer: 'title',
           title: [{text: 'UNE VILLA MODERNE…'}, {text: 'EN TERRE ?', highlight: true}],
-          visual: 'Villa contemporaine au crépuscule, travelling avant + parallaxe 2.5D (illustration non contractuelle).',
+          visual: 'La villa terminée à l’heure bleue, travelling latéral (illustration).',
         },
       ],
     },
     {
       scene: 'btcs',
       transitionIn: 'matiere',
-      variant: 'short',
+      variant: 'photo',
       shots: [
         {
           sec: 5,
@@ -89,7 +89,7 @@ const ad15: VersionScript = {
     {
       scene: 'cta',
       transitionIn: 'volet',
-      variant: 'overMedia',
+      variant: 'overVilla',
       shots: [
         {
           sec: 7,
@@ -118,27 +118,27 @@ const ad30: VersionScript = {
           vo: 'Et si votre prochaine villa était construite… en terre ?',
           textLayer: 'title',
           title: [{text: 'ET SI LA TERRE'}, {text: 'BÂTISSAIT'}, {text: 'VOTRE VILLA ?', highlight: true}],
-          visual: 'Villa contemporaine au crépuscule, travelling avant + parallaxe (illustration non contractuelle).',
+          visual: 'La villa terminée à l’heure bleue, travelling latéral (illustration).',
         },
       ],
     },
     {
       scene: 'btcs',
       transitionIn: 'matiere',
-      variant: 'short',
+      variant: 'photo',
       shots: [
         {
           sec: 6,
           vo: 'Le BTCS : de la terre stabilisée, comprimée en blocs solides.',
           textLayer: 'subtitles',
-          visual: 'Presse BTCS → bloc éjecté → mur en rangs décalés.',
+          visual: 'Retour à la matière : terre latérite et pile de blocs BTCS en gros plan (illustration).',
         },
       ],
     },
     {
       scene: 'benefits',
       transitionIn: 'rangs',
-      variant: 'short',
+      variant: 'photo',
       shots: [
         {
           sec: 3,
@@ -163,7 +163,7 @@ const ad30: VersionScript = {
             textLayer: 'title',
             title: [{text: 'ARCHITECTURE'}, {text: 'CONTEMPORAINE', highlight: true}],
             card: 'architecture',
-            visual: 'Façade BTCS contemporaine en trait d’architecte.',
+            visual: 'Même plan de chantier, la structure contemporaine se dessine.',
           },
         },
       ],
@@ -184,14 +184,14 @@ const ad30: VersionScript = {
     {
       scene: 'cta',
       transitionIn: 'matiere',
-      variant: 'white',
+      variant: 'overVilla',
       shots: [
         {
           sec: 7,
           vo: 'Construisons autrement. Envoyez-nous votre projet sur WhatsApp.',
           textLayer: 'title',
           title: [{text: 'ENVOYEZ VOTRE PROJET'}, {text: 'SUR WHATSAPP', highlight: true}],
-          visual: 'Fond blanc architectural, logo officiel, signature, bouton WhatsApp, numéro, offre.',
+          visual: 'Retour à la villa terminée, de nuit (illustration) : logo, signature, bouton WhatsApp, numéro.',
         },
       ],
     },
