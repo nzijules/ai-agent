@@ -12,7 +12,7 @@ import { Chapitre, Reveal, Trame } from "../components/ui";
  */
 const APPORTS = [
   { de: 3.0, duree: 2.2 }, // latérite
-  { de: 8.2, duree: 1.4 }, // sable
+  { de: 7.9, duree: 1.4 }, // sable
   { de: 11.8, duree: 0.9 }, // ciment
 ];
 

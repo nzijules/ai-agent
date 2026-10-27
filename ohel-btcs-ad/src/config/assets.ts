@@ -83,7 +83,7 @@ export const LOGO = "images/logo-ohel.jpg";
 export const AUDIO = {
   voixOff: "audio/voix-off-provisoire.wav" as string | null,
   /**
-   * true tant que la voix est la synthèse vocale de travail (Piper, voix « siwis »).
+   * true tant que la voix est la synthèse vocale de travail (Kokoro v1.0, voix française « ff_siwis »).
    * Bloque le rendu final : remplacer par l'enregistrement validé puis passer à false.
    */
   voixOffProvisoire: true,

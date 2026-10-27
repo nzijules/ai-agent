@@ -4,7 +4,7 @@ Projet Remotion de la publicité « La terre. La précision. Votre construction.
 Formats : **9:16** (1080 × 1920, principal) et **16:9** (1920 × 1080), chacun avec et sans sous-titres.
 
 > **État actuel : maquette.** Le code est complet et rend une animatique avec une **voix off provisoire de synthèse**
-> (`public/audio/voix-off-provisoire.wav`, Piper, voix française « siwis », licence CC-BY 4.0). La voix définitive,
+> (`public/audio/voix-off-provisoire.wav`, Kokoro v1.0, voix française « ff_siwis » ; modèle Apache 2.0, données SIWIS CC-BY 4.0). La voix définitive,
 > la musique et plusieurs visuels restent à fournir (voir `docs/04-ressources.md`). Le rendu en mode `final` est
 > volontairement bloqué tant qu'il en manque, y compris tant que `AUDIO.voixOffProvisoire` vaut `true`.
 
