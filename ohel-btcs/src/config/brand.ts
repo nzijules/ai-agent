@@ -77,6 +77,12 @@ export const brand = {
     press: 'hydraulique' as 'manuelle' | 'hydraulique',
   },
 
+  /**
+   * Mention « Illustration non contractuelle » sur les visuels IA.
+   * Retirée à la demande du client ; repasser à true pour la rétablir partout.
+   */
+  showAiNotice: false,
+
   /** Entité qui détient le projet (licence Remotion, licence musique). */
   owner: '',
 } as const;

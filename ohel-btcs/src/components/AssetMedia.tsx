@@ -1,14 +1,16 @@
 import {AbsoluteFill, Img, OffthreadVideo} from 'remotion';
 import type {AssetId} from '../config/assets';
+import {brand} from '../config/brand';
 import {FONT} from '../lib/fonts';
 import {useFormat} from '../lib/format';
 import {isVideoFile, resolveAsset} from '../lib/assets';
 import {useAdProps} from '../lib/context';
 import {Placeholder} from './Placeholder';
 
-/** Mention obligatoire sur tout visuel IA (scènes projectives 1, 4, 6). */
+/** Mention sur les visuels IA (désactivable via brand.showAiNotice). */
 export const IllustrationMention: React.FC = () => {
   const {u, safe} = useFormat();
+  if (!brand.showAiNotice) return null;
   return (
     <div
       style={{
