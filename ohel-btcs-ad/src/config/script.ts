@@ -36,31 +36,52 @@ export const SCENES: SceneDef[] = [
     duree: 7,
     enchainement: "blocs",
     voix: [
-      { de: 0.4, a: 2.6, texte: "Votre prochain projet commence ici." },
-      { de: 3.0, a: 5.8, texte: "Avec la terre… et la précision." },
+      { de: 0.4, a: 2.02, texte: "Votre prochain projet commence ici." },
+      { de: 3, a: 4.97, texte: "Avec la terre… et la précision." },
     ],
   },
   {
     id: "B",
     nom: "Identification",
-    duree: 10,
+    duree: 11.0,
     enchainement: "coupe",
     voix: [
-      { de: 0.6, a: 2.4, texte: "B. T. C. S." },
-      { de: 2.6, a: 5.3, texte: "Des blocs de terre comprimée et stabilisée." },
-      { de: 5.6, a: 9.4, texte: "Produits et commercialisés en Côte d'Ivoire par OHEL International." },
+      { de: 0.6, a: 3.07, texte: "B. T. C. S." },
+      {
+        de: 3.37,
+        a: 5.96,
+        texte: "Des blocs de terre comprimée et stabilisée.",
+      },
+      {
+        de: 6.26,
+        a: 9.73,
+        texte:
+          "Produits et commercialisés en Côte d'Ivoire par OHEL International.",
+      },
     ],
   },
   {
     id: "C",
     nom: "Formulation",
-    duree: 15,
+    duree: 16.1,
     enchainement: "fondu",
     voix: [
-      { de: 0.5, a: 2.8, texte: "Tout commence par une formulation précise." },
-      { de: 3.0, a: 6.4, texte: "Chez OHEL : 65 % de latérite, une terre riche et résistante," },
-      { de: 6.6, a: 9.4, texte: "25 % de sable, pour la compacité et la texture," },
-      { de: 9.6, a: 12.8, texte: "et 10 % de ciment, comme liant et stabilisateur." },
+      { de: 0.5, a: 2.58, texte: "Tout commence par une formulation précise." },
+      {
+        de: 3,
+        a: 7.88,
+        texte: "Chez OHEL : 65 % de latérite, une terre riche et résistante,",
+      },
+      {
+        de: 8.18,
+        a: 11.42,
+        texte: "25 % de sable, pour la compacité et la texture,",
+      },
+      {
+        de: 11.72,
+        a: 14.83,
+        texte: "et 10 % de ciment, comme liant et stabilisateur.",
+      },
     ],
   },
   {
@@ -69,8 +90,12 @@ export const SCENES: SceneDef[] = [
     duree: 8,
     enchainement: "blocs",
     voix: [
-      { de: 0.6, a: 3.6, texte: "Les composants sont soigneusement mélangés," },
-      { de: 3.8, a: 6.6, texte: "jusqu'à obtenir un mélange homogène." },
+      {
+        de: 0.6,
+        a: 2.59,
+        texte: "Les composants sont soigneusement mélangés,",
+      },
+      { de: 3.8, a: 5.79, texte: "jusqu'à obtenir un mélange homogène." },
     ],
   },
   {
@@ -79,22 +104,38 @@ export const SCENES: SceneDef[] = [
     duree: 14,
     enchainement: "fondu",
     voix: [
-      { de: 0.5, a: 3.4, texte: "Le mélange est placé dans le moule de la presse hydraulique." },
-      { de: 3.6, a: 6.0, texte: "Sous forte pression, il est compacté," },
-      { de: 6.6, a: 9.4, texte: "pour former des blocs solides et réguliers." },
-      { de: 10.2, a: 12.4, texte: "La précision prend forme." },
+      {
+        de: 0.5,
+        a: 3.06,
+        texte: "Le mélange est placé dans le moule de la presse hydraulique.",
+      },
+      { de: 3.6, a: 5.89, texte: "Sous forte pression, il est compacté," },
+      {
+        de: 6.6,
+        a: 9.01,
+        texte: "pour former des blocs solides et réguliers.",
+      },
+      { de: 10.2, a: 11.75, texte: "La précision prend forme." },
     ],
   },
   {
     id: "F",
     nom: "Cure",
-    duree: 11,
+    duree: 11.4,
     enchainement: "blocs",
     voix: [
-      { de: 0.5, a: 2.9, texte: "Après le démoulage, place à la cure humide." },
-      { de: 3.1, a: 5.6, texte: "Les blocs sont arrosés régulièrement," },
-      { de: 5.7, a: 8.3, texte: "pour favoriser le développement de leur résistance" },
-      { de: 8.4, a: 10.4, texte: "et limiter le risque de fissures." },
+      {
+        de: 0.5,
+        a: 2.97,
+        texte: "Après le démoulage, place à la cure humide.",
+      },
+      { de: 3.27, a: 4.94, texte: "Les blocs sont arrosés régulièrement," },
+      {
+        de: 5.7,
+        a: 8.01,
+        texte: "pour favoriser le développement de leur résistance",
+      },
+      { de: 8.4, a: 10.1, texte: "et limiter le risque de fissures." },
     ],
   },
   {
@@ -103,9 +144,17 @@ export const SCENES: SceneDef[] = [
     duree: 13,
     enchainement: "blocs",
     voix: [
-      { de: 0.5, a: 3.8, texte: "Maison, école, bâtiment durable :" },
-      { de: 4.0, a: 7.8, texte: "les BTCS s'adaptent à vos projets de construction." },
-      { de: 8.4, a: 12.2, texte: "Faites le choix de la solidité… et de l'écologie." },
+      { de: 0.5, a: 2.74, texte: "Maison, école, bâtiment durable :" },
+      {
+        de: 4,
+        a: 7.17,
+        texte: "les BTCS s'adaptent à vos projets de construction.",
+      },
+      {
+        de: 8.4,
+        a: 10.98,
+        texte: "Faites le choix de la solidité… et de l'écologie.",
+      },
     ],
   },
   {
@@ -114,18 +163,31 @@ export const SCENES: SceneDef[] = [
     duree: 17,
     enchainement: "coupe",
     voix: [
-      { de: 0.5, a: 3.5, texte: "Votre projet mérite des matériaux bien fabriqués." },
-      { de: 3.8, a: 5.8, texte: "Pour vos approvisionnements en BTCS," },
-      { de: 5.9, a: 8.0, texte: "faites confiance à OHEL International." },
-      { de: 8.3, a: 10.0, texte: "Demandez votre devis." },
-      { de: 10.6, a: 13.6, texte: "OHEL International : bâtir solide, bâtir vert." },
+      {
+        de: 0.5,
+        a: 3.35,
+        texte: "Votre projet mérite des matériaux bien fabriqués.",
+      },
+      { de: 3.8, a: 6.29, texte: "Pour vos approvisionnements en BTCS," },
+      { de: 6.59, a: 8.9, texte: "faites confiance à OHEL International." },
+      { de: 9.2, a: 10.23, texte: "Demandez votre devis." },
+      {
+        de: 10.6,
+        a: 14.07,
+        texte: "OHEL International : bâtir solide, bâtir vert.",
+      },
     ],
   },
 ];
 
 /** Textes à l'écran (compréhension sans le son). */
 export const ECRAN = {
-  A: { l1: "Votre prochain projet", l2: "commence ici.", terre: "La terre.", precision: "La précision." },
+  A: {
+    l1: "Votre prochain projet",
+    l2: "commence ici.",
+    terre: "La terre.",
+    precision: "La précision.",
+  },
   B: {
     sigle: "BTCS",
     developpe: ["Blocs de", "Terre", "Comprimée et", "Stabilisée"],
@@ -137,12 +199,26 @@ export const ECRAN = {
     chapitre: "La formulation",
     source: "Formulation communiquée par OHEL International",
     composants: [
-      { pct: 65, nom: "Latérite", role: "Terre riche et résistante", texture: "laterite" },
+      {
+        pct: 65,
+        nom: "Latérite",
+        role: "Terre riche et résistante",
+        texture: "laterite",
+      },
       { pct: 25, nom: "Sable", role: "Compacité et texture", texture: "sable" },
-      { pct: 10, nom: "Ciment", role: "Liant et stabilisateur", texture: "ciment" },
+      {
+        pct: 10,
+        nom: "Ciment",
+        role: "Liant et stabilisateur",
+        texture: "ciment",
+      },
     ] as const,
   },
-  D: { chapitre: "Le mélange", titre: "Un mélange homogène", sous: "Prêt pour le pressage" },
+  D: {
+    chapitre: "Le mélange",
+    titre: "Un mélange homogène",
+    sous: "Prêt pour le pressage",
+  },
   E: {
     chapitre: "La compression",
     remplissage: "Remplissage du moule",
@@ -150,8 +226,21 @@ export const ECRAN = {
     demoulage: "Démoulage",
     titre: "La précision prend forme",
   },
-  F: { chapitre: "La cure", titre: "Cure humide", l1: "Arrosage régulier après démoulage", l2: "Développement de la résistance" },
-  G: { maison: "Maison", ecole: "École", batiment: "Bâtiments", projets1: "Vos projets", projets2: "de construction", choix1: "Le choix", choix2: "de la solidité." },
+  F: {
+    chapitre: "La cure",
+    titre: "Cure humide",
+    l1: "Arrosage régulier après démoulage",
+    l2: "Développement de la résistance",
+  },
+  G: {
+    maison: "Maison",
+    ecole: "École",
+    batiment: "Bâtiments",
+    projets1: "Vos projets",
+    projets2: "de construction",
+    choix1: "Le choix",
+    choix2: "de la solidité.",
+  },
   H: {
     l1: "Votre projet mérite",
     l2: "des matériaux",

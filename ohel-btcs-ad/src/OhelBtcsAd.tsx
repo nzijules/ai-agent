@@ -48,6 +48,7 @@ export const elementsManquants = (): string[] => {
   });
   if (!CONTACT.whatsapp) manque.push("numéro WhatsApp");
   if (!AUDIO.voixOff) manque.push("voix off enregistrée");
+  else if (AUDIO.voixOffProvisoire) manque.push("voix off définitive (la voix actuelle est une synthèse provisoire)");
   if (!AUDIO.musique) manque.push("musique sous licence");
   return manque;
 };

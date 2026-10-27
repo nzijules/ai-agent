@@ -1,7 +1,13 @@
 # 3. Storyboard minuté — version 9:16
 
-Minutage provisoire, à recaler après enregistrement de la voix off (un seul fichier à modifier : `src/config/script.ts`).
-30 images/s · durée totale **1 min 31,9 s** (2 758 images).
+> **Mise à jour :** le minutage de référence est désormais celui de `src/config/script.ts`, recalé sur la voix
+> provisoire de synthèse : durée totale **1 min 34,4 s** (2 833 images). Les scènes B (+1 s), C (+1,1 s) et F (+0,4 s)
+> ont été allongées et leurs animations décalées en conséquence ; les temps absolus ci-dessous sont donc décalés
+> d'environ 1 à 2,5 s à partir de la scène C. Débuts de scène : A 0:00.0 · B 0:06.4 · C 0:17.4 · D 0:33.2 ·
+> E 0:40.6 · F 0:54.2 · G 1:05.0 · H 1:17.4.
+
+Minutage initial (avant voix), à recaler après enregistrement de la voix définitive (un seul fichier à modifier : `src/config/script.ts`).
+30 images/s · durée initiale 1 min 31,9 s (2 758 images).
 Temps en `mm:ss.d`, absolus dans la vidéo. Les transitions « blocs » durent 0,6 s, les fondus 0,33 s.
 
 Repères 16:9 : même découpage ; les compositions passent de « empilé » à « graphique à gauche / texte à droite » (ou l'inverse).

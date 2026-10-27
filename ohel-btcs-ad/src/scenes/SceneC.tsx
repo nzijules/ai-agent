@@ -12,8 +12,8 @@ import { Chapitre, Reveal, Trame } from "../components/ui";
  */
 const APPORTS = [
   { de: 3.0, duree: 2.2 }, // latérite
-  { de: 6.6, duree: 1.4 }, // sable
-  { de: 9.6, duree: 0.9 }, // ciment
+  { de: 8.2, duree: 1.4 }, // sable
+  { de: 11.8, duree: 0.9 }, // ciment
 ];
 
 const COULEUR_TEXTE = [COLORS.lateriteClair, COLORS.sable, "#C9CBCD"];
@@ -28,7 +28,7 @@ export const SceneC: React.FC = () => {
   const colW = vertical ? 300 : 300;
   const colTop = vertical ? safe.top + 210 : safe.top + 110;
   const colH = vertical ? 900 : 640;
-  const fusion = prog(frame, fps, 13.4, 1.4, EASE_IN_OUT);
+  const fusion = prog(frame, fps, 14.6, 1.3, EASE_IN_OUT);
 
   // Segments empilés de bas en haut : latérite, sable, ciment.
   let cumul = 0;
@@ -163,7 +163,7 @@ export const SceneC: React.FC = () => {
           top: colTop + colH + 34,
           fontSize: vertical ? 28 : 26,
           fontWeight: 500,
-          opacity: 0.75 * prog(frame, fps, 11.2, 0.6),
+          opacity: 0.75 * prog(frame, fps, 13.0, 0.6),
         }}
       >
         {t.source}

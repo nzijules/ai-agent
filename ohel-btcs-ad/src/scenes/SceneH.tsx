@@ -25,7 +25,7 @@ export const SceneH: React.FC = () => {
   const pileW = cols * bw + (cols - 1) * g;
   const pileX = vertical ? (W - pileW) / 2 : W - safe.right - pileW;
   const paletteY = vertical ? safe.top + 1000 : H - safe.bottom - 40;
-  const cta = prog(frame, fps, 7.9, 0.5, EASE_IN_OUT);
+  const cta = prog(frame, fps, 8.6, 0.5, EASE_IN_OUT);
   const carton = prog(frame, fps, CARTON_H, 0.7, EASE_IN_OUT);
 
   return (
@@ -80,12 +80,12 @@ export const SceneH: React.FC = () => {
           maxWidth: vertical ? W - safe.left - safe.right : 760,
         }}
       >
-        <Reveal de={0.5} jusqua={7.6}>{t.l1}</Reveal>
-        <Reveal de={0.75} jusqua={7.6}>{t.l2}</Reveal>
-        <Reveal de={1.0} jusqua={7.6}>
+        <Reveal de={0.5} jusqua={8.3}>{t.l1}</Reveal>
+        <Reveal de={0.75} jusqua={8.3}>{t.l2}</Reveal>
+        <Reveal de={1.0} jusqua={8.3}>
           <span style={{ color: COLORS.lateriteClair }}>{t.l3}</span>
         </Reveal>
-        <Reveal de={3.9} jusqua={7.6} style={{ marginTop: 30 }}>
+        <Reveal de={3.9} jusqua={8.3} style={{ marginTop: 30 }}>
           <div style={{ fontSize: vertical ? 40 : 38, fontWeight: 600, letterSpacing: 0, display: "flex", gap: 14, alignItems: "center" }}>
             <span style={{ width: 26, height: 12, background: COLORS.vertClair, display: "inline-block" }} />
             {t.appro}
@@ -102,10 +102,10 @@ export const SceneH: React.FC = () => {
           opacity: cta,
         }}
       >
-        <Reveal de={8.0}>
+        <Reveal de={8.7}>
           <div style={{ fontSize: vertical ? 88 : 84, fontWeight: 800, letterSpacing: -1.5, lineHeight: 1 }}>{t.cta1}</div>
         </Reveal>
-        <Reveal de={8.2}>
+        <Reveal de={8.9}>
           <div
             style={{
               display: "inline-block",

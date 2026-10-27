@@ -14,10 +14,10 @@ export const SceneB: React.FC = () => {
   const t = ECRAN.B;
   const lettres = t.sigle.split("");
   // Une lettre par bloc, synchronisée sur « B – T – C – S ».
-  const departs = [0.6, 0.95, 1.3, 1.65];
+  const departs = [0.6, 1.2, 1.8, 2.4];
   const cellW = vertical ? 214 : 250;
   const cellH = cellW / 1.05;
-  const bande = prog(frame, fps, 5.6, 0.6);
+  const bande = prog(frame, fps, 6.2, 0.6);
 
   return (
     <AbsoluteFill style={{ background: COLORS.blancCasse, fontFamily: FONT, color: COLORS.anthracite }}>
@@ -62,7 +62,7 @@ export const SceneB: React.FC = () => {
         {/* Développé : initiales en ocre */}
         <div style={{ fontSize: vertical ? 74 : 64, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1 }}>
           {t.developpe.map((ligne, i) => (
-            <Reveal key={ligne} de={2.6 + i * 0.28}>
+            <Reveal key={ligne} de={3.3 + i * 0.28}>
               <span style={{ color: COLORS.laterite }}>{ligne.slice(0, 1)}</span>
               {ligne.slice(1)}
             </Reveal>
@@ -88,12 +88,12 @@ export const SceneB: React.FC = () => {
           gap: 22,
         }}
       >
-        <Reveal de={5.9}>
+        <Reveal de={6.5}>
           <div style={{ fontSize: vertical ? 70 : 64, fontWeight: 800, letterSpacing: -1 }}>OHEL International</div>
         </Reveal>
         <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
           {[t.activite1, t.activite2].map((a, i) => (
-            <Reveal key={a} de={6.4 + i * 0.25} direction="gauche">
+            <Reveal key={a} de={7.0 + i * 0.25} direction="gauche">
               <div
                 style={{
                   fontSize: vertical ? 38 : 36,
@@ -108,7 +108,7 @@ export const SceneB: React.FC = () => {
               </div>
             </Reveal>
           ))}
-          <Reveal de={7.0} direction="gauche">
+          <Reveal de={7.6} direction="gauche">
             <div style={{ fontSize: vertical ? 40 : 38, fontWeight: 500 }}>{t.lieu}</div>
           </Reveal>
         </div>

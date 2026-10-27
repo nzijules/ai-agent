@@ -20,7 +20,7 @@ identifié comme « Illustration schématique ».
 
 | Réf. | Élément | Scène | Obligatoire | Source à privilégier | Repli actuel |
 |---|---|---|---|---|---|
-| — | **Voix off enregistrée** | Toutes | Oui | Comédien(ne) voix FR, texte `docs/02` | Aucun (maquette muette) |
+| — | **Voix off enregistrée** | Toutes | Oui | Comédien(ne) voix FR, texte `docs/02` | Synthèse provisoire Piper « siwis » (voix féminine, CC-BY 4.0) déjà calée ; à remplacer |
 | — | **Musique instrumentale sous licence** | Toutes | Oui | Banque de sons (licence pub + réseaux sociaux) | Aucune |
 | — | Effets sonores (impact, versements, mélange, hydraulique, pose, bruine) | A–H | Non | Banque de sons | Aucun |
 | — | **Logo HD** : SVG/PDF vectoriel, ou PNG ≥ 1 500 px à fond transparent | H | Recommandé | OHEL | JPEG 221 px agrandi (flou) |

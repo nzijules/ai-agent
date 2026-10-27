@@ -75,7 +75,12 @@ export const LOGO = "images/logo-ohel.jpg";
  * voixOff : piste unique mixée, alignée sur le début de la vidéo.
  */
 export const AUDIO = {
-  voixOff: null as string | null,
+  voixOff: "audio/voix-off-provisoire.wav" as string | null,
+  /**
+   * true tant que la voix est la synthèse vocale de travail (Piper, voix « siwis »).
+   * Bloque le rendu final : remplacer par l'enregistrement validé puis passer à false.
+   */
+  voixOffProvisoire: true,
   musique: null as string | null,
   volumeMusique: 0.18,
   /** Effets ponctuels : chemin + instant (secondes, absolu dans la vidéo). */

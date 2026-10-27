@@ -3,9 +3,10 @@
 Projet Remotion de la publicité « La terre. La précision. Votre construction. »
 Formats : **9:16** (1080 × 1920, principal) et **16:9** (1920 × 1080), chacun avec et sans sous-titres.
 
-> **État actuel : maquette.** Le code est complet et rend une animatique, mais la voix off, la musique et plusieurs
-> visuels ne sont pas encore fournis (voir `docs/04-ressources.md`). Le rendu en mode `final` est volontairement
-> bloqué tant qu'il en manque.
+> **État actuel : maquette.** Le code est complet et rend une animatique avec une **voix off provisoire de synthèse**
+> (`public/audio/voix-off-provisoire.wav`, Piper, voix française « siwis », licence CC-BY 4.0). La voix définitive,
+> la musique et plusieurs visuels restent à fournir (voir `docs/04-ressources.md`). Le rendu en mode `final` est
+> volontairement bloqué tant qu'il en manque, y compris tant que `AUDIO.voixOffProvisoire` vaut `true`.
 
 ## Documents
 
@@ -64,15 +65,17 @@ Tout se règle dans trois fichiers, sans toucher aux scènes :
 
 ## Recaler le minutage après l'enregistrement de la voix off
 
-1. Déposer la voix dans `public/audio/voix-off.wav` et renseigner `AUDIO.voixOff = "audio/voix-off.wav"`.
+1. Déposer la voix dans `public/audio/voix-off.wav`, renseigner `AUDIO.voixOff = "audio/voix-off.wav"` et passer
+   `AUDIO.voixOffProvisoire` à `false`.
 2. Dans `src/config/script.ts`, pour chaque scène : ajuster `duree` (s) et les instants `de` / `a` de chaque réplique
    (relatifs au début de la scène). La durée totale et les sous-titres se recalculent.
 3. Les animations sont calées en secondes relatives dans chaque scène (`src/scenes/SceneX.tsx`, appels `prog(…, de, duree)`
    et `<Reveal de={…}>`) : les décaler si une phrase bouge nettement.
 4. Ne jamais accélérer la voix : allonger la scène.
 
-Repères son (temps absolus avec le minutage actuel) : impact du bloc 0,45 s · versements 19,4 / 23,0 / 26,0 s ·
-**impact de compression 44,07 s** (`IMPACT_E` dans `SceneE.tsx`) · début de cure 53,3 s · carton final 85,3 s (`CARTON_H` dans `SceneH.tsx`).
+Repères son (temps absolus avec le minutage actuel, calé sur la voix provisoire) : impact du bloc 0,45 s ·
+versements 20,4 / 25,6 / 29,2 s · **impact de compression 46,17 s** (`IMPACT_E` dans `SceneE.tsx`) · début de cure 55,4 s ·
+carton final 87,8 s (`CARTON_H` dans `SceneH.tsx`).
 Les effets se déclarent dans `AUDIO.effets` (`{ src, t, volume }`).
 
 ## Structure
