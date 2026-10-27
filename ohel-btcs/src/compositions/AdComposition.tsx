@@ -5,6 +5,7 @@ import {TRANSITION_FRAMES, sec2f, timeline, type Timeline, type VersionId} from 
 import {voiceover} from '../config/voiceover';
 import {transitions} from '../components/ArchitecturalTransition';
 import {DraftWatermark} from '../components/DraftWatermark';
+import {LogoBug} from '../components/LogoBug';
 import {SafeZoneOverlay} from '../components/SafeZoneOverlay';
 import {ShotText} from '../components/ShotText';
 import {Sfx} from '../components/Sfx';
@@ -104,6 +105,7 @@ export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version
           : null}
         {vo.src && !clips.length ? <Audio src={vo.src} /> : null}
         {music.src ? <Audio src={music.src} volume={musicVolume} /> : null}
+        <LogoBug until={tl.segments.find((s) => s.scene === 'cta')?.from ?? tl.durationInFrames} />
         {draft && watermark ? <DraftWatermark /> : null}
         {showSafeZones ? <SafeZoneOverlay /> : null}
       </AbsoluteFill>

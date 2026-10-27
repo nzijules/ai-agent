@@ -112,21 +112,23 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           </div>
         )}
       </div>
-      <div
-        style={{
-          whiteSpace: 'nowrap',
-          fontFamily: FONT_SIGNATURE,
-          fontWeight: 600,
-          fontSize: 70 * u,
-          color: overVilla ? '#FFFFFF' : C.red,
-          textShadow: overVilla ? '0 2px 14px rgba(0,0,0,0.6)' : 'none',
-          textAlign: 'center',
-          marginTop: 6 * u,
-          opacity: sig,
-        }}
-      >
-        {brand.signature}
-      </div>
+      {brand.signature ? (
+        <div
+          style={{
+            whiteSpace: 'nowrap',
+            fontFamily: FONT_SIGNATURE,
+            fontWeight: 600,
+            fontSize: 70 * u,
+            color: overVilla ? '#FFFFFF' : C.red,
+            textShadow: overVilla ? '0 2px 14px rgba(0,0,0,0.6)' : 'none',
+            textAlign: 'center',
+            marginTop: 6 * u,
+            opacity: sig,
+          }}
+        >
+          {brand.signature}
+        </div>
+      ) : null}
     </div>
   );
 

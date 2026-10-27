@@ -16,7 +16,8 @@ export type Claim = {
 
 export const brand = {
   name: 'OHEL International',
-  signature: 'Construisons autrement.',
+  /** Signature manuscrite sous le logo du CTA. Vide = non affichée (remplacée par brand.tagline). */
+  signature: '',
 
   colors: {
     /**
