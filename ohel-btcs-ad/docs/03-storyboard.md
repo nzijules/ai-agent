@@ -85,7 +85,7 @@ Repères 16:9 : même découpage ; les compositions passent de « empilé » à 
 | | |
 |---|---|
 | **Voix off** | « Maison, école, bâtiment durable : les BTCS s'adaptent à vos projets de construction. Faites le choix de la solidité… et de l'écologie. » |
-| **Texte écran** | « Maison » · « École » · « Bâtiments » → « Vos projets / de construction » → « Le choix / de la solidité. » |
+| **Texte écran** | « Maison » · « École » · « Bâtiment durable » → « Vos projets / de construction » → « Le choix / de la solidité. » |
 | **Visuel** | Triptyque : maison (rendu fourni) et école (rendu fourni), toutes deux « Illustration non contractuelle », puis « Bâtiment durable » (photo réelle du couloir). Ensuite, plein cadre sur la photo réelle de la salle (« Photo · intérieur en BTCS ») portant les deux messages. Chaque image n'est utilisée qu'une fois. |
 | **Animation** | Les trois bandes s'ouvrent l'une après l'autre sur « Maison », « école », « bâtiment ». 01:06.5 et 01:10.8 : plein cadre révélé par une fenêtre-bloc, léger travelling vertical (40 px, pas de zoom gratuit). |
 | **Transition** | Appareillage de blocs vers H. |
