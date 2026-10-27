@@ -23,7 +23,7 @@ export const LogoBug: React.FC<{until: number}> = ({until}) => {
         position: 'absolute',
         top: safe.top + 10 * u,
         right: width - (width - safe.right),
-        width: 190 * u,
+        width: 250 * u,
         padding: `${8 * u}px ${12 * u}px`,
         background: '#fff',
         borderRadius: 12 * u,

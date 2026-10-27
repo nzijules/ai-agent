@@ -192,7 +192,7 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
             fontWeight: 800,
             fontSize: Math.max(56, 58 * u),
             letterSpacing: 1 * u,
-            boxShadow: '0 18px 40px rgba(219,25,29,0.35)',
+            boxShadow: '0 18px 40px rgba(229,0,0,0.35)',
             transform: `scale(${btn})`,
             whiteSpace: 'nowrap',
             maxWidth: contentW,

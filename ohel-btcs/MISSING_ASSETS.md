@@ -4,7 +4,7 @@
 
 ## 1. Bloquant pour la publication
 
-- [ ] **Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large)** — `assets/brand/ohel-logo.svg` — bloque : ad15, ad30, ad60  
+- [x] **Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large)** — `assets/brand/ohel-logo.svg` — bloque : ad15, ad30, ad60  
   _Le fichier fourni (221 × 131 px, fond blanc) est trop petit et non transparent._
 - [x] **Photo réelle : équipe OHEL qui tamise la terre latérite sur chantier** — `assets/chantiers/preparation-terre.jpg` — bloque : ad30, ad60
 - [x] **Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL** — `assets/chantiers/elevation-murs.mp4` — bloque : ad30, ad60
@@ -17,7 +17,7 @@
 
 - [ ] Offre d’étude (gratuite / payante, délai) — `brand.offer` — _vide = non affichée_
 - [ ] Services réellement proposés — `brand.services` — _vide = bandeau retiré_
-- [ ] Code couleur exact du rouge OHEL — provisoire `#DB191D` prélevé sur le logo basse définition
+- [x] Code couleur exact du rouge OHEL — provisoire `#E50000` prélevé sur le logo basse définition
 - [ ] Dimensions des blocs — provisoire 29.5 × 14 × 9.5 cm
 - [ ] Modèle de bloc (emboîtement ? alvéoles ?) + photo d’un bloc et de la presse OHEL (référence obligatoire pour l’animation)
 - [ ] Entité qui détient le projet (licence Remotion, licence musique) — `brand.owner`
@@ -66,7 +66,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 
 ### 30 s — Meta Ads
@@ -76,7 +75,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 - Affirmation non validée : `brand.claims.thermique`
 - Affirmation non validée : `brand.claims.humidite`
@@ -88,5 +86,4 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA

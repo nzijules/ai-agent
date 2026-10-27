@@ -20,13 +20,11 @@ export const brand = {
   signature: '',
 
   colors: {
-    /**
-     * Rouge prélevé sur le logo fourni (fichier basse définition).
-     * À remplacer par le code de la charte OHEL s'il existe.
-     */
-    red: '#DB191D',
-    redValidated: false,
-    redDark: '#A50F14',
+    /** Couleurs prélevées sur le logo officiel (PNG transparent fourni par OHEL). */
+    red: '#E50000',
+    redValidated: true,
+    redDark: '#B80000',
+    green: '#6CBB00',
     grey: '#A6A4A2',
     greyLight: '#ECEBE8',
     white: '#FFFFFF',

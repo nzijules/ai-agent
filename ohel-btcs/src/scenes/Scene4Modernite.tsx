@@ -1,4 +1,5 @@
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
+import {brand} from '../config/brand';
 import {PhotoPlate} from '../components/PhotoPlate';
 import {useFormat} from '../lib/format';
 import type {SceneProps} from './types';
@@ -28,7 +29,7 @@ export const Scene4Modernite: React.FC<SceneProps> = ({sequenceFrames}) => {
       {/* Trait rouge qui suit le front du volet */}
       {p > 0 && p < 1 ? (
         <svg width={width} height={height} style={{position: 'absolute', inset: 0}}>
-          <line x1={x + height * 0.6} y1={0} x2={x} y2={height} stroke="#DB191D" strokeWidth={6} />
+          <line x1={x + height * 0.6} y1={0} x2={x} y2={height} stroke={brand.colors.red} strokeWidth={6} />
         </svg>
       ) : null}
     </AbsoluteFill>
