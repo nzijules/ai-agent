@@ -47,6 +47,9 @@ export const brand = {
   whatsappMessage:
     'Bonjour OHEL INTERNATIONAL, je possède un terrain et je souhaite échanger sur un projet de construction de villa en BTCS. Pouvez-vous m’accompagner ?',
 
+  /** Site web affiché dans le CTA, ex. 'www.ohel-international.com'. Vide = non affiché. */
+  website: '',
+
   /** Signature de fin. */
   tagline: 'Votre terrain. Votre vision. Notre savoir-faire.',
 

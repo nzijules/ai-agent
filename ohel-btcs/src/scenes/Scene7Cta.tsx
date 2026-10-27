@@ -85,6 +85,7 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
   const logo = resolveAsset('logo', draft);
   const fondCta = resolveAsset('fondCta15', false);
   const number = brand.whatsapp || (draft ? 'N° WHATSAPP À FOURNIR' : '');
+  const website = brand.website || (draft ? 'SITE WEB À FOURNIR' : '');
 
   const innerW = width - safe.left - safe.right;
   const contentW = vertical ? innerW - 80 * u : innerW * 0.52;
@@ -148,6 +149,33 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
           ) : null,
         )}
       </div>
+      {website ? (
+        // Site web : même forme que le bouton WhatsApp, en blanc.
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 18 * u,
+            background: '#fff',
+            color: C.black,
+            borderRadius: 999,
+            padding: `${18 * u}px ${40 * u}px`,
+            fontFamily: FONT,
+            fontWeight: 800,
+            fontSize: Math.max(44, 46 * u),
+            boxShadow: '0 18px 40px rgba(0,0,0,0.3)',
+            transform: `scale(${btn})`,
+            whiteSpace: 'nowrap',
+            maxWidth: contentW,
+          }}
+        >
+          <svg width={48 * u} height={48 * u} viewBox="0 0 24 24" aria-hidden>
+            <circle cx="12" cy="12" r="10" fill="none" stroke={C.red} strokeWidth="2" />
+            <path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20" fill="none" stroke={C.red} strokeWidth="2" />
+          </svg>
+          <span style={{fontSize: brand.website ? undefined : 34 * u}}>{website}</span>
+        </div>
+      ) : null}
       {number ? (
         <div
           style={{

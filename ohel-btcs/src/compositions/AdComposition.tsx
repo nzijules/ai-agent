@@ -27,7 +27,7 @@ const voiceClips = (version: VersionId, tl: Timeline) =>
   (voiceover[version]?.clips ?? []).map((c) => {
     const seg = tl.segments[c.segment];
     const from = seg.from + seg.shots[c.shot].from + sec2f(c.at);
-    return {from, start: sec2f(c.src[0]), frames: sec2f(c.src[1] - c.src[0])};
+    return {from, start: sec2f(c.src[0]), frames: sec2f(c.src[1] - c.src[0]), file: c.file};
   });
 
 /** Intervalles (frames absolues) où la voix off parle. */
@@ -93,11 +93,14 @@ export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version
         <TransitionSeries>{items}</TransitionSeries>
         {sfx}
         {vo.src && clips.length
-          ? clips.map((c, i) => (
-              <Sequence key={`vo${i}`} from={c.from} durationInFrames={c.frames} layout="none">
-                <Audio src={vo.src!} startFrom={c.start} endAt={c.start + c.frames} />
-              </Sequence>
-            ))
+          ? clips.map((c, i) => {
+              const src = c.file ? resolveAsset(c.file, false).src : vo.src;
+              return src ? (
+                <Sequence key={`vo${i}`} from={c.from} durationInFrames={c.frames} layout="none">
+                  <Audio src={src} startFrom={c.start} endAt={c.start + c.frames} />
+                </Sequence>
+              ) : null;
+            })
           : null}
         {vo.src && !clips.length ? <Audio src={vo.src} /> : null}
         {music.src ? <Audio src={music.src} volume={musicVolume} /> : null}

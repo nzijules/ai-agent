@@ -365,11 +365,11 @@ const ad60: VersionScript = {
       variant: 'overVilla',
       shots: [
         {
-          sec: 5.8,
-          vo: 'Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet.',
+          sec: 3.0,
+          vo: 'Envoyez-nous votre projet sur WhatsApp.',
           textLayer: 'title',
-          title: [{text: 'PARLONS DE'}, {text: 'VOTRE PROJET', highlight: true}],
-          visual: 'La villa de nuit : logo, bouton WhatsApp, numéro.',
+          title: [{text: 'VISITEZ NOTRE SITE'}, {text: 'OU ÉCRIVEZ-NOUS', highlight: true}],
+          visual: 'La villa de nuit : logo, site web, bouton WhatsApp, numéro.',
         },
         {
           sec: 5.6,
@@ -458,8 +458,12 @@ const cuesForShot = (shot: Shot, from: number, frames: number): SubtitleCue[] =>
   });
 };
 
-/** Longueur maximale d'un sous-titre : une seule ligne lisible sur téléphone. */
-export const SUBTITLE_MAX_CHARS = 30;
+/**
+ * Les sous-titres reprennent le style des titres (capitales, grande taille) :
+ * au plus deux lignes de SUBTITLE_LINE_CHARS caractères par sous-titre.
+ */
+export const SUBTITLE_LINE_CHARS = 16;
+export const SUBTITLE_MAX_CHARS = 2 * SUBTITLE_LINE_CHARS;
 /** Durée minimale d'affichage d'un sous-titre (frames). */
 const CUE_MIN_FRAMES = 14;
 /** Écart sous lequel deux sous-titres s'enchaînent sans clignoter (frames). */
@@ -470,21 +474,27 @@ const CUE_BRIDGE_FRAMES = 10;
  * lignes possible, longueurs équilibrées, coupure de préférence après une ponctuation,
  * jamais de mot isolé.
  */
-const splitLine = (text: string): string[] => {
-  if (text.length <= SUBTITLE_MAX_CHARS) return [text];
+/** Un sous-titre tient en deux lignes de SUBTITLE_LINE_CHARS caractères au plus. */
+export const fitsTwoLines = (t: string): boolean => {
+  const lines = splitLine(t, SUBTITLE_LINE_CHARS);
+  return lines.length <= 2 && lines.every((l) => l.length <= SUBTITLE_LINE_CHARS);
+};
+
+export const splitLine = (text: string, max = SUBTITLE_MAX_CHARS, fits = (l: string) => l.length <= max): string[] => {
+  if (fits(text)) return [text];
   const words = text.split(/ +/);
   const score = (lines: string[]) => {
-    if (lines.some((l) => l.length > SUBTITLE_MAX_CHARS)) return Infinity;
+    if (lines.some((l) => !fits(l))) return Infinity;
     const lens = lines.map((l) => l.length);
     let sc = Math.max(...lens) - Math.min(...lens);
     for (const l of lines) {
       if (l.length < 8) sc += 30; // mot isolé
       if (/[,.:;?!…]$/.test(l)) sc -= 6; // coupure naturelle
-      if (/ (le|la|les|de|du|des|un|une|à|au|aux|en|et|dans|qui|pour|sur|par|votre|nos)$/i.test(l)) sc += 12; // mot outil en fin de ligne
+      if (/ (le|la|les|de|du|des|un|une|à|au|aux|en|et|dans|qui|pour|sur|par|avec|votre|nos)$/i.test(l)) sc += 25; // mot outil en fin de ligne
     }
     return sc;
   };
-  for (let k = Math.ceil(text.length / SUBTITLE_MAX_CHARS); k <= words.length; k++) {
+  for (let k = Math.ceil(text.length / max); k <= words.length; k++) {
     let best: string[] | null = null;
     let bestScore = Infinity;
     const walk = (start: number, left: number, acc: string[]) => {
@@ -516,7 +526,7 @@ export const normalizeCues = (cues: SubtitleCue[]): SubtitleCue[] => {
     else merged.push({...c});
   }
   const split = merged.flatMap((c) => {
-    const lines = splitLine(c.text);
+    const lines = splitLine(c.text, SUBTITLE_MAX_CHARS, fitsTwoLines);
     const total = lines.reduce((n, l) => n + l.length, 0);
     let t = c.from;
     return lines.map((text, i) => {

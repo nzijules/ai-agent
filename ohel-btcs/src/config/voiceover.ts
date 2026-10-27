@@ -18,6 +18,8 @@ export type VoClip = {
   /** Décalage de l'extrait dans le plan, en secondes. */
   at: number;
   cues?: VoCue[];
+  /** Autre enregistrement à utiliser pour cet extrait (par défaut : la voix de la version). */
+  file?: 'vo15' | 'vo30' | 'vo60';
 };
 
 export type VoiceoverTrack = {
@@ -172,7 +174,8 @@ export const voiceover: Partial<Record<'ad15' | 'ad30' | 'ad60', VoiceoverTrack>
         ],
       },
       {segment: 5, shot: 0, src: [37.5, 41.43], at: 0.1},
-      {segment: 6, shot: 0, src: [41.43, 46.75], at: 0.3},
+      // Phrase reprise de l'enregistrement du 30 s, en attendant « Visitez notre site web, ou écrivez-nous sur WhatsApp ».
+      {segment: 6, shot: 0, src: [17.3, 19.4], at: 0.4, file: 'vo30'},
       {segment: 6, shot: 1, src: [46.75, 51.84], at: 0.05},
     ],
   },
