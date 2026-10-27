@@ -60,7 +60,7 @@ export const assets = {
     ia: true,
   },
   presseBtcs: {
-    label: 'Presse BTCS et bloc frais sorti du moule (illustration)',
+    label: 'Production OHEL : équipe et blocs auto-bloquants (illustration)',
     candidates: exts('assets/illustrations/presse-btcs', IMG),
     kind: 'image',
     ia: true,

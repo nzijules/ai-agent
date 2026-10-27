@@ -275,7 +275,7 @@ const ad60: VersionScript = {
           textLayer: 'subtitles',
           image: 'presseBtcs',
           move: {y: [55, 40], scale: [1.02, 1.12]},
-          visual: 'Presse BTCS, bloc frais sorti du moule (illustration).',
+          visual: 'Aire de production OHEL, équipe qui manipule les blocs auto-bloquants (illustration).',
         },
         {
           sec: 4.15,
