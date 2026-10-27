@@ -1,0 +1,78 @@
+{
+  "logo": {
+    "path": null,
+    "draft": "assets/brand/ohel-logo-provisoire.webp"
+  },
+  "villaHook": {
+    "path": null,
+    "draft": null
+  },
+  "villaHookForeground": {
+    "path": null,
+    "draft": null
+  },
+  "villaModerne": {
+    "path": null,
+    "draft": null
+  },
+  "villaPiscine": {
+    "path": null,
+    "draft": null
+  },
+  "presseAction": {
+    "path": null,
+    "draft": null
+  },
+  "elevationMurs": {
+    "path": null,
+    "draft": null
+  },
+  "detailJoints": {
+    "path": null,
+    "draft": null
+  },
+  "realisation1": {
+    "path": null,
+    "draft": null
+  },
+  "realisation2": {
+    "path": null,
+    "draft": null
+  },
+  "fondCta15": {
+    "path": null,
+    "draft": null
+  },
+  "vo15": {
+    "path": null,
+    "draft": null
+  },
+  "vo30": {
+    "path": null,
+    "draft": null
+  },
+  "vo60": {
+    "path": null,
+    "draft": null
+  },
+  "music": {
+    "path": null,
+    "draft": null
+  },
+  "sfxCompression": {
+    "path": null,
+    "draft": null
+  },
+  "sfxPose": {
+    "path": null,
+    "draft": null
+  },
+  "sfxTransition": {
+    "path": null,
+    "draft": null
+  },
+  "sfxCta": {
+    "path": null,
+    "draft": null
+  }
+}
