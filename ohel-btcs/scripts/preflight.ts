@@ -7,6 +7,7 @@ import {brand} from '../src/config/brand';
 import {READY_SCENES} from '../src/config/formats';
 import {FPS, scripts, timeline, type Shot, type VersionId} from '../src/config/scripts';
 import {SAFE_VERTICAL} from '../src/lib/format';
+import {voiceover} from '../src/config/voiceover';
 import {scan} from './scan-assets';
 
 export type Report = {errors: string[]; warnings: string[]};
@@ -58,6 +59,22 @@ export const checkScripts = (): Report => {
     const cta = tl.segments.find((s) => s.scene === 'cta');
     if (!cta) errors.push(`${v} : pas de scène CTA`);
     else if (cta.frames - CTA_NUMBER_AT < 4 * FPS) errors.push(`${v} : numéro WhatsApp affiché moins de 4 s`);
+  }
+
+  // Voix off : chaque extrait tient dans son plan.
+  for (const [v, track] of Object.entries(voiceover)) {
+    const tl = timeline(v as VersionId);
+    for (const c of track!.clips) {
+      const shot = tl.segments[c.segment]?.shots[c.shot];
+      if (!shot) {
+        errors.push(`voiceover.${v} : plan ${c.segment}/${c.shot} inexistant`);
+        continue;
+      }
+      if (c.at + c.src[1] - c.src[0] > shot.sec + 0.01)
+        errors.push(`voiceover.${v} : l’extrait ${c.src.join('–')} s déborde du plan ${c.segment}/${c.shot}`);
+      for (const q of c.cues ?? []) texts.push([`voiceover.${v}`, q.text]);
+    }
+    if (track!.provisional) warnings.push(`voix off ${v} provisoire (non validée par OHEL)`);
   }
 
   // Typographie française.

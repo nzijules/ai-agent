@@ -10,6 +10,7 @@
  */
 import type {Claim} from './brand';
 import {brand} from './brand';
+import {voiceover} from './voiceover';
 
 export const FPS = 30;
 /** Durée d'une transition entre deux scènes (frames). */
@@ -431,10 +432,19 @@ export const timeline = (id: VersionId) => {
   let at = 0;
   const segments: TimedSegment[] = scripts[id].segments.map((seg, index) => {
     let local = 0;
-    const shots: TimedShot[] = seg.shots.map((raw) => {
+    const shots: TimedShot[] = seg.shots.map((raw, si) => {
       const s = resolveShot(raw);
       const frames = sec2f(s.sec);
-      const ts: TimedShot = {...s, from: local, frames, cues: cuesForShot(s, local, frames)};
+      const clip = voiceover[id]?.clips.find((c) => c.segment === index && c.shot === si);
+      const cues =
+        clip?.cues && s.textLayer === 'subtitles'
+          ? clip.cues.map((c) => ({
+              text: c.text,
+              from: local + sec2f(clip.at + c.start - clip.src[0]),
+              to: local + sec2f(clip.at + c.end - clip.src[0]),
+            }))
+          : cuesForShot(s, local, frames);
+      const ts: TimedShot = {...s, from: local, frames, cues};
       local += frames;
       return ts;
     });

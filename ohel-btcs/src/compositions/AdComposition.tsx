@@ -1,7 +1,8 @@
 import {linearTiming, TransitionSeries} from '@remotion/transitions';
-import {AbsoluteFill, Audio, interpolate} from 'remotion';
+import {AbsoluteFill, Audio, interpolate, Sequence} from 'remotion';
 import type {AssetId} from '../config/assets';
-import {TRANSITION_FRAMES, timeline, type VersionId} from '../config/scripts';
+import {TRANSITION_FRAMES, sec2f, timeline, type Timeline, type VersionId} from '../config/scripts';
+import {voiceover} from '../config/voiceover';
 import {transitions} from '../components/ArchitecturalTransition';
 import {DraftWatermark} from '../components/DraftWatermark';
 import {SafeZoneOverlay} from '../components/SafeZoneOverlay';
@@ -21,16 +22,27 @@ const RAMP = 6;
 const VO: Record<VersionId, AssetId> = {ad15: 'vo15', ad30: 'vo30', ad60: 'vo60'};
 
 /** Intervalles (frames absolues) où la voix off parle, d'après scripts.ts. */
-const voiceIntervals = (version: VersionId) =>
-  timeline(version).segments.flatMap((seg) =>
-    seg.shots.filter((s) => s.vo).map((s) => [seg.from + s.from, seg.from + s.from + s.frames] as const),
-  );
+/** Extraits de voix off posés sur les plans (frames absolues), d'après voiceover.ts. */
+const voiceClips = (version: VersionId, tl: Timeline) =>
+  (voiceover[version]?.clips ?? []).map((c) => {
+    const seg = tl.segments[c.segment];
+    const from = seg.from + seg.shots[c.shot].from + sec2f(c.at);
+    return {from, start: sec2f(c.src[0]), frames: sec2f(c.src[1] - c.src[0])};
+  });
+
+/** Intervalles (frames absolues) où la voix off parle. */
+const voiceIntervals = (version: VersionId, tl: Timeline) => {
+  const clips = voiceClips(version, tl);
+  if (clips.length) return clips.map((c) => [c.from, c.from + c.frames] as const);
+  return tl.segments.flatMap((seg) => seg.shots.filter((s) => s.vo).map((s) => [seg.from + s.from, seg.from + s.from + s.frames] as const));
+};
 
 export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version, draft, showSafeZones}) => {
   const tl = timeline(version);
   const vo = resolveAsset(VO[version], false);
   const music = resolveAsset('music', false);
-  const voice = voiceIntervals(version);
+  const voice = voiceIntervals(version, tl);
+  const clips = voiceClips(version, tl);
 
   const musicVolume = (f: number) => {
     // Ducking : gain réduit pendant la voix, avec rampes courtes.
@@ -80,7 +92,14 @@ export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version
       <AbsoluteFill style={{backgroundColor: '#000'}}>
         <TransitionSeries>{items}</TransitionSeries>
         {sfx}
-        {vo.src ? <Audio src={vo.src} /> : null}
+        {vo.src && clips.length
+          ? clips.map((c, i) => (
+              <Sequence key={`vo${i}`} from={c.from} durationInFrames={c.frames} layout="none">
+                <Audio src={vo.src!} startFrom={c.start} endAt={c.start + c.frames} />
+              </Sequence>
+            ))
+          : null}
+        {vo.src && !clips.length ? <Audio src={vo.src} /> : null}
         {music.src ? <Audio src={music.src} volume={musicVolume} /> : null}
         {draft ? <DraftWatermark /> : null}
         {showSafeZones ? <SafeZoneOverlay /> : null}

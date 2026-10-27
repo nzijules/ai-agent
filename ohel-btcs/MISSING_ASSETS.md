@@ -41,7 +41,7 @@
 - [ ] Villa avec piscine, quartier résidentiel ivoirien (illustration) — `assets/illustrations/villa-piscine.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Plan authentique OHEL pour le fond du CTA 15 s (vidéo verticale de préférence) — `assets/chantiers/fond-cta-15s.mp4`  
   _Optionnel : à défaut, le 15 s utilise l’animation du bloc sur fond terre (prévu par le brief)._
-- [ ] Voix off 15 s validée — `assets/audio/vo-15.mp3`
+- [x] Voix off 15 s validée — `assets/audio/vo-15.mp3`
 - [ ] Voix off 30 s validée — `assets/audio/vo-30.mp3`
 - [ ] Voix off 60 s validée — `assets/audio/vo-60.mp3`
 - [ ] Musique sous licence commerciale (publicité Meta + TikTok autorisée) — `assets/audio/musique.mp3`
@@ -54,7 +54,6 @@
 
 ### 15 s — Hook
 
-- Voix off 15 s validée
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
 - Villa contemporaine au crépuscule (illustration, format portrait de préférence)
