@@ -290,10 +290,10 @@ const ad60: VersionScript = {
           sec: 2.35,
           vo: 'Un matériau issu de ressources locales,',
           textLayer: 'subtitles',
-          image: 'elevationMurs',
+          image: 'poseBlocsEquipe',
           move: {scale: [1.06, 1.0]},
           fit: 'framed',
-          visual: 'Montage à sec des blocs BTCS auto-bloquants par une équipe OHEL (photo réelle).',
+          visual: 'Montage à sec des blocs BTCS auto-bloquants par une équipe OHEL (illustration).',
         },
         {
           sec: 2.6,

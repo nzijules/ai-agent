@@ -65,6 +65,12 @@ export const assets = {
     kind: 'image',
     ia: true,
   },
+  poseBlocsEquipe: {
+    label: 'Équipe OHEL qui monte un mur en blocs auto-bloquants (illustration)',
+    candidates: exts('assets/illustrations/pose-blocs-equipe', IMG),
+    kind: 'image',
+    ia: true,
+  },
   poseBlocs: {
     label: 'Pose des blocs, joints fins (illustration)',
     candidates: exts('assets/illustrations/pose-blocs', IMG),
