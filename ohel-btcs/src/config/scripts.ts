@@ -38,6 +38,8 @@ export type Shot = {
   /** Image du plan (scènes photo) et mouvement de caméra lent. */
   image?: AssetId;
   move?: {x?: [number, number]; y?: [number, number]; scale?: [number, number]};
+  /** 'framed' pour les photos réelles en paysage / basse définition. */
+  fit?: 'cover' | 'framed';
   /** Affirmation à valider dans brand.ts avant le rendu final. */
   claim?: ClaimKey;
   /** Plan de remplacement si `claim` n'est pas validé (sinon : rendu final bloqué). */
@@ -203,155 +205,178 @@ const ad30: VersionScript = {
 };
 
 // ---------------------------------------------------------------------------
-// 60 s — V2 : 5 s accroche, 15 s démonstration BTCS, 15 s avantages,
-// 15 s preuves, 10 s projection + conversion.
+// Version longue V3 — « Vous avez le terrain » (script client, orienté conversion WhatsApp)
 // ---------------------------------------------------------------------------
 const ad60: VersionScript = {
   id: 'ad60',
-  label: 'Version longue (V2, resserrée sur la voix)',
+  label: 'Version longue (V3 — « Vous avez le terrain »)',
   segments: [
     {
       scene: 'hook',
       shots: [
         {
-          sec: 3.8,
-          vo: 'Et si votre prochaine villa était construite… en terre ?',
+          sec: 2.5,
+          vo: 'Vous avez un terrain ?',
           textLayer: 'title',
-          title: [{text: 'ET SI LA TERRE'}, {text: 'BÂTISSAIT'}, {text: 'VOTRE VILLA ?', highlight: true}],
+          title: [{text: 'VOUS AVEZ'}, {text: 'UN TERRAIN ?', highlight: true}],
           visual: 'La villa terminée à l’heure bleue, travelling latéral (illustration).',
         },
-      ],
-    },
-    {
-      scene: 'btcs',
-      transitionIn: 'matiere',
-      variant: 'photo',
-      shots: [
         {
-          sec: 3.3,
-          vo: 'Tout commence par une terre sélectionnée et tamisée.',
+          sec: 3.5,
+          vo: 'Alors pourquoi laisser votre projet de villa attendre encore ?',
           textLayer: 'subtitles',
-          image: 'terreTamisee',
-          move: {y: [40, 60], scale: [1.12, 1.02]},
-          visual: 'Mains qui tamisent la terre latérite (illustration).',
-        },
-        {
-          sec: 3.0,
-          vo: 'Stabilisée, puis comprimée dans une presse,',
-          textLayer: 'subtitles',
-          image: 'presseBtcs',
-          move: {y: [55, 40], scale: [1.02, 1.12]},
-          visual: 'Presse BTCS manuelle, bloc frais sorti du moule (illustration).',
-        },
-        {
-          sec: 3.9,
-          vo: 'elle devient un bloc BTCS, dense et précis.',
-          textLayer: 'title',
-          title: [{text: 'BTCS', highlight: true}, {text: 'BLOC DE TERRE'}, {text: 'COMPRIMÉE STABILISÉE'}],
-          image: 'matiereBtcs',
-          move: {y: [45, 55], scale: [1.15, 1.04]},
-          visual: 'Gros plan : terre et pile de blocs BTCS (illustration).',
-        },
-        {
-          sec: 2.9,
-          vo: 'Bloc après bloc, les murs prennent forme.',
-          textLayer: 'subtitles',
-          image: 'poseBlocs',
-          move: {x: [55, 45], y: [50, 45], scale: [1.04, 1.12]},
-          visual: 'Mains d’un maçon qui posent un bloc, joints fins (illustration).',
-        },
-      ],
-    },
-    {
-      scene: 'benefits',
-      transitionIn: 'rangs',
-      variant: 'photo',
-      shots: [
-        {
-          sec: 2.8,
-          vo: 'Des murs qui gardent la fraîcheur.',
-          textLayer: 'title',
-          title: [{text: 'CONFORT'}, {text: 'THERMIQUE', highlight: true}],
-          image: 'interieurFraicheur',
-          move: {x: [35, 55], scale: [1.08, 1.02]},
-          claim: 'thermique',
-          visual: 'Salon contemporain, mur BTCS apparent, intérieur frais (illustration).',
+          visual: 'Même villa, la caméra s’approche (illustration).',
         },
       ],
     },
     {
       scene: 'modernite',
-      transitionIn: 'volet',
+      transitionIn: 'matiere',
       shots: [
         {
-          sec: 3.5,
-          vo: 'Des lignes contemporaines, sans compromis sur le style.',
-          textLayer: 'title',
-          title: [{text: 'POSSIBILITÉS'}, {text: 'ARCHITECTURALES', highlight: true}],
+          sec: 4.5,
+          vo: 'Imaginez… une villa moderne, élégante, avec de beaux espaces,',
+          textLayer: 'subtitles',
           visual: 'Le plan d’architecte de la villa se révèle en photo (illustration).',
         },
       ],
     },
     {
       scene: 'benefits',
-      transitionIn: 'matiere',
+      transitionIn: 'rangs',
       variant: 'photo',
       shots: [
         {
           sec: 3.5,
-          vo: 'Un matériau local, qui valorise la terre d’ici.',
+          vo: 'pensée pour votre confort et celui de votre famille.',
+          textLayer: 'subtitles',
+          image: 'interieurFraicheur',
+          move: {x: [35, 55], scale: [1.08, 1.02]},
+          visual: 'Salon contemporain, mur BTCS apparent (illustration).',
+        },
+      ],
+    },
+    {
+      scene: 'btcs',
+      transitionIn: 'volet',
+      variant: 'photo',
+      shots: [
+        {
+          sec: 4,
+          vo: 'Et si ce rêve prenait forme grâce à la terre de chez nous ?',
+          textLayer: 'subtitles',
+          image: 'terreTamisee',
+          move: {y: [40, 60], scale: [1.12, 1.02]},
+          visual: 'Mains qui tamisent la terre latérite (illustration).',
+        },
+        {
+          sec: 3.5,
+          vo: 'Avec OHEL International, découvrez une autre façon de construire :',
+          textLayer: 'subtitles',
+          image: 'presseBtcs',
+          move: {y: [55, 40], scale: [1.02, 1.12]},
+          visual: 'Presse BTCS, bloc frais sorti du moule (illustration).',
+        },
+        {
+          sec: 3.5,
+          vo: 'les blocs de terre comprimée stabilisée, les BTCS.',
           textLayer: 'title',
-          title: [{text: 'MATÉRIAU'}, {text: 'LOCAL', highlight: true}],
+          title: [{text: 'BTCS', highlight: true}, {text: 'BLOC DE TERRE'}, {text: 'COMPRIMÉE STABILISÉE'}],
+          image: 'matiereBtcs',
+          move: {y: [45, 55], scale: [1.15, 1.04]},
+          visual: 'Gros plan : terre et blocs BTCS (illustration).',
+        },
+        {
+          sec: 2.5,
+          vo: 'Un matériau issu de ressources locales,',
+          textLayer: 'subtitles',
+          image: 'poseBlocs',
+          move: {x: [55, 45], y: [50, 45], scale: [1.04, 1.12]},
+          visual: 'Pose des blocs, joints fins (illustration).',
+        },
+        {
+          sec: 2.5,
+          vo: 'associé à une architecture contemporaine.',
+          textLayer: 'subtitles',
           image: 'villaChantier',
-          move: {x: [8, 22], y: [88, 75], scale: [2.1, 1.7]},
-          visual: 'La villa en chantier : piles de blocs et terre du site (illustration).',
+          move: {x: [62, 45], scale: [1.04, 1.1]},
+          visual: 'La villa en chantier, structure contemporaine (illustration).',
         },
       ],
     },
     {
       scene: 'showcase',
-      transitionIn: 'rangs',
-      variant: 'full',
+      transitionIn: 'matiere',
       shots: [
         {
-          sec: 5.3,
-          vo: 'Avec OHEL International : nos équipes, nos chantiers, nos réalisations.',
+          sec: 3,
+          vo: 'Le résultat ? Une villa qui a du caractère.',
           textLayer: 'subtitles',
-          visual: 'Médias authentiques OHEL uniquement : presse, élévation des murs, joints, bâtiments terminés.',
+          image: 'realisation1',
+          move: {scale: [1.06, 1.0]},
+          fit: 'framed',
+          visual: 'Bâtiment OHEL terminé (photo réelle).',
         },
         {
-          sec: 2.1,
-          vo: 'Un savoir-faire concret.',
-          textLayer: 'title',
-          title: [{text: 'DES PROJETS RÉELS.'}, {text: 'UN SAVOIR-FAIRE', highlight: true}, {text: 'CONCRET.', highlight: true}],
-          visual: 'Bâtiment OHEL terminé (média authentique).',
+          sec: 2.5,
+          vo: 'Une maison qui vous ressemble.',
+          textLayer: 'subtitles',
+          image: 'interieurRealisation',
+          move: {scale: [1.06, 1.0]},
+          fit: 'framed',
+          visual: 'Intérieur d’une réalisation OHEL (photo réelle).',
+        },
+        {
+          sec: 2,
+          vo: 'De la conception aux travaux,',
+          textLayer: 'subtitles',
+          image: 'preparationTerre',
+          move: {scale: [1.06, 1.0]},
+          fit: 'framed',
+          visual: 'Équipe OHEL sur chantier (photo réelle).',
+        },
+        {
+          sec: 3.5,
+          vo: 'OHEL International vous accompagne dans la réalisation de votre projet.',
+          textLayer: 'subtitles',
+          image: 'elevationMurs',
+          move: {scale: [1.06, 1.0]},
+          fit: 'framed',
+          visual: 'Montage des murs BTCS par OHEL (photo réelle).',
         },
       ],
     },
     {
       scene: 'projection',
-      transitionIn: 'volet',
+      transitionIn: 'rangs',
       shots: [
         {
-          sec: 1.8,
-          vo: 'Vous avez un terrain ?',
+          sec: 4.5,
+          vo: 'Vous avez déjà un terrain ? Faites le premier pas vers votre future villa.',
           textLayer: 'title',
-          title: [{text: 'VOUS AVEZ'}, {text: 'UN TERRAIN ?', highlight: true}],
+          title: [{text: 'FAITES LE'}, {text: 'PREMIER PAS', highlight: true}],
           visual: 'La villa : la nuit tombe, les lumières s’allument (illustration).',
         },
       ],
     },
     {
       scene: 'cta',
-      transitionIn: 'matiere',
+      transitionIn: 'volet',
       variant: 'overVilla',
       shots: [
         {
-          sec: 5.5,
-          vo: 'OHEL International. Parlons de votre projet de construction, sur WhatsApp.',
+          sec: 5,
+          vo: 'Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet.',
           textLayer: 'title',
           title: [{text: 'PARLONS DE'}, {text: 'VOTRE PROJET', highlight: true}],
-          visual: 'La villa de nuit (illustration) : logo, signature, bouton WhatsApp, numéro.',
+          visual: 'La villa de nuit : logo, bouton WhatsApp, numéro.',
+        },
+        {
+          sec: 4,
+          vo: 'OHEL International. Votre terrain. Votre vision. Notre savoir-faire.',
+          textLayer: 'title',
+          title: [{text: 'VOTRE TERRAIN.'}, {text: 'VOTRE VISION.'}, {text: 'NOTRE SAVOIR-FAIRE.', highlight: true}],
+          visual: 'Même plan : signature OHEL.',
         },
       ],
     },

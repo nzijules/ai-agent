@@ -50,7 +50,7 @@
   _Optionnel : à défaut, le 15 s utilise l’animation du bloc sur fond terre (prévu par le brief)._
 - [x] Voix off 15 s validée — `assets/audio/vo-15.mp3`
 - [x] Voix off 30 s validée — `assets/audio/vo-30.mp3`
-- [x] Voix off 60 s validée — `assets/audio/vo-60.mp3`
+- [ ] Voix off 60 s validée — `assets/audio/vo-60.mp3`
 - [ ] Musique sous licence commerciale (publicité Meta + TikTok autorisée) — `assets/audio/musique.mp3`
 - [ ] SFX compression du bloc — `assets/audio/sfx-compression.mp3`
 - [ ] SFX pose d’un bloc — `assets/audio/sfx-pose.mp3`
@@ -81,8 +81,9 @@
 - Affirmation non validée : `brand.claims.thermique`
 - Affirmation non validée : `brand.claims.humidite`
 
-### 60 s — Version longue (V2)
+### Version longue (V3 — « Vous avez le terrain »)
 
+- Voix off 60 s validée
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
@@ -90,4 +91,3 @@
 - SFX pose d’un bloc
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
-- Affirmation non validée : `brand.claims.thermique`

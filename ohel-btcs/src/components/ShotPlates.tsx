@@ -11,7 +11,7 @@ export const ShotPlates: React.FC<{segment: TimedSegment; sequenceFrames: number
       const frames = last ? sequenceFrames - shot.from : shot.frames;
       return (
         <Sequence key={i} from={shot.from} durationInFrames={frames} layout="none">
-          <PhotoPlate id={shot.image} frames={frames} move={shot.move} shade={shade} />
+          <PhotoPlate id={shot.image} frames={frames} move={shot.move} shade={shade} fit={shot.fit} />
         </Sequence>
       );
     })}

@@ -43,6 +43,13 @@ export const brand = {
   /** Numéro WhatsApp officiel au format affiché, ex. '+225 07 00 00 00 00'. BLOQUANT. */
   whatsapp: '+225 07 49 23 86 40',
 
+  /** Message prérempli à l'ouverture de WhatsApp (QR code, publicité Meta « clic vers WhatsApp »). */
+  whatsappMessage:
+    'Bonjour OHEL INTERNATIONAL, je possède un terrain et je souhaite échanger sur un projet de construction de villa en BTCS. Pouvez-vous m’accompagner ?',
+
+  /** Signature de fin. */
+  tagline: 'Votre terrain. Votre vision. Notre savoir-faire.',
+
   /** Offre d'étude, ex. 'Étude gratuite sous 72 h'. Vide = non affichée. */
   offer: '',
 
@@ -93,4 +100,5 @@ export type Brand = typeof brand;
 export const isUsable = (c: Claim) => c.validated && c.text.trim().length > 0;
 
 /** Lien direct vers la conversation WhatsApp (QR code de la version 16:9). */
-export const whatsappLink = () => (brand.whatsapp ? `https://wa.me/${brand.whatsapp.replace(/\D/g, '')}` : '');
+export const whatsappLink = () =>
+  brand.whatsapp ? `https://wa.me/${brand.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(brand.whatsappMessage)}` : '';

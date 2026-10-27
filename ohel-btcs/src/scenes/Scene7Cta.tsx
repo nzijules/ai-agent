@@ -65,7 +65,6 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
   const {fps} = useVideoConfig();
   const {u, safe, width, height, vertical} = useFormat();
   const {draft} = useAdProps();
-  const shot = segment.shots[0];
   const overMedia = segment.variant === 'overMedia';
   // Retour à la villa terminée, de nuit : le texte se pose directement sur l'image.
   const overVilla = segment.variant === 'overVilla';
@@ -133,15 +132,21 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
   const action = (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 26 * u}}>
       <div style={{minHeight: 190 * u, display: 'flex', alignItems: 'center'}}>
-        <KineticTitle
-          lines={shot.title!}
-          from={shot.from + 12}
-          frames={shot.frames - 12}
-          tone={overVilla ? 'onImage' : 'onLight'}
-          align="center"
-          maxWidth={contentW}
-          baseSize={76 * u}
-        />
+        {/* Un titre par plan : le CTA peut enchaîner appel à l'action puis signature. */}
+        {segment.shots.map((sh, i) =>
+          sh.title ? (
+            <KineticTitle
+              key={i}
+              lines={sh.title}
+              from={sh.from + (i === 0 ? 12 : 0)}
+              frames={i === segment.shots.length - 1 ? segment.frames + 30 - sh.from : sh.frames - (i === 0 ? 12 : 0)}
+              tone={overVilla ? 'onImage' : 'onLight'}
+              align="center"
+              maxWidth={contentW}
+              baseSize={76 * u}
+            />
+          ) : null,
+        )}
       </div>
       {number ? (
         <div
