@@ -8,7 +8,7 @@ import type {SceneProps} from './types';
 /** Scène 1 — Hook : villa au crépuscule, travelling avant + parallaxe 2.5D (illustration). */
 export const Scene1Hook: React.FC<SceneProps> = ({sequenceFrames}) => {
   const frame = useCurrentFrame();
-  const {u} = useFormat();
+  const {u, vertical} = useFormat();
   const t = interpolate(frame, [0, sequenceFrames], [0, 1], {easing: Easing.out(Easing.quad)});
   // Fond : avance lente ; premier plan (si fourni) : avance plus vite → effet 2.5D.
   const bg = `scale(${1.04 + t * 0.1}) translateY(${-t * 30 * u}px)`;
@@ -16,7 +16,8 @@ export const Scene1Hook: React.FC<SceneProps> = ({sequenceFrames}) => {
   return (
     <AbsoluteFill style={{backgroundColor: '#0E0A08'}}>
       <AbsoluteFill style={{transform: bg}}>
-        <AssetMedia id="villaHook" hideMention />
+        {/* En 9:16, le visuel paysage est parcouru latéralement (travelling). */}
+        <AssetMedia id="villaHook" hideMention style={vertical ? {objectPosition: `${28 + t * 30}% 50%`} : undefined} />
       </AbsoluteFill>
       <AbsoluteFill style={{transform: fg}}>
         <AssetMedia id="villaHookForeground" optional hideMention />

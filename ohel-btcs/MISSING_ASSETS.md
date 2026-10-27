@@ -34,7 +34,7 @@
 
 ## 4. Médias et audio (non bloquants)
 
-- [ ] Villa contemporaine au crépuscule (illustration, format portrait de préférence) — `assets/illustrations/villa-hook.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Villa contemporaine au crépuscule (illustration, format portrait de préférence) — `assets/illustrations/villa-hook.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D) — `assets/illustrations/villa-hook-premier-plan.png` _(illustration : mention « non contractuelle » ajoutée automatiquement)_  
   _Optionnel : sans lui, la parallaxe se fait sur un seul plan._
 - [ ] Villa BTCS contemporaine, rendu final de la scène 4 (illustration) — `assets/illustrations/villa-moderne.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
@@ -56,7 +56,6 @@
 
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
-- Villa contemporaine au crépuscule (illustration, format portrait de préférence)
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
@@ -69,7 +68,6 @@
 - Voix off 30 s validée
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
-- Villa contemporaine au crépuscule (illustration, format portrait de préférence)
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
@@ -86,7 +84,6 @@
 - Voix off 60 s validée
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
-- Villa contemporaine au crépuscule (illustration, format portrait de préférence)
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
