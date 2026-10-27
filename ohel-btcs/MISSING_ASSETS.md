@@ -11,7 +11,7 @@
 - [ ] **Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL** — `assets/chantiers/detail-joints.jpg` — bloque : ad60
 - [ ] **Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-1.jpg` — bloque : ad30, ad60
 - [ ] **Bâtiment OHEL terminé n° 2 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-2.jpg` — bloque : ad60
-- [ ] **Numéro WhatsApp officiel** — `brand.whatsapp` — bloque : ad15, ad30, ad60
+- [x] **Numéro WhatsApp officiel** — `brand.whatsapp` — bloque : ad15, ad30, ad60
 
 ## 2. Informations à fournir dans `brand.ts`
 

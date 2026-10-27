@@ -3,8 +3,9 @@ import {AssetMedia} from '../components/AssetMedia';
 import {BtcsWall} from '../components/BtcsBlockAnimation';
 import {KineticTitle} from '../components/KineticTitle';
 import {Placeholder} from '../components/Placeholder';
+import {QrCode} from '../components/QrCode';
 import {Sfx} from '../components/Sfx';
-import {brand} from '../config/brand';
+import {brand, whatsappLink} from '../config/brand';
 import {resolveAsset} from '../lib/assets';
 import {useAdProps} from '../lib/context';
 import {FONT, FONT_SIGNATURE} from '../lib/fonts';
@@ -151,6 +152,19 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
         >
           <WhatsAppGlyph size={64 * u} />
           <span style={{fontSize: brand.whatsapp ? undefined : 40 * u}}>{number}</span>
+        </div>
+      ) : null}
+      {!vertical && whatsappLink() ? (
+        // 16:9 uniquement : le spectateur a son téléphone libre pour scanner.
+        <div style={{display: 'flex', alignItems: 'center', gap: 22 * u, opacity: extras}}>
+          <div style={{border: `${5 * u}px solid ${C.red}`, borderRadius: 12 * u, padding: 8 * u, background: '#fff'}}>
+            <QrCode value={whatsappLink()} size={170 * u} />
+          </div>
+          <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 34 * u, color: C.steel, lineHeight: 1.25}}>
+            Scannez pour
+            <br />
+            nous écrire
+          </div>
         </div>
       ) : null}
       {brand.offer ? (

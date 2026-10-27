@@ -41,7 +41,7 @@ export const brand = {
   },
 
   /** Numéro WhatsApp officiel au format affiché, ex. '+225 07 00 00 00 00'. BLOQUANT. */
-  whatsapp: '',
+  whatsapp: '+225 07 49 23 86 40',
 
   /** Offre d'étude, ex. 'Étude gratuite sous 72 h'. Vide = non affichée. */
   offer: '',
@@ -85,3 +85,6 @@ export type Brand = typeof brand;
 
 /** Une affirmation n'est utilisable que si elle est validée et non vide. */
 export const isUsable = (c: Claim) => c.validated && c.text.trim().length > 0;
+
+/** Lien direct vers la conversation WhatsApp (QR code de la version 16:9). */
+export const whatsappLink = () => (brand.whatsapp ? `https://wa.me/${brand.whatsapp.replace(/\D/g, '')}` : '');
