@@ -176,7 +176,7 @@ export const Scene7Cta: React.FC<SceneProps> = ({segment}) => {
         // 16:9 uniquement : le spectateur a son téléphone libre pour scanner.
         <div style={{display: 'flex', alignItems: 'center', gap: 22 * u, opacity: extras}}>
           <div style={{border: `${5 * u}px solid ${C.red}`, borderRadius: 12 * u, padding: 8 * u, background: '#fff'}}>
-            <QrCode value={whatsappLink()} size={170 * u} />
+            <QrCode value={whatsappLink()} size={230 * u} />
           </div>
           <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 34 * u, color: overVilla ? '#fff' : C.steel, lineHeight: 1.25}}>
             Scannez pour

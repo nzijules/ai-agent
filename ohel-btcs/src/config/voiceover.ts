@@ -78,4 +78,102 @@ export const voiceover: Partial<Record<'ad15' | 'ad30' | 'ad60', VoiceoverTrack>
       {segment: 4, shot: 0, src: [15.75, 19.33], at: 0.6},
     ],
   },
+  ad60: {
+    provisional: true,
+    origin: 'ElevenLabs, voix « Fatou — Radiant and Gentle », modèle eleven_v4 (script V3 « Vous avez le terrain »)',
+    clips: [
+      {segment: 0, shot: 0, src: [0, 1.05], at: 0.3},
+      {
+        segment: 0,
+        shot: 1,
+        src: [1.05, 4.3],
+        at: 0.05,
+        cues: [
+          {text: 'Alors pourquoi laisser votre projet', start: 1.3, end: 2.9},
+          {text: 'de villa attendre encore ?', start: 2.9, end: 4.09},
+        ],
+      },
+      {
+        segment: 1,
+        shot: 0,
+        src: [4.3, 9.17],
+        at: 0.1,
+        cues: [
+          {text: 'Imaginez…', start: 4.51, end: 5.4},
+          {text: 'une villa moderne, élégante,', start: 5.58, end: 7.5},
+          {text: 'avec de beaux espaces,', start: 7.5, end: 9.0},
+        ],
+      },
+      {
+        segment: 2,
+        shot: 0,
+        src: [9.17, 12.15],
+        at: 0.05,
+        cues: [
+          {text: 'pensée pour votre confort', start: 9.35, end: 10.6},
+          {text: 'et celui de votre famille.', start: 10.6, end: 11.9},
+        ],
+      },
+      {
+        segment: 3,
+        shot: 0,
+        src: [12.15, 15.07],
+        at: 0.05,
+        cues: [
+          {text: 'Et si ce rêve prenait forme', start: 12.39, end: 13.53},
+          {text: 'grâce à la terre de chez nous ?', start: 13.53, end: 14.85},
+        ],
+      },
+      {
+        segment: 3,
+        shot: 1,
+        src: [15.07, 18.95],
+        at: 0.05,
+        cues: [
+          {text: 'Avec OHEL International,', start: 15.3, end: 16.58},
+          {text: 'découvrez une autre façon de construire :', start: 16.58, end: 18.76},
+        ],
+      },
+      {segment: 3, shot: 2, src: [18.95, 22.85], at: 0.05},
+      {
+        segment: 3,
+        shot: 3,
+        src: [22.85, 24.92],
+        at: 0.05,
+        cues: [{text: 'Un matériau issu de ressources locales,', start: 23.04, end: 24.84}],
+      },
+      {
+        segment: 3,
+        shot: 4,
+        src: [24.92, 27.28],
+        at: 0.05,
+        cues: [{text: 'associé à une architecture contemporaine.', start: 24.99, end: 27.05}],
+      },
+      {
+        segment: 4,
+        shot: 0,
+        src: [27.28, 30.38],
+        at: 0.05,
+        cues: [
+          {text: 'Le résultat ?', start: 27.5, end: 28.3},
+          {text: 'Une villa qui a du caractère.', start: 28.5, end: 30.23},
+        ],
+      },
+      {segment: 4, shot: 1, src: [30.38, 32.2], at: 0.05, cues: [{text: 'Une maison qui vous ressemble.', start: 30.54, end: 31.99}]},
+      {segment: 4, shot: 2, src: [32.2, 33.86], at: 0.05, cues: [{text: 'De la conception aux travaux,', start: 32.44, end: 33.74}]},
+      {
+        segment: 4,
+        shot: 3,
+        src: [33.86, 37.5],
+        at: 0.05,
+        cues: [
+          {text: 'OHEL International vous accompagne', start: 33.98, end: 35.58},
+          {text: 'dans la réalisation de votre projet.', start: 35.58, end: 37.28},
+        ],
+      },
+      {segment: 5, shot: 0, src: [37.5, 41.43], at: 0.1},
+      {segment: 6, shot: 0, src: [41.43, 46.75], at: 0.3},
+      {segment: 6, shot: 1, src: [46.75, 51.84], at: 0.05},
+    ],
+  },
 };

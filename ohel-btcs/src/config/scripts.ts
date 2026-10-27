@@ -215,7 +215,7 @@ const ad60: VersionScript = {
       scene: 'hook',
       shots: [
         {
-          sec: 2.5,
+          sec: 1.9,
           vo: 'Vous avez un terrain ?',
           textLayer: 'title',
           title: [{text: 'VOUS AVEZ'}, {text: 'UN TERRAIN ?', highlight: true}],
@@ -234,7 +234,7 @@ const ad60: VersionScript = {
       transitionIn: 'matiere',
       shots: [
         {
-          sec: 4.5,
+          sec: 5.2,
           vo: 'Imaginez… une villa moderne, élégante, avec de beaux espaces,',
           textLayer: 'subtitles',
           visual: 'Le plan d’architecte de la villa se révèle en photo (illustration).',
@@ -247,7 +247,7 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 3.5,
+          sec: 3.2,
           vo: 'pensée pour votre confort et celui de votre famille.',
           textLayer: 'subtitles',
           image: 'interieurFraicheur',
@@ -262,7 +262,7 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 4,
+          sec: 3.2,
           vo: 'Et si ce rêve prenait forme grâce à la terre de chez nous ?',
           textLayer: 'subtitles',
           image: 'terreTamisee',
@@ -270,7 +270,7 @@ const ad60: VersionScript = {
           visual: 'Mains qui tamisent la terre latérite (illustration).',
         },
         {
-          sec: 3.5,
+          sec: 4.1,
           vo: 'Avec OHEL International, découvrez une autre façon de construire :',
           textLayer: 'subtitles',
           image: 'presseBtcs',
@@ -278,7 +278,7 @@ const ad60: VersionScript = {
           visual: 'Presse BTCS, bloc frais sorti du moule (illustration).',
         },
         {
-          sec: 3.5,
+          sec: 4.15,
           vo: 'les blocs de terre comprimée stabilisée, les BTCS.',
           textLayer: 'title',
           title: [{text: 'BTCS', highlight: true}, {text: 'BLOC DE TERRE'}, {text: 'COMPRIMÉE STABILISÉE'}],
@@ -287,7 +287,7 @@ const ad60: VersionScript = {
           visual: 'Gros plan : terre et blocs BTCS (illustration).',
         },
         {
-          sec: 2.5,
+          sec: 2.35,
           vo: 'Un matériau issu de ressources locales,',
           textLayer: 'subtitles',
           image: 'poseBlocs',
@@ -295,7 +295,7 @@ const ad60: VersionScript = {
           visual: 'Pose des blocs, joints fins (illustration).',
         },
         {
-          sec: 2.5,
+          sec: 2.6,
           vo: 'associé à une architecture contemporaine.',
           textLayer: 'subtitles',
           image: 'villaChantier',
@@ -309,7 +309,7 @@ const ad60: VersionScript = {
       transitionIn: 'matiere',
       shots: [
         {
-          sec: 3,
+          sec: 3.35,
           vo: 'Le résultat ? Une villa qui a du caractère.',
           textLayer: 'subtitles',
           image: 'realisation1',
@@ -318,7 +318,7 @@ const ad60: VersionScript = {
           visual: 'Bâtiment OHEL terminé (photo réelle).',
         },
         {
-          sec: 2.5,
+          sec: 2.1,
           vo: 'Une maison qui vous ressemble.',
           textLayer: 'subtitles',
           image: 'interieurRealisation',
@@ -327,7 +327,7 @@ const ad60: VersionScript = {
           visual: 'Intérieur d’une réalisation OHEL (photo réelle).',
         },
         {
-          sec: 2,
+          sec: 1.95,
           vo: 'De la conception aux travaux,',
           textLayer: 'subtitles',
           image: 'preparationTerre',
@@ -336,7 +336,7 @@ const ad60: VersionScript = {
           visual: 'Équipe OHEL sur chantier (photo réelle).',
         },
         {
-          sec: 3.5,
+          sec: 3.9,
           vo: 'OHEL International vous accompagne dans la réalisation de votre projet.',
           textLayer: 'subtitles',
           image: 'elevationMurs',
@@ -351,7 +351,7 @@ const ad60: VersionScript = {
       transitionIn: 'rangs',
       shots: [
         {
-          sec: 4.5,
+          sec: 4.25,
           vo: 'Vous avez déjà un terrain ? Faites le premier pas vers votre future villa.',
           textLayer: 'title',
           title: [{text: 'FAITES LE'}, {text: 'PREMIER PAS', highlight: true}],
@@ -365,14 +365,14 @@ const ad60: VersionScript = {
       variant: 'overVilla',
       shots: [
         {
-          sec: 5,
+          sec: 5.8,
           vo: 'Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet.',
           textLayer: 'title',
           title: [{text: 'PARLONS DE'}, {text: 'VOTRE PROJET', highlight: true}],
           visual: 'La villa de nuit : logo, bouton WhatsApp, numéro.',
         },
         {
-          sec: 4,
+          sec: 5.6,
           vo: 'OHEL International. Votre terrain. Votre vision. Notre savoir-faire.',
           textLayer: 'title',
           title: [{text: 'VOTRE TERRAIN.'}, {text: 'VOTRE VISION.'}, {text: 'NOTRE SAVOIR-FAIRE.', highlight: true}],

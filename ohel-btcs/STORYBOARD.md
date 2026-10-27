@@ -28,25 +28,25 @@ Couche de texte : **Titre** = titre animé (pas de sous-titres) · **ST** = sous
 
 **Voix off 30 s — Meta Ads (texte brut) :** Et si votre prochaine villa était construite… en terre ? Le BTCS : de la terre stabilisée, comprimée en blocs solides. Des murs frais. Des lignes modernes et élégantes. OHEL International le construit déjà : nos chantiers en sont la preuve. Construisons autrement. Envoyez-nous votre projet sur WhatsApp.
 
-## Version longue (V3 — « Vous avez le terrain ») — 54.5 s, 140 mots
+## Version longue (V3 — « Vous avez le terrain ») — 57.2 s, 140 mots
 
 | Temps | Scène | Visuel | Texte écran | Voix off |
 |---|---|---|---|---|
-| 0–2.5 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : VOUS AVEZ / **UN TERRAIN ?** | « Vous avez un terrain ? » |
-| 2.5–6 s | ↳ | Même villa, la caméra s’approche (illustration). | ST : Alors pourquoi laisser votre projet │ de villa attendre encore ? | « Alors pourquoi laisser votre projet de villa attendre encore ? » |
-| 6–10.5 s | **4. La modernité**<br>_entrée : fondu matière_ | Le plan d’architecte de la villa se révèle en photo (illustration). | ST : Imaginez… une villa moderne, │ élégante, avec de beaux espaces, | « Imaginez… une villa moderne, élégante, avec de beaux espaces, » |
-| 10.5–14 s | **3. Les preuves d’usage**<br>_entrée : glissement de rangs de blocs_ | Salon contemporain, mur BTCS apparent (illustration). | ST : pensée pour votre confort et │ celui de votre famille. | « pensée pour votre confort et celui de votre famille. » |
-| 14–18 s | **2. Le BTCS**<br>_entrée : volet architectural_ | Mains qui tamisent la terre latérite (illustration). | ST : Et si ce rêve prenait │ forme grâce à la terre │ de chez nous ? | « Et si ce rêve prenait forme grâce à la terre de chez nous ? » |
-| 18–21.5 s | ↳ | Presse BTCS, bloc frais sorti du moule (illustration). | ST : Avec OHEL International, │ découvrez une autre façon de construire : | « Avec OHEL International, découvrez une autre façon de construire : » |
-| 21.5–25 s | ↳ | Gros plan : terre et blocs BTCS (illustration). | Titre : **BTCS** / BLOC DE TERRE / COMPRIMÉE STABILISÉE | « les blocs de terre comprimée stabilisée, les BTCS. » |
-| 25–27.5 s | ↳ | Pose des blocs, joints fins (illustration). | ST : Un matériau issu de ressources locales, | « Un matériau issu de ressources locales, » |
-| 27.5–30 s | ↳ | La villa en chantier, structure contemporaine (illustration). | ST : associé à une architecture contemporaine. | « associé à une architecture contemporaine. » |
-| 30–33 s | **5. Le savoir-faire**<br>_entrée : fondu matière_ | Bâtiment OHEL terminé (photo réelle). | ST : Le résultat ? Une villa qui │ a du caractère. | « Le résultat ? Une villa qui a du caractère. » |
-| 33–35.5 s | ↳ | Intérieur d’une réalisation OHEL (photo réelle). | ST : Une maison qui vous ressemble. | « Une maison qui vous ressemble. » |
-| 35.5–37.5 s | ↳ | Équipe OHEL sur chantier (photo réelle). | ST : De la conception aux travaux, | « De la conception aux travaux, » |
-| 37.5–41 s | ↳ | Montage des murs BTCS par OHEL (photo réelle). | ST : OHEL International vous accompagne dans │ la réalisation de votre projet. | « OHEL International vous accompagne dans la réalisation de votre projet. » |
-| 41–45.5 s | **6. Projection**<br>_entrée : glissement de rangs de blocs_ | La villa : la nuit tombe, les lumières s’allument (illustration). | Titre : FAITES LE / **PREMIER PAS** | « Vous avez déjà un terrain ? Faites le premier pas vers votre future villa. » |
-| 45.5–50.5 s | **7. CTA**<br>_entrée : volet architectural_ | La villa de nuit : logo, bouton WhatsApp, numéro. | Titre : PARLONS DE / **VOTRE PROJET** | « Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet. » |
-| 50.5–54.5 s | ↳ | Même plan : signature OHEL. | Titre : VOTRE TERRAIN. / VOTRE VISION. / **NOTRE SAVOIR-FAIRE.** | « OHEL International. Votre terrain. Votre vision. Notre savoir-faire. » |
+| 0–1.9 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : VOUS AVEZ / **UN TERRAIN ?** | « Vous avez un terrain ? » |
+| 1.9–5.4 s | ↳ | Même villa, la caméra s’approche (illustration). | ST : Alors pourquoi laisser votre projet │ de villa attendre encore ? | « Alors pourquoi laisser votre projet de villa attendre encore ? » |
+| 5.4–10.6 s | **4. La modernité**<br>_entrée : fondu matière_ | Le plan d’architecte de la villa se révèle en photo (illustration). | ST : Imaginez… une villa moderne, │ élégante, avec de beaux espaces, | « Imaginez… une villa moderne, élégante, avec de beaux espaces, » |
+| 10.6–13.8 s | **3. Les preuves d’usage**<br>_entrée : glissement de rangs de blocs_ | Salon contemporain, mur BTCS apparent (illustration). | ST : pensée pour votre confort et │ celui de votre famille. | « pensée pour votre confort et celui de votre famille. » |
+| 13.8–17 s | **2. Le BTCS**<br>_entrée : volet architectural_ | Mains qui tamisent la terre latérite (illustration). | ST : Et si ce rêve prenait │ forme grâce à la terre │ de chez nous ? | « Et si ce rêve prenait forme grâce à la terre de chez nous ? » |
+| 17–21.1 s | ↳ | Presse BTCS, bloc frais sorti du moule (illustration). | ST : Avec OHEL International, │ découvrez une autre façon de construire : | « Avec OHEL International, découvrez une autre façon de construire : » |
+| 21.1–25.3 s | ↳ | Gros plan : terre et blocs BTCS (illustration). | Titre : **BTCS** / BLOC DE TERRE / COMPRIMÉE STABILISÉE | « les blocs de terre comprimée stabilisée, les BTCS. » |
+| 25.3–27.6 s | ↳ | Pose des blocs, joints fins (illustration). | ST : Un matériau issu de ressources locales, | « Un matériau issu de ressources locales, » |
+| 27.6–30.2 s | ↳ | La villa en chantier, structure contemporaine (illustration). | ST : associé à une architecture contemporaine. | « associé à une architecture contemporaine. » |
+| 30.2–33.6 s | **5. Le savoir-faire**<br>_entrée : fondu matière_ | Bâtiment OHEL terminé (photo réelle). | ST : Le résultat ? Une villa qui │ a du caractère. | « Le résultat ? Une villa qui a du caractère. » |
+| 33.6–35.7 s | ↳ | Intérieur d’une réalisation OHEL (photo réelle). | ST : Une maison qui vous ressemble. | « Une maison qui vous ressemble. » |
+| 35.7–37.7 s | ↳ | Équipe OHEL sur chantier (photo réelle). | ST : De la conception aux travaux, | « De la conception aux travaux, » |
+| 37.7–41.6 s | ↳ | Montage des murs BTCS par OHEL (photo réelle). | ST : OHEL International vous accompagne dans │ la réalisation de votre projet. | « OHEL International vous accompagne dans la réalisation de votre projet. » |
+| 41.6–45.8 s | **6. Projection**<br>_entrée : glissement de rangs de blocs_ | La villa : la nuit tombe, les lumières s’allument (illustration). | Titre : FAITES LE / **PREMIER PAS** | « Vous avez déjà un terrain ? Faites le premier pas vers votre future villa. » |
+| 45.8–51.6 s | **7. CTA**<br>_entrée : volet architectural_ | La villa de nuit : logo, bouton WhatsApp, numéro. | Titre : PARLONS DE / **VOTRE PROJET** | « Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet. » |
+| 51.6–57.2 s | ↳ | Même plan : signature OHEL. | Titre : VOTRE TERRAIN. / VOTRE VISION. / **NOTRE SAVOIR-FAIRE.** | « OHEL International. Votre terrain. Votre vision. Notre savoir-faire. » |
 
 **Voix off Version longue (V3 — « Vous avez le terrain ») (texte brut) :** Vous avez un terrain ? Alors pourquoi laisser votre projet de villa attendre encore ? Imaginez… une villa moderne, élégante, avec de beaux espaces, pensée pour votre confort et celui de votre famille. Et si ce rêve prenait forme grâce à la terre de chez nous ? Avec OHEL International, découvrez une autre façon de construire : les blocs de terre comprimée stabilisée, les BTCS. Un matériau issu de ressources locales, associé à une architecture contemporaine. Le résultat ? Une villa qui a du caractère. Une maison qui vous ressemble. De la conception aux travaux, OHEL International vous accompagne dans la réalisation de votre projet. Vous avez déjà un terrain ? Faites le premier pas vers votre future villa. Cliquez sur WhatsApp, échangez avec notre équipe, et découvrez comment concrétiser votre projet. OHEL International. Votre terrain. Votre vision. Notre savoir-faire.
