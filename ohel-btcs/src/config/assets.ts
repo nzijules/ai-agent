@@ -103,12 +103,18 @@ export const assets = {
   },
 
   // Médias authentiques OHEL (scène 5 et fond du CTA 15 s).
+  preparationTerre: {
+    label: 'Photo réelle : équipe OHEL qui tamise la terre latérite sur chantier',
+    candidates: [...exts('assets/chantiers/preparation-terre', IMG), ...exts('assets/chantiers/preparation-terre', VID)],
+    kind: 'image',
+    authentique: true,
+    blocksFinal: ['ad30', 'ad60'],
+  },
   presseAction: {
-    label: 'Vidéo ou photo réelle : presse BTCS OHEL en action',
+    label: 'Vidéo ou photo réelle : presse BTCS OHEL en action (optionnel, renforcerait la démonstration)',
     candidates: [...exts('assets/chantiers/presse-action', VID), ...exts('assets/chantiers/presse-action', IMG)],
     kind: 'video',
     authentique: true,
-    blocksFinal: ['ad30', 'ad60'],
   },
   elevationMurs: {
     label: 'Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL',
@@ -117,9 +123,9 @@ export const assets = {
     authentique: true,
     blocksFinal: ['ad30', 'ad60'],
   },
-  detailJoints: {
-    label: 'Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL',
-    candidates: [...exts('assets/chantiers/detail-joints', IMG), ...exts('assets/chantiers/detail-joints', VID)],
+  interieurRealisation: {
+    label: 'Photo réelle : intérieur d’une réalisation OHEL',
+    candidates: exts('assets/realisations/interieur-realisation', IMG),
     kind: 'image',
     authentique: true,
     blocksFinal: ['ad60'],
@@ -179,7 +185,7 @@ export const sceneAssets: Record<string, AssetId[]> = {
   benefits: [],
   'benefits:photo': ['interieurFraicheur', 'villaChantier', 'villaHook'],
   modernite: ['villaFilaire', 'villaHook'],
-  showcase: ['presseAction', 'elevationMurs', 'detailJoints', 'realisation1', 'realisation2'],
+  showcase: ['preparationTerre', 'elevationMurs', 'interieurRealisation', 'realisation1', 'realisation2'],
   projection: ['villaHook', 'villaNuit'],
   cta: ['logo', 'sfxCta'],
   'cta:overMedia': ['fondCta15'],

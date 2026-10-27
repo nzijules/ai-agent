@@ -43,24 +43,28 @@
     "path": "assets/illustrations/villa-filaire.jpg",
     "draft": null
   },
+  "preparationTerre": {
+    "path": "assets/chantiers/preparation-terre.jpg",
+    "draft": null
+  },
   "presseAction": {
     "path": null,
     "draft": null
   },
   "elevationMurs": {
-    "path": null,
+    "path": "assets/chantiers/elevation-murs.jpg",
     "draft": null
   },
-  "detailJoints": {
-    "path": null,
+  "interieurRealisation": {
+    "path": "assets/realisations/interieur-realisation.jpg",
     "draft": null
   },
   "realisation1": {
-    "path": null,
+    "path": "assets/realisations/realisation-1.jpg",
     "draft": null
   },
   "realisation2": {
-    "path": null,
+    "path": "assets/realisations/realisation-2.jpg",
     "draft": null
   },
   "fondCta15": {

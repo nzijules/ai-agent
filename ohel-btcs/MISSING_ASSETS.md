@@ -6,11 +6,11 @@
 
 - [ ] **Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large)** — `assets/brand/ohel-logo.svg` — bloque : ad15, ad30, ad60  
   _Le fichier fourni (221 × 131 px, fond blanc) est trop petit et non transparent._
-- [ ] **Vidéo ou photo réelle : presse BTCS OHEL en action** — `assets/chantiers/presse-action.mp4` — bloque : ad30, ad60
-- [ ] **Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL** — `assets/chantiers/elevation-murs.mp4` — bloque : ad30, ad60
-- [ ] **Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL** — `assets/chantiers/detail-joints.jpg` — bloque : ad60
-- [ ] **Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-1.jpg` — bloque : ad30, ad60
-- [ ] **Bâtiment OHEL terminé n° 2 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-2.jpg` — bloque : ad60
+- [x] **Photo réelle : équipe OHEL qui tamise la terre latérite sur chantier** — `assets/chantiers/preparation-terre.jpg` — bloque : ad30, ad60
+- [x] **Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL** — `assets/chantiers/elevation-murs.mp4` — bloque : ad30, ad60
+- [x] **Photo réelle : intérieur d’une réalisation OHEL** — `assets/realisations/interieur-realisation.jpg` — bloque : ad60
+- [x] **Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-1.jpg` — bloque : ad30, ad60
+- [x] **Bâtiment OHEL terminé n° 2 (photo HD ou vidéo verticale)** — `assets/realisations/realisation-2.jpg` — bloque : ad60
 - [x] **Numéro WhatsApp officiel** — `brand.whatsapp` — bloque : ad15, ad30, ad60
 
 ## 2. Informations à fournir dans `brand.ts`
@@ -45,6 +45,7 @@
 - [x] La même villa en construction, murs en blocs BTCS qui montent (illustration) — `assets/illustrations/villa-chantier.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] La même villa de nuit, fond du CTA (illustration) — `assets/illustrations/villa-nuit.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] Version « plan d’architecte » de la villa (dérivée de villa-hook, scène 4) — `assets/illustrations/villa-filaire.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [ ] Vidéo ou photo réelle : presse BTCS OHEL en action (optionnel, renforcerait la démonstration) — `assets/chantiers/presse-action.mp4`
 - [ ] Plan authentique OHEL pour le fond du CTA 15 s (vidéo verticale de préférence) — `assets/chantiers/fond-cta-15s.mp4`  
   _Optionnel : à défaut, le 15 s utilise l’animation du bloc sur fond terre (prévu par le brief)._
 - [x] Voix off 15 s validée — `assets/audio/vo-15.mp3`
@@ -75,9 +76,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
-- Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
-- Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale) **(bloquant)**
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 - Affirmation non validée : `brand.claims.thermique`
@@ -90,11 +88,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
-- Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
-- Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL **(bloquant)**
-- Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale) **(bloquant)**
-- Bâtiment OHEL terminé n° 2 (photo HD ou vidéo verticale) **(bloquant)**
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 - Affirmation non validée : `brand.claims.thermique`

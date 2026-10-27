@@ -10,14 +10,14 @@ import type {SceneProps} from './types';
 export const Scene5Showcase: React.FC<SceneProps> = ({segment, sequenceFrames}) => {
   const ids: AssetId[] =
     segment.variant === 'full'
-      ? ['presseAction', 'elevationMurs', 'detailJoints', 'realisation1', 'realisation2']
-      : ['presseAction', 'elevationMurs', 'realisation1'];
+      ? ['preparationTerre', 'elevationMurs', 'interieurRealisation', 'realisation1', 'realisation2']
+      : ['preparationTerre', 'elevationMurs', 'realisation1'];
   const per = Math.ceil(sequenceFrames / ids.length);
   return (
     <AbsoluteFill style={{backgroundColor: '#0E0A08'}}>
       {ids.map((id, i) => (
         <Sequence key={id} from={i * per} durationInFrames={per} layout="none">
-          <PhotoPlate id={id} frames={per} move={{x: [45, 55], scale: [1.08, 1.0]}} />
+          <PhotoPlate id={id} frames={per} move={{x: [45, 55], scale: [1.08, 1.0]}} fit="framed" />
         </Sequence>
       ))}
     </AbsoluteFill>

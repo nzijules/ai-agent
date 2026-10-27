@@ -23,7 +23,12 @@ export const PhotoPlate: React.FC<{
   move?: CameraMove;
   /** Assombrissement bas de cadre pour les titres et sous-titres (0–1). */
   shade?: number;
-}> = ({id, frames, move = {}, shade = 0.6}) => {
+  /**
+   * 'framed' : photo entière posée sur un fond flou d'elle-même. Pour les photos
+   * réelles en paysage ou en basse définition, qu'un recadrage 9:16 abîmerait.
+   */
+  fit?: 'cover' | 'framed';
+}> = ({id, frames, move = {}, shade = 0.6, fit = 'cover'}) => {
   const frame = useCurrentFrame();
   const {vertical} = useFormat();
   const {draft} = useAdProps();
@@ -35,6 +40,31 @@ export const PhotoPlate: React.FC<{
   const y = y0 + (y1 - y0) * t;
   const scale = s0 + (s1 - s0) * t;
   const asset = resolveAsset(id, draft);
+  if (fit === 'framed' && asset.src) {
+    return (
+      <AbsoluteFill style={{backgroundColor: '#0E0A08', overflow: 'hidden'}}>
+        <AbsoluteFill style={{transform: 'scale(1.25)', filter: 'blur(40px) brightness(0.45) saturate(1.1)'}}>
+          <AssetMedia id={id} hideMention />
+        </AbsoluteFill>
+        <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: vertical ? 260 : 0}}>
+          <div
+            style={{
+              width: vertical ? '92%' : '78%',
+              aspectRatio: '4 / 3',
+              position: 'relative',
+              transform: `scale(${0.98 + 0.06 * t})`,
+              boxShadow: '0 30px 80px rgba(0,0,0,0.55)',
+              borderRadius: 18,
+              overflow: 'hidden',
+            }}
+          >
+            <AssetMedia id={id} hideMention />
+          </div>
+        </AbsoluteFill>
+        <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,${shade}) 100%)`}} />
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{backgroundColor: '#0E0A08', overflow: 'hidden'}}>
       <AbsoluteFill style={{transform: `scale(${scale})`, transformOrigin: `${x}% ${y}%`}}>
