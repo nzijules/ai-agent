@@ -5,8 +5,9 @@
 | Fichier | Contenu | Usage | Statut |
 |---|---|---|---|
 | `public/images/logo-ohel.jpg` | Logo OHEL International (221 × 131 px, JPEG fond blanc) | Carton final | ⚠️ Trop petit pour un rendu net en 1080p. Voir « Manquantes ». |
-| `public/images/photo-interieur-couloir-btcs.jpg` | Photo réelle : couloir, murs en BTCS (810 × 1080) | G, plein cadre 1 | Légendée « Photo · intérieur en BTCS ». **Non attribuée à OHEL** tant que ce n'est pas confirmé. |
-| `public/images/photo-interieur-salle-btcs.jpg` | Photo réelle : salle à manger, murs en BTCS (1080 × 810) | G, plein cadre 2 | Idem. |
+| `public/images/photo-interieur-couloir-btcs.jpg` | Photo réelle : couloir, murs en BTCS (810 × 1080) | G, bande « Bâtiment durable » | Légendée « Photo · intérieur en BTCS ». **Non attribuée à OHEL** tant que ce n'est pas confirmé. |
+| `public/images/photo-interieur-salle-btcs.jpg` | Photo réelle : salle à manger, murs en BTCS (1080 × 810) | G, plein cadre | Idem. |
+| `public/images/illustration-ecole.jpg` | Rendu généré : école en blocs, cour et préau (941 × 1672) | G, bande « École » | « Illustration non contractuelle ». ⚠️ Les blocs du premier plan montrent des rainures d'emboîtement : à vérifier par rapport aux blocs OHEL réels. |
 | `public/images/illustration-maison.jpg` | Rendu généré : maison contemporaine en blocs (1536 × 864) | G, bande « Maison » | Mention « Illustration non contractuelle » obligatoire (déjà en place). |
 | `public/fonts/Archivo-*.woff2` | Police Archivo (SIL OFL), variable 100–900 | Toute la vidéo | Libre d'usage commercial. |
 
@@ -29,8 +30,8 @@ identifié comme « Illustration schématique ».
 | P-03 | Macros des matières : latérite, sable, ciment | C | Non | Photos réelles | Textures procédurales |
 | P-04 | Mélange homogène vu de dessus | D | Non | Photo réelle | Cuve animée |
 | P-05 | Blocs en cure humide, arrosage | F | Non | Photo réelle chez OHEL | Grille animée + gouttelettes |
-| P-06 | **École** en BTCS | G | Oui | Photo d'un projet réel, sinon génération (P-06) | Cartouche « Visuel à fournir » |
-| P-07 | **Autre bâtiment** en BTCS | G | Oui | Photo d'un projet réel, sinon génération (P-07) | Cartouche « Visuel à fournir » |
+| P-06 | École en BTCS | G | ✅ Fournie (illustration) | Une photo d'école réelle resterait préférable | — |
+| P-07 | Autre bâtiment en BTCS | G | ✅ Photo du couloir utilisée | Une vue extérieure d'un bâtiment réel serait un plus | — |
 | P-08 | Palettes de blocs prêts à livrer | H | Non | Photo réelle chez OHEL | Pile animée sur palette |
 | — | Dimensions réelles du bloc (L × l × h) et présence éventuelle d'alvéoles ou d'emboîtements | A, B, E, F, H | Non | OHEL | Parallélépipède lisse, face ≈ 2,1 : 1 |
 

@@ -34,14 +34,7 @@ export const MEDIA = {
   melange: { src: null, type: "image", nature: "photo-ohel", prompt: "P-04", obligatoire: false },
   /** F — blocs en cure humide (repli : schéma animé d'arrosage). */
   cure: { src: null, type: "image", nature: "photo-ohel", prompt: "P-05", obligatoire: false },
-  /** G — applications. */
-  interieur: {
-    src: "images/photo-interieur-couloir-btcs.jpg",
-    type: "image",
-    nature: "photo",
-    legende: "Photo · intérieur en BTCS",
-    obligatoire: true,
-  },
+  /** G — applications (chaque image n'est utilisée qu'une fois). */
   salle: {
     src: "images/photo-interieur-salle-btcs.jpg",
     type: "image",
@@ -55,8 +48,21 @@ export const MEDIA = {
     nature: "illustration",
     obligatoire: true,
   },
-  ecole: { src: null, type: "image", nature: "illustration", prompt: "P-06", obligatoire: true },
-  batiment: { src: null, type: "image", nature: "illustration", prompt: "P-07", obligatoire: true },
+  ecole: {
+    src: "images/illustration-ecole.jpg",
+    type: "image",
+    nature: "illustration",
+    prompt: "P-06",
+    obligatoire: true,
+  },
+  batiment: {
+    src: "images/photo-interieur-couloir-btcs.jpg",
+    type: "image",
+    nature: "photo",
+    legende: "Photo · intérieur en BTCS",
+    prompt: "P-07",
+    obligatoire: true,
+  },
   /** H — palettes de blocs prêts (repli : pile de blocs animée). */
   stock: { src: null, type: "image", nature: "photo-ohel", prompt: "P-08", obligatoire: false },
 } satisfies Record<string, MediaSlot>;

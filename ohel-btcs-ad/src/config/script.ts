@@ -235,7 +235,7 @@ export const ECRAN = {
   G: {
     maison: "Maison",
     ecole: "École",
-    batiment: "Bâtiments",
+    batiment: "Bâtiment durable",
     projets1: "Vos projets",
     projets2: "de construction",
     choix1: "Le choix",

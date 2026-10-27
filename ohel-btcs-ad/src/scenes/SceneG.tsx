@@ -32,12 +32,11 @@ export const SceneG: React.FC = () => {
   const n = panneaux.length;
   const pw = vertical ? W : (W - gap * (n - 1)) / n;
   const ph = vertical ? (H - gap * (n - 1)) / n : H;
-  // Plans pleins : intérieur (4,0 s) puis salle (8,3 s), révélés par fenêtre-bloc.
-  const plein1 = prog(frame, fps, 4.0, 0.6, EASE_IN_OUT);
-  const plein2 = prog(frame, fps, 8.3, 0.6, EASE_IN_OUT);
+  // Plan plein : intérieur réel (4,0 s), révélé par fenêtre-bloc ; deux messages successifs.
+  const plein = prog(frame, fps, 4.0, 0.6, EASE_IN_OUT);
   const fenetre = (p: number) => `inset(${(1 - p) * 50}% 0 ${(1 - p) * 50}% 0)`;
 
-  const grand = (l1: string, l2: string, de: number) => (
+  const grand = (l1: string, l2: string, de: number, jusqua?: number) => (
     <div
       style={{
         position: "absolute",
@@ -50,8 +49,8 @@ export const SceneG: React.FC = () => {
         textShadow: "0 4px 30px rgba(0,0,0,0.5)",
       }}
     >
-      <Reveal de={de}>{l1}</Reveal>
-      <Reveal de={de + 0.25}>
+      <Reveal de={de} jusqua={jusqua}>{l1}</Reveal>
+      <Reveal de={de + 0.25} jusqua={jusqua}>
         <span style={{ color: COLORS.lateriteClair }}>{l2}</span>
       </Reveal>
     </div>
@@ -94,20 +93,13 @@ export const SceneG: React.FC = () => {
         );
       })}
 
-      {/* Plein cadre 1 : intérieur réel en BTCS */}
-      <AbsoluteFill style={{ clipPath: fenetre(plein1), opacity: plein1 > 0 ? 1 : 0 }}>
-        <Panneau slot={MEDIA.interieur} titre="Intérieur" mention={false} />
-        <AbsoluteFill style={{ background: "linear-gradient(transparent 35%, rgba(20,20,22,0.88) 75%)" }} />
-        <MentionMedia slot={MEDIA.interieur} />
-        {grand(t.projets1, t.projets2, 4.4)}
-      </AbsoluteFill>
-
-      {/* Plein cadre 2 */}
-      <AbsoluteFill style={{ clipPath: fenetre(plein2), opacity: plein2 > 0 ? 1 : 0 }}>
+      {/* Plein cadre : intérieur réel en BTCS */}
+      <AbsoluteFill style={{ clipPath: fenetre(plein), opacity: plein > 0 ? 1 : 0 }}>
         <Panneau slot={MEDIA.salle} titre="Intérieur" mention={false} />
         <AbsoluteFill style={{ background: "linear-gradient(transparent 35%, rgba(20,20,22,0.88) 75%)" }} />
         <MentionMedia slot={MEDIA.salle} />
-        {grand(t.choix1, t.choix2, 8.7)}
+        {grand(t.projets1, t.projets2, 4.4, 8.1)}
+        {grand(t.choix1, t.choix2, 8.6)}
       </AbsoluteFill>
     </AbsoluteFill>
   );
