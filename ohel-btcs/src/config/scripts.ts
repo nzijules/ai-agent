@@ -458,6 +458,83 @@ const cuesForShot = (shot: Shot, from: number, frames: number): SubtitleCue[] =>
   });
 };
 
+/** Longueur maximale d'un sous-titre : une seule ligne lisible sur téléphone. */
+export const SUBTITLE_MAX_CHARS = 30;
+/** Durée minimale d'affichage d'un sous-titre (frames). */
+const CUE_MIN_FRAMES = 14;
+/** Écart sous lequel deux sous-titres s'enchaînent sans clignoter (frames). */
+const CUE_BRIDGE_FRAMES = 10;
+
+/**
+ * Découpe un texte en lignes de SUBTITLE_MAX_CHARS caractères au plus : le moins de
+ * lignes possible, longueurs équilibrées, coupure de préférence après une ponctuation,
+ * jamais de mot isolé.
+ */
+const splitLine = (text: string): string[] => {
+  if (text.length <= SUBTITLE_MAX_CHARS) return [text];
+  const words = text.split(/ +/);
+  const score = (lines: string[]) => {
+    if (lines.some((l) => l.length > SUBTITLE_MAX_CHARS)) return Infinity;
+    const lens = lines.map((l) => l.length);
+    let sc = Math.max(...lens) - Math.min(...lens);
+    for (const l of lines) {
+      if (l.length < 8) sc += 30; // mot isolé
+      if (/[,.:;?!…]$/.test(l)) sc -= 6; // coupure naturelle
+      if (/ (le|la|les|de|du|des|un|une|à|au|aux|en|et|dans|qui|pour|sur|par|votre|nos)$/i.test(l)) sc += 12; // mot outil en fin de ligne
+    }
+    return sc;
+  };
+  for (let k = Math.ceil(text.length / SUBTITLE_MAX_CHARS); k <= words.length; k++) {
+    let best: string[] | null = null;
+    let bestScore = Infinity;
+    const walk = (start: number, left: number, acc: string[]) => {
+      if (left === 1) {
+        const lines = [...acc, words.slice(start).join(' ')];
+        const sc = score(lines);
+        if (sc < bestScore) [best, bestScore] = [lines, sc];
+        return;
+      }
+      for (let e = start + 1; e <= words.length - left + 1; e++) walk(e, left - 1, [...acc, words.slice(start, e).join(' ')]);
+    };
+    walk(0, k, []);
+    if (best) return best;
+  }
+  return [text];
+};
+
+/**
+ * Uniformise les sous-titres : une ligne chacun, temps réparti au prorata des
+ * caractères, durée minimale, et enchaînement sans trou court entre deux sous-titres.
+ */
+export const normalizeCues = (cues: SubtitleCue[]): SubtitleCue[] => {
+  // Regroupe les morceaux d'une même phrase : on ne garde comme coupures imposées
+  // que les fins de phrase (pauses réelles de la voix), puis on redécoupe en lignes.
+  const merged: SubtitleCue[] = [];
+  for (const c of cues) {
+    const prev = merged[merged.length - 1];
+    if (prev && !/[.?!:…]$/.test(prev.text)) merged[merged.length - 1] = {text: `${prev.text} ${c.text}`, from: prev.from, to: c.to};
+    else merged.push({...c});
+  }
+  const split = merged.flatMap((c) => {
+    const lines = splitLine(c.text);
+    const total = lines.reduce((n, l) => n + l.length, 0);
+    let t = c.from;
+    return lines.map((text, i) => {
+      const to = i === lines.length - 1 ? c.to : t + Math.round(((c.to - c.from) * text.length) / total);
+      const cue = {text, from: t, to};
+      t = to;
+      return cue;
+    });
+  });
+  return split.map((c, i) => {
+    const next = split[i + 1];
+    let to = Math.max(c.to, c.from + CUE_MIN_FRAMES);
+    if (next && next.from - to <= CUE_BRIDGE_FRAMES) to = next.from;
+    if (next) to = Math.min(to, next.from);
+    return {...c, to};
+  });
+};
+
 export const timeline = (id: VersionId) => {
   let at = 0;
   const segments: TimedSegment[] = scripts[id].segments.map((seg, index) => {
@@ -474,7 +551,7 @@ export const timeline = (id: VersionId) => {
               to: local + sec2f(clip.at + c.end - clip.src[0]),
             }))
           : cuesForShot(s, local, frames);
-      const ts: TimedShot = {...s, from: local, frames, cues};
+      const ts: TimedShot = {...s, from: local, frames, cues: normalizeCues(cues)};
       local += frames;
       return ts;
     });

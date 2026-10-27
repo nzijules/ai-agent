@@ -5,7 +5,7 @@
 import {assets, sceneAssets, type AssetDef, type AssetId} from '../src/config/assets';
 import {brand} from '../src/config/brand';
 import {READY_SCENES} from '../src/config/formats';
-import {FPS, scripts, timeline, type Shot, type VersionId} from '../src/config/scripts';
+import {FPS, SUBTITLE_MAX_CHARS, scripts, timeline, type Shot, type VersionId} from '../src/config/scripts';
 import {SAFE_VERTICAL} from '../src/lib/format';
 import {voiceover} from '../src/config/voiceover';
 import {scan} from './scan-assets';
@@ -56,6 +56,12 @@ export const checkScripts = (): Report => {
         if (sh.claim && !(sh.claim in brand.claims)) errors.push(`${where} : affirmation inconnue ${sh.claim}`);
       }),
     );
+
+    // Sous-titres uniformes : une ligne chacun.
+    for (const seg of tl.segments)
+      for (const sh of seg.shots)
+        for (const c of sh.cues)
+          if (c.text.length > SUBTITLE_MAX_CHARS) errors.push(`${v}/${seg.scene} : sous-titre trop long (« ${c.text} »)`);
 
     const cta = tl.segments.find((s) => s.scene === 'cta');
     if (!cta) errors.push(`${v} : pas de scène CTA`);
