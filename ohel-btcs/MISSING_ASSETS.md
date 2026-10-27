@@ -40,13 +40,12 @@
 - [ ] Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration) — `assets/illustrations/matiere-btcs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] La même villa en construction, murs en blocs BTCS qui montent (illustration) — `assets/illustrations/villa-chantier.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] La même villa de nuit, fond du CTA (illustration) — `assets/illustrations/villa-nuit.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
-- [ ] Villa BTCS contemporaine, rendu final de la scène 4 (illustration) — `assets/illustrations/villa-moderne.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
-- [ ] Villa avec piscine, quartier résidentiel ivoirien (illustration) — `assets/illustrations/villa-piscine.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Version « plan d’architecte » de la villa (dérivée de villa-hook, scène 4) — `assets/illustrations/villa-filaire.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Plan authentique OHEL pour le fond du CTA 15 s (vidéo verticale de préférence) — `assets/chantiers/fond-cta-15s.mp4`  
   _Optionnel : à défaut, le 15 s utilise l’animation du bloc sur fond terre (prévu par le brief)._
 - [x] Voix off 15 s validée — `assets/audio/vo-15.mp3`
 - [x] Voix off 30 s validée — `assets/audio/vo-30.mp3`
-- [ ] Voix off 60 s validée — `assets/audio/vo-60.mp3`
+- [x] Voix off 60 s validée — `assets/audio/vo-60.mp3`
 - [ ] Musique sous licence commerciale (publicité Meta + TikTok autorisée) — `assets/audio/musique.mp3`
 - [ ] SFX compression du bloc — `assets/audio/sfx-compression.mp3`
 - [ ] SFX pose d’un bloc — `assets/audio/sfx-pose.mp3`
@@ -84,19 +83,17 @@
 
 ### 60 s — Version longue
 
-- Voix off 60 s validée
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Villa BTCS contemporaine, rendu final de la scène 4 (illustration)
+- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
 - Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
 - Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
 - Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL **(bloquant)**
 - Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale) **(bloquant)**
 - Bâtiment OHEL terminé n° 2 (photo HD ou vidéo verticale) **(bloquant)**
-- Villa avec piscine, quartier résidentiel ivoirien (illustration)
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 - Affirmation non validée : `brand.claims.thermique`

@@ -23,12 +23,8 @@
     "path": "assets/illustrations/villa-nuit.jpg",
     "draft": null
   },
-  "villaModerne": {
-    "path": null,
-    "draft": null
-  },
-  "villaPiscine": {
-    "path": null,
+  "villaFilaire": {
+    "path": "assets/illustrations/villa-filaire.jpg",
     "draft": null
   },
   "presseAction": {
@@ -64,7 +60,7 @@
     "draft": null
   },
   "vo60": {
-    "path": null,
+    "path": "assets/audio/vo-60.mp3",
     "draft": null
   },
   "music": {
