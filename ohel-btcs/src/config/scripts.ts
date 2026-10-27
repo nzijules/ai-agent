@@ -11,6 +11,7 @@
 import type {Claim} from './brand';
 import {brand} from './brand';
 import {voiceover} from './voiceover';
+import type {AssetId} from './assets';
 
 export const FPS = 30;
 /** Durée d'une transition entre deux scènes (frames). */
@@ -34,6 +35,9 @@ export type Shot = {
   visual: string;
   /** Carte de bénéfice affichée par la scène benefits. */
   card?: 'thermique' | 'pluie' | 'local' | 'architecture';
+  /** Image du plan (scènes photo) et mouvement de caméra lent. */
+  image?: AssetId;
+  move?: {x?: [number, number]; y?: [number, number]; scale?: [number, number]};
   /** Affirmation à valider dans brand.ts avant le rendu final. */
   claim?: ClaimKey;
   /** Plan de remplacement si `claim` n'est pas validé (sinon : rendu final bloqué). */
@@ -199,17 +203,18 @@ const ad30: VersionScript = {
 };
 
 // ---------------------------------------------------------------------------
-// 60 s — Page, WhatsApp, organique (+ déclinaison 16:9)
+// 60 s — V2 : 5 s accroche, 15 s démonstration BTCS, 15 s avantages,
+// 15 s preuves, 10 s projection + conversion.
 // ---------------------------------------------------------------------------
 const ad60: VersionScript = {
   id: 'ad60',
-  label: '60 s — Version longue',
+  label: '60 s — Version longue (V2)',
   segments: [
     {
       scene: 'hook',
       shots: [
         {
-          sec: 4,
+          sec: 5,
           vo: 'Et si votre prochaine villa était construite… en terre ?',
           textLayer: 'title',
           title: [{text: 'ET SI LA TERRE'}, {text: 'BÂTISSAIT'}, {text: 'VOTRE VILLA ?', highlight: true}],
@@ -223,17 +228,37 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 4,
-          vo: 'Voici le BTCS : une terre sélectionnée, stabilisée,',
+          sec: 3.5,
+          vo: 'Tout commence par une terre sélectionnée et tamisée.',
           textLayer: 'subtitles',
-          visual: 'Retour à la matière : terre latérite et blocs BTCS en gros plan (illustration).',
+          image: 'terreTamisee',
+          move: {y: [40, 60], scale: [1.12, 1.02]},
+          visual: 'Mains qui tamisent la terre latérite (illustration).',
+        },
+        {
+          sec: 3.5,
+          vo: 'Stabilisée, puis comprimée dans une presse,',
+          textLayer: 'subtitles',
+          image: 'presseBtcs',
+          move: {y: [55, 40], scale: [1.02, 1.12]},
+          visual: 'Presse BTCS manuelle, bloc frais sorti du moule (illustration).',
         },
         {
           sec: 4,
-          vo: 'puis comprimée en blocs solides et précis.',
+          vo: 'elle devient un bloc BTCS, dense et précis.',
           textLayer: 'title',
           title: [{text: 'BTCS', highlight: true}, {text: 'BLOC DE TERRE'}, {text: 'COMPRIMÉE STABILISÉE'}],
-          visual: 'Les blocs, prêts à monter les murs (illustration).',
+          image: 'matiereBtcs',
+          move: {y: [45, 55], scale: [1.15, 1.04]},
+          visual: 'Gros plan : terre et pile de blocs BTCS (illustration).',
+        },
+        {
+          sec: 4,
+          vo: 'Bloc après bloc, les murs prennent forme.',
+          textLayer: 'subtitles',
+          image: 'poseBlocs',
+          move: {x: [55, 45], y: [50, 45], scale: [1.04, 1.12]},
+          visual: 'Mains d’un maçon qui posent un bloc, joints fins (illustration).',
         },
       ],
     },
@@ -243,44 +268,14 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 2,
-          vo: '',
-          textLayer: 'none',
-          visual: 'La même villa en chantier, les murs montent (illustration).',
-        },
-        {
-          sec: 4,
+          sec: 5,
           vo: 'Des murs qui gardent la fraîcheur.',
           textLayer: 'title',
           title: [{text: 'CONFORT'}, {text: 'THERMIQUE', highlight: true}],
-          card: 'thermique',
+          image: 'interieurFraicheur',
+          move: {x: [35, 55], scale: [1.08, 1.02]},
           claim: 'thermique',
-          visual: 'Chantier : épaisseur des murs en BTCS (illustration).',
-        },
-        {
-          sec: 4,
-          vo: 'Une maison protégée de la pluie, quand elle est bien conçue.',
-          textLayer: 'title',
-          title: [{text: 'RÉSISTE'}, {text: 'À LA PLUIE', highlight: true}],
-          card: 'pluie',
-          claim: 'humidite',
-          visual: 'Villa terminée : débord de toiture et soubassement protégé (illustration).',
-          fallback: {
-            sec: 4,
-            vo: 'Des lignes modernes et élégantes.',
-            textLayer: 'title',
-            title: [{text: 'ARCHITECTURE'}, {text: 'CONTEMPORAINE', highlight: true}],
-            card: 'architecture',
-            visual: 'Villa terminée, façade contemporaine (illustration).',
-          },
-        },
-        {
-          sec: 4,
-          vo: 'Et un matériau local, plus respectueux de l’environnement.',
-          textLayer: 'title',
-          title: [{text: 'MATÉRIAU'}, {text: 'LOCAL', highlight: true}],
-          card: 'local',
-          visual: 'Chantier : piles de blocs et terre latérite du site (illustration).',
+          visual: 'Salon contemporain, mur BTCS apparent, intérieur frais (illustration).',
         },
       ],
     },
@@ -289,63 +284,73 @@ const ad60: VersionScript = {
       transitionIn: 'volet',
       shots: [
         {
-          sec: 9,
-          vo: 'Avec OHEL International, la terre devient architecture contemporaine.',
+          sec: 5,
+          vo: 'Des lignes contemporaines, sans compromis sur le style.',
           textLayer: 'title',
-          title: [{text: 'LA TERRE RENCONTRE'}, {text: 'L’ARCHITECTURE', highlight: true}, {text: 'MODERNE.', highlight: true}],
-          visual: 'Plan d’architecte de la villa qui se révèle en photo (illustration).',
+          title: [{text: 'POSSIBILITÉS'}, {text: 'ARCHITECTURALES', highlight: true}],
+          visual: 'Le plan d’architecte de la villa se révèle en photo (illustration).',
+        },
+      ],
+    },
+    {
+      scene: 'benefits',
+      transitionIn: 'matiere',
+      variant: 'photo',
+      shots: [
+        {
+          sec: 5,
+          vo: 'Un matériau local, qui valorise la terre d’ici.',
+          textLayer: 'title',
+          title: [{text: 'MATÉRIAU'}, {text: 'LOCAL', highlight: true}],
+          image: 'villaChantier',
+          move: {x: [8, 22], y: [88, 75], scale: [2.1, 1.7]},
+          visual: 'La villa en chantier : piles de blocs et terre du site (illustration).',
         },
       ],
     },
     {
       scene: 'showcase',
-      transitionIn: 'matiere',
+      transitionIn: 'rangs',
       variant: 'full',
       shots: [
         {
-          sec: 7,
-          vo: 'Nos équipes, nos chantiers, nos réalisations :',
+          sec: 10,
+          vo: 'Avec OHEL International : nos équipes, nos chantiers, nos réalisations.',
           textLayer: 'subtitles',
-          visual: 'Médias authentiques OHEL : presse en action, élévation des murs, détail des joints.',
+          visual: 'Médias authentiques OHEL uniquement : presse, élévation des murs, joints, bâtiments terminés.',
         },
         {
-          sec: 4,
-          vo: 'un savoir-faire concret.',
+          sec: 5,
+          vo: 'Un savoir-faire concret.',
           textLayer: 'title',
           title: [{text: 'DES PROJETS RÉELS.'}, {text: 'UN SAVOIR-FAIRE', highlight: true}, {text: 'CONCRET.', highlight: true}],
-          visual: 'Bâtiment OHEL terminé.',
+          visual: 'Bâtiment OHEL terminé (média authentique).',
         },
       ],
     },
     {
       scene: 'projection',
-      transitionIn: 'rangs',
+      transitionIn: 'volet',
       shots: [
         {
-          sec: 3.5,
-          vo: 'Votre terrain, votre vision.',
-          textLayer: 'subtitles',
-          visual: 'La villa au crépuscule, mouvement lent (illustration).',
-        },
-        {
-          sec: 3.5,
-          vo: 'Et si nous la construisions ensemble ?',
+          sec: 3,
+          vo: 'Vous avez un terrain ?',
           textLayer: 'title',
-          title: [{text: 'ET SI C’ÉTAIT'}, {text: 'VOTRE PROJET ?', highlight: true}],
-          visual: 'Même plan : la nuit tombe, les lumières s’allument (illustration).',
+          title: [{text: 'VOUS AVEZ'}, {text: 'UN TERRAIN ?', highlight: true}],
+          visual: 'La villa : la nuit tombe, les lumières s’allument (illustration).',
         },
       ],
     },
     {
       scene: 'cta',
-      transitionIn: 'volet',
+      transitionIn: 'matiere',
       variant: 'overVilla',
       shots: [
         {
           sec: 7,
-          vo: 'OHEL International. Construisons autrement. Envoyez-nous votre projet sur WhatsApp.',
+          vo: 'OHEL International. Parlons de votre projet de construction, sur WhatsApp.',
           textLayer: 'title',
-          title: [{text: 'ENVOYEZ VOTRE PROJET'}, {text: 'SUR WHATSAPP', highlight: true}],
+          title: [{text: 'PARLONS DE'}, {text: 'VOTRE PROJET', highlight: true}],
           visual: 'La villa de nuit (illustration) : logo, signature, bouton WhatsApp, numéro.',
         },
       ],

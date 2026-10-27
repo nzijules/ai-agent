@@ -53,6 +53,30 @@ export const assets = {
     ia: true,
     note: 'Optionnel : sans lui, la parallaxe se fait sur un seul plan.',
   },
+  terreTamisee: {
+    label: 'Mains qui tamisent la terre latérite (illustration)',
+    candidates: exts('assets/illustrations/terre-tamisee', IMG),
+    kind: 'image',
+    ia: true,
+  },
+  presseBtcs: {
+    label: 'Presse BTCS et bloc frais sorti du moule (illustration)',
+    candidates: exts('assets/illustrations/presse-btcs', IMG),
+    kind: 'image',
+    ia: true,
+  },
+  poseBlocs: {
+    label: 'Pose des blocs, joints fins (illustration)',
+    candidates: exts('assets/illustrations/pose-blocs', IMG),
+    kind: 'image',
+    ia: true,
+  },
+  interieurFraicheur: {
+    label: 'Salon contemporain avec mur BTCS apparent (illustration)',
+    candidates: exts('assets/illustrations/interieur-fraicheur', IMG),
+    kind: 'image',
+    ia: true,
+  },
   matiereBtcs: {
     label: 'Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)',
     candidates: exts('assets/illustrations/matiere-btcs', IMG),
@@ -151,9 +175,9 @@ export type AssetId = keyof typeof assets;
 export const sceneAssets: Record<string, AssetId[]> = {
   hook: ['villaHook', 'villaHookForeground'],
   btcs: ['sfxCompression', 'sfxPose'],
-  'btcs:photo': ['matiereBtcs'],
+  'btcs:photo': ['terreTamisee', 'presseBtcs', 'matiereBtcs', 'poseBlocs'],
   benefits: [],
-  'benefits:photo': ['villaChantier', 'villaHook'],
+  'benefits:photo': ['interieurFraicheur', 'villaChantier', 'villaHook'],
   modernite: ['villaFilaire', 'villaHook'],
   showcase: ['presseAction', 'elevationMurs', 'detailJoints', 'realisation1', 'realisation2'],
   projection: ['villaHook', 'villaNuit'],

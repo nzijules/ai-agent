@@ -1,5 +1,6 @@
 import {BtcsBlockAnimation} from '../components/BtcsBlockAnimation';
 import {PhotoPlate} from '../components/PhotoPlate';
+import {ShotPlates, hasShotImages} from '../components/ShotPlates';
 import {resolveAsset} from '../lib/assets';
 import type {SceneProps} from './types';
 
@@ -13,6 +14,7 @@ export const Scene2Btcs: React.FC<SceneProps> = ({segment, sequenceFrames}) => {
   if (segment.variant !== 'photo') {
     return <BtcsBlockAnimation variant={segment.variant === 'full' ? 'full' : 'short'} frames={segment.frames} />;
   }
+  if (hasShotImages(segment)) return <ShotPlates segment={segment} sequenceFrames={sequenceFrames} />;
   return resolveAsset('matiereBtcs', false).src ? (
     <PhotoPlate id="matiereBtcs" frames={sequenceFrames} move={{x: [45, 55], y: [60, 50], scale: [1.15, 1.02]}} />
   ) : (

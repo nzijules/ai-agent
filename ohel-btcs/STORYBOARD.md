@@ -28,22 +28,21 @@ Couche de texte : **Titre** = titre animé (pas de sous-titres) · **ST** = sous
 
 **Voix off 30 s — Meta Ads (texte brut) :** Et si votre prochaine villa était construite… en terre ? Le BTCS : de la terre stabilisée, comprimée en blocs solides. Des murs frais. Des lignes modernes et élégantes. OHEL International le construit déjà : nos chantiers en sont la preuve. Construisons autrement. Envoyez-nous votre projet sur WhatsApp.
 
-## 60 s — Version longue — 60 s, 82 mots
+## 60 s — Version longue (V2) — 60 s, 89 mots
 
 | Temps | Scène | Visuel | Texte écran | Voix off |
 |---|---|---|---|---|
-| 0–4 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : ET SI LA TERRE / BÂTISSAIT / **VOTRE VILLA ?** | « Et si votre prochaine villa était construite… en terre ? » |
-| 4–8 s | **2. Le BTCS**<br>_entrée : fondu matière_ | Retour à la matière : terre latérite et blocs BTCS en gros plan (illustration). | ST : Voici le BTCS : │ une terre sélectionnée, stabilisée, | « Voici le BTCS : une terre sélectionnée, stabilisée, » |
-| 8–12 s | ↳ | Les blocs, prêts à monter les murs (illustration). | Titre : **BTCS** / BLOC DE TERRE / COMPRIMÉE STABILISÉE | « puis comprimée en blocs solides et précis. » |
-| 12–14 s | **3. Les preuves d’usage**<br>_entrée : glissement de rangs de blocs_ | La même villa en chantier, les murs montent (illustration). | — | _(silence)_ |
-| 14–18 s | ↳ | Chantier : épaisseur des murs en BTCS (illustration).<br>_affirmation : brand.claims.thermique (à valider)_ | Titre : CONFORT / **THERMIQUE** | « Des murs qui gardent la fraîcheur. » |
-| 18–22 s | ↳ | Villa terminée, façade contemporaine (illustration). | Titre : ARCHITECTURE / **CONTEMPORAINE** | « Des lignes modernes et élégantes. » |
-| 22–26 s | ↳ | Chantier : piles de blocs et terre latérite du site (illustration). | Titre : MATÉRIAU / **LOCAL** | « Et un matériau local, plus respectueux de l’environnement. » |
-| 26–35 s | **4. La modernité**<br>_entrée : volet architectural_ | Plan d’architecte de la villa qui se révèle en photo (illustration). | Titre : LA TERRE RENCONTRE / **L’ARCHITECTURE** / **MODERNE.** | « Avec OHEL International, la terre devient architecture contemporaine. » |
-| 35–42 s | **5. Le savoir-faire**<br>_entrée : fondu matière_ | Médias authentiques OHEL : presse en action, élévation des murs, détail des joints. | ST : Nos équipes, nos chantiers, │ nos réalisations : | « Nos équipes, nos chantiers, nos réalisations : » |
-| 42–46 s | ↳ | Bâtiment OHEL terminé. | Titre : DES PROJETS RÉELS. / **UN SAVOIR-FAIRE** / **CONCRET.** | « un savoir-faire concret. » |
-| 46–49.5 s | **6. Projection**<br>_entrée : glissement de rangs de blocs_ | La villa au crépuscule, mouvement lent (illustration). | ST : Votre terrain, votre vision. | « Votre terrain, votre vision. » |
-| 49.5–53 s | ↳ | Même plan : la nuit tombe, les lumières s’allument (illustration). | Titre : ET SI C’ÉTAIT / **VOTRE PROJET ?** | « Et si nous la construisions ensemble ? » |
-| 53–60 s | **7. CTA**<br>_entrée : volet architectural_ | La villa de nuit (illustration) : logo, signature, bouton WhatsApp, numéro. | Titre : ENVOYEZ VOTRE PROJET / **SUR WHATSAPP** | « OHEL International. Construisons autrement. Envoyez-nous votre projet sur WhatsApp. » |
+| 0–5 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : ET SI LA TERRE / BÂTISSAIT / **VOTRE VILLA ?** | « Et si votre prochaine villa était construite… en terre ? » |
+| 5–8.5 s | **2. Le BTCS**<br>_entrée : fondu matière_ | Mains qui tamisent la terre latérite (illustration). | ST : Tout commence par une terre │ sélectionnée et tamisée. | « Tout commence par une terre sélectionnée et tamisée. » |
+| 8.5–12 s | ↳ | Presse BTCS manuelle, bloc frais sorti du moule (illustration). | ST : Stabilisée, puis comprimée dans une presse, | « Stabilisée, puis comprimée dans une presse, » |
+| 12–16 s | ↳ | Gros plan : terre et pile de blocs BTCS (illustration). | Titre : **BTCS** / BLOC DE TERRE / COMPRIMÉE STABILISÉE | « elle devient un bloc BTCS, dense et précis. » |
+| 16–20 s | ↳ | Mains d’un maçon qui posent un bloc, joints fins (illustration). | ST : Bloc après bloc, │ les murs prennent forme. | « Bloc après bloc, les murs prennent forme. » |
+| 20–25 s | **3. Les preuves d’usage**<br>_entrée : glissement de rangs de blocs_ | Salon contemporain, mur BTCS apparent, intérieur frais (illustration).<br>_affirmation : brand.claims.thermique (à valider)_ | Titre : CONFORT / **THERMIQUE** | « Des murs qui gardent la fraîcheur. » |
+| 25–30 s | **4. La modernité**<br>_entrée : volet architectural_ | Le plan d’architecte de la villa se révèle en photo (illustration). | Titre : POSSIBILITÉS / **ARCHITECTURALES** | « Des lignes contemporaines, sans compromis sur le style. » |
+| 30–35 s | **3. Les preuves d’usage**<br>_entrée : fondu matière_ | La villa en chantier : piles de blocs et terre du site (illustration). | Titre : MATÉRIAU / **LOCAL** | « Un matériau local, qui valorise la terre d’ici. » |
+| 35–45 s | **5. Le savoir-faire**<br>_entrée : glissement de rangs de blocs_ | Médias authentiques OHEL uniquement : presse, élévation des murs, joints, bâtiments terminés. | ST : Avec OHEL International : │ nos équipes, nos chantiers, │ nos réalisations. | « Avec OHEL International : nos équipes, nos chantiers, nos réalisations. » |
+| 45–50 s | ↳ | Bâtiment OHEL terminé (média authentique). | Titre : DES PROJETS RÉELS. / **UN SAVOIR-FAIRE** / **CONCRET.** | « Un savoir-faire concret. » |
+| 50–53 s | **6. Projection**<br>_entrée : volet architectural_ | La villa : la nuit tombe, les lumières s’allument (illustration). | Titre : VOUS AVEZ / **UN TERRAIN ?** | « Vous avez un terrain ? » |
+| 53–60 s | **7. CTA**<br>_entrée : fondu matière_ | La villa de nuit (illustration) : logo, signature, bouton WhatsApp, numéro. | Titre : PARLONS DE / **VOTRE PROJET** | « OHEL International. Parlons de votre projet de construction, sur WhatsApp. » |
 
-**Voix off 60 s — Version longue (texte brut) :** Et si votre prochaine villa était construite… en terre ? Voici le BTCS : une terre sélectionnée, stabilisée, puis comprimée en blocs solides et précis. Des murs qui gardent la fraîcheur. Des lignes modernes et élégantes. Et un matériau local, plus respectueux de l’environnement. Avec OHEL International, la terre devient architecture contemporaine. Nos équipes, nos chantiers, nos réalisations : un savoir-faire concret. Votre terrain, votre vision. Et si nous la construisions ensemble ? OHEL International. Construisons autrement. Envoyez-nous votre projet sur WhatsApp.
+**Voix off 60 s — Version longue (V2) (texte brut) :** Et si votre prochaine villa était construite… en terre ? Tout commence par une terre sélectionnée et tamisée. Stabilisée, puis comprimée dans une presse, elle devient un bloc BTCS, dense et précis. Bloc après bloc, les murs prennent forme. Des murs qui gardent la fraîcheur. Des lignes contemporaines, sans compromis sur le style. Un matériau local, qui valorise la terre d’ici. Avec OHEL International : nos équipes, nos chantiers, nos réalisations. Un savoir-faire concret. Vous avez un terrain ? OHEL International. Parlons de votre projet de construction, sur WhatsApp.

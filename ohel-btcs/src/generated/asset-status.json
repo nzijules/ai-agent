@@ -11,8 +11,24 @@
     "path": null,
     "draft": null
   },
+  "terreTamisee": {
+    "path": "assets/illustrations/terre-tamisee.jpg",
+    "draft": null
+  },
+  "presseBtcs": {
+    "path": "assets/illustrations/presse-btcs.jpg",
+    "draft": null
+  },
+  "poseBlocs": {
+    "path": "assets/illustrations/pose-blocs.jpg",
+    "draft": null
+  },
+  "interieurFraicheur": {
+    "path": "assets/illustrations/interieur-fraicheur.jpg",
+    "draft": null
+  },
   "matiereBtcs": {
-    "path": null,
+    "path": "assets/illustrations/matiere-btcs.jpg",
     "draft": null
   },
   "villaChantier": {

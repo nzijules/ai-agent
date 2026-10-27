@@ -1,5 +1,6 @@
 import {AbsoluteFill, Sequence} from 'remotion';
 import {PhotoPlate, type CameraMove} from '../components/PhotoPlate';
+import {ShotPlates, hasShotImages} from '../components/ShotPlates';
 import type {AssetId} from '../config/assets';
 import type {Shot} from '../config/scripts';
 import type {SceneProps} from './types';
@@ -14,17 +15,20 @@ const PLATES: Record<NonNullable<Shot['card']> | 'intro', {id: AssetId; move: Ca
 };
 
 /** Scène 3 — Les preuves d'usage (titres posés par ShotText). */
-export const Scene3Benefits: React.FC<SceneProps> = ({segment, sequenceFrames}) => (
-  <AbsoluteFill style={{backgroundColor: '#0E0A08'}}>
-    {segment.shots.map((shot, i) => {
-      const last = i === segment.shots.length - 1;
-      const frames = last ? sequenceFrames - shot.from : shot.frames;
-      const plate = PLATES[shot.card ?? 'intro'];
-      return (
-        <Sequence key={i} from={shot.from} durationInFrames={frames} layout="none">
-          <PhotoPlate id={plate.id} frames={frames} move={plate.move} shade={0.7} />
-        </Sequence>
-      );
-    })}
-  </AbsoluteFill>
-);
+export const Scene3Benefits: React.FC<SceneProps> = ({segment, sequenceFrames}) =>
+  hasShotImages(segment) ? (
+    <ShotPlates segment={segment} sequenceFrames={sequenceFrames} shade={0.7} />
+  ) : (
+    <AbsoluteFill style={{backgroundColor: '#0E0A08'}}>
+      {segment.shots.map((shot, i) => {
+        const last = i === segment.shots.length - 1;
+        const frames = last ? sequenceFrames - shot.from : shot.frames;
+        const plate = PLATES[shot.card ?? 'intro'];
+        return (
+          <Sequence key={i} from={shot.from} durationInFrames={frames} layout="none">
+            <PhotoPlate id={plate.id} frames={frames} move={plate.move} shade={0.7} />
+          </Sequence>
+        );
+      })}
+    </AbsoluteFill>
+  );

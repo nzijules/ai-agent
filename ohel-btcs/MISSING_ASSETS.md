@@ -37,7 +37,11 @@
 - [x] Villa contemporaine au crépuscule (illustration, format portrait de préférence) — `assets/illustrations/villa-hook.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [ ] Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D) — `assets/illustrations/villa-hook-premier-plan.png` _(illustration : mention « non contractuelle » ajoutée automatiquement)_  
   _Optionnel : sans lui, la parallaxe se fait sur un seul plan._
-- [ ] Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration) — `assets/illustrations/matiere-btcs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Mains qui tamisent la terre latérite (illustration) — `assets/illustrations/terre-tamisee.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Presse BTCS et bloc frais sorti du moule (illustration) — `assets/illustrations/presse-btcs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Pose des blocs, joints fins (illustration) — `assets/illustrations/pose-blocs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Salon contemporain avec mur BTCS apparent (illustration) — `assets/illustrations/interieur-fraicheur.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
+- [x] Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration) — `assets/illustrations/matiere-btcs.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] La même villa en construction, murs en blocs BTCS qui montent (illustration) — `assets/illustrations/villa-chantier.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] La même villa de nuit, fond du CTA (illustration) — `assets/illustrations/villa-nuit.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
 - [x] Version « plan d’architecte » de la villa (dérivée de villa-hook, scène 4) — `assets/illustrations/villa-filaire.jpg` _(illustration : mention « non contractuelle » ajoutée automatiquement)_
@@ -61,7 +65,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 
@@ -72,7 +75,6 @@
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
 - Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
 - Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
 - Bâtiment OHEL terminé n° 1 (photo HD ou vidéo verticale) **(bloquant)**
@@ -81,14 +83,13 @@
 - Affirmation non validée : `brand.claims.thermique`
 - Affirmation non validée : `brand.claims.humidite`
 
-### 60 s — Version longue
+### 60 s — Version longue (V2)
 
 - Musique sous licence commerciale (publicité Meta + TikTok autorisée)
 - SFX transition
 - Calque premier plan détouré de la villa (PNG transparent, optionnel, pour la parallaxe 2.5D)
 - SFX compression du bloc
 - SFX pose d’un bloc
-- Gros plan matière : terre latérite tamisée et pile de blocs BTCS (illustration)
 - Vidéo ou photo réelle : presse BTCS OHEL en action **(bloquant)**
 - Vidéo ou photo réelle : élévation de murs BTCS sur un chantier OHEL **(bloquant)**
 - Photo ou vidéo réelle : détail des joints d’un mur BTCS OHEL **(bloquant)**
@@ -97,4 +98,3 @@
 - Logo officiel OHEL (SVG ou PNG transparent, ≥ 1200 px de large) **(bloquant)**
 - SFX apparition du CTA
 - Affirmation non validée : `brand.claims.thermique`
-- Affirmation non validée : `brand.claims.humidite`
