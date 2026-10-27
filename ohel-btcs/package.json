@@ -10,7 +10,8 @@
     "studio": "npm run scan && remotion studio",
     "stills": "npm run scan && tsx scripts/stills.ts",
     "render:draft": "npm run scan && tsx scripts/render.ts --draft",
-    "render:all": "npm run scan && npm run check && tsx scripts/render.ts"
+    "render:all": "npm run scan && npm run check && tsx scripts/render.ts",
+    "render:preview": "npm run scan && tsx scripts/render.ts --preview"
   },
   "dependencies": {
     "@fontsource/caveat": "^5.3.0",

@@ -37,7 +37,7 @@ const voiceIntervals = (version: VersionId, tl: Timeline) => {
   return tl.segments.flatMap((seg) => seg.shots.filter((s) => s.vo).map((s) => [seg.from + s.from, seg.from + s.from + s.frames] as const));
 };
 
-export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version, draft, showSafeZones}) => {
+export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version, draft, showSafeZones, watermark = true}) => {
   const tl = timeline(version);
   const vo = resolveAsset(VO[version], false);
   const music = resolveAsset('music', false);
@@ -101,7 +101,7 @@ export const AdComposition: React.FC<AdProps & {version: VersionId}> = ({version
           : null}
         {vo.src && !clips.length ? <Audio src={vo.src} /> : null}
         {music.src ? <Audio src={music.src} volume={musicVolume} /> : null}
-        {draft ? <DraftWatermark /> : null}
+        {draft && watermark ? <DraftWatermark /> : null}
         {showSafeZones ? <SafeZoneOverlay /> : null}
       </AbsoluteFill>
     </AdPropsContext.Provider>

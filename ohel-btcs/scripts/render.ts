@@ -3,6 +3,7 @@
  *   npm run render:all                 → les 4 versions finales (refusé si un asset bloquant manque)
  *   npm run render:draft               → brouillons filigranés (placeholders autorisés)
  *   npm run render:draft -- Ad15Vertical
+ *   npm run render:preview             → aperçu client sans filigrane (mêmes tolérances que le brouillon)
  */
 import {execFileSync} from 'node:child_process';
 import {mkdirSync} from 'node:fs';
@@ -12,7 +13,8 @@ import {BROWSER} from './browser';
 import {checkFinal} from './preflight';
 
 const ROOT = join(__dirname, '..');
-const draft = process.argv.includes('--draft');
+const preview = process.argv.includes('--preview');
+const draft = preview || process.argv.includes('--draft');
 const wanted = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const list = COMPOSITIONS.filter((c) => !wanted.length || wanted.includes(c.id));
 
@@ -35,7 +37,7 @@ if (!draft) {
 const outDir = join(ROOT, 'out');
 mkdirSync(outDir, {recursive: true});
 for (const c of list) {
-  const file = join(outDir, draft ? c.file.replace('.mp4', '-BROUILLON.mp4') : c.file);
+  const file = join(outDir, preview ? c.file.replace('.mp4', '-APERCU.mp4') : draft ? c.file.replace('.mp4', '-BROUILLON.mp4') : c.file);
   console.log(`\n▶ ${c.id} → ${file}`);
   execFileSync(
     'npx',
@@ -47,7 +49,7 @@ for (const c of list) {
       file,
       '--codec=h264',
       '--crf=18',
-      `--props=${JSON.stringify({draft, showSafeZones: false})}`,
+      `--props=${JSON.stringify({draft, watermark: !preview, showSafeZones: false})}`,
       ...BROWSER,
     ],
     {cwd: ROOT, stdio: 'inherit'},
