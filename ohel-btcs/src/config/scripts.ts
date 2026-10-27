@@ -114,7 +114,7 @@ const ad30: VersionScript = {
       scene: 'hook',
       shots: [
         {
-          sec: 3,
+          sec: 3.5,
           vo: 'Et si votre prochaine villa était construite… en terre ?',
           textLayer: 'title',
           title: [{text: 'ET SI LA TERRE'}, {text: 'BÂTISSAIT'}, {text: 'VOTRE VILLA ?', highlight: true}],
@@ -128,7 +128,7 @@ const ad30: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 6,
+          sec: 5.5,
           vo: 'Le BTCS : de la terre stabilisée, comprimée en blocs solides.',
           textLayer: 'subtitles',
           visual: 'Retour à la matière : terre latérite et pile de blocs BTCS en gros plan (illustration).',

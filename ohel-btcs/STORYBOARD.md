@@ -9,7 +9,7 @@ Couche de texte : **Titre** = titre animé (pas de sous-titres) · **ST** = sous
 
 | Temps | Scène | Visuel | Texte écran | Voix off |
 |---|---|---|---|---|
-| 0–3 s | **1. Hook** | Villa contemporaine au crépuscule, travelling avant + parallaxe 2.5D (illustration non contractuelle). | Titre : UNE VILLA MODERNE… / **EN TERRE ?** | « Une villa moderne… en terre ? » |
+| 0–3 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : UNE VILLA MODERNE… / **EN TERRE ?** | « Une villa moderne… en terre ? » |
 | 3–8 s | **2. Le BTCS**<br>_entrée : fondu matière_ | Animation codée : terre + stabilisant → presse → bloc éjecté → mur qui monte en rangs décalés. | ST : Oui. Le BTCS : │ de la terre comprimée et stabilisée. | « Oui. Le BTCS : de la terre comprimée et stabilisée. » |
 | 8–15 s | **7. CTA**<br>_entrée : volet architectural_ | Plan authentique OHEL en fond (à défaut : mur BTCS sur fond terre), logo officiel, bouton WhatsApp, numéro ≥ 4 s. | Titre : ENVOYEZ VOTRE PROJET / **SUR WHATSAPP** | « OHEL International. Envoyez votre projet sur WhatsApp. » |
 
@@ -19,12 +19,12 @@ Couche de texte : **Titre** = titre animé (pas de sous-titres) · **ST** = sous
 
 | Temps | Scène | Visuel | Texte écran | Voix off |
 |---|---|---|---|---|
-| 0–3 s | **1. Hook** | Villa contemporaine au crépuscule, travelling avant + parallaxe (illustration non contractuelle). | Titre : ET SI LA TERRE / BÂTISSAIT / **VOTRE VILLA ?** | « Et si votre prochaine villa était construite… en terre ? » |
-| 3–9 s | **2. Le BTCS**<br>_entrée : fondu matière_ | Presse BTCS → bloc éjecté → mur en rangs décalés. | ST : Le BTCS : de la terre │ stabilisée, comprimée en blocs solides. | « Le BTCS : de la terre stabilisée, comprimée en blocs solides. » |
+| 0–3.5 s | **1. Hook** | La villa terminée à l’heure bleue, travelling latéral (illustration). | Titre : ET SI LA TERRE / BÂTISSAIT / **VOTRE VILLA ?** | « Et si votre prochaine villa était construite… en terre ? » |
+| 3.5–9 s | **2. Le BTCS**<br>_entrée : fondu matière_ | Retour à la matière : terre latérite et pile de blocs BTCS en gros plan (illustration). | ST : Le BTCS : de la terre │ stabilisée, comprimée en blocs solides. | « Le BTCS : de la terre stabilisée, comprimée en blocs solides. » |
 | 9–12 s | **3. Les preuves d’usage**<br>_entrée : glissement de rangs de blocs_ | Coupe de mur : chaleur extérieure arrêtée, fraîcheur intérieure.<br>_affirmation : brand.claims.thermique (à valider)_ | Titre : CONFORT / **THERMIQUE** | « Des murs frais. » |
-| 12–15 s | ↳ | Façade BTCS contemporaine en trait d’architecte. | Titre : ARCHITECTURE / **CONTEMPORAINE** | « Des lignes modernes et élégantes. » |
+| 12–15 s | ↳ | Même plan de chantier, la structure contemporaine se dessine. | Titre : ARCHITECTURE / **CONTEMPORAINE** | « Des lignes modernes et élégantes. » |
 | 15–23 s | **5. Le savoir-faire**<br>_entrée : volet architectural_ | Médias authentiques OHEL uniquement : presse en action, élévation des murs, bâtiment terminé. | ST : OHEL International le construit déjà : │ nos chantiers en sont la preuve. | « OHEL International le construit déjà : nos chantiers en sont la preuve. » |
-| 23–30 s | **7. CTA**<br>_entrée : fondu matière_ | Fond blanc architectural, logo officiel, signature, bouton WhatsApp, numéro, offre. | Titre : ENVOYEZ VOTRE PROJET / **SUR WHATSAPP** | « Construisons autrement. Envoyez-nous votre projet sur WhatsApp. » |
+| 23–30 s | **7. CTA**<br>_entrée : fondu matière_ | Retour à la villa terminée, de nuit (illustration) : logo, signature, bouton WhatsApp, numéro. | Titre : ENVOYEZ VOTRE PROJET / **SUR WHATSAPP** | « Construisons autrement. Envoyez-nous votre projet sur WhatsApp. » |
 
 **Voix off 30 s — Meta Ads (texte brut) :** Et si votre prochaine villa était construite… en terre ? Le BTCS : de la terre stabilisée, comprimée en blocs solides. Des murs frais. Des lignes modernes et élégantes. OHEL International le construit déjà : nos chantiers en sont la preuve. Construisons autrement. Envoyez-nous votre projet sur WhatsApp.
 

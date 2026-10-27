@@ -47,4 +47,35 @@ export const voiceover: Partial<Record<'ad15' | 'ad30' | 'ad60', VoiceoverTrack>
       {segment: 2, shot: 0, src: [6.95, 10.53], at: 0.6},
     ],
   },
+  ad30: {
+    provisional: true,
+    origin: 'ElevenLabs, voix « Fatou — Radiant and Gentle », modèle eleven_v4',
+    clips: [
+      {segment: 0, shot: 0, src: [0, 3.45], at: 0.03},
+      {
+        segment: 1,
+        shot: 0,
+        src: [3.6, 8.1],
+        at: 0.4,
+        cues: [
+          {text: 'Le BTCS\u00a0:', start: 3.79, end: 4.95},
+          {text: 'de la terre stabilisée,', start: 5.14, end: 6.43},
+          {text: 'comprimée en blocs solides.', start: 6.43, end: 8.0},
+        ],
+      },
+      {segment: 2, shot: 0, src: [8.15, 9.35], at: 0.6},
+      {segment: 2, shot: 1, src: [9.4, 11.65], at: 0.4},
+      {
+        segment: 3,
+        shot: 0,
+        src: [11.7, 15.7],
+        at: 1.2,
+        cues: [
+          {text: 'OHEL International le construit déjà\u00a0:', start: 11.87, end: 13.9},
+          {text: 'nos chantiers en sont la preuve.', start: 14.15, end: 15.6},
+        ],
+      },
+      {segment: 4, shot: 0, src: [15.75, 19.33], at: 0.6},
+    ],
+  },
 };

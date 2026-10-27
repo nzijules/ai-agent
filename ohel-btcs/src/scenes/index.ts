@@ -2,6 +2,7 @@ import type {SceneId} from '../config/scripts';
 import {Scene1Hook} from './Scene1Hook';
 import {Scene2Btcs} from './Scene2Btcs';
 import {Scene3Benefits} from './Scene3Benefits';
+import {Scene5Showcase} from './Scene5Showcase';
 import {Scene7Cta} from './Scene7Cta';
 import {SceneTodo} from './SceneTodo';
 import type {SceneProps, TitlePlacement} from './types';
@@ -11,7 +12,7 @@ export const SCENES: Record<SceneId, {Component: React.FC<SceneProps>; title: Ti
   btcs: {Component: Scene2Btcs, title: 'top'},
   benefits: {Component: Scene3Benefits, title: 'bottom'},
   modernite: {Component: SceneTodo, title: 'bottom'},
-  showcase: {Component: SceneTodo, title: 'bottom'},
+  showcase: {Component: Scene5Showcase, title: 'bottom'},
   projection: {Component: SceneTodo, title: 'bottom'},
   cta: {Component: Scene7Cta, title: 'scene'},
 };
