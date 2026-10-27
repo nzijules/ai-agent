@@ -208,13 +208,13 @@ const ad30: VersionScript = {
 // ---------------------------------------------------------------------------
 const ad60: VersionScript = {
   id: 'ad60',
-  label: '60 s — Version longue (V2)',
+  label: 'Version longue (V2, resserrée sur la voix)',
   segments: [
     {
       scene: 'hook',
       shots: [
         {
-          sec: 5,
+          sec: 3.8,
           vo: 'Et si votre prochaine villa était construite… en terre ?',
           textLayer: 'title',
           title: [{text: 'ET SI LA TERRE'}, {text: 'BÂTISSAIT'}, {text: 'VOTRE VILLA ?', highlight: true}],
@@ -228,7 +228,7 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 3.5,
+          sec: 3.3,
           vo: 'Tout commence par une terre sélectionnée et tamisée.',
           textLayer: 'subtitles',
           image: 'terreTamisee',
@@ -236,7 +236,7 @@ const ad60: VersionScript = {
           visual: 'Mains qui tamisent la terre latérite (illustration).',
         },
         {
-          sec: 3.5,
+          sec: 3.0,
           vo: 'Stabilisée, puis comprimée dans une presse,',
           textLayer: 'subtitles',
           image: 'presseBtcs',
@@ -244,7 +244,7 @@ const ad60: VersionScript = {
           visual: 'Presse BTCS manuelle, bloc frais sorti du moule (illustration).',
         },
         {
-          sec: 4,
+          sec: 3.9,
           vo: 'elle devient un bloc BTCS, dense et précis.',
           textLayer: 'title',
           title: [{text: 'BTCS', highlight: true}, {text: 'BLOC DE TERRE'}, {text: 'COMPRIMÉE STABILISÉE'}],
@@ -253,7 +253,7 @@ const ad60: VersionScript = {
           visual: 'Gros plan : terre et pile de blocs BTCS (illustration).',
         },
         {
-          sec: 4,
+          sec: 2.9,
           vo: 'Bloc après bloc, les murs prennent forme.',
           textLayer: 'subtitles',
           image: 'poseBlocs',
@@ -268,7 +268,7 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 5,
+          sec: 2.8,
           vo: 'Des murs qui gardent la fraîcheur.',
           textLayer: 'title',
           title: [{text: 'CONFORT'}, {text: 'THERMIQUE', highlight: true}],
@@ -284,7 +284,7 @@ const ad60: VersionScript = {
       transitionIn: 'volet',
       shots: [
         {
-          sec: 5,
+          sec: 3.5,
           vo: 'Des lignes contemporaines, sans compromis sur le style.',
           textLayer: 'title',
           title: [{text: 'POSSIBILITÉS'}, {text: 'ARCHITECTURALES', highlight: true}],
@@ -298,7 +298,7 @@ const ad60: VersionScript = {
       variant: 'photo',
       shots: [
         {
-          sec: 5,
+          sec: 3.5,
           vo: 'Un matériau local, qui valorise la terre d’ici.',
           textLayer: 'title',
           title: [{text: 'MATÉRIAU'}, {text: 'LOCAL', highlight: true}],
@@ -314,13 +314,13 @@ const ad60: VersionScript = {
       variant: 'full',
       shots: [
         {
-          sec: 10,
+          sec: 5.3,
           vo: 'Avec OHEL International : nos équipes, nos chantiers, nos réalisations.',
           textLayer: 'subtitles',
           visual: 'Médias authentiques OHEL uniquement : presse, élévation des murs, joints, bâtiments terminés.',
         },
         {
-          sec: 5,
+          sec: 2.1,
           vo: 'Un savoir-faire concret.',
           textLayer: 'title',
           title: [{text: 'DES PROJETS RÉELS.'}, {text: 'UN SAVOIR-FAIRE', highlight: true}, {text: 'CONCRET.', highlight: true}],
@@ -333,7 +333,7 @@ const ad60: VersionScript = {
       transitionIn: 'volet',
       shots: [
         {
-          sec: 3,
+          sec: 1.8,
           vo: 'Vous avez un terrain ?',
           textLayer: 'title',
           title: [{text: 'VOUS AVEZ'}, {text: 'UN TERRAIN ?', highlight: true}],
@@ -347,7 +347,7 @@ const ad60: VersionScript = {
       variant: 'overVilla',
       shots: [
         {
-          sec: 7,
+          sec: 5.5,
           vo: 'OHEL International. Parlons de votre projet de construction, sur WhatsApp.',
           textLayer: 'title',
           title: [{text: 'PARLONS DE'}, {text: 'VOTRE PROJET', highlight: true}],

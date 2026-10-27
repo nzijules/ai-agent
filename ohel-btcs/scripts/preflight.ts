@@ -25,7 +25,8 @@ export const checkScripts = (): Report => {
   for (const v of Object.keys(scripts) as VersionId[]) {
     const tl = timeline(v);
     const expected = scripts[v].segments.reduce((n, s) => n + s.shots.reduce((m, sh) => m + sh.sec, 0), 0);
-    if (Math.abs(tl.durationInFrames / FPS - Number(v.slice(2))) > 0.01) {
+    // La version longue est resserrée sur la voix : sa durée n'est plus fixée à 60 s.
+    if (v !== 'ad60' && Math.abs(tl.durationInFrames / FPS - Number(v.slice(2))) > 0.01) {
       errors.push(`${v} : durée ${tl.durationInFrames / FPS} s au lieu de ${v.slice(2)} s (somme des plans : ${expected} s)`);
     }
     // Transitions : jamais la même deux fois de suite.
