@@ -36,25 +36,25 @@ export const SCENES: SceneDef[] = [
     duree: 7,
     enchainement: "blocs",
     voix: [
-      { de: 0.4, a: 2.02, texte: "Votre prochain projet commence ici." },
-      { de: 3, a: 4.97, texte: "Avec la terre… et la précision." },
+      { de: 0.4, a: 2.26, texte: "Votre prochain projet commence ici." },
+      { de: 3, a: 4.98, texte: "Avec la terre… et la précision." },
     ],
   },
   {
     id: "B",
     nom: "Identification",
-    duree: 11.0,
+    duree: 11.4,
     enchainement: "coupe",
     voix: [
-      { de: 0.6, a: 3.07, texte: "B. T. C. S." },
+      { de: 0.6, a: 3.06, texte: "B. T. C. S." },
       {
-        de: 3.37,
-        a: 5.96,
+        de: 3.36,
+        a: 5.88,
         texte: "Des blocs de terre comprimée et stabilisée.",
       },
       {
-        de: 6.26,
-        a: 9.73,
+        de: 6.18,
+        a: 10.14,
         texte:
           "Produits et commercialisés en Côte d'Ivoire par OHEL International.",
       },
@@ -63,23 +63,23 @@ export const SCENES: SceneDef[] = [
   {
     id: "C",
     nom: "Formulation",
-    duree: 16.1,
+    duree: 16.2,
     enchainement: "fondu",
     voix: [
-      { de: 0.5, a: 2.58, texte: "Tout commence par une formulation précise." },
+      { de: 0.5, a: 2.8, texte: "Tout commence par une formulation précise." },
       {
-        de: 3,
-        a: 7.88,
+        de: 3.1,
+        a: 7.81,
         texte: "Chez OHEL : 65 % de latérite, une terre riche et résistante,",
       },
       {
-        de: 8.18,
-        a: 11.42,
+        de: 8.11,
+        a: 11.35,
         texte: "25 % de sable, pour la compacité et la texture,",
       },
       {
-        de: 11.72,
-        a: 14.83,
+        de: 11.65,
+        a: 14.91,
         texte: "et 10 % de ciment, comme liant et stabilisateur.",
       },
     ],
@@ -92,10 +92,10 @@ export const SCENES: SceneDef[] = [
     voix: [
       {
         de: 0.6,
-        a: 2.59,
+        a: 2.52,
         texte: "Les composants sont soigneusement mélangés,",
       },
-      { de: 3.8, a: 5.79, texte: "jusqu'à obtenir un mélange homogène." },
+      { de: 3.8, a: 5.69, texte: "jusqu'à obtenir un mélange homogène." },
     ],
   },
   {
@@ -106,16 +106,16 @@ export const SCENES: SceneDef[] = [
     voix: [
       {
         de: 0.5,
-        a: 3.06,
+        a: 3.07,
         texte: "Le mélange est placé dans le moule de la presse hydraulique.",
       },
-      { de: 3.6, a: 5.89, texte: "Sous forte pression, il est compacté," },
+      { de: 3.6, a: 5.87, texte: "Sous forte pression, il est compacté," },
       {
         de: 6.6,
-        a: 9.01,
+        a: 8.92,
         texte: "pour former des blocs solides et réguliers.",
       },
-      { de: 10.2, a: 11.75, texte: "La précision prend forme." },
+      { de: 10.2, a: 11.58, texte: "La précision prend forme." },
     ],
   },
   {
@@ -126,16 +126,16 @@ export const SCENES: SceneDef[] = [
     voix: [
       {
         de: 0.5,
-        a: 2.97,
+        a: 3.04,
         texte: "Après le démoulage, place à la cure humide.",
       },
-      { de: 3.27, a: 4.94, texte: "Les blocs sont arrosés régulièrement," },
+      { de: 3.34, a: 5.02, texte: "Les blocs sont arrosés régulièrement," },
       {
         de: 5.7,
-        a: 8.01,
+        a: 8.13,
         texte: "pour favoriser le développement de leur résistance",
       },
-      { de: 8.4, a: 10.1, texte: "et limiter le risque de fissures." },
+      { de: 8.43, a: 10.14, texte: "et limiter le risque de fissures." },
     ],
   },
   {
@@ -144,15 +144,15 @@ export const SCENES: SceneDef[] = [
     duree: 13,
     enchainement: "blocs",
     voix: [
-      { de: 0.5, a: 2.74, texte: "Maison, école, bâtiment durable :" },
+      { de: 0.5, a: 2.76, texte: "Maison, école, bâtiment durable :" },
       {
         de: 4,
-        a: 7.17,
+        a: 7.27,
         texte: "les BTCS s'adaptent à vos projets de construction.",
       },
       {
         de: 8.4,
-        a: 10.98,
+        a: 10.81,
         texte: "Faites le choix de la solidité… et de l'écologie.",
       },
     ],
@@ -165,15 +165,15 @@ export const SCENES: SceneDef[] = [
     voix: [
       {
         de: 0.5,
-        a: 3.35,
+        a: 3.27,
         texte: "Votre projet mérite des matériaux bien fabriqués.",
       },
-      { de: 3.8, a: 6.29, texte: "Pour vos approvisionnements en BTCS," },
-      { de: 6.59, a: 8.9, texte: "faites confiance à OHEL International." },
-      { de: 9.2, a: 10.23, texte: "Demandez votre devis." },
+      { de: 3.8, a: 6.35, texte: "Pour vos approvisionnements en BTCS," },
+      { de: 6.65, a: 9.05, texte: "faites confiance à OHEL International." },
+      { de: 9.35, a: 10.56, texte: "Demandez votre devis." },
       {
-        de: 10.6,
-        a: 14.07,
+        de: 10.86,
+        a: 14.64,
         texte: "OHEL International : bâtir solide, bâtir vert.",
       },
     ],

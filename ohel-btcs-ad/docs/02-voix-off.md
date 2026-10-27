@@ -1,7 +1,7 @@
 # 2. Voix off finale — prête à enregistrer
 
 **Voix :** française, naturelle, assurée, chaleureuse et posée. Débit naturel, **sans accélération** : ≈ 181 mots, ≈ 75 s de parole.
-**À valider avant la séance :** la prononciation d'« OHEL » (ex. « O-HEL », « O-ÈL » ou épelé « O-H-E-L »). Elle n'est pas fixée ici.
+**Prononciation validée par OHEL :** « OHEL » se dit **« O-L »** (deux lettres : « ô – èl »).
 
 Conventions : `/` = respiration courte · `//` = pause marquée (≈ 0,5 s) · **gras** = appui léger.
 « BTCS » se dit toujours lettre par lettre : **« B – T – C – S »**. Les pourcentages se disent en entier (« soixante-cinq pour cent »).
