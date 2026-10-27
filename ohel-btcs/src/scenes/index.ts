@@ -10,7 +10,7 @@ import type {SceneProps, TitlePlacement} from './types';
 
 export const SCENES: Record<SceneId, {Component: React.FC<SceneProps>; title: TitlePlacement}> = {
   hook: {Component: Scene1Hook, title: 'bottom'},
-  btcs: {Component: Scene2Btcs, title: 'top'},
+  btcs: {Component: Scene2Btcs, title: 'bottom'},
   benefits: {Component: Scene3Benefits, title: 'bottom'},
   modernite: {Component: Scene4Modernite, title: 'bottom'},
   showcase: {Component: Scene5Showcase, title: 'bottom'},
