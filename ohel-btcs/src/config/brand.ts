@@ -80,8 +80,8 @@ export const brand = {
      */
     dimensions: {length: 29.5, width: 14, height: 9.5},
     dimensionsValidated: false,
-    /** Emboîtement (tenon/mortaise) ou alvéoles selon le modèle OHEL. À confirmer. */
-    interlocking: false,
+    /** Blocs auto-bloquants, assemblés à sec : aucun mortier ni joint de ciment (confirmé par OHEL). */
+    interlocking: true,
     hollows: false,
     modelValidated: false,
     /** Type de presse affichée dans l'animation. */

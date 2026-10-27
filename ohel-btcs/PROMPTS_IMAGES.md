@@ -17,7 +17,9 @@ Photorealistic commercial photography for a premium real-estate video ad in Côt
 Use the attached reference image ONLY for the colour and texture of the earth blocks and for the warm light.
 Compressed stabilized earth blocks (CSEB / BTCS): brick format, about twice as long as wide,
 warm laterite ochre colour exactly like the reference, perfectly crisp sharp edges, flat matte
-slightly granular compressed surface with tiny pores. NOT fired clay bricks, NOT cut stone, NOT large slabs.
+slightly granular compressed surface with tiny pores. INTERLOCKING blocks (tenon-and-groove shapes that key into
+each other), DRY-STACKED: NO mortar, NO cement joints, NO trowel.
+NOT fired clay bricks, NOT cut stone, NOT large slabs, NOT geobeton.
 Warm golden natural light, natural colours, shallow depth of field when close-up, high detail.
 Portrait 2:3 format. No text, no letters, no logo, no brand name, no watermark,
 no recognisable face (hands and bodies only, faces out of frame).
@@ -59,13 +61,17 @@ Low golden side light raking across the surfaces, long soft shadows, shallow dep
 dark warm blurred background. Premium, tactile, cinematic.
 ```
 
-## 4. `pose-blocs.jpg` — Démonstration BTCS, 16–20 s
+## 4. `pose-blocs.jpg` — à refaire (assemblage à sec)
+
+> La première version montrait du mortier et une truelle, ce qui correspond au géobéton et pas au BTCS d'OHEL.
+> En attendant, la vidéo utilise la vraie photo de chantier OHEL. Le mieux reste une vraie photo rapprochée de la pose.
 
 ```
-Close-up of a mason's dark-skinned hands placing a compressed earth block onto a thin, even bed of mortar
-on a wall under construction. Staggered courses, thin regular joints (about 1 cm), a spirit level resting
-on the top course, a trowel in the other hand. Behind, out of focus: concrete columns and a sunny tropical sky.
-Clean, precise, professional workmanship. Golden light.
+Close-up of a mason's dark-skinned hands placing an interlocking compressed earth block onto a wall under construction.
+The blocks are DRY-STACKED with NO mortar and NO cement joints: each block keys into the ones below thanks to
+moulded tenons and grooves, the joints are simple tight contact lines. Staggered courses, perfectly aligned.
+No trowel, no mortar bucket. A rubber mallet rests on the top course. Behind, out of focus: concrete columns
+and a sunny tropical sky. Clean, precise, professional workmanship. Golden light.
 ```
 
 ## 5. `interieur-fraicheur.jpg` — Avantages, 20–25 s (confort thermique)
