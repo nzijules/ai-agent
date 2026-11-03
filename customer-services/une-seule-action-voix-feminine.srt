@@ -1,0 +1,131 @@
+1
+00:00:01,550 --> 00:00:05,275
+Chaque jour, au sein de Customer Services, nous accompagnons des milliers de clients.
+
+2
+00:00:05,427 --> 00:00:08,211
+Nous répondons à leurs demandes, résolvons leurs difficultés
+
+3
+00:00:08,211 --> 00:00:09,667
+et facilitons leur quotidien.
+
+4
+00:00:10,025 --> 00:00:12,430
+Mais derrière une demande apparemment ordinaire…
+
+5
+00:00:12,515 --> 00:00:14,249
+… peut se cacher une tentative de fraude.
+
+6
+00:00:14,539 --> 00:00:16,273
+Un remplacement de carte SIM.
+
+7
+00:00:16,323 --> 00:00:19,487
+Une réinitialisation de code PIN Mobile Money.
+
+8
+00:00:19,613 --> 00:00:21,607
+Une modification des informations d'un client.
+
+9
+00:00:22,006 --> 00:00:24,051
+Pour nous, ce sont des opérations courantes.
+
+10
+00:00:24,183 --> 00:00:28,166
+Pour un fraudeur, elles peuvent représenter une opportunité.
+
+11
+00:00:28,304 --> 00:00:30,769
+Les fraudeurs exploitent l'urgence, la confiance,
+
+12
+00:00:30,769 --> 00:00:33,764
+la négligence… et parfois même la complicité.
+
+13
+00:00:34,043 --> 00:00:37,737
+Une seule opération non autorisée peut suffire à compromettre le compte d'un client,
+
+14
+00:00:37,877 --> 00:00:41,943
+provoquer des pertes financières et ternir la réputation de notre entreprise.
+
+15
+00:00:42,043 --> 00:00:44,915
+Et lorsqu'un collaborateur participe volontairement à une fraude,
+
+16
+00:00:44,948 --> 00:00:48,597
+il s'expose à de lourdes conséquences disciplinaires et judiciaires.
+
+17
+00:00:48,836 --> 00:00:52,798
+Alors, avant chaque opération sensible, adoptons les bons réflexes.
+
+18
+00:00:52,970 --> 00:00:55,471
+Vérifions systématiquement l'identité du demandeur.
+
+19
+00:00:55,630 --> 00:00:58,343
+Assurons-nous de la légitimité de chaque opération.
+
+20
+00:00:58,558 --> 00:01:01,875
+Respectons les procédures et les niveaux de validation requis.
+
+21
+00:01:02,208 --> 00:01:03,775
+Et face à une situation suspecte,
+
+22
+00:01:03,825 --> 00:01:06,980
+n'hésitons jamais à suspendre l'opération et à donner l'alerte.
+
+23
+00:01:07,196 --> 00:01:10,955
+Car aucune urgence, aucune pression et aucun avantage personnel
+
+24
+00:01:10,955 --> 00:01:13,275
+ne justifient de contourner nos contrôles.
+
+25
+00:01:13,508 --> 00:01:17,909
+La lutte contre la fraude n'est pas uniquement la responsabilité de Forensic Services.
+
+26
+00:01:17,909 --> 00:01:19,450
+Elle commence avec chacun de nous.
+
+27
+00:01:19,482 --> 00:01:20,506
+À chaque interaction.
+
+28
+00:01:20,518 --> 00:01:21,560
+À chaque vérification.
+
+29
+00:01:21,570 --> 00:01:22,881
+À chaque décision.
+
+30
+00:01:22,980 --> 00:01:24,397
+Avant de valider, vérifiez.
+
+31
+00:01:24,473 --> 00:01:26,220
+En cas de doute, signalez.
+
+32
+00:01:26,333 --> 00:01:31,063
+Ensemble, protégeons nos clients, leur confiance et l'intégrité de MTN Côte d'Ivoire.
+
+33
+00:01:31,223 --> 00:01:35,068
+Customer Services : soyons la première ligne de défense contre la fraude.
