@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La fraude à l'ère de l'IA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a single 1920×1080 stage of anti-fraud "security paper" (guilloche rosette), scaled to fit, with a slim transport bar beneath.
+   The authentic rosette is printed in ink; an AI "copy" in magenta drifts over it and gets closer to perfect as the film goes on. */
+:root{
+  --paper:#E5EAE1;      /* papier de sécurité, vert-gris */
+  --paper-deep:#CCD6CA;
+  --ink:#12263A;        /* encre de Prusse */
+  --ink-soft:#4A5C6B;
+  --alert:#CF3426;      /* rouge tampon */
+  --synth-a:#0AA3B6;    /* cyan « synthétique » */
+  --synth-b:#D41E7E;    /* magenta « synthétique » */
+  --frame:#0D1A27;
+  --frame-line:#2A3B4C;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{
+  background:var(--frame);color:var(--paper);font-family:var(--f-body);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  box-sizing:border-box;padding-block:16px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  overflow-x:hidden;
+}
+.viewport{
+  position:relative;width:min(100%, calc((100dvh - 120px) * 16 / 9));max-width:100%;aspect-ratio:16/9;
+  overflow:hidden;background:var(--paper);box-shadow:0 30px 80px -30px #000, 0 0 0 1px var(--frame-line);
+}
+.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;color:var(--ink);overflow:hidden}
+#bg{position:absolute;inset:0;width:1920px;height:1080px}
+.scene{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.mono{font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.ghost{opacity:0}
+.caret{display:inline-block;width:.08em;height:.9em;background:currentColor;vertical-align:-.08em;margin-left:.04em}
+
+/* chrome commun : coin d'en-tête façon document officiel */
+.hud{position:absolute;left:96px;right:96px;top:64px;display:flex;justify-content:space-between;font-size:20px;color:var(--ink-soft);z-index:5}
+.hud b{color:var(--ink);font-weight:600}
+.hud-foot{top:auto;bottom:56px}
+.rec{display:inline-flex;align-items:center;gap:10px}
+.rec i{width:12px;height:12px;border-radius:50%;background:var(--alert);display:inline-block}
+
+/* S0 — ouverture */
+#s0 .eyebrow{position:absolute;left:140px;top:250px;font-size:26px;color:var(--ink-soft)}
+#s0 h1{position:absolute;left:132px;top:300px;margin:0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.84;font-size:250px;letter-spacing:-.005em}
+#s0 h1 .line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.12em}
+#s0 h1 .line>span{display:inline-block}
+#s0 .ia{position:relative;display:inline-block;color:var(--ink)}
+#s0 .date{position:absolute;left:140px;top:830px;display:flex;gap:28px;align-items:center;font-size:30px}
+#s0 .date .pill{border:2px solid var(--ink);padding:10px 20px}
+#s0 .date .tag{color:var(--alert);font-weight:600}
+
+/* S1 — voix clonée */
+#s1 .left{position:absolute;left:140px;top:210px;width:900px}
+#s1 .kicker{font-size:24px;color:var(--alert);font-weight:600}
+#s1 blockquote{margin:28px 0 0;font-family:var(--f-display);font-weight:800;font-size:112px;line-height:.95;text-transform:uppercase;text-wrap:balance}
+#s1 .caption{margin-top:44px;font-size:34px;line-height:1.35;max-width:780px;color:var(--ink-soft)}
+#s1 .caption strong{color:var(--ink)}
+.phone{position:absolute;right:150px;top:200px;width:600px;height:680px;background:var(--ink);color:var(--paper);padding:44px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px}
+.phone .who{font-family:var(--f-display);font-size:64px;font-weight:800;text-transform:uppercase;line-height:1}
+.phone .meta{font-size:20px;color:#9FB3C2}
+.wave{flex:1;display:flex;align-items:center;gap:6px}
+.wave i{flex:1;background:var(--paper);border-radius:3px;height:20px}
+.phone .match{display:flex;justify-content:space-between;font-size:22px}
+.phone .match b{color:#FF8A7E}
+.phone .meterbar{height:10px;background:#2A3E52}
+.phone .meterbar span{display:block;height:100%;width:0;background:#FF8A7E}
+.stamp{position:absolute;right:250px;top:420px;border:10px solid var(--alert);color:var(--alert);font-family:var(--f-display);font-weight:900;font-size:120px;line-height:1;padding:10px 34px 18px;text-transform:uppercase;opacity:0;mix-blend-mode:multiply;background:rgba(229,234,225,.55)}
+
+/* S2 — deepfake visio */
+#face{position:absolute;left:150px;top:150px;width:640px;height:780px}
+.facehud{position:absolute;left:150px;top:150px;width:640px;height:780px;border:2px solid var(--ink);box-sizing:border-box}
+.facehud .c{position:absolute;font-size:18px;color:var(--ink-soft);padding:12px 16px}
+.facehud .tl{left:0;top:0}.facehud .tr{right:0;top:0;color:var(--synth-b);font-weight:600}
+.facehud .bl{left:0;bottom:0}.facehud .br{right:0;bottom:0}
+#s2 .right{position:absolute;left:900px;top:220px;width:880px}
+#s2 .kicker{font-size:24px;color:var(--alert);font-weight:600}
+#s2 .count{font-family:var(--f-display);font-weight:900;font-size:186px;line-height:.9;margin:20px 0 10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#s2 .count small{font-size:.5em}
+#s2 p{font-size:38px;line-height:1.32;margin:0;max-width:820px;text-wrap:pretty}
+#s2 p em{font-style:normal;background:linear-gradient(transparent 62%, rgba(212,30,126,.28) 62%)}
+#s2 .src{margin-top:34px;font-size:18px;color:var(--ink-soft)}
+
+/* S3 — hameçonnage généré */
+#s3 .head{position:absolute;left:140px;top:150px;font-family:var(--f-display);font-weight:900;font-size:120px;line-height:.9;text-transform:uppercase;width:1640px}
+#s3 .head span{color:var(--alert)}
+.mail{position:absolute;left:140px;top:420px;width:1060px;background:#F6F8F4;border:2px solid var(--ink);box-shadow:16px 16px 0 var(--paper-deep);font-size:28px}
+.mail .bar{display:flex;gap:10px;padding:16px 20px;border-bottom:2px solid var(--ink);background:var(--ink)}
+.mail .bar i{width:14px;height:14px;border-radius:50%;background:var(--paper-deep);display:block}
+.mail .row{padding:14px 30px;border-bottom:1px solid var(--paper-deep);display:flex;gap:18px}
+.mail .row .k{width:90px;color:var(--ink-soft);font-family:var(--f-mono);font-size:20px;padding-top:6px;flex:none}
+.mail .body{padding:26px 30px 34px;line-height:1.45;min-height:230px}
+.mail .btn{display:inline-block;margin-top:18px;background:var(--ink);color:var(--paper);padding:12px 26px;font-weight:600}
+.notes{position:absolute;left:1260px;top:430px;display:flex;flex-direction:column;gap:22px;width:540px}
+.note{display:flex;gap:18px;align-items:flex-start;opacity:0}
+.note .n{flex:none;font-family:var(--f-mono);font-size:20px;background:var(--synth-b);color:#fff;padding:6px 10px;margin-top:4px}
+.note .t{font-size:30px;line-height:1.2}
+.note .t small{display:block;font-size:22px;color:var(--ink-soft);margin-top:4px}
+
+/* S4 — réflexes */
+#s4 .title{position:absolute;left:140px;top:150px;font-family:var(--f-display);font-weight:900;font-size:140px;line-height:.9;text-transform:uppercase}
+#s4 .title small{display:block;font-family:var(--f-mono);font-weight:500;font-size:24px;letter-spacing:.08em;color:var(--alert);margin-bottom:16px}
+.rules{position:absolute;left:140px;right:140px;top:420px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.rule{border-top:6px solid var(--ink);padding-top:26px;opacity:0}
+.rule .num{font-family:var(--f-display);font-weight:900;font-size:150px;line-height:.8;color:var(--alert)}
+.rule h3{font-family:var(--f-display);font-weight:800;font-size:70px;text-transform:uppercase;line-height:.95;margin:22px 0 16px}
+.rule p{font-size:30px;line-height:1.35;margin:0;color:var(--ink-soft)}
+
+/* S5 — éthique / signature */
+#s5 .l1,#s5 .l2{position:absolute;left:140px;font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.86;font-size:188px}
+#s5 .l1{top:170px}
+#s5 .l2{top:370px;color:var(--alert)}
+#s5 .motto{position:absolute;left:146px;top:640px;display:flex;gap:40px;font-family:var(--f-display);font-weight:800;font-size:96px;text-transform:uppercase}
+#s5 .motto span{opacity:0}
+#s5 .motto span::after{content:"·";margin-left:40px;color:var(--ink-soft)}
+#s5 .motto span:last-child::after{content:none}
+#s5 .sign{position:absolute;left:146px;right:140px;top:850px;display:flex;justify-content:space-between;align-items:flex-end;border-top:3px solid var(--ink);padding-top:24px;font-size:28px;opacity:0}
+#s5 .sign b{font-family:var(--f-display);font-size:56px;font-weight:900;letter-spacing:.01em}
+
+/* transport */
+.transport{width:min(100%, calc((100dvh - 120px) * 16 / 9));max-width:100%;display:flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:13px;color:#9FB3C2}
+.transport button{flex:none;background:transparent;color:var(--paper);border:1px solid var(--frame-line);height:36px;min-width:36px;padding:0 12px;font:inherit;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.transport button:hover{border-color:var(--paper)}
+.transport button:focus-visible,#bar:focus-visible{outline:2px solid var(--synth-a);outline-offset:2px}
+#bar{position:relative;flex:1;min-width:0;height:36px;cursor:pointer;touch-action:none}
+#bar::before{content:"";position:absolute;left:0;right:0;top:17px;height:2px;background:var(--frame-line)}
+#fill{position:absolute;left:0;top:17px;height:2px;background:var(--paper);width:0}
+.tick{position:absolute;top:12px;width:1px;height:12px;background:var(--frame-line)}
+#time{flex:none;font-variant-numeric:tabular-nums;min-width:96px;text-align:right}
+body.capture{padding:0;gap:0}
+body.capture .transport{display:none}
+body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
+@media (max-width:520px){.transport .lbl{display:none}}
+</style>
+</head>
+<body>
+
+<div class="viewport" id="vp">
+  <div class="stage" id="stage" aria-label="Animation : la fraude à l'ère de l'IA">
+    <canvas id="bg" width="1920" height="1080"></canvas>
+
+    <div class="hud mono"><span>Semaine internationale de sensibilisation à la fraude</span><span class="rec"><i></i><b id="hudscene">Ouverture</b></span></div>
+    <div class="hud hud-foot mono"><span>Dossier n° IFAW-2026 · Fraude &amp; éthique</span><span id="hudtc">00:00:00</span></div>
+
+    <section class="scene" id="s0">
+      <div class="eyebrow mono">15 → 21 novembre 2026</div>
+      <h1><span class="line"><span>La fraude</span></span><span class="line"><span>à l'ère de l'<span class="ia" id="ia">IA</span></span></span></h1>
+      <div class="date mono"><span class="pill">Fraud Week 2026</span><span>Fraude &amp; éthique</span><span class="tag">Rien n'est plus ce qu'il paraît</span></div>
+    </section>
+
+    <section class="scene" id="s1">
+      <div class="left">
+        <div class="kicker mono">Menace 01 · Clonage vocal</div>
+        <blockquote id="quote"></blockquote>
+        <div class="caption">Quelques secondes de votre voix publiées en ligne suffisent à l'IA pour l'imiter. <strong>Le ton, l'accent, l'urgence&nbsp;: tout y est.</strong></div>
+      </div>
+      <div class="phone">
+        <div class="meta mono">Appel entrant · numéro masqué</div>
+        <div class="who">Directeur<br>général</div>
+        <div class="wave" id="wave"></div>
+        <div class="match mono"><span>Analyse de la voix</span><b id="match">0 %</b></div>
+        <div class="meterbar"><span id="meter"></span></div>
+        <div class="meta mono" id="verdict">Signature vocale : en cours…</div>
+      </div>
+      <div class="stamp" id="stamp">Voix clonée</div>
+    </section>
+
+    <section class="scene" id="s2">
+      <canvas id="face" width="640" height="780"></canvas>
+      <div class="facehud mono">
+        <span class="c tl">Visio · 6 participants</span><span class="c tr" id="facetag">Synthèse active</span>
+        <span class="c bl">Points du visage <span id="lm">0</span>/68</span><span class="c br">Sync. lèvres ✓</span>
+      </div>
+      <div class="right">
+        <div class="kicker mono">Menace 02 · Deepfake vidéo</div>
+        <div class="count"><span id="count">0</span><small>&nbsp;$</small></div>
+        <p>virés par un employé après une visioconférence où son <em>directeur financier et ses collègues</em> étaient tous des deepfakes.</p>
+        <div class="src mono">Hong Kong, janvier 2024 · environ 25 millions de dollars US</div>
+      </div>
+    </section>
+
+    <section class="scene" id="s3">
+      <div class="head">L'IA écrit sans fautes.<br><span>Le piège reste le même.</span></div>
+      <div class="mail">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="row"><span class="k">De</span><span>Service Conformité &lt;conformite@votre-banque-securite.com&gt;</span></div>
+        <div class="row"><span class="k">Objet</span><strong id="subj"></strong></div>
+        <div class="body"><span id="mbody"></span><br><span class="btn" id="mbtn" style="opacity:0">Confirmer mes informations</span></div>
+      </div>
+      <div class="notes">
+        <div class="note"><span class="n">A</span><span class="t">Zéro faute, ton officiel<small>L'orthographe ne trahit plus le fraudeur.</small></span></div>
+        <div class="note"><span class="n">B</span><span class="t">Domaine imité<small>« banque-securite » n'est pas votre banque.</small></span></div>
+        <div class="note"><span class="n">C</span><span class="t">Urgence fabriquée<small>Un délai court sert à vous empêcher de vérifier.</small></span></div>
+        <div class="note"><span class="n">D</span><span class="t">Personnalisé à grande échelle<small>Votre nom, votre poste, votre actualité.</small></span></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s4">
+      <div class="title"><small>Contre-mesures humaines</small>Trois réflexes</div>
+      <div class="rules">
+        <div class="rule"><div class="num">1</div><h3>Ralentir</h3><p>L'urgence est l'arme du fraudeur. Une vraie demande supporte dix minutes d'attente.</p></div>
+        <div class="rule"><div class="num">2</div><h3>Vérifier ailleurs</h3><p>Rappelez sur un numéro connu, jamais celui du message. Convenez d'un mot de passe d'équipe.</p></div>
+        <div class="rule"><div class="num">3</div><h3>Signaler</h3><p>Prévenez la conformité, même après coup. Un signalement rapide protège les collègues.</p></div>
+      </div>
+    </section>
+
+    <section class="scene" id="s5">
+      <div class="l1" id="l1">L'IA imite tout.</div>
+      <div class="l2" id="l2">Sauf votre intégrité.</div>
+      <div class="motto"><span>Doutez</span><span>Vérifiez</span><span>Signalez</span></div>
+      <div class="sign"><div><b>#FraudWeek</b><br><span class="mono" style="font-size:20px;color:var(--ink-soft)">Semaine internationale de sensibilisation à la fraude</span></div><div class="mono">15 – 21 novembre 2026</div></div>
+    </section>
+  </div>
+</div>
+
+<div class="transport">
+  <button type="button" id="play" aria-label="Pause">Pause</button>
+  <button type="button" id="restart" aria-label="Revoir depuis le début"><span class="lbl">Revoir</span><span aria-hidden="true"> ↺</span></button>
+  <div id="bar" role="slider" tabindex="0" aria-label="Position dans l'animation" aria-valuemin="0" aria-valuemax="34" aria-valuenow="0"><div id="fill"></div></div>
+  <span id="time">00:00 / 00:34</span>
+</div>
+
+<script>
+(() => {
+  const DUR = 34;
+  const SCENES = [
+    {id:'s0', a:0,    b:5.2,  name:'Ouverture'},
+    {id:'s1', a:5.0,  b:11.4, name:'Voix clonée'},
+    {id:'s2', a:11.2, b:17.6, name:'Deepfake vidéo'},
+    {id:'s3', a:17.4, b:23.6, name:'Hameçonnage IA'},
+    {id:'s4', a:23.4, b:28.6, name:'Réflexes'},
+    {id:'s5', a:28.4, b:34,   name:'Éthique'}
+  ];
+  const $ = s => document.getElementById(s);
+  const clamp = (v,a=0,b=1) => Math.min(b, Math.max(a, v));
+  const seg = (t,a,b) => clamp((t-a)/(b-a));
+  const eo = x => 1 - Math.pow(1-x, 3);
+  const eio = x => x<.5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2;
+  const back = x => { const c=1.9; return 1 + (c+1)*Math.pow(x-1,3) + c*Math.pow(x-1,2); };
+  const rnd = n => { const x = Math.sin(n*127.1 + 311.7)*43758.5453; return x - Math.floor(x); };
+  const css = getComputedStyle(document.documentElement);
+  const C = k => css.getPropertyValue(k).trim();
+  const INK=C('--ink'), PAPER=C('--paper'), SB=C('--synth-b'), SA=C('--synth-a'), ALERT=C('--alert');
+
+  // ---------- fond : rosette guillochée + copie IA ----------
+  const bg = $('bg'), g = bg.getContext('2d');
+  const boundaries = SCENES.slice(1).map(s => s.a + .2);
+  function glitchAt(t){
+    let v = 0;
+    for (const b of boundaries) v += Math.exp(-Math.pow((t-b)/.16, 2));
+    if (t > 1.2 && t < 5) v += .55 * Math.exp(-Math.pow((t-2.1)/.12,2)) + .4*Math.exp(-Math.pow((t-3.6)/.1,2));
+    return clamp(v, 0, 1.2);
+  }
+  function rosette(cx, cy, t, color, alpha, dx, dy, rot){
+    g.strokeStyle = color; g.globalAlpha = alpha; g.lineWidth = 1.1;
+    const N = 22, steps = 520;
+    for (let i=0;i<N;i++){
+      const ph = i/N*Math.PI*2/9 + t*.05 + rot;
+      g.beginPath();
+      for (let k=0;k<=steps;k++){
+        const th = k/steps*Math.PI*2;
+        const r = 330 + 70*Math.sin(9*th + ph) + 34*Math.sin(4*th - ph*2.0) + i*5;
+        const x = cx + dx + r*Math.cos(th), y = cy + dy + r*Math.sin(th);
+        k ? g.lineTo(x,y) : g.moveTo(x,y);
+      }
+      g.stroke();
+    }
+    g.globalAlpha = 1;
+  }
+  function bands(t, y0, color, alpha){
+    g.strokeStyle = color; g.globalAlpha = alpha; g.lineWidth = 1;
+    for (let i=0;i<9;i++){
+      g.beginPath();
+      for (let x=0;x<=1920;x+=8){
+        const y = y0 + i*3 + 9*Math.sin(x/46 + i*.55 + t*.6) + 5*Math.sin(x/17 - i*.3);
+        x ? g.lineTo(x,y) : g.moveTo(x,y);
+      }
+      g.stroke();
+    }
+    g.globalAlpha = 1;
+  }
+  function drawBg(t){
+    g.fillStyle = PAPER; g.fillRect(0,0,1920,1080);
+    // position de la rosette par scène (elle « suit » la composition)
+    const pos = [[1560,560],[1460,560],[1640,520],[1700,540],[1720,250],[1580,560]];
+    let cx=0, cy=0, wsum=0;
+    SCENES.forEach((s,i)=>{ const w = vis(t,s)+.0001; cx += pos[i][0]*w; cy += pos[i][1]*w; wsum += w; });
+    cx/=wsum; cy/=wsum;
+    // la copie IA converge vers l'original au fil du film
+    const conv = eio(seg(t, 0, 31));
+    const off = 46*(1-conv) + 2;
+    rosette(cx, cy, t, INK, .16, 0, 0, 0);
+    rosette(cx, cy, t, SB, .22*(1 - .7*seg(t,31,33.5)), off*Math.cos(t*.7), off*Math.sin(t*.9), .03*(1-conv));
+    bands(t, 120, INK, .13);
+    bands(t, 960, INK, .13);
+    // glitch : décalage de bandes horizontales
+    const gl = glitchAt(t);
+    if (gl > .05){
+      const f = Math.floor(t*30);
+      for (let k=0;k<10;k++){
+        const y = rnd(f*13+k)*1080, h = 8 + rnd(f*7+k*3)*70, dx = (rnd(f*5+k*11)-.5)*260*gl;
+        g.drawImage(bg, 0, y, 1920, h, dx, y, 1920, h);
+        if (rnd(f+k*17) > .6){ g.globalAlpha = .18*gl; g.fillStyle = rnd(f*3+k) > .5 ? SB : SA; g.fillRect(0,y,1920,h*.4); g.globalAlpha=1; }
+      }
+    }
+    return gl;
+  }
+
+  // ---------- visibilité des scènes ----------
+  function vis(t, s){
+    const fin = s.a === 0 ? 1 : seg(t, s.a, s.a+.45);
+    const fout = s.b >= DUR ? 1 - seg(t, DUR-.5, DUR) : 1 - seg(t, s.b-.45, s.b);
+    return clamp(Math.min(fin, fout));
+  }
+
+  // ---------- typing helper ----------
+  function typeInto(el, text, p, caret){
+    const n = Math.round(text.length * clamp(p));
+    if (el._n === n && el._c === caret) return;
+    el._n = n; el._c = caret;
+    el.innerHTML = '';
+    el.append(document.createTextNode(text.slice(0,n)));
+    if (caret){ const c = document.createElement('span'); c.className='caret'; el.append(c); }
+    const gh = document.createElement('span'); gh.className='ghost'; gh.textContent = text.slice(n); el.append(gh);
+  }
+
+  // ---------- S1 setup ----------
+  const wave = $('wave');
+  const BARS = 40;
+  for (let i=0;i<BARS;i++) wave.append(document.createElement('i'));
+  const QUOTE = "« Allô, c'est moi. Il me faut un virement urgent. Restez discret. »";
+
+  // ---------- S2 visage en points ----------
+  const fc = $('face').getContext('2d');
+  const FW=640, FH=780, FX=320, FY=380;
+  const dots = [];
+  for (let y=40;y<FH-40;y+=15){
+    for (let x=40;x<FW-40;x+=15){
+      const nx=(x-FX)/215, ny=(y-FY)/290;
+      const d = nx*nx + ny*ny;
+      if (d > 1) continue;
+      const eye = (((x-238)/40)**2 + ((y-330)/17)**2 < 1) || (((x-402)/40)**2 + ((y-330)/17)**2 < 1);
+      const mouth = ((x-FX)/78)**2 + ((y-540)/15)**2 < 1;
+      const brow = (Math.abs(y-292)<7 && ((x>195&&x<285)||(x>355&&x<445)));
+      let shade = .35 + .65*(1-d);
+      shade += .35*Math.exp(-(((x-FX)/26)**2)) * (y>320 && y<470 ? 1:0); // arête du nez
+      if (eye||mouth||brow) shade = 1.6;
+      dots.push({x,y,shade,feat:eye||mouth||brow});
+    }
+  }
+  const LM = [[110,330],[130,470],[175,590],[245,665],[320,690],[395,665],[465,590],[510,470],[530,330],
+              [200,292],[285,292],[355,292],[440,292],[238,330],[402,330],[320,330],[320,450],[285,470],[355,470],[242,540],[320,525],[398,540],[320,560]];
+  const EDGES = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[9,10],[11,12],[13,15],[15,14],[15,16],[16,17],[16,18],[17,19],[18,21],[19,20],[20,21],[19,22],[22,21],[13,17],[14,18],[0,13],[8,14],[10,15],[11,15],[2,19],[6,21],[4,22]];
+  function drawFace(lt){
+    fc.clearRect(0,0,FW,FH);
+    const scan = 60 + (FH-120)*eio(seg(lt, .2, 3.4));
+    const breathe = 1 + .012*Math.sin(lt*3);
+    const f = Math.floor(lt*24);
+    const glitchy = (lt>3.8 && lt<4.3) || (lt>5.2 && lt<5.4);
+    for (const p of dots){
+      let x = FX + (p.x-FX)*breathe, y = FY + (p.y-FY)*breathe;
+      if (glitchy && rnd(Math.floor(y/40)+f) > .7) x += (rnd(f+y)-.5)*60;
+      const done = y < scan;
+      const r = p.feat ? 2 : 1.2 + 2.6*clamp(p.shade-.3);
+      if (done){
+        fc.fillStyle = SB; fc.globalAlpha = .55; fc.beginPath(); fc.arc(x+3,y,r,0,7); fc.fill();
+        fc.fillStyle = SA; fc.globalAlpha = .55; fc.beginPath(); fc.arc(x-3,y,r,0,7); fc.fill();
+        fc.globalAlpha = 1; fc.fillStyle = INK; fc.beginPath(); fc.arc(x,y,r*.75,0,7); fc.fill();
+      } else {
+        fc.fillStyle = INK; fc.globalAlpha = .35; fc.beginPath(); fc.arc(x,y,r*.8,0,7); fc.fill(); fc.globalAlpha = 1;
+      }
+    }
+    // maillage des repères
+    const m = seg(lt, 1.6, 3.8);
+    fc.strokeStyle = SB; fc.lineWidth = 1.5;
+    EDGES.forEach((e,i)=>{
+      const a = clamp(m*EDGES.length - i);
+      if (a<=0) return;
+      const p = LM[e[0]], q = LM[e[1]];
+      fc.globalAlpha = .8*a;
+      fc.beginPath();
+      fc.moveTo(FX+(p[0]-FX)*breathe, FY+(p[1]-FY)*breathe);
+      fc.lineTo(FX+(p[0]-FX)*breathe + (q[0]-p[0])*breathe*a, FY+(p[1]-FY)*breathe + (q[1]-p[1])*breathe*a);
+      fc.stroke();
+    });
+    fc.globalAlpha = 1;
+    LM.forEach((p,i)=>{
+      if (p[1]*breathe > scan) return;
+      fc.fillStyle = SB; fc.fillRect(FX+(p[0]-FX)*breathe-4, FY+(p[1]-FY)*breathe-4, 8, 8);
+    });
+    // ligne de balayage
+    if (lt < 3.6){
+      fc.fillStyle = SA; fc.globalAlpha = .9; fc.fillRect(0, scan, FW, 2);
+      fc.globalAlpha = .12; fc.fillRect(0, scan-40, FW, 40); fc.globalAlpha = 1;
+    }
+    return Math.round(68*seg(lt,.2,3.4));
+  }
+  const nf = new Intl.NumberFormat('fr-FR');
+
+  // ---------- rendu d'une image ----------
+  const els = SCENES.map(s => $(s.id));
+  const notes = [...document.querySelectorAll('.note')];
+  const rules = [...document.querySelectorAll('.rule')];
+  const motto = [...document.querySelectorAll('#s5 .motto span')];
+  const SUBJ = "Action requise sous 24 h : mise à jour de vos coordonnées";
+  const BODY = "Bonjour Mme Kouassi, suite au contrôle réglementaire du 12 novembre, votre accès sera suspendu si vos informations ne sont pas confirmées avant demain 17 h.";
+
+  function render(t){
+    t = ((t % DUR) + DUR) % DUR;
+    const gl = drawBg(t);
+    let current = SCENES[0];
+    SCENES.forEach((s,i)=>{
+      const v = vis(t,s);
+      const el = els[i];
+      el.style.opacity = v.toFixed(3);
+      el.style.visibility = v > 0.001 ? 'visible' : 'hidden';
+      const jit = gl > .2 ? (rnd(Math.floor(t*30)+i)-.5)*30*gl : 0;
+      el.style.transform = `translateX(${jit.toFixed(1)}px)`;
+      if (v > .5) current = s;
+    });
+    $('hudscene').textContent = current.name;
+    const fr = Math.floor((t%1)*25);
+    $('hudtc').textContent = `00:${String(Math.floor(t)).padStart(2,'0')}:${String(fr).padStart(2,'0')}`;
+
+    // S0
+    if (t < 5.4){
+      const lines = document.querySelectorAll('#s0 h1 .line>span');
+      lines.forEach((l,i)=>{ const p = eo(seg(t, .15+i*.35, .95+i*.35)); l.style.transform = `translateY(${(1-p)*105}%)`; });
+      const ia = $('ia');
+      const gi = glitchAt(t) + (t>1.4 && t<5 ? .25*(rnd(Math.floor(t*12))>.75?1:0) : 0);
+      const ox = gi*14*(rnd(Math.floor(t*30))-.3);
+      ia.style.textShadow = gi>.05 ? `${ox}px 0 ${SB}, ${-ox}px 0 ${SA}` : 'none';
+      ia.style.transform = gi>.3 ? `translateX(${(rnd(Math.floor(t*40))-.5)*30}px) skewX(${(rnd(Math.floor(t*40)+3)-.5)*20}deg)` : 'none';
+      document.querySelector('#s0 .eyebrow').style.opacity = seg(t,.1,.6);
+      document.querySelector('#s0 .date').style.opacity = seg(t,1.3,1.9);
+      document.querySelector('#s0 .date').style.transform = `translateY(${(1-eo(seg(t,1.3,1.9)))*30}px)`;
+    }
+    // S1
+    if (t > 4.8 && t < 11.6){
+      const lt = t - 5;
+      const tp = seg(lt, .5, 3.6);
+      typeInto($('quote'), QUOTE, tp, tp < 1 && Math.floor(t*3)%2===0 || (tp>0 && tp<1));
+      const talking = tp > 0 && tp < 1;
+      [...wave.children].forEach((b,i)=>{
+        const n = Math.abs(Math.sin(i*.71 + t*9.3) * Math.sin(i*.23 - t*4.1) + .35*Math.sin(i*1.9 + t*15));
+        const env = talking ? 1 : .08;
+        b.style.height = (14 + 300*n*env).toFixed(1)+'px';
+        b.style.background = lt > 4 ? '#FF8A7E' : PAPER;
+      });
+      const mp = eo(seg(lt, 1, 3.9));
+      $('match').textContent = (98.7*mp).toFixed(1).replace('.',',') + ' %';
+      $('meter').style.width = (98.7*mp)+'%';
+      $('verdict').textContent = lt > 4 ? 'Correspondance trop parfaite : voix synthétique' : 'Signature vocale : en cours…';
+      const sp = seg(lt, 4.0, 4.35);
+      const st = $('stamp');
+      st.style.opacity = sp > 0 ? 1 : 0;
+      st.style.transform = `rotate(-9deg) scale(${(1.7 - .7*eo(sp)).toFixed(3)})`;
+    }
+    // S2
+    if (t > 11 && t < 17.8){
+      const lt = t - 11.2;
+      $('lm').textContent = drawFace(lt);
+      const cp = eo(seg(lt, .6, 3.4));
+      $('count').textContent = nf.format(Math.round(25000000*cp/1000)*1000);
+      $('facetag').textContent = lt > 3.6 ? 'Deepfake détecté' : 'Synthèse active';
+      $('facetag').style.color = lt > 3.6 ? ALERT : SB;
+      const pr = document.querySelector('#s2 .right');
+      pr.style.transform = `translateY(${(1-eo(seg(lt,.1,.8)))*40}px)`;
+    }
+    // S3
+    if (t > 17.2 && t < 23.8){
+      const lt = t - 17.4;
+      const sp = seg(lt, .4, 1.6), bp = seg(lt, 1.6, 4.0);
+      typeInto($('subj'), SUBJ, sp, sp>0 && sp<1);
+      typeInto($('mbody'), BODY, bp, bp>0 && bp<1);
+      $('mbtn').style.opacity = seg(lt, 4.0, 4.3);
+      notes.forEach((n,i)=>{ const p = eo(seg(lt, 1.4 + i*.8, 1.9 + i*.8)); n.style.opacity = p; n.style.transform = `translateX(${(1-p)*60}px)`; });
+      const hd = document.querySelector('#s3 .head');
+      hd.style.transform = `translateY(${(1-eo(seg(lt,0,.6)))*40}px)`;
+    }
+    // S4
+    if (t > 23.2 && t < 28.8){
+      const lt = t - 23.4;
+      rules.forEach((r,i)=>{ const p = eo(seg(lt, .6 + i*.7, 1.3 + i*.7)); r.style.opacity = p; r.style.transform = `translateY(${(1-p)*60}px)`; });
+      document.querySelector('#s4 .title').style.transform = `translateY(${(1-eo(seg(lt,0,.6)))*40}px)`;
+    }
+    // S5
+    if (t > 28.2){
+      const lt = t - 28.4;
+      const p1 = eo(seg(lt,.2,.9)), p2 = back(seg(lt,1.1,1.7));
+      const l1 = $('l1'), l2 = $('l2');
+      l1.style.opacity = p1; l1.style.transform = `translateY(${(1-p1)*50}px)`;
+      // « l'IA imite tout » : glitch résiduel, « sauf votre intégrité » : net, stable
+      const gx = lt < 1.1 ? (rnd(Math.floor(t*30))-.5)*10 : 0;
+      l1.style.textShadow = lt < 1.1 ? `${gx}px 0 ${SB}, ${-gx}px 0 ${SA}` : 'none';
+      l2.style.opacity = clamp(seg(lt,1.1,1.4)); l2.style.transform = `translateY(${(1-p2)*60}px)`;
+      motto.forEach((m,i)=>{ const p = eo(seg(lt, 2.2+i*.35, 2.7+i*.35)); m.style.opacity = p; m.style.transform = `translateY(${(1-p)*30}px)`; m.style.display='inline-block'; });
+      const sg = document.querySelector('#s5 .sign'); sg.style.opacity = seg(lt, 3.4, 4);
+    }
+  }
+
+  // ---------- mise à l'échelle ----------
+  const vp = $('vp'), stage = $('stage');
+  function fit(){ stage.style.transform = `scale(${vp.clientWidth/1920})`; }
+  new ResizeObserver(fit).observe(vp); fit();
+
+  // ---------- transport ----------
+  const capture = location.hash === '#capture';
+  if (capture) document.body.classList.add('capture');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t = 0, playing = !reduce && !capture, last = null;
+  const bar = $('bar'), fill = $('fill'), playBtn = $('play');
+  SCENES.slice(1).forEach(s=>{ const k = document.createElement('div'); k.className='tick'; k.style.left = (s.a/DUR*100)+'%'; bar.append(k); });
+  const mmss = s => `00:${String(Math.floor(s)).padStart(2,'0')}`;
+  function ui(){
+    fill.style.width = (t/DUR*100)+'%';
+    $('time').textContent = `${mmss(t)} / ${mmss(DUR)}`;
+    bar.setAttribute('aria-valuenow', Math.floor(t));
+    playBtn.textContent = playing ? 'Pause' : 'Lecture';
+    playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Lecture');
+  }
+  function frame(now){
+    if (playing){
+      if (last != null) t = (t + (now-last)/1000) % DUR;
+      last = now;
+    } else last = null;
+    render(t); ui();
+    requestAnimationFrame(frame);
+  }
+  playBtn.onclick = () => { playing = !playing; };
+  $('restart').onclick = () => { t = 0; playing = true; };
+  function seekFromEvent(e){ const r = bar.getBoundingClientRect(); t = clamp((e.clientX - r.left)/r.width)*DUR*.9999; }
+  bar.addEventListener('pointerdown', e => { bar.setPointerCapture(e.pointerId); seekFromEvent(e); bar._drag = true; });
+  bar.addEventListener('pointermove', e => { if (bar._drag) seekFromEvent(e); });
+  bar.addEventListener('pointerup', () => { bar._drag = false; });
+  bar.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') t = Math.min(DUR-.01, t+1);
+    else if (e.key === 'ArrowLeft') t = Math.max(0, t-1);
+    else return;
+    e.preventDefault();
+  });
+  document.addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body){ e.preventDefault(); playing = !playing; } });
+  if (reduce) t = 30.6; // mouvement réduit : on s'arrête sur l'image de signature
+  window.__render = tt => { render(tt); };
+  window.__DUR = DUR;
+  if (!capture) requestAnimationFrame(frame); else render(0);
+})();
+</script>
+</body>
+</html>
