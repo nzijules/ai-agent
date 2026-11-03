@@ -1,8 +1,13 @@
-"""Sous-titres (SRT + ASS) depuis src/timing.ts : découpage en cartons de 2 lignes max, calés sur la voix-off."""
+"""Sous-titres (SRT + ASS) depuis src/timing.ts (ou un JSON de segments : build_subs.py <json> <décalage> <sortie>) : découpage en cartons de 2 lignes max, calés sur la voix-off."""
 import re, json
-src = open('src/timing.ts', encoding='utf-8').read()
-OFF = float(re.search(r'VO_OFFSET = ([\d.]+)', src).group(1))
-lines = [(float(a), float(b), t.replace("\\'", "'")) for a, b, t in re.findall(r"\{s: ([\d.]+), e: ([\d.]+), text: [\"'](.+?)[\"']\}", src)]
+import sys
+SRC, OFF, OUT = (sys.argv[1], float(sys.argv[2]), sys.argv[3]) if len(sys.argv) > 3 else (None, 0, 'out/sous-titres')
+if SRC:
+    lines = [(x['s'], x['e'], x['text']) for x in json.load(open(SRC, encoding='utf-8'))]
+else:
+    src = open('src/timing.ts', encoding='utf-8').read()
+    OFF = float(re.search(r'VO_OFFSET = ([\d.]+)', src).group(1))
+    lines = [(float(a), float(b), t.replace("\\'", "'")) for a, b, t in re.findall(r"\{s: ([\d.]+), e: ([\d.]+), text: [\"'](.+?)[\"']\}", src)]
 MAXC = 84
 def split(text):
     if len(text) <= MAXC: return [text]
@@ -28,7 +33,7 @@ cues = [(a, min(b + 0.35, cues[i + 1][0] - 0.04) if i + 1 < len(cues) else b + 0
 def ts(x, sep=','):
     h, m = int(x // 3600), int(x % 3600 // 60); s = x % 60
     return f"{h:02d}:{m:02d}:{int(s):02d}{sep}{int(round((s % 1) * 1000)):03d}"
-with open('out/sous-titres.srt', 'w', encoding='utf-8') as f:
+with open(OUT + '.srt', 'w', encoding='utf-8') as f:
     for i, (a, b, x) in enumerate(cues, 1): f.write(f"{i}\n{ts(a)} --> {ts(b)}\n{x}\n\n")
 def ats(x): return f"{int(x // 3600)}:{int(x % 3600 // 60):02d}:{x % 60:05.2f}"
 head = """[Script Info]
@@ -44,7 +49,7 @@ Style: Default,Inter,46,&H00FFFFFF,&H00FFFFFF,&H00000000,&H9A000000,-1,0,0,0,100
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
-with open('out/sous-titres.ass', 'w', encoding='utf-8') as f:
+with open(OUT + '.ass', 'w', encoding='utf-8') as f:
     f.write(head)
     for a, b, x in cues: f.write(f"Dialogue: 0,{ats(a)},{ats(b)},Default,,0,0,0,,{{\\fad(120,120)}}{x.replace(chr(10), chr(92) + 'N')}\n")
 print(len(cues), 'cartons')

@@ -1,0 +1,103 @@
+1
+00:00:01,200 --> 00:00:03,974
+L'intelligence artificielle
+transforme notre quotidien.
+
+2
+00:00:04,014 --> 00:00:06,087
+Elle transforme aussi la fraude.
+
+3
+00:00:06,537 --> 00:00:09,515
+Aujourd'hui, une voix peut être
+clonée en quelques secondes.
+
+4
+00:00:09,555 --> 00:00:11,579
+Un visage, imité en vidéo.
+
+5
+00:00:11,619 --> 00:00:14,274
+Une pièce d'identité, fabriquée en un clic.
+
+6
+00:00:14,314 --> 00:00:17,077
+Un message, rédigé sans la moindre faute.
+
+7
+00:00:17,427 --> 00:00:20,048
+Au téléphone, en agence ou
+sur nos canaux digitaux,
+
+8
+00:00:20,088 --> 00:00:23,031
+un fraudeur peut se faire passer
+pour un client, un collègue…
+
+9
+00:00:23,071 --> 00:00:24,546
+ou même un responsable.
+
+10
+00:00:24,796 --> 00:00:28,477
+Son objectif ne change pas : obtenir
+un remplacement de carte SIM,
+
+11
+00:00:28,517 --> 00:00:31,071
+une réinitialisation de
+code PIN Mobile Money,
+
+12
+00:00:31,111 --> 00:00:33,885
+ou la modification des données d'un client.
+
+13
+00:00:34,235 --> 00:00:37,771
+Face à l'IA, nos yeux et nos
+oreilles peuvent être trompés.
+
+14
+00:00:37,811 --> 00:00:40,325
+Nos procédures, elles, ne le sont pas.
+
+15
+00:00:40,775 --> 00:00:44,042
+Alors, vérifions toujours l'identité
+selon les procédures officielles,
+
+16
+00:00:44,082 --> 00:00:47,550
+jamais sur la seule base d'une
+voix, d'une image ou d'un document.
+
+17
+00:00:47,700 --> 00:00:52,106
+Méfions-nous de l'urgence et de la
+pression, même venant d'une voix familière.
+
+18
+00:00:52,256 --> 00:00:55,691
+Respectons chaque étape de
+validation, sans exception.
+
+19
+00:00:55,841 --> 00:00:58,877
+Et au moindre doute, suspendons
+l'opération et signalons-la.
+
+20
+00:00:59,327 --> 00:01:02,181
+La technologie évolue.
+Notre vigilance aussi.
+
+21
+00:01:02,631 --> 00:01:06,052
+Direction clientèle de MTN Côte
+d'Ivoire : face à la fraude,
+
+22
+00:01:06,092 --> 00:01:10,211
+même augmentée par l'IA, soyons
+la première ligne de défense.
+

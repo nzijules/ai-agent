@@ -1,0 +1,90 @@
+[
+ {
+  "id": "intro1",
+  "text": "L'intelligence artificielle transforme notre quotidien.",
+  "pause": 0.35
+ },
+ {
+  "id": "intro2",
+  "text": "Elle transforme aussi la fraude.",
+  "pause": 0.8
+ },
+ {
+  "id": "voix",
+  "text": "Aujourd'hui, une voix peut être clonée en quelques secondes.",
+  "pause": 0.35
+ },
+ {
+  "id": "visage",
+  "text": "Un visage, imité en vidéo.",
+  "pause": 0.3
+ },
+ {
+  "id": "piece",
+  "text": "Une pièce d'identité, fabriquée en un clic.",
+  "pause": 0.3
+ },
+ {
+  "id": "message",
+  "text": "Un message, rédigé sans la moindre faute.",
+  "pause": 0.7
+ },
+ {
+  "id": "canaux",
+  "text": "Au téléphone, en agence ou sur nos canaux digitaux,",
+  "pause": 0.15
+ },
+ {
+  "id": "imposteur",
+  "text": "un fraudeur peut se faire passer pour un client, un collègue… ou même un responsable.",
+  "pause": 0.6
+ },
+ {
+  "id": "objectif",
+  "text": "Son objectif ne change pas : obtenir un remplacement de carte SIM, une réinitialisation de code PIN Mobile Money, ou la modification des données d'un client.",
+  "pause": 0.7,
+  "say": "Son objectif ne change pas : obtenir un remplacement de carte simme, une réinitialisation de code pine, mobaïle moné, ou la modification des données d'un client."
+ },
+ {
+  "id": "sens",
+  "text": "Face à l'IA, nos yeux et nos oreilles peuvent être trompés.",
+  "pause": 0.3,
+  "say": "Face à l'i-a, nos yeux et nos oreilles peuvent être trompés."
+ },
+ {
+  "id": "procedures",
+  "text": "Nos procédures, elles, ne le sont pas.",
+  "pause": 0.8
+ },
+ {
+  "id": "r1",
+  "text": "Alors, vérifions toujours l'identité selon les procédures officielles, jamais sur la seule base d'une voix, d'une image ou d'un document.",
+  "pause": 0.5
+ },
+ {
+  "id": "r2",
+  "text": "Méfions-nous de l'urgence et de la pression, même venant d'une voix familière.",
+  "pause": 0.5
+ },
+ {
+  "id": "r3",
+  "text": "Respectons chaque étape de validation, sans exception.",
+  "pause": 0.5
+ },
+ {
+  "id": "r4",
+  "text": "Et au moindre doute, suspendons l'opération et signalons-la.",
+  "pause": 0.8
+ },
+ {
+  "id": "evolue",
+  "text": "La technologie évolue. Notre vigilance aussi.",
+  "pause": 0.8
+ },
+ {
+  "id": "final",
+  "text": "Direction clientèle de MTN Côte d'Ivoire : face à la fraude, même augmentée par l'IA, soyons la première ligne de défense.",
+  "pause": 0.0,
+  "say": "Direction clientèle de èm té èn Côte d'Ivoire : face à la fraude, même augmentée par l'i-a, soyons la première ligne de défense."
+ }
+]

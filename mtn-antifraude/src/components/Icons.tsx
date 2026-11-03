@@ -121,3 +121,46 @@ export const WarnBadge: React.FC<{p: number; size?: number; t: number}> = ({p, s
     <circle cx={50} cy={74} r={6} fill="#fff" opacity={p > 0.5 ? 1 : 0} />
   </svg>
 );
+
+export const EyeIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <path d="M6 50 C22 24 78 24 94 50 C78 76 22 76 6 50 Z" {...st(color, sw)} {...d(p)} />
+    <circle cx={50} cy={50} r={13} {...st(color, sw)} {...d(p)} />
+  </Svg>
+);
+export const EarIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <path d="M30 40 C30 16 74 12 76 40 C78 60 58 62 56 78 C54 92 34 92 32 80" {...st(color, sw)} {...d(p)} />
+    <path d="M44 42 C44 30 62 30 62 42 C62 50 52 52 52 58" {...st(color, sw)} {...d(Math.max(0, p * 1.5 - 0.5))} />
+  </Svg>
+);
+export const ChipIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 4}) => (
+  <Svg size={size}>
+    <rect x={24} y={24} width={52} height={52} rx={8} {...st(color, sw)} {...d(p)} />
+    <path d="M38 8 V24 M50 8 V24 M62 8 V24 M38 76 V92 M50 76 V92 M62 76 V92 M8 38 H24 M8 50 H24 M8 62 H24 M76 38 H92 M76 50 H92 M76 62 H92" {...st(color, sw)} {...d(p)} />
+    <path d="M38 62 L44 38 L50 62 M40 54 H48 M60 38 V62" {...st(color, sw)} {...d(Math.max(0, p * 1.6 - 0.6))} />
+  </Svg>
+);
+export const ClockIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <circle cx={50} cy={54} r={36} {...st(color, sw)} {...d(p)} />
+    <path d="M50 32 V54 L64 62 M40 8 H60 M50 8 V18" {...st(color, sw)} {...d(p)} />
+  </Svg>
+);
+export const ChatIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <path d="M10 18 H90 V68 H44 L24 86 V68 H10 Z" {...st(color, sw)} {...d(p)} />
+    <path d="M26 36 H74 M26 50 H60" {...st(color, sw)} {...d(Math.max(0, p * 1.5 - 0.5))} />
+  </Svg>
+);
+export const StoreIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <path d="M10 36 L18 12 H82 L90 36 Z M16 36 V90 H84 V36 M40 90 V62 H60 V90" {...st(color, sw)} {...d(p)} />
+  </Svg>
+);
+export const GlobeIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 5}) => (
+  <Svg size={size}>
+    <circle cx={50} cy={50} r={40} {...st(color, sw)} {...d(p)} />
+    <path d="M10 50 H90 M50 10 C30 30 30 70 50 90 C70 70 70 30 50 10" {...st(color, sw)} {...d(p)} />
+  </Svg>
+);

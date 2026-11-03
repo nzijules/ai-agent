@@ -1,0 +1,104 @@
+[
+ {
+  "id": "intro1",
+  "s": 0.0,
+  "e": 0.0,
+  "text": "L'intelligence artificielle transforme notre quotidien."
+ },
+ {
+  "id": "intro2",
+  "s": 0.35,
+  "e": 0.35,
+  "text": "Elle transforme aussi la fraude."
+ },
+ {
+  "id": "voix",
+  "s": 1.15,
+  "e": 1.15,
+  "text": "Aujourd'hui, une voix peut être clonée en quelques secondes."
+ },
+ {
+  "id": "visage",
+  "s": 1.5,
+  "e": 1.5,
+  "text": "Un visage, imité en vidéo."
+ },
+ {
+  "id": "piece",
+  "s": 1.8,
+  "e": 1.8,
+  "text": "Une pièce d'identité, fabriquée en un clic."
+ },
+ {
+  "id": "message",
+  "s": 2.1,
+  "e": 2.1,
+  "text": "Un message, rédigé sans la moindre faute."
+ },
+ {
+  "id": "canaux",
+  "s": 2.8,
+  "e": 2.8,
+  "text": "Au téléphone, en agence ou sur nos canaux digitaux,"
+ },
+ {
+  "id": "imposteur",
+  "s": 2.95,
+  "e": 2.95,
+  "text": "un fraudeur peut se faire passer pour un client, un collègue… ou même un responsable."
+ },
+ {
+  "id": "objectif",
+  "s": 3.55,
+  "e": 3.55,
+  "text": "Son objectif ne change pas : obtenir un remplacement de carte SIM, une réinitialisation de code PIN Mobile Money, ou la modification des données d'un client."
+ },
+ {
+  "id": "sens",
+  "s": 4.25,
+  "e": 4.25,
+  "text": "Face à l'IA, nos yeux et nos oreilles peuvent être trompés."
+ },
+ {
+  "id": "procedures",
+  "s": 4.55,
+  "e": 4.55,
+  "text": "Nos procédures, elles, ne le sont pas."
+ },
+ {
+  "id": "r1",
+  "s": 5.35,
+  "e": 5.35,
+  "text": "Alors, vérifions toujours l'identité selon les procédures officielles, jamais sur la seule base d'une voix, d'une image ou d'un document."
+ },
+ {
+  "id": "r2",
+  "s": 5.85,
+  "e": 5.85,
+  "text": "Méfions-nous de l'urgence et de la pression, même venant d'une voix familière."
+ },
+ {
+  "id": "r3",
+  "s": 6.35,
+  "e": 6.35,
+  "text": "Respectons chaque étape de validation, sans exception."
+ },
+ {
+  "id": "r4",
+  "s": 6.85,
+  "e": 6.85,
+  "text": "Et au moindre doute, suspendons l'opération et signalons-la."
+ },
+ {
+  "id": "evolue",
+  "s": 7.65,
+  "e": 7.65,
+  "text": "La technologie évolue. Notre vigilance aussi."
+ },
+ {
+  "id": "final",
+  "s": 8.45,
+  "e": 8.45,
+  "text": "Direction clientèle de MTN Côte d'Ivoire : face à la fraude, même augmentée par l'IA, soyons la première ligne de défense."
+ }
+]
