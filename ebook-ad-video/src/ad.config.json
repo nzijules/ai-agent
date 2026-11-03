@@ -1,0 +1,16 @@
+{
+  "_doc": "Paramètres commerciaux de la publicité. Modifiez ici puis relancez `npm run voiceover` (si le prix change) et `npm run render:all`.",
+  "title": "Apprendre à apprendre avec ChatGPT",
+  "author": "Jules N'ZI",
+  "authorRole": "Ingénieur en informatique",
+  "price": "10 000 FCFA",
+  "priceSpoken": "dix mille francs CFA",
+  "format": "Livre numérique (PDF)",
+  "ctaLabel": "Commandez votre exemplaire",
+  "contactLabel": "WhatsApp",
+  "contactValue": "+225 00 00 00 00 00",
+  "linkLabel": "Lien en bio",
+  "coverMode": "vector",
+  "officialCover": "images/couverture-officielle.jpg",
+  "photo": "images/parent-enfant.jpg"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "pub-apprendre-a-apprendre-avec-chatgpt",
+  "version": "1.0.0",
+  "description": "Publicité motion design — ebook « Apprendre à apprendre avec ChatGPT »",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "@remotion/fonts": "^4.0.540",
+    "@remotion/google-fonts": "^4.0.540",
+    "@remotion/media": "^4.0.540",
+    "@remotion/transitions": "^4.0.540",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.540",
+    "@types/react": "19.3.0",
+    "@types/web": "0.0.166",
+    "eslint": "10.12.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "audio": "python3 scripts/generate_audio.py",
+    "voiceover": "python3 scripts/generate_voiceover.py",
+    "render:vertical": "remotion render Pub-Verticale-VoixOff exports/pub-verticale-1080x1920-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:vertical-sans-voix": "remotion render Pub-Verticale-SansVoix exports/pub-verticale-1080x1920-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:carre": "remotion render Pub-Carree-VoixOff exports/pub-carree-1080x1080-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:carre-sans-voix": "remotion render Pub-Carree-SansVoix exports/pub-carree-1080x1080-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:all": "npm run render:vertical && npm run render:vertical-sans-voix && npm run render:carre && npm run render:carre-sans-voix"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}
