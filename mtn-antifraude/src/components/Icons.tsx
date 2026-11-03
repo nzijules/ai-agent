@@ -107,10 +107,10 @@ export const PauseIcon: React.FC<IP> = ({p = 1, size, color = '#111', sw = 6}) =
 );
 
 /** Coche qui se dessine dans un disque. */
-export const CheckBadge: React.FC<{p: number; size?: number; color?: string}> = ({p, size = 90, color = '#1FAF5A'}) => (
+export const CheckBadge: React.FC<{p: number; size?: number; color?: string; ink?: string}> = ({p, size = 90, color = '#1FAF5A', ink = '#fff'}) => (
   <svg viewBox="0 0 100 100" width={size} height={size} style={{overflow: 'visible'}}>
     <circle cx={50} cy={50} r={46} fill={color} transform={`scale(${Math.min(1, p * 2)})`} style={{transformOrigin: '50px 50px'}} />
-    <path d="M28 52 L44 67 L73 36" stroke="#fff" strokeWidth={10} fill="none" strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - Math.max(0, p * 2 - 1)} />
+    <path d="M28 52 L44 67 L73 36" stroke={ink} strokeWidth={10} fill="none" strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - Math.max(0, p * 2 - 1)} />
   </svg>
 );
 export const WarnBadge: React.FC<{p: number; size?: number; t: number}> = ({p, size = 90, t}) => (

@@ -1,0 +1,194 @@
+[
+ {
+  "id": "q1",
+  "s": 0.0,
+  "e": 4.23,
+  "text": "Et si la voix de votre responsable au téléphone… n'était pas vraiment la sienne ?"
+ },
+ {
+  "id": "ere",
+  "s": 4.79,
+  "e": 8.45,
+  "text": "Avec l'intelligence artificielle, la fraude entre dans une nouvelle ère."
+ },
+ {
+  "id": "voix",
+  "s": 9.08,
+  "e": 10.94,
+  "text": "Aujourd'hui, une voix peut être clonée."
+ },
+ {
+  "id": "visage",
+  "s": 11.47,
+  "e": 13.7,
+  "text": "Un visage peut être reproduit dans une vidéo."
+ },
+ {
+  "id": "piece",
+  "s": 14.13,
+  "e": 17.75,
+  "text": "Une pièce d'identité peut être falsifiée avec un réalisme troublant."
+ },
+ {
+  "id": "message",
+  "s": 18.27,
+  "e": 21.35,
+  "text": "Et un message frauduleux peut paraître parfaitement professionnel."
+ },
+ {
+  "id": "imaginez",
+  "s": 21.9,
+  "e": 22.6,
+  "text": "Imaginez…"
+ },
+ {
+  "id": "appel",
+  "s": 23.1,
+  "e": 24.85,
+  "text": "Un conseiller reçoit un appel urgent."
+ },
+ {
+  "id": "fil",
+  "s": 25.28,
+  "e": 28.95,
+  "text": "Au bout du fil, une voix familière demande une opération exceptionnelle."
+ },
+ {
+  "id": "normal",
+  "s": 29.37,
+  "e": 32.13,
+  "text": "Tout semble normal. La voix est reconnaissable."
+ },
+ {
+  "id": "ton",
+  "s": 32.52,
+  "e": 33.7,
+  "text": "Le ton est convaincant."
+ },
+ {
+  "id": "urgence",
+  "s": 34.12,
+  "e": 35.41,
+  "text": "L'urgence paraît réelle."
+ },
+ {
+  "id": "derriere",
+  "s": 35.85,
+  "e": 38.61,
+  "text": "Mais derrière cette voix… se cache peut-être un fraudeur."
+ },
+ {
+  "id": "objectif",
+  "s": 38.95,
+  "e": 39.71,
+  "text": "Son objectif ?"
+ },
+ {
+  "id": "sim",
+  "s": 40.22,
+  "e": 42.39,
+  "text": "Obtenir un remplacement de carte SIM."
+ },
+ {
+  "id": "pin",
+  "s": 42.72,
+  "e": 44.99,
+  "text": "Réinitialiser un code PIN Mobile Money."
+ },
+ {
+  "id": "modif",
+  "s": 45.54,
+  "e": 48.36,
+  "text": "Ou modifier frauduleusement les informations d'un client."
+ },
+ {
+  "id": "voir",
+  "s": 48.95,
+  "e": 51.82,
+  "text": "Avec l'intelligence artificielle, voir ne suffit plus."
+ },
+ {
+  "id": "entendre",
+  "s": 52.31,
+  "e": 53.59,
+  "text": "Entendre ne suffit plus."
+ },
+ {
+  "id": "protege",
+  "s": 53.85,
+  "e": 56.65,
+  "text": "Ce qui nous protège, c'est la rigueur de nos contrôles."
+ },
+ {
+  "id": "r1",
+  "s": 57.31,
+  "e": 61.65,
+  "text": "Vérifions systématiquement l'identité des clients selon les procédures officielles."
+ },
+ {
+  "id": "r2",
+  "s": 62.09,
+  "e": 67.21,
+  "text": "Ne cédons jamais à l'urgence, à la pression ou à l'autorité apparente d'un interlocuteur."
+ },
+ {
+  "id": "r3",
+  "s": 67.76,
+  "e": 71.28,
+  "text": "Respectons toutes les étapes de validation, sans exception."
+ },
+ {
+  "id": "r4",
+  "s": 71.69,
+  "e": 76.84,
+  "text": "Et au moindre doute, suspendons l'opération et signalons la situation par les canaux prévus."
+ },
+ {
+  "id": "seule",
+  "s": 77.59,
+  "e": 82.24,
+  "text": "Car une seule vérification négligée peut suffire à compromettre le compte d'un client."
+ },
+ {
+  "id": "evolue",
+  "s": 82.92,
+  "e": 84.28,
+  "text": "La technologie évolue."
+ },
+ {
+  "id": "innovent",
+  "s": 84.75,
+  "e": 86.04,
+  "text": "Les fraudeurs innovent."
+ },
+ {
+  "id": "avance",
+  "s": 86.32,
+  "e": 89.01,
+  "text": "Notre vigilance doit toujours garder une longueur d'avance."
+ },
+ {
+  "id": "dc",
+  "s": 89.58,
+  "e": 94.68,
+  "text": "À la Direction Clientèle de MTN Côte d'Ivoire, nous sommes la première ligne de défense."
+ },
+ {
+  "id": "face",
+  "s": 95.05,
+  "e": 98.03,
+  "text": "Face à la fraude augmentée par l'intelligence artificielle,"
+ },
+ {
+  "id": "apparences",
+  "s": 98.31,
+  "e": 100.0,
+  "text": "ne faisons pas confiance aux apparences."
+ },
+ {
+  "id": "controles",
+  "s": 100.42,
+  "e": 102.02,
+  "text": "Faisons confiance aux contrôles."
+ }
+]

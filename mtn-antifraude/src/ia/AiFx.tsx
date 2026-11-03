@@ -3,10 +3,10 @@ import {AbsoluteFill} from 'remotion';
 import {rnd} from '../lib';
 
 /** Réseau neuronal animé : nœuds, connexions, impulsions qui circulent. */
-export const NeuralNet: React.FC<{t: number; color?: string; o?: number; n?: number; grow?: number}> = ({t, color = '0,229,255', o = 0.6, n = 46, grow = 1}) => {
+export const NeuralNet: React.FC<{t: number; color?: string; o?: number; n?: number; grow?: number; w?: number; h?: number}> = ({t, color = '0,229,255', o = 0.6, n = 46, grow = 1, w = 1920, h = 1080}) => {
   const nodes = [...Array(n)].map((_, i) => ({
-    x: rnd(i * 3.1) * 1920 + Math.sin(t * 0.3 + i) * 20,
-    y: rnd(i * 7.7 + 1) * 1080 + Math.cos(t * 0.25 + i) * 16,
+    x: rnd(i * 3.1) * w + Math.sin(t * 0.3 + i) * 20,
+    y: rnd(i * 7.7 + 1) * h + Math.cos(t * 0.25 + i) * 16,
     r: 3 + rnd(i + 11) * 5,
   }));
   const edges: [number, number][] = [];
@@ -15,7 +15,7 @@ export const NeuralNet: React.FC<{t: number; color?: string; o?: number; n?: num
   }));
   return (
     <AbsoluteFill style={{opacity: o}}>
-      <svg width={1920} height={1080}>
+      <svg width={w} height={h}>
         {edges.map(([i, j], k) => {
           const vis = rnd(k + 0.5) < grow;
           if (!vis) return null;
