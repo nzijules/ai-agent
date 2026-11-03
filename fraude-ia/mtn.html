@@ -39,7 +39,7 @@ body{
   overflow:hidden;background:var(--paper);box-shadow:0 30px 80px -30px #000, 0 0 0 1px var(--frame-line);
 }
 .stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;color:var(--ink);overflow:hidden}
-#bg{position:absolute;inset:0;width:1920px;height:1080px}
+#bg{position:absolute;inset:0;width:100%;height:100%}
 .scene{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
 .mono{font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
 .ghost{opacity:0}
@@ -143,6 +143,42 @@ body.capture{padding:0;gap:0}
 body.capture .transport{display:none}
 body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
 @media (max-width:520px){.transport .lbl{display:none}}
+/* ===== Format mobile 9:16 (1080×1920) : mêmes scènes, recomposées en colonne ===== */
+body.portrait .viewport,body.portrait .transport{width:min(100%, calc((100dvh - 120px) * 9 / 16))}
+body.portrait .viewport{aspect-ratio:9/16}
+body.capture.portrait .viewport{width:1080px}
+.stage.portrait{width:1080px;height:1920px}
+.portrait .hud{left:56px;right:56px;top:70px;font-size:18px}
+.portrait .hud-foot{top:auto;bottom:60px}
+.portrait #s0 .eyebrow{left:70px;top:560px}
+.portrait #s0 h1{left:62px;top:610px;font-size:168px}
+.portrait #s0 .date{left:70px;right:70px;top:1010px;flex-wrap:wrap;gap:18px;font-size:26px}
+.portrait #s1 .left{left:70px;top:190px;width:940px}
+.portrait #s1 blockquote{font-size:116px}
+.portrait #s1 .caption{font-size:32px;margin-top:34px}
+.portrait .phone{right:auto;left:70px;top:1020px;width:940px;height:620px}
+.portrait .stamp{right:120px;top:1210px;font-size:110px}
+.portrait #face{left:220px;top:170px}
+.portrait .facehud{left:220px;top:170px}
+.portrait #s2 .right{left:70px;top:1010px;width:940px}
+.portrait #s2 .count{font-size:150px}
+.portrait #s2 p{font-size:36px}
+.portrait #s3 .head{left:70px;top:180px;width:940px;font-size:94px}
+.portrait .mail{left:70px;top:460px;width:940px;font-size:26px}
+.portrait .mail .row .k{width:70px}
+.portrait .notes{left:70px;top:1080px;width:940px}
+.portrait #s4 .title{left:70px;top:190px;font-size:130px}
+.portrait .rules{left:70px;right:70px;top:540px;grid-template-columns:1fr;gap:44px}
+.portrait .rule{display:grid;grid-template-columns:130px 1fr;column-gap:20px;align-items:start}
+.portrait .rule .num{grid-row:span 2;font-size:150px}
+.portrait .rule h3{margin:0 0 12px}
+.portrait #s5 .l1,.portrait #s5 .l2{left:70px;font-size:150px;max-width:940px;width:fit-content}
+.portrait #s5 .l1{top:300px}
+.portrait #s5 .l2{top:470px}
+.portrait #s5 .motto{left:76px;top:860px;flex-direction:column;gap:6px;font-size:120px}
+.portrait #s5 .motto span::after{content:none}
+.portrait #s5 .sign{left:76px;right:70px;top:1420px;flex-direction:column;align-items:flex-start;gap:22px}
+
 </style>
 </head>
 <body>
@@ -227,6 +263,7 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
 
 <div class="transport">
   <button type="button" id="play" aria-label="Pause">Pause</button>
+  <button type="button" id="fmt" aria-label="Changer de format">9:16</button>
   <button type="button" id="restart" aria-label="Revoir depuis le début"><span class="lbl">Revoir</span><span aria-hidden="true"> ↺</span></button>
   <div id="bar" role="slider" tabindex="0" aria-label="Position dans l'animation" aria-valuemin="0" aria-valuemax="34" aria-valuenow="0"><div id="fill"></div></div>
   <span id="time">00:00 / 00:34</span>
@@ -256,6 +293,7 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
 
   // ---------- fond : rosette guillochée + copie IA ----------
   const bg = $('bg'), g = bg.getContext('2d');
+  let W = 1920, H = 1080, PORT = false;
   const boundaries = SCENES.slice(1).map(s => s.a + .2);
   function glitchAt(t){
     let v = 0;
@@ -283,7 +321,7 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
     g.strokeStyle = color; g.globalAlpha = alpha; g.lineWidth = 1;
     for (let i=0;i<9;i++){
       g.beginPath();
-      for (let x=0;x<=1920;x+=8){
+      for (let x=0;x<=W;x+=8){
         const y = y0 + i*3 + 9*Math.sin(x/46 + i*.55 + t*.6) + 5*Math.sin(x/17 - i*.3);
         x ? g.lineTo(x,y) : g.moveTo(x,y);
       }
@@ -292,9 +330,9 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
     g.globalAlpha = 1;
   }
   function drawBg(t){
-    g.fillStyle = PAPER; g.fillRect(0,0,1920,1080);
+    g.fillStyle = PAPER; g.fillRect(0,0,W,H);
     // position de la rosette par scène (elle « suit » la composition)
-    const pos = [[1560,560],[1460,560],[1640,520],[1700,540],[1720,250],[1580,560]];
+    const pos = PORT ? [[760,1460],[820,1720],[900,1500],[880,1720],[900,1640],[760,1330]] : [[1560,560],[1460,560],[1640,520],[1700,540],[1720,250],[1580,560]];
     let cx=0, cy=0, wsum=0;
     SCENES.forEach((s,i)=>{ const w = vis(t,s)+.0001; cx += pos[i][0]*w; cy += pos[i][1]*w; wsum += w; });
     cx/=wsum; cy/=wsum;
@@ -304,15 +342,15 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
     rosette(cx, cy, t, INK, .2, 0, 0, 0);
     rosette(cx, cy, t, SB, .6*(1 - .7*seg(t,31,33.5)), off*Math.cos(t*.7), off*Math.sin(t*.9), .03*(1-conv));
     bands(t, 120, INK, .13);
-    bands(t, 960, INK, .13);
+    bands(t, H-120, INK, .13);
     // glitch : décalage de bandes horizontales
     const gl = glitchAt(t);
     if (gl > .05){
       const f = Math.floor(t*30);
       for (let k=0;k<10;k++){
-        const y = rnd(f*13+k)*1080, h = 8 + rnd(f*7+k*3)*70, dx = (rnd(f*5+k*11)-.5)*260*gl;
-        g.drawImage(bg, 0, y, 1920, h, dx, y, 1920, h);
-        if (rnd(f+k*17) > .6){ g.globalAlpha = .18*gl; g.fillStyle = rnd(f*3+k) > .5 ? SB : SA; g.fillRect(0,y,1920,h*.4); g.globalAlpha=1; }
+        const y = rnd(f*13+k)*H, h = 8 + rnd(f*7+k*3)*70, dx = (rnd(f*5+k*11)-.5)*260*gl;
+        g.drawImage(bg, 0, y, W, h, dx, y, W, h);
+        if (rnd(f+k*17) > .6){ g.globalAlpha = .18*gl; g.fillStyle = rnd(f*3+k) > .5 ? SB : SA; g.fillRect(0,y,W,h*.4); g.globalAlpha=1; }
       }
     }
     return gl;
@@ -513,11 +551,21 @@ body.capture .viewport{width:1920px;max-width:none;box-shadow:none}
 
   // ---------- mise à l'échelle ----------
   const vp = $('vp'), stage = $('stage');
-  function fit(){ stage.style.transform = `scale(${vp.clientWidth/1920})`; }
-  new ResizeObserver(fit).observe(vp); fit();
+  function fit(){ stage.style.transform = `scale(${vp.clientWidth/W})`; }
+  function setFormat(p){
+    PORT = p; W = p ? 1080 : 1920; H = p ? 1920 : 1080;
+    bg.width = W; bg.height = H;
+    stage.classList.toggle('portrait', p); document.body.classList.toggle('portrait', p);
+    const b = $('fmt'); b.textContent = p ? '16:9' : '9:16';
+    b.setAttribute('aria-label', p ? 'Passer au format ordinateur 16:9' : 'Passer au format mobile 9:16');
+    fit();
+  }
+  new ResizeObserver(fit).observe(vp);
+  setFormat(location.hash === '#capture-portrait' || (location.hash !== '#capture' && innerWidth < innerHeight * .85));
+  $('fmt').onclick = () => setFormat(!PORT);
 
   // ---------- transport ----------
-  const capture = location.hash === '#capture';
+  const capture = location.hash.startsWith('#capture');
   if (capture) document.body.classList.add('capture');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let t = 0, playing = !reduce && !capture, last = null;
