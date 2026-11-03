@@ -37,7 +37,7 @@ export const S5Benefits: React.FC = () => {
           const d = sec(b.at);
           const next = i < BENEFITS.length - 1 ? sec(BENEFITS[i + 1].at) : 99999;
           const p = pop(f, d, 13, 0.8);
-          const o = prog(f, next - 6, next + 8, easeIn);
+          const o = prog(f, next - 12, next, easeIn);
           return (
             <div
               key={i}
@@ -53,7 +53,7 @@ export const S5Benefits: React.FC = () => {
                 justifyContent: "center",
                 gap: L.s(26),
                 padding: L.s(40),
-                opacity: interpolate(f, [d, d + 6], [0, 1], clamp) * (1 - o),
+                opacity: interpolate(f, [d + 2, d + 8], [0, 1], clamp) * (1 - o),
                 translate: `${(1 - p) * 260 - o * 260}px 0px`,
                 rotate: `${(1 - p) * 5 - o * 5}deg`,
                 scale: String(1 - o * 0.08),
