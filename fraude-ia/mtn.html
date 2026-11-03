@@ -133,6 +133,7 @@ body{
 .transport{width:min(100%, calc((100dvh - 120px) * 16 / 9));max-width:100%;display:flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:13px;color:#9FB3C2}
 .transport button{flex:none;background:transparent;color:var(--paper);border:1px solid var(--frame-line);height:36px;min-width:36px;padding:0 12px;font:inherit;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 .transport button:hover{border-color:var(--paper)}
+.transport button[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .transport button:focus-visible,#bar:focus-visible{outline:2px solid var(--synth-a);outline-offset:2px}
 #bar{position:relative;flex:1;min-width:0;height:36px;cursor:pointer;touch-action:none}
 #bar::before{content:"";position:absolute;left:0;right:0;top:17px;height:2px;background:var(--frame-line)}
@@ -231,13 +232,13 @@ body.capture.portrait .viewport{width:1080px}
       <div class="head">L'IA écrit sans fautes.<br><span>Le piège reste le même.</span></div>
       <div class="mail">
         <div class="bar"><i></i><i></i><i></i></div>
-        <div class="row"><span class="k">De</span><span>Service Conformité &lt;conformite@votre-banque-securite.com&gt;</span></div>
+        <div class="row"><span class="k">De</span><span>Service Client Mobile Money &lt;support@mobilemoney-verification.com&gt;</span></div>
         <div class="row"><span class="k">Objet</span><strong id="subj"></strong></div>
-        <div class="body"><span id="mbody"></span><br><span class="btn" id="mbtn" style="opacity:0">Confirmer mes informations</span></div>
+        <div class="body"><span id="mbody"></span><br><span class="btn" id="mbtn" style="opacity:0">Confirmer avec mon code PIN</span></div>
       </div>
       <div class="notes">
         <div class="note"><span class="n">A</span><span class="t">Zéro faute, ton officiel<small>L'orthographe ne trahit plus le fraudeur.</small></span></div>
-        <div class="note"><span class="n">B</span><span class="t">Domaine imité<small>« banque-securite » n'est pas votre banque.</small></span></div>
+        <div class="note"><span class="n">B</span><span class="t">Domaine imité<small>« mobilemoney-verification » n'est pas votre opérateur.</small></span></div>
         <div class="note"><span class="n">C</span><span class="t">Urgence fabriquée<small>Un délai court sert à vous empêcher de vérifier.</small></span></div>
         <div class="note"><span class="n">D</span><span class="t">Personnalisé à grande échelle<small>Votre nom, votre poste, votre actualité.</small></span></div>
       </div>
@@ -247,7 +248,7 @@ body.capture.portrait .viewport{width:1080px}
       <div class="title"><small>Contre-mesures humaines</small>Trois réflexes</div>
       <div class="rules">
         <div class="rule"><div class="num">1</div><h3>Ralentir</h3><p>L'urgence est l'arme du fraudeur. Une vraie demande supporte dix minutes d'attente.</p></div>
-        <div class="rule"><div class="num">2</div><h3>Vérifier ailleurs</h3><p>Rappelez sur un numéro connu, jamais celui du message. Convenez d'un mot de passe d'équipe.</p></div>
+        <div class="rule"><div class="num">2</div><h3>Vérifier ailleurs</h3><p>Rappelez le service client sur son numéro officiel. Ne donnez jamais votre code PIN ni un code reçu par SMS.</p></div>
         <div class="rule"><div class="num">3</div><h3>Signaler</h3><p>Prévenez la conformité, même après coup. Un signalement rapide protège les collègues.</p></div>
       </div>
     </section>
@@ -263,6 +264,8 @@ body.capture.portrait .viewport{width:1080px}
 
 <div class="transport">
   <button type="button" id="play" aria-label="Pause">Pause</button>
+  <button type="button" id="snd" aria-pressed="false">Son</button>
+  <audio id="music" src="musique-fond.mp3" preload="auto"></audio>
   <button type="button" id="fmt" aria-label="Changer de format">9:16</button>
   <button type="button" id="restart" aria-label="Revoir depuis le début"><span class="lbl">Revoir</span><span aria-hidden="true"> ↺</span></button>
   <div id="bar" role="slider" tabindex="0" aria-label="Position dans l'animation" aria-valuemin="0" aria-valuemax="34" aria-valuenow="0"><div id="fill"></div></div>
@@ -452,8 +455,8 @@ body.capture.portrait .viewport{width:1080px}
   const notes = [...document.querySelectorAll('.note')];
   const rules = [...document.querySelectorAll('.rule')];
   const motto = [...document.querySelectorAll('#s5 .motto span')];
-  const SUBJ = "Action requise sous 24 h : mise à jour de vos coordonnées";
-  const BODY = "Bonjour Mme Kouassi, suite au contrôle réglementaire du 12 novembre, votre accès sera suspendu si vos informations ne sont pas confirmées avant demain 17 h.";
+  const SUBJ = "Action requise sous 24 h : vérification de votre compte Mobile Money";
+  const BODY = "Bonjour M. Kouassi, suite au contrôle réglementaire du 12 novembre, votre ligne et votre compte Mobile Money seront suspendus si votre identité n'est pas confirmée avant demain 17 h.";
 
   function render(t){
     t = ((t % DUR) + DUR) % DUR;
@@ -585,8 +588,19 @@ body.capture.portrait .viewport{width:1080px}
       last = now;
     } else last = null;
     render(t); ui();
+    if (soundOn && playing){
+      if (music.paused) music.play().catch(()=>{});
+      if (Math.abs(music.currentTime - t) > .25) music.currentTime = t;
+    } else if (!music.paused) music.pause();
     requestAnimationFrame(frame);
   }
+  const music = $('music'), snd = $('snd');
+  let soundOn = false;
+  snd.onclick = () => {
+    soundOn = !soundOn; snd.setAttribute('aria-pressed', soundOn);
+    snd.textContent = soundOn ? 'Son ✓' : 'Son';
+    if (soundOn){ music.currentTime = t; if (playing) music.play().catch(()=>{}); }
+  };
   playBtn.onclick = () => { playing = !playing; };
   $('restart').onclick = () => { t = 0; playing = true; };
   function seekFromEvent(e){ const r = bar.getBoundingClientRect(); t = clamp((e.clientX - r.left)/r.width)*DUR*.9999; }
