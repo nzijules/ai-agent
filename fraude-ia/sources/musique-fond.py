@@ -4,16 +4,18 @@ import numpy as np
 from scipy.signal import butter, sosfilt
 from scipy.io import wavfile
 
+import json
+TL = json.load(open('timeline.json'))
 SR = 44100
-DUR = 34.0
+DUR = TL['end']
 N = int(SR * DUR)
 t = np.arange(N) / SR
 rng = np.random.default_rng(7)
 BPM = 112
 BEAT = 60 / BPM
 
-SCENES = [0.0, 5.0, 11.2, 17.4, 23.4, 28.4, 34.0]
-CUTS = [s + 0.2 for s in SCENES[1:-1]]  # pics de glitch visuels
+SCENES = TL['scenes']
+CUTS = TL['cuts']  # pics de glitch visuels
 
 
 def hz(m):
@@ -75,7 +77,7 @@ for k, ch in enumerate(CHORDS):
 pad_l, pad_r = L.copy(), R.copy()
 L[:] = 0
 R[:] = 0
-cut = 500 + 1600 * np.clip(t / 30, 0, 1)
+cut = 500 + 1600 * np.clip(t / (DUR - 4), 0, 1)
 for seg_start in np.arange(0, DUR, 0.5):  # filtrage par blocs pour un cutoff variable
     i, j = int(seg_start * SR), int(min(DUR, seg_start + 0.5) * SR)
     fc = float(cut[i])
@@ -106,7 +108,7 @@ R += bass
 kick = np.zeros(N)
 for i in range(int(DUR / BEAT)):
     st = i * BEAT
-    if not (5.0 <= st < 28.2) or i % 2:
+    if not (SCENES[1] <= st < SCENES[5] - 0.2) or i % 2:
         continue
     ln = int(0.35 * SR)
     tt = np.arange(ln) / SR
@@ -120,7 +122,7 @@ R += kick * 0.45
 hat = np.zeros(N)
 for i in range(int(DUR / (BEAT / 4))):
     st = i * BEAT / 4
-    if not (5.0 <= st < 28.0):
+    if not (SCENES[1] <= st < SCENES[5] - 0.4):
         continue
     ln = int(0.05 * SR)
     tt = np.arange(ln) / SR
@@ -150,7 +152,7 @@ for c in CUTS:
     add(fx_r, boom - crush * 0.6, c)
 
 # ---------- bégaiements numériques sur le « IA » de l'ouverture ----------
-for g in (2.1, 3.6):
+for g in TL['stutters']:
     ln = int(0.18 * SR)
     tt = np.arange(ln) / SR
     buzz = np.sign(np.sin(2 * np.pi * 180 * tt)) * (np.floor(tt * 60) % 2) * np.exp(-tt * 10) * 0.07
@@ -161,7 +163,7 @@ R += lp(fx_r, 9000)
 
 # ---------- carillon final : Doutez · Vérifiez · Signalez ----------
 bell = np.zeros(N)
-for st, m in ((28.4 + 2.2, 69), (28.4 + 2.55, 72), (28.4 + 2.9, 76), (28.4 + 3.4, 81)):
+for st, m in zip(TL['bells'], (69, 72, 76, 81)):
     ln = int(2.5 * SR)
     tt = np.arange(ln) / SR
     f = hz(m)
