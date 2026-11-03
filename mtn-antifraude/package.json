@@ -1,0 +1,19 @@
+{
+  "name": "mtn-antifraude",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render MTNAntifraude out/video-sans-st.mp4",
+    "render:st": "remotion render MTNAntifraude out/video-avec-st.mp4 --props='{\"subtitles\":true}'"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/montserrat": "^5.1.0",
+    "@remotion/cli": "^4.0.540",
+    "@types/react": "^18.3.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.540",
+    "typescript": "^5.6.3"
+  }
+}

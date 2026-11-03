@@ -1,0 +1,47 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Inter,46,&H00FFFFFF,&H00FFFFFF,&H00000000,&H9A000000,-1,0,0,0,100,100,0,0,3,14,0,2,200,200,46,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.50,0:00:03.21,Default,,0,0,0,,{\fad(120,120)}Chaque jour, au sein de Customer Services,
+Dialogue: 0,0:00:03.25,0:00:05.33,Default,,0,0,0,,{\fad(120,120)}nous accompagnons des milliers de clients.
+Dialogue: 0,0:00:05.37,0:00:06.77,Default,,0,0,0,,{\fad(120,120)}Nous répondons à leurs demandes,
+Dialogue: 0,0:00:06.81,0:00:09.73,Default,,0,0,0,,{\fad(120,120)}résolvons leurs difficultés\Net facilitons leur quotidien.
+Dialogue: 0,0:00:09.97,0:00:12.10,Default,,0,0,0,,{\fad(120,120)}Mais derrière une demande\Napparemment ordinaire…
+Dialogue: 0,0:00:12.14,0:00:14.26,Default,,0,0,0,,{\fad(120,120)}peut se cacher une tentative de fraude.
+Dialogue: 0,0:00:14.48,0:00:16.21,Default,,0,0,0,,{\fad(120,120)}Un remplacement de carte SIM.
+Dialogue: 0,0:00:16.26,0:00:19.48,Default,,0,0,0,,{\fad(120,120)}Une réinitialisation de\Ncode PIN Mobile Money.
+Dialogue: 0,0:00:19.56,0:00:21.80,Default,,0,0,0,,{\fad(120,120)}Une modification des\Ninformations d'un client.
+Dialogue: 0,0:00:21.94,0:00:24.06,Default,,0,0,0,,{\fad(120,120)}Pour nous, ce sont des opérations courantes.
+Dialogue: 0,0:00:24.12,0:00:28.16,Default,,0,0,0,,{\fad(120,120)}Pour un fraudeur, elles peuvent\Nreprésenter une opportunité.
+Dialogue: 0,0:00:28.26,0:00:31.76,Default,,0,0,0,,{\fad(120,120)}Les fraudeurs exploitent l'urgence,\Nla confiance, la négligence…
+Dialogue: 0,0:00:31.80,0:00:33.81,Default,,0,0,0,,{\fad(120,120)}et parfois même la complicité.
+Dialogue: 0,0:00:33.99,0:00:37.83,Default,,0,0,0,,{\fad(120,120)}Une seule opération non autorisée peut\Nsuffire à compromettre le compte d'un client,
+Dialogue: 0,0:00:37.87,0:00:41.77,Default,,0,0,0,,{\fad(120,120)}provoquer des pertes financières et\Nternir la réputation de notre entreprise.
+Dialogue: 0,0:00:41.98,0:00:44.95,Default,,0,0,0,,{\fad(120,120)}Et lorsqu'un collaborateur participe\Nvolontairement à une fraude,
+Dialogue: 0,0:00:44.99,0:00:48.49,Default,,0,0,0,,{\fad(120,120)}il s'expose à de lourdes conséquences\Ndisciplinaires et judiciaires.
+Dialogue: 0,0:00:48.79,0:00:52.77,Default,,0,0,0,,{\fad(120,120)}Alors, avant chaque opération\Nsensible, adoptons les bons réflexes.
+Dialogue: 0,0:00:52.90,0:00:55.42,Default,,0,0,0,,{\fad(120,120)}Vérifions systématiquement\Nl'identité du demandeur.
+Dialogue: 0,0:00:55.57,0:00:58.33,Default,,0,0,0,,{\fad(120,120)}Assurons-nous de la légitimité\Nde chaque opération.
+Dialogue: 0,0:00:58.50,0:01:01.78,Default,,0,0,0,,{\fad(120,120)}Respectons les procédures et les\Nniveaux de validation requis.
+Dialogue: 0,0:01:02.15,0:01:03.69,Default,,0,0,0,,{\fad(120,120)}Et face à une situation suspecte,
+Dialogue: 0,0:01:03.73,0:01:07.10,Default,,0,0,0,,{\fad(120,120)}n'hésitons jamais à suspendre\Nl'opération et à donner l'alerte.
+Dialogue: 0,0:01:07.14,0:01:08.08,Default,,0,0,0,,{\fad(120,120)}Car aucune urgence,
+Dialogue: 0,0:01:08.12,0:01:12.93,Default,,0,0,0,,{\fad(120,120)}aucune pression et aucun avantage personnel\Nne justifient de contourner nos contrôles.
+Dialogue: 0,0:01:13.46,0:01:17.82,Default,,0,0,0,,{\fad(120,120)}La lutte contre la fraude n'est pas uniquement\Nla responsabilité de Forensic Services.
+Dialogue: 0,0:01:17.86,0:01:19.35,Default,,0,0,0,,{\fad(120,120)}Elle commence avec chacun de nous.
+Dialogue: 0,0:01:19.42,0:01:20.51,Default,,0,0,0,,{\fad(120,120)}À chaque interaction.
+Dialogue: 0,0:01:20.55,0:01:21.62,Default,,0,0,0,,{\fad(120,120)}À chaque vérification.
+Dialogue: 0,0:01:21.66,0:01:22.76,Default,,0,0,0,,{\fad(120,120)}À chaque décision.
+Dialogue: 0,0:01:22.93,0:01:24.33,Default,,0,0,0,,{\fad(120,120)}Avant de valider, vérifiez.
+Dialogue: 0,0:01:24.37,0:01:26.06,Default,,0,0,0,,{\fad(120,120)}En cas de doute, signalez.
+Dialogue: 0,0:01:26.28,0:01:28.00,Default,,0,0,0,,{\fad(120,120)}Ensemble, protégeons nos clients,
+Dialogue: 0,0:01:28.04,0:01:31.10,Default,,0,0,0,,{\fad(120,120)}leur confiance et l'intégrité\Nde MTN Côte d'Ivoire.
+Dialogue: 0,0:01:31.14,0:01:35.23,Default,,0,0,0,,{\fad(120,120)}Customer Services : soyons la première\Nligne de défense contre la fraude.
