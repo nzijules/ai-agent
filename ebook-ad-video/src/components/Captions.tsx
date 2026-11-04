@@ -8,7 +8,7 @@ import { useTL } from "../timeline";
 type Line = { id: string; start: number; duration: number; text: string };
 
 /**
- * Animated subtitles synced to the voice-over clips (src/generated/voiceover.json).
+ * Animated subtitles synced to the voice-over clips (src/generated/voiceover-<variant>.json).
  * Word timing is estimated from character length within each clip (karaoke-style highlight).
  */
 export const Captions: React.FC = () => {

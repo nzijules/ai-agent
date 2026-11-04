@@ -16,7 +16,11 @@ ap.add_argument("--force-tts", action="store_true")
 a = ap.parse_args()
 cfg = json.load(open(os.path.join(ROOT, "src/ad.config.json"), encoding="utf-8"))
 script = json.load(open(os.path.join(ROOT, f"voiceover/script-{a.variant}.json"), encoding="utf-8"))
-base = {l["id"]: l for l in json.load(open(os.path.join(ROOT, "src/generated/voiceover.json"), encoding="utf-8"))["lines"]}
+import glob
+base = {}  # texts of lines reused from another cut (e.g. lXX in « Économie »)
+for f in glob.glob(os.path.join(ROOT, "src/generated/voiceover-*.json")):
+    for l in json.load(open(f, encoding="utf-8"))["lines"]:
+        base.setdefault(l["id"], l)
 out = []
 for ln in script["lines"]:
     i = ln["id"]; wav = os.path.join(ROOT, f"public/audio/vo-{a.variant}", i + ".wav")
