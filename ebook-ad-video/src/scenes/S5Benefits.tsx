@@ -12,19 +12,19 @@ import { Stage } from "./Stage";
 import { QuizMock } from "../components/Quiz";
 
 /** 42.8–62.6 s — Four benefits, one every 5 s, synced with VO lines l12–l15. */
-type Benefit = { icon: IconName; title: string; sub: string; bg: string; fg: string; quiz?: boolean };
+type Benefit = { icon: IconName; title: string; sub: string; bg: string; fg: string; quiz?: boolean; /** voice-over line id */ id?: string };
 export const BENEFITS: Benefit[] = [
-  { icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
-  { icon: "target", title: "Réviser intelligemment", sub: "Quiz, fiches et exercices adaptés à son niveau.", bg: C.yellowSoft, fg: "#B07F00" },
-  { icon: "compass", title: "Développer son autonomie", sub: "Réfléchir par soi-même, avec esprit critique.", bg: C.greenSoft, fg: C.green },
-  { icon: "users", title: "Accompagner ses progrès", sub: "Un parent impliqué, à ses côtés, sans être expert.", bg: C.pink, fg: "#C2364A" },
+  { id: "l12", icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
+  { id: "l13", icon: "target", title: "Réviser intelligemment", sub: "Quiz, fiches et exercices adaptés à son niveau.", bg: C.yellowSoft, fg: "#B07F00" },
+  { id: "l14", icon: "compass", title: "Développer son autonomie", sub: "Réfléchir par soi-même, avec esprit critique.", bg: C.greenSoft, fg: C.green },
+  { id: "l15", icon: "users", title: "Accompagner ses progrès", sub: "Un parent impliqué, à ses côtés, sans être expert.", bg: C.pink, fg: "#C2364A" },
 ];
 
 const CONTROLE: Benefit[] = [
-  { icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
-  { icon: "target", title: "Quiz chronométrés", sub: "Des quiz interactifs pour réviser efficacement.", bg: C.yellowSoft, fg: "#B07F00", quiz: true },
-  { icon: "compass", title: "Corriger ses erreurs", sub: "Identifier ses erreurs, renforcer ses connaissances, gagner en autonomie.", bg: C.greenSoft, fg: C.green },
-  { icon: "brain", title: "Réfléchir, pas recopier", sub: "Apprendre à réfléchir… plutôt qu'à recopier.", bg: C.pink, fg: "#C2364A" },
+  { id: "c10", icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
+  { id: "c11", icon: "target", title: "Quiz chronométrés", sub: "Des quiz interactifs pour réviser efficacement.", bg: C.yellowSoft, fg: "#B07F00", quiz: true },
+  { id: "c12", icon: "compass", title: "Corriger ses erreurs", sub: "Identifier ses erreurs, renforcer ses connaissances, gagner en autonomie.", bg: C.greenSoft, fg: C.green },
+  { id: "c13", icon: "brain", title: "Réfléchir, pas recopier", sub: "Apprendre à réfléchir… plutôt qu'à recopier.", bg: C.pink, fg: "#C2364A" },
 ];
 
 export const S5Benefits: React.FC = () => {
@@ -32,7 +32,10 @@ export const S5Benefits: React.FC = () => {
   const { at, variant, linesOf } = useTL();
   const lnS = linesOf("S5-Benefices");
   // « Contrôle » cut (optimised script): its own 4 benefits, incl. timed interactive quizzes
-  const list: (Benefit & { line: string })[] = (variant === "controle" ? CONTROLE : BENEFITS).map((b, i) => ({ ...b, line: lnS[i] }));
+  const pool = variant === "controle" ? CONTROLE : BENEFITS;
+  // one card per voice-over line of the scene (the 35 s TikTok cut keeps only the quiz)
+  const list: (Benefit & { line: string })[] = lnS.map((id, i) => ({ ...(pool.find((b) => b.id === id) ?? pool[i]), line: id }));
+  const single = list.length === 1;
   const T = (id: string) => at(id, -0.2);
   const L = useLayout();
   const cardW = L.square ? 640 : 880;
@@ -43,7 +46,7 @@ export const S5Benefits: React.FC = () => {
         <Book3D width={L.s(L.square ? 80 : 110)} rotY={-20} rotX={4} shadow={false} />
         <div>
           <Eyebrow size={L.s(26)} bg={C.navy} color={C.yellow}>Avec ce guide</Eyebrow>
-          <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: L.s(54), color: C.navy, marginTop: L.s(10), lineHeight: 1.05, whiteSpace: "nowrap" }}>4 bénéfices clés</div>
+          <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: L.s(54), color: C.navy, marginTop: L.s(10), lineHeight: 1.05, whiteSpace: "nowrap" }}>{single ? "Pour mieux réviser" : `${list.length} bénéfices clés`}</div>
         </div>
       </div>
       {/* Feature card stack */}
@@ -89,6 +92,7 @@ export const S5Benefits: React.FC = () => {
         })}
       </div>
       {/* Checklist progress */}
+      {!single && (
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: L.s(16), width: cardW }}>
         {list.map((b, i) => {
           const on = f >= T(b.line) + 10;
@@ -103,6 +107,7 @@ export const S5Benefits: React.FC = () => {
           );
         })}
       </div>
+      )}
     </Stage>
   );
 };

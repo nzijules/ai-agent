@@ -33,8 +33,9 @@ p = os.path.join(ROOT, f"src/generated/voiceover{suf}.json")
 vo = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {"lines": []}
 byid = {l["id"]: l for l in vo["lines"]}
 SHORT = {  # 30 s TikTok cuts: subsets of the full cut's recorded lines (no new recording)
-    "controle-court": ("controle", [("S1-Accroche", ["c01", "c02"], 0.3), ("S2-Probleme", ["c03", "c05", "c06"], 0.35),
-                                    ("S4-Revelation", ["c09"], 0.6), ("S7-Offre", ["c17", "c18"], 0.35), ("S8-Appel", ["c20"], 0.35)]),
+    "controle-court": ("controle", [("S1-Accroche", ["c01", "c02"], 0.3), ("S2-Probleme", ["c05", "c06"], 0.35),
+                                    ("S4-Revelation", ["c09"], 0.6), ("S5-Benefices", ["c11"], 0.35),
+                                    ("S7-Offre", ["c17", "c18"], 0.35), ("S8-Appel", ["c20"], 0.35)]),
     "economie-court": ("economie", [("S1-Accroche", ["e01", "e02"], 0.3), ("S2-Probleme", ["e03", "e06", "e07"], 0.35),
                                     ("S4-Revelation", ["l10"], 0.6), ("S7-Offre", ["e19", "l20"], 0.35), ("S8-Appel", ["l22"], 0.35)]),
 }
