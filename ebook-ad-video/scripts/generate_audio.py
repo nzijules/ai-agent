@@ -83,7 +83,7 @@ def note(n):  # MIDI -> Hz
 def env_adsr(n, a, d, s, r, total):
     e = np.ones(n) * s
     ai, di, ri = int(a * SR), int(d * SR), int(r * SR)
-    ai = max(ai, 1)
+    ai = max(1, min(ai, n)); ri = min(ri, n)  # very short notes (end of a section)
     e[:ai] = np.linspace(0, 1, ai)
     e[ai:ai + di] = np.linspace(1, s, len(e[ai:ai + di]))
     if ri > 0:

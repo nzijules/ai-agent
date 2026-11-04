@@ -1,36 +1,36 @@
 1
-00:00:00,300 --> 00:00:03,247
+00:00:00,300 --> 00:00:03,000
 Votre enfant utilise déjà ChatGPT pour ses devoirs.
 
 2
-00:00:03,467 --> 00:00:04,467
+00:00:03,220 --> 00:00:05,510
 Mais… apprend-il vraiment ?
 
 3
-00:00:05,117 --> 00:00:07,375
+00:00:06,160 --> 00:00:08,217
 Des devoirs terminés en quelques secondes.
 
 4
-00:00:07,595 --> 00:00:09,110
+00:00:08,437 --> 00:00:11,085
 Des réponses copiées… sans réflexion.
 
 5
-00:00:09,330 --> 00:00:11,820
+00:00:11,305 --> 00:00:13,893
 Car obtenir une réponse ne signifie pas comprendre !
 
 6
-00:00:12,720 --> 00:00:18,919
+00:00:14,793 --> 00:00:22,260
 Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle.
 
 7
-00:00:19,569 --> 00:00:22,493
+00:00:22,910 --> 00:00:26,275
 Et tout cela, pour seulement 3 000 FCFA !
 
 8
-00:00:22,713 --> 00:00:26,652
+00:00:26,495 --> 00:00:30,387
 Un guide numérique. Un paiement unique. Un accès immédiat.
 
 9
-00:00:27,302 --> 00:00:30,981
+00:00:31,037 --> 00:00:34,712
 Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !
 

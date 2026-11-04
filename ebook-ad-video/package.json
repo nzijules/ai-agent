@@ -45,7 +45,8 @@
     "render:eco-all": "npm run render:eco-vertical && npm run render:eco-vertical-sans-voix && npm run render:eco-carre && npm run render:eco-carre-sans-voix && bash scripts/normalize_audio.sh",
     "render:court-controle": "remotion render Pub-Verticale-Controle-Court-VoixOff exports/tiktok-controle-30s-1080x1920.mp4 --codec=h264 --crf=20 --audio-codec=aac",
     "render:court-economie": "remotion render Pub-Verticale-Economie-Court-VoixOff exports/tiktok-economie-30s-1080x1920.mp4 --codec=h264 --crf=20 --audio-codec=aac",
-    "render:courts": "npm run render:court-controle && npm run render:court-economie"
+    "render:courts": "npm run render:court-controle && npm run render:court-economie",
+    "render:tout": "npm run render:vertical && npm run render:vertical-sans-voix && npm run render:carre && npm run render:carre-sans-voix && npm run render:eco-vertical && npm run render:eco-vertical-sans-voix && npm run render:eco-carre && npm run render:eco-carre-sans-voix && npm run render:courts && bash scripts/normalize_audio.sh"
   },
   "allowScripts": {
     "esbuild": false

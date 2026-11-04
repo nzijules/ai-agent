@@ -20,7 +20,8 @@ export const Captions: React.FC = () => {
   const line = lines.find((l) => t >= l.start - 0.05 && t < l.start + l.duration + 0.35);
   if (!line) return null;
   const local = t - line.start;
-  const all = line.text.split(" ");
+  // keep prices together (« 3 000 FCFA ») so a chunk never splits them
+  const all = line.text.replace(/(\d) (\d{3})/g, "$1\u00a0$2").replace(/(\d) (FCFA)/g, "$1\u00a0$2").split(" ");
   const total = all.reduce((a, w) => a + w.length + 1, 0);
   const speak = line.duration * 0.92;
   // word timings (char-weighted)
