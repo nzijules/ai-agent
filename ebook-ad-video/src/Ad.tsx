@@ -73,7 +73,7 @@ const AdInner: React.FC<Omit<AdProps, "variant">> = ({ voiceover, captions }) =>
       {voiceover &&
         tl.LINES.map((l) => (
           <Sequence key={l.id} name={`VO ${l.id}`} from={Math.round(l.start * fps)} durationInFrames={Math.ceil((l.duration + 0.1) * fps)} layout="none">
-            <Audio src={staticFile(`audio/vo/${l.id}.wav`)} volume={1} />
+            <Audio src={staticFile(`${tl.voDir}/${l.id}.wav`)} volume={1} />
           </Sequence>
         ))}
       {tl.SFX.map(([name, t, v], i) => (

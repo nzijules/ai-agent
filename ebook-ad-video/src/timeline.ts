@@ -86,6 +86,8 @@ export const makeTimeline = (variant: Variant) => {
     SFX,
     TOTAL_FRAMES: Math.round(tl.total * FPS),
     music: variant === "controle" ? "audio/music.mp3" : `audio/music-${variant}.mp3`,
+    /** folder of the voice-over clips of this cut */
+    voDir: variant === "controle" ? "audio/vo" : `audio/vo-${variant}`,
     at,
     lineAbs,
     lineFrames,
