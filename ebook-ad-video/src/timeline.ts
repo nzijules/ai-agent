@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
-import tlControle from "./generated/timeline.json";
-import voControle from "./generated/voiceover.json";
+import tlControle from "./generated/timeline-controle.json";
+import voControle from "./generated/voiceover-controle.json";
 import tlEconomie from "./generated/timeline-economie.json";
 import voEconomie from "./generated/voiceover-economie.json";
 import { FPS } from "./theme";
@@ -53,30 +53,32 @@ export const makeTimeline = (variant: Variant) => {
   const sceneAbs = (id: SceneId, offset = 0) => scene(id).from + offset;
   const linesOf = (id: SceneId) => scene(id).lines;
 
-  const s1 = linesOf("S1-Accroche");
-  const s2 = linesOf("S2-Probleme");
+  const ln = (id: SceneId) => linesOf(id);
+  const s1 = ln("S1-Accroche"), s2 = ln("S2-Probleme"), s3 = ln("S3-Tuteur"), s5 = ln("S5-Benefices");
+  const s6 = ln("S6-Methode"), s7 = ln("S7-Offre"), s8 = ln("S8-Appel");
+  const priceLine = variant === "economie" ? s7[1] : s7[0];
   type Sfx = [string, number, number];
-  /** Sound effects on the master timeline: [file, absolute second, volume] */
+  /** Sound effects on the master timeline: [file, absolute second, volume] (anchored by line position) */
   const SFX: Sfx[] = [
     ["pop", sceneAbs("S1-Accroche", 0.33), 0.35],
     ...(variant === "controle" ? ([["pop", sceneAbs("S1-Accroche", 1.4), 0.35]] as Sfx[]) : []),
     ["whoosh", lineAbs(s1[1], -0.7), 0.45],
     ...SCENES.slice(1).map((s): Sfx => ["whoosh", s.from - 0.25, 0.5]),
-    ...s2.slice(0, 4).map((id): Sfx => ["pop", lineAbs(id), 0.45]),
-    ["whoosh", lineAbs(s2[4], -0.5), 0.4],
-    ["pop", lineAbs("l09"), 0.4],
-    ["pop", lineAbs("l09", 0.73), 0.45],
+    ...s2.slice(0, -1).map((id): Sfx => ["pop", lineAbs(id), 0.45]),
+    ["whoosh", lineAbs(s2[s2.length - 1], -0.5), 0.4],
+    ["pop", lineAbs(s3[1]), 0.4],
+    ["pop", lineAbs(s3[1], 0.73), 0.45],
     ["riser", sceneAbs("S4-Revelation", -1.8), 0.5],
     ["impact", sceneAbs("S4-Revelation", 0.3), 0.75],
-    ...["l12", "l13", "l14", "l15"].map((id): Sfx => ["ding", lineAbs(id, 0.13), 0.28]),
-    ...["l13", "l14", "l15"].map((id): Sfx => ["whoosh", lineAbs(id, -0.45), 0.3]),
+    ...s5.map((id): Sfx => ["ding", lineAbs(id, 0.13), 0.28]),
+    ...s5.slice(1).map((id): Sfx => ["whoosh", lineAbs(id, -0.45), 0.3]),
     ["pop", sceneAbs("S6-Methode", 0.6), 0.3],
     ["pop", sceneAbs("S6-Methode", 2.67), 0.3],
-    ["whoosh", lineAbs("l18", -0.45), 0.4],
-    ...(variant === "economie" ? ([["pop", lineAbs("e19", 0.2), 0.4], ["pop", lineAbs("e19", 1.6), 0.4]] as Sfx[]) : []),
-    ["success", lineAbs("l20"), 0.5],
-    ["pop", lineAbs("l22", -1.2), 0.4],
-    ["ding", lineAbs("l22", -0.9), 0.25],
+    ["whoosh", lineAbs(s6[s6.length - 1], -0.45), 0.4],
+    ...(variant === "economie" ? ([["pop", lineAbs(s7[0], 0.2), 0.4], ["pop", lineAbs(s7[0], 1.6), 0.4]] as Sfx[]) : []),
+    ...(variant === "controle" ? ([0, 1, 2].map((k) => ["pop", lineAbs(s7[1], k * 1.1), 0.35]) as Sfx[]) : []),
+    ["success", lineAbs(priceLine), 0.5],
+    ["ding", lineAbs(s8[s8.length - 1], -0.9), 0.25],
   ];
   return {
     variant,
@@ -84,9 +86,9 @@ export const makeTimeline = (variant: Variant) => {
     LINES,
     SFX,
     TOTAL_FRAMES: Math.round(tl.total * FPS),
-    music: variant === "controle" ? "audio/music.mp3" : `audio/music-${variant}.mp3`,
+    music: `audio/music-${variant}.mp3`,
     /** folder of the voice-over clips of this cut */
-    voDir: variant === "controle" ? "audio/vo" : `audio/vo-${variant}`,
+    voDir: `audio/vo-${variant}`,
     at,
     lineAbs,
     lineFrames,
@@ -102,4 +104,3 @@ export const TimelineProvider: React.FC<{ variant: Variant; children: React.Reac
 export const useTL = () => useContext(Ctx);
 
 export const TOTAL_FRAMES_OF = (v: Variant) => makeTimeline(v).TOTAL_FRAMES;
-export const SCENES_CONTROLE = makeTimeline("controle").SCENES;

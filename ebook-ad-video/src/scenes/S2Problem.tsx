@@ -9,26 +9,26 @@ import { C, F } from "../theme";
 import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
-export type ProblemItem = { icon: IconName; title: string; sub: string; line: string; positive?: boolean };
+export type ProblemItem = { icon: IconName; title: string; sub: string; positive?: boolean };
 export type ProblemProps = {
   eyebrow: string;
   items: ProblemItem[];
-  /** voice-over line on which the closing statement appears */
-  statementLine: string;
   statement: { top: string; middle: string; bottom: string; middleLast?: boolean };
 };
 
-/** Problem (angle Contrôle) — cards and statement are anchored to voice-over lines l03–l07. */
+/** Problem (angle Contrôle) — one card per voice-over line, then the statement. */
 const ITEMS: ProblemItem[] = [
-  { icon: "clock", title: "Devoirs bouclés en quelques secondes", sub: "…sans avoir rien retenu", line: "l03" },
-  { icon: "question", title: "Leçons mal comprises", sub: "les mêmes blocages reviennent", line: "l04" },
-  { icon: "cards", title: "Révisions sans méthode", sub: "beaucoup d'efforts, peu de résultats", line: "l05" },
-  { icon: "copy", title: "Réponses copiées-collées", sub: "sans réflexion personnelle", line: "l06" },
+  { icon: "clock", title: "Devoirs terminés en quelques secondes", sub: "…sans avoir rien retenu" },
+  { icon: "question", title: "Leçons toujours pas comprises", sub: "les mêmes blocages reviennent" },
+  { icon: "copy", title: "Réponses copiées-collées", sub: "sans aucune réflexion" },
 ];
 
-export const ProblemScene: React.FC<ProblemProps> = ({ eyebrow, items, statementLine, statement: st }) => {
+export const ProblemScene: React.FC<ProblemProps> = ({ eyebrow, items, statement: st }) => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf } = useTL();
+  // cards are anchored to the scene's voice-over lines in order; the last line is the statement
+  const ln = linesOf("S2-Probleme");
+  const statementLine = ln[ln.length - 1];
   const L = useLayout();
   const statement = at(statementLine, -0.2);
   const out = prog(f, statement - 10, statement + 4, easeIn);
@@ -48,7 +48,7 @@ export const ProblemScene: React.FC<ProblemProps> = ({ eyebrow, items, statement
           <Eyebrow size={L.s(30)} bg={C.navy} color={C.yellow}>{eyebrow}</Eyebrow>
         </div>
         {items.map((it, i) => {
-          const d = at(it.line);
+          const d = at(ln[i]);
           const tone = it.positive ? { main: C.green, soft: C.greenSoft } : { main: C.red, soft: "#FDE7E8" };
           const p = pop(f, d, 13, 0.75);
           return (
@@ -98,7 +98,6 @@ export const S2Problem: React.FC = () => (
   <ProblemScene
     eyebrow="Le constat des parents"
     items={ITEMS}
-    statementLine="l07"
     statement={{ top: "Obtenir une réponse", middle: "ne signifie pas", bottom: "*comprendre.*" }}
   />
 );

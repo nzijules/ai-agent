@@ -31,8 +31,17 @@ suf = f"-{V}" if V else ""
 p = os.path.join(ROOT, f"src/generated/voiceover{suf}.json")
 vo = json.load(open(p, encoding="utf-8"))
 byid = {l["id"]: l for l in vo["lines"]}
-# a variant replaces some lXX lines by its own eXX lines (same scene, same position)
-SCENES = [(sid, [i if i in byid else "e" + i[1:] for i in ids], lead) for sid, ids, lead in SCENES]
+if V == "controle":
+    # optimised script: scenes listed with their own cXX lines, in order
+    C = {"S1-Accroche": 2, "S2-Probleme": 4, "S3-Tuteur": 2, "S4-Revelation": 1, "S5-Benefices": 4, "S6-Methode": 2, "S7-Offre": 2, "S8-Appel": 2}
+    ids_all = [l["id"] for l in vo["lines"]]; k = 0; new = []
+    for sid, _, lead in SCENES:
+        n = C[sid]; new.append((sid, ids_all[k:k + n], lead)); k += n
+    assert k == len(ids_all), (k, len(ids_all))
+    SCENES = new
+else:
+    # a variant replaces some lXX lines by its own eXX lines (same scene, same position)
+    SCENES = [(sid, [i if i in byid else "e" + i[1:] for i in ids], lead) for sid, ids, lead in SCENES]
 t = 0.0; scenes = []
 for sid, ids, lead in SCENES:
     frm = t
@@ -46,7 +55,7 @@ for k, s in enumerate(scenes):
     s["to"] = scenes[k + 1]["from"] if k + 1 < len(scenes) else total
 json.dump(vo, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump({"total": total, "scenes": scenes}, open(os.path.join(ROOT, f"src/generated/timeline{suf}.json"), "w"), indent=1)
-with open(os.path.join(ROOT, f"exports/sous-titres{suf or '-controle'}.srt"), "w", encoding="utf-8") as f:
+with open(os.path.join(ROOT, f"exports/sous-titres{suf}.srt"), "w", encoding="utf-8") as f:
     for i, r in enumerate(vo["lines"], 1):
         f.write(f"{i}\n{fmt(r['start'])} --> {fmt(r['start'] + r['duration'])}\n{r['text']}\n\n")
 for s in scenes:

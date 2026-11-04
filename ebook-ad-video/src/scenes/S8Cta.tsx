@@ -15,9 +15,10 @@ import { Stage } from "./Stage";
 /** Call to action: instruction + arrows pointing to the real Meta/TikTok button under the video (no fake button). */
 export const S8Cta: React.FC = () => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf, variant } = useTL();
+  const ln = linesOf("S8-Appel");
   const L = useLayout();
-  const btnAt = at("l22", -1.2);
+  const btnAt = at(ln[ln.length - 1], -1.2);
   const bp = pop(f, btnAt, 11, 0.8);
   const pulse = f > btnAt + 20 ? 1 + 0.03 * Math.sin((f - btnAt) / 6) : 1;
   const imgW = L.square ? 300 : 520;
@@ -30,7 +31,7 @@ export const S8Cta: React.FC = () => {
           <Book3D width={L.s(L.square ? 130 : 190)} rotY={-22} rotX={4} />
         </div>
       </div>
-      <KineticText text="Donnez à votre enfant une *meilleure méthode* pour apprendre." size={L.s(76)} delay={6} stagger={3} />
+      <KineticText text={variant === "controle" ? "Apprenez-lui à s'en servir pour *comprendre et progresser.*" : "Donnez à votre enfant une *meilleure méthode* pour apprendre."} size={L.s(76)} delay={6} stagger={3} />
       <div style={{ display: "flex", alignItems: "center", gap: L.s(10), fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.navy, background: "#fff", borderRadius: L.s(30), padding: `${L.s(12)}px ${L.s(22)}px`, boxShadow: "0 8px 24px rgba(11,27,58,0.10)", opacity: prog(f, btnAt - 10, btnAt + 2) }}>
         <Icon name="phone" size={L.s(34)} color={C.green} delay={btnAt - 8} /> {cfg.contactLabel} : {cfg.contactValue}
       </div>

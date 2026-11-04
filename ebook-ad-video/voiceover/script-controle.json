@@ -1,0 +1,100 @@
+{
+  "_note": "Version Contrôle optimisée (texte de l'auteur). 'text' = sous-titre, 'spoken' = texte lu par la voix provisoire. Voix finale : Brian (ElevenLabs, eleven_multilingual_v2).",
+  "lines": [
+    {
+      "id": "c01",
+      "text": "Votre enfant utilise déjà ChatGPT pour ses devoirs.",
+      "spoken": "Votre enfant utilise déjà Tchat G P T pour ses devoirs."
+    },
+    {
+      "id": "c02",
+      "text": "Mais… apprend-il vraiment ?",
+      "spoken": "Mais… apprend-il vraiment ?"
+    },
+    {
+      "id": "c03",
+      "text": "Des devoirs terminés en quelques secondes.",
+      "spoken": "Des devoirs terminés en quelques secondes."
+    },
+    {
+      "id": "c04",
+      "text": "Des leçons qu'il ne comprend toujours pas.",
+      "spoken": "Des leçons qu'il ne comprend toujours pas."
+    },
+    {
+      "id": "c05",
+      "text": "Des réponses copiées… sans réflexion.",
+      "spoken": "Des réponses copiées… sans réflexion."
+    },
+    {
+      "id": "c06",
+      "text": "Car obtenir une réponse ne signifie pas comprendre !",
+      "spoken": "Car obtenir une réponse ne signifie pas comprendre !"
+    },
+    {
+      "id": "c07",
+      "text": "Et si ChatGPT devenait un véritable tuteur pour votre enfant ?",
+      "spoken": "Et si Tchat G P T devenait un véritable tuteur pour votre enfant ?"
+    },
+    {
+      "id": "c08",
+      "text": "Un tuteur qui lui pose les bonnes questions, l'aide à réfléchir et le guide… sans jamais penser à sa place.",
+      "spoken": "Un tuteur qui lui pose les bonnes questions, l'aide à réfléchir et le guide… sans jamais penser à sa place."
+    },
+    {
+      "id": "c09",
+      "text": "Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle.",
+      "spoken": "Découvrez « Apprendre à apprendre avec Tchat G P T », le guide pratique des parents à l'ère de l'intelligence artificielle."
+    },
+    {
+      "id": "c10",
+      "text": "Grâce à ce guide, aidez votre enfant à comprendre ses leçons, étape par étape.",
+      "spoken": "Grâce à ce guide, aidez votre enfant à comprendre ses leçons, étape par étape."
+    },
+    {
+      "id": "c11",
+      "text": "À réviser avec des quiz interactifs et chronométrés.",
+      "spoken": "À réviser avec des quiz interactifs et chronométrés."
+    },
+    {
+      "id": "c12",
+      "text": "À identifier ses erreurs, renforcer ses connaissances et gagner en autonomie.",
+      "spoken": "À identifier ses erreurs, renforcer ses connaissances et gagner en autonomie."
+    },
+    {
+      "id": "c13",
+      "text": "Et surtout, à apprendre à réfléchir… plutôt qu'à recopier !",
+      "spoken": "Et surtout, à apprendre à réfléchir… plutôt qu'à recopier !"
+    },
+    {
+      "id": "c14",
+      "text": "Une méthode simple, des exemples prêts à l'emploi, de la sixième à la terminale.",
+      "spoken": "Une méthode simple, des exemples prêts à l'emploi, de la sixième à la terminale."
+    },
+    {
+      "id": "c15",
+      "text": "Parce que l'intelligence artificielle ne remplace ni l'enseignant ni les efforts de l'élève. Elle peut les accompagner.",
+      "spoken": "Parce que l'intelligence artificielle ne remplace ni l'enseignant ni les efforts de l'élève. Elle peut les accompagner."
+    },
+    {
+      "id": "c16",
+      "text": "Et tout cela, pour seulement {PRICE} !",
+      "spoken": "Et tout cela, pour seulement {PRICE_SPOKEN} !"
+    },
+    {
+      "id": "c17",
+      "text": "Un guide numérique. Un paiement unique. Un accès immédiat.",
+      "spoken": "Un guide numérique. Un paiement unique. Un accès immédiat."
+    },
+    {
+      "id": "c18",
+      "text": "Ne laissez pas votre enfant utiliser ChatGPT uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser.",
+      "spoken": "Ne laissez pas votre enfant utiliser Tchat G P T uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser."
+    },
+    {
+      "id": "c19",
+      "text": "Téléchargez votre guide dès maintenant !",
+      "spoken": "Téléchargez votre guide dès maintenant !"
+    }
+  ]
+}

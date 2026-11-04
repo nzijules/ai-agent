@@ -18,9 +18,9 @@ const MONTHS = ["SEPT", "OCT", "NOV", "DÉC", "JANV", "FÉV"];
 
 export const S1HookEconomie: React.FC = () => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf } = useTL();
   const L = useLayout();
-  const q = at("e02", -0.25);
+  const q = at(linesOf("S1-Accroche")[1], -0.25);
   const dim = prog(f, q, q + 14);
   const hp = pop(f, q + 4, 12, 0.9);
   const gridW = L.square ? 640 : 880;

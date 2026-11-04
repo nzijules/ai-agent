@@ -13,12 +13,14 @@ import { Stage } from "./Stage";
 /** 33–42.8 s — Solution reveal: the book lands with an impact, light rays and sparkles. */
 export const S4Reveal: React.FC = () => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf, lineFrames } = useTL();
+  const ln = linesOf("S4-Revelation");
   const L = useLayout();
   const land = 10;
   const b = pop(f, land - 8, 12, 1.1);
   const bookW = L.square ? 270 : 420;
-  const sub = at("l11");
+  // subtitle on the 2nd line, or at the comma of a single long line
+  const sub = ln.length > 1 ? at(ln[1]) : at(ln[0]) + Math.round(lineFrames(ln[0]) * 0.45);
   const rays = interpolate(f, [land, land + 20], [0, 1], { ...clamp, easing: easeOut });
   return (
     <Stage bg={<Background variant="navy" />} gap={L.s(26)}>

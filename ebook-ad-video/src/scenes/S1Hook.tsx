@@ -12,9 +12,9 @@ import { useTL } from "../timeline";
 /** 0–8 s — Hook: "Votre enfant utilise ChatGPT… mais apprend-il vraiment ?" */
 export const S1Hook: React.FC = () => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf } = useTL();
   const L = useLayout();
-  const q = at("l02", -0.6); // question moment
+  const q = at(linesOf("S1-Accroche")[1], -0.6); // question moment
   const dim = prog(f, q, q + 14);
   const qm = pop(f, q + 6, 9, 0.9);
   const phoneW = L.square ? 600 : 880;

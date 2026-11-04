@@ -12,21 +12,27 @@ import { Stage } from "./Stage";
 import { QuizMock } from "../components/Quiz";
 
 /** 42.8–62.6 s — Four benefits, one every 5 s, synced with VO lines l12–l15. */
-type Benefit = { icon: IconName; title: string; sub: string; bg: string; fg: string; line: string; quiz?: boolean };
+type Benefit = { icon: IconName; title: string; sub: string; bg: string; fg: string; quiz?: boolean };
 export const BENEFITS: Benefit[] = [
-  { icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue, line: "l12" },
-  { icon: "target", title: "Réviser intelligemment", sub: "Quiz, fiches et exercices adaptés à son niveau.", bg: C.yellowSoft, fg: "#B07F00", line: "l13" },
-  { icon: "compass", title: "Développer son autonomie", sub: "Réfléchir par soi-même, avec esprit critique.", bg: C.greenSoft, fg: C.green, line: "l14" },
-  { icon: "users", title: "Accompagner ses progrès", sub: "Un parent impliqué, à ses côtés, sans être expert.", bg: C.pink, fg: "#C2364A", line: "l15" },
+  { icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
+  { icon: "target", title: "Réviser intelligemment", sub: "Quiz, fiches et exercices adaptés à son niveau.", bg: C.yellowSoft, fg: "#B07F00" },
+  { icon: "compass", title: "Développer son autonomie", sub: "Réfléchir par soi-même, avec esprit critique.", bg: C.greenSoft, fg: C.green },
+  { icon: "users", title: "Accompagner ses progrès", sub: "Un parent impliqué, à ses côtés, sans être expert.", bg: C.pink, fg: "#C2364A" },
+];
+
+const CONTROLE: Benefit[] = [
+  { icon: "bulb", title: "Comprendre ses leçons", sub: "Des explications claires, étape par étape.", bg: C.blueSoft, fg: C.blue },
+  { icon: "target", title: "Quiz chronométrés", sub: "Des quiz interactifs pour réviser efficacement.", bg: C.yellowSoft, fg: "#B07F00", quiz: true },
+  { icon: "compass", title: "Corriger ses erreurs", sub: "Identifier ses erreurs, renforcer ses connaissances, gagner en autonomie.", bg: C.greenSoft, fg: C.green },
+  { icon: "brain", title: "Réfléchir, pas recopier", sub: "Apprendre à réfléchir… plutôt qu'à recopier.", bg: C.pink, fg: "#C2364A" },
 ];
 
 export const S5Benefits: React.FC = () => {
   const f = useCurrentFrame();
-  const { at, variant } = useTL();
-  // « Contrôle » cut: benefit 2 shows the timed interactive quizzes
-  const list: Benefit[] = variant === "controle"
-    ? BENEFITS.map((b, i) => (i === 1 ? { ...b, title: "Quiz chronométrés", sub: "Des quiz interactifs pour tester ses connaissances.", quiz: true } : b))
-    : BENEFITS;
+  const { at, variant, linesOf } = useTL();
+  const lnS = linesOf("S5-Benefices");
+  // « Contrôle » cut (optimised script): its own 4 benefits, incl. timed interactive quizzes
+  const list: (Benefit & { line: string })[] = (variant === "controle" ? CONTROLE : BENEFITS).map((b, i) => ({ ...b, line: lnS[i] }));
   const T = (id: string) => at(id, -0.2);
   const L = useLayout();
   const cardW = L.square ? 640 : 880;

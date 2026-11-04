@@ -14,9 +14,10 @@ import { Stage } from "./Stage";
 /** 24.6–33 s — Pivot: "Et si l'IA devenait un vrai tuteur ?" (relative times) */
 export const S3Pivot: React.FC = () => {
   const f = useCurrentFrame();
-  const { at } = useTL();
+  const { at, linesOf, variant } = useTL();
+  const ln = linesOf("S3-Tuteur");
   const L = useLayout();
-  const cmp = at("l09");
+  const cmp = at(ln[1]);
   const photoW = L.square ? 420 : 760;
   const photoH = L.square ? 470 : 760;
   const pp = pop(f, 6, 16, 1);
@@ -65,9 +66,9 @@ export const S3Pivot: React.FC = () => {
   );
   return (
     <Stage bg={<Background variant="light" />} gap={L.s(40)}>
-      <KineticText text="Et si l'IA devenait un *vrai tuteur* ?" size={L.s(88)} delay={8} stagger={3} />
+      <KineticText text={variant === "controle" ? "Et si ChatGPT devenait un *vrai tuteur* ?" : "Et si l'IA devenait un *vrai tuteur* ?"} size={L.s(88)} delay={8} stagger={3} />
       {content}
-      {!L.square && <HandNote text="Un parent informé, un enfant plus confiant !" size={54} delay={at("l09", 1.0)} rotate={-3} />}
+      {!L.square && <HandNote text="Un parent informé, un enfant plus confiant !" size={54} delay={at(ln[1], 1.0)} rotate={-3} />}
     </Stage>
   );
 };

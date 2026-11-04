@@ -20,10 +20,40 @@ export const Captions: React.FC = () => {
   const line = lines.find((l) => t >= l.start - 0.05 && t < l.start + l.duration + 0.35);
   if (!line) return null;
   const local = t - line.start;
-  const words = line.text.split(" ");
-  const total = words.reduce((a, w) => a + w.length + 1, 0);
+  const all = line.text.split(" ");
+  const total = all.reduce((a, w) => a + w.length + 1, 0);
   const speak = line.duration * 0.92;
-  let acc = 0;
+  // word timings (char-weighted)
+  const times: { w: string; s: number; e: number }[] = [];
+  {
+    let c = 0;
+    for (const w of all) {
+      const s0 = (c / total) * speak;
+      c += w.length + 1;
+      times.push({ w, s: s0, e: (c / total) * speak });
+    }
+  }
+  // page long sentences into short chunks (max ~2 lines) so subtitles never cover the scene
+  const maxChars = L.square ? 44 : 36;
+  const chunks: (typeof times)[] = [];
+  let cur: typeof times = [];
+  let len = 0;
+  for (const tw of times) {
+    const breakAfterPunct = cur.length > 0 && /[,.;:!?…]$/.test(cur[cur.length - 1].w) && len > maxChars * 0.45;
+    if (cur.length && (len + tw.w.length > maxChars || breakAfterPunct)) {
+      chunks.push(cur);
+      cur = [];
+      len = 0;
+    }
+    cur.push(tw);
+    len += tw.w.length + 1;
+  }
+  if (cur.length) chunks.push(cur);
+  const found = chunks.findIndex((c) => local < c[c.length - 1].e + 0.05);
+  const ci = found === -1 ? chunks.length - 1 : found;
+  const chunk = chunks[ci];
+  const chunkStart = chunk[0].s;
+  const pageIn = ci > 0 ? interpolate(local, [chunkStart - 0.05, chunkStart + 0.08], [0, 1], clamp) : 1;
   const appear = interpolate(local, [-0.05, 0.12], [0, 1], { ...clamp, easing: easeOut });
   const leave = interpolate(local, [line.duration + 0.15, line.duration + 0.35], [1, 0], clamp);
   const size = L.square ? 34 : 44;
@@ -36,7 +66,7 @@ export const Captions: React.FC = () => {
         top: L.captionY,
         display: "flex",
         justifyContent: "center",
-        translate: `0px ${-50 + (1 - appear) * 20}%`,
+        translate: `0px ${-50 + (1 - appear) * 20 + (1 - pageIn) * 12}%`,
         opacity: appear * leave,
         pointerEvents: "none",
       }}
@@ -59,10 +89,7 @@ export const Captions: React.FC = () => {
           textAlign: "center",
         }}
       >
-        {words.map((w, i) => {
-          const s = (acc / total) * speak;
-          acc += w.length + 1;
-          const e = (acc / total) * speak;
+        {chunk.map(({ w, s, e }, i) => {
           const active = local >= s && local < e + 0.05;
           const said = local >= s;
           return (

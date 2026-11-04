@@ -2,7 +2,7 @@
 """Build the voice-over line list of a variant (e.g. "economie").
 
 For each line of voiceover/script-<variant>.json:
-  - if public/audio/vo/<id>.wav exists (your recording), it is reused;
+  - if public/audio/vo-<variant>/<id>.wav exists (your recording), it is reused;
   - otherwise a provisional clip is synthesised with Piper (local, free) so the video can be previewed.
 Writes src/generated/voiceover-<variant>.json, then run: python3 scripts/retime.py --variant <variant>
 
@@ -19,8 +19,9 @@ script = json.load(open(os.path.join(ROOT, f"voiceover/script-{a.variant}.json")
 base = {l["id"]: l for l in json.load(open(os.path.join(ROOT, "src/generated/voiceover.json"), encoding="utf-8"))["lines"]}
 out = []
 for ln in script["lines"]:
-    i = ln["id"]; wav = os.path.join(ROOT, "public/audio/vo", i + ".wav")
+    i = ln["id"]; wav = os.path.join(ROOT, f"public/audio/vo-{a.variant}", i + ".wav")
     text = ln.get("text") or base[i]["text"]
+    os.makedirs(os.path.dirname(wav), exist_ok=True)
     text = text.replace("{PRICE}", cfg["price"])
     if not os.path.exists(wav) or (a.force_tts and i.startswith("e")):
         if not a.model:

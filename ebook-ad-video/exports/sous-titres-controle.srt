@@ -1,88 +1,76 @@
 1
-00:00:00,350 --> 00:00:03,375
+00:00:00,350 --> 00:00:03,797
 Votre enfant utilise déjà ChatGPT pour ses devoirs.
 
 2
-00:00:03,595 --> 00:00:05,477
-Mais apprend-il vraiment ?
+00:00:04,017 --> 00:00:05,068
+Mais… apprend-il vraiment ?
 
 3
-00:00:06,227 --> 00:00:08,268
-Des devoirs bouclés en quelques secondes.
+00:00:05,818 --> 00:00:07,928
+Des devoirs terminés en quelques secondes.
 
 4
-00:00:08,488 --> 00:00:10,070
-Des leçons qu'il ne comprend pas.
+00:00:08,148 --> 00:00:10,056
+Des leçons qu'il ne comprend toujours pas.
 
 5
-00:00:10,290 --> 00:00:11,866
-Des révisions sans méthode.
+00:00:10,276 --> 00:00:11,892
+Des réponses copiées… sans réflexion.
 
 6
-00:00:12,086 --> 00:00:14,213
-Et des réponses copiées, sans réflexion.
+00:00:12,112 --> 00:00:14,560
+Car obtenir une réponse ne signifie pas comprendre !
 
 7
-00:00:14,433 --> 00:00:18,231
-Obtenir une réponse ne signifie pas comprendre.
+00:00:15,310 --> 00:00:18,705
+Et si ChatGPT devenait un véritable tuteur pour votre enfant ?
 
 8
-00:00:18,981 --> 00:00:21,968
-Et si l'IA devenait un vrai tuteur ?
+00:00:18,925 --> 00:00:24,636
+Un tuteur qui lui pose les bonnes questions, l'aide à réfléchir et le guide… sans jamais penser à sa place.
 
 9
-00:00:22,188 --> 00:00:25,460
-Un tuteur qui guide votre enfant, au lieu de penser à sa place.
+00:00:25,636 --> 00:00:31,861
+Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle.
 
 10
-00:00:26,460 --> 00:00:29,683
-Découvrez « Apprendre à apprendre avec ChatGPT ».
+00:00:32,611 --> 00:00:36,983
+Grâce à ce guide, aidez votre enfant à comprendre ses leçons, étape par étape.
 
 11
-00:00:29,903 --> 00:00:33,190
-Le guide pratique des parents à l'ère de l'IA.
+00:00:37,203 --> 00:00:40,025
+À réviser avec des quiz interactifs et chronométrés.
 
 12
-00:00:33,940 --> 00:00:37,224
-Comprendre ses leçons, étape par étape.
+00:00:40,245 --> 00:00:44,145
+À identifier ses erreurs, renforcer ses connaissances et gagner en autonomie.
 
 13
-00:00:37,444 --> 00:00:41,995
-Réviser avec des quiz interactifs chronométrés, pour tester ses connaissances.
+00:00:44,365 --> 00:00:47,114
+Et surtout, à apprendre à réfléchir… plutôt qu'à recopier !
 
 14
-00:00:42,215 --> 00:00:44,802
-Développer son autonomie et son esprit critique.
+00:00:47,864 --> 00:00:52,394
+Une méthode simple, des exemples prêts à l'emploi, de la sixième à la terminale.
 
 15
-00:00:45,022 --> 00:00:47,296
-Et accompagner ses progrès, à ses côtés.
+00:00:52,614 --> 00:00:58,816
+Parce que l'intelligence artificielle ne remplace ni l'enseignant ni les efforts de l'élève. Elle peut les accompagner.
 
 16
-00:00:48,046 --> 00:00:50,690
-Une méthode simple, des exemples prêts à l'emploi.
+00:00:59,566 --> 00:01:02,492
+Et tout cela, pour seulement 3 000 FCFA !
 
 17
-00:00:50,910 --> 00:00:52,695
-De la 6e à la Terminale.
+00:01:02,712 --> 00:01:06,556
+Un guide numérique. Un paiement unique. Un accès immédiat.
 
 18
-00:00:52,915 --> 00:00:57,639
-L'IA ne remplace ni l'enseignant, ni les efforts de l'élève.
+00:01:07,256 --> 00:01:14,660
+Ne laissez pas votre enfant utiliser ChatGPT uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser.
 
 19
-00:00:58,389 --> 00:01:00,788
-Le guide pratique des parents, en format numérique.
-
-20
-00:01:01,008 --> 00:01:03,906
-Seulement 3 000 FCFA. Accès immédiat.
-
-21
-00:01:04,606 --> 00:01:07,140
-Donnez à votre enfant une meilleure méthode pour apprendre.
-
-22
-00:01:07,360 --> 00:01:09,410
-Téléchargez votre guide dès aujourd'hui.
+00:01:14,880 --> 00:01:16,591
+Téléchargez votre guide dès maintenant !
 
