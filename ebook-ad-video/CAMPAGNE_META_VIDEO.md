@@ -32,7 +32,7 @@ Lancement prévu juste après le bilan final de la campagne actuelle (8 novembre
 
 | Pub | Média | Accroche (3 premières secondes) | Statut |
 |---|---|---|---|
-| V1 – Contrôle | `pub-verticale-1080x1920-voix-off.mp4` + carrée | « Votre enfant utilise ChatGPT… mais apprend-il vraiment ? » | ✅ prête |
+| V1 – Contrôle | `pub-controle-verticale-1080x1920-voix-off.mp4` + carrée | « Votre enfant utilise ChatGPT… mais apprend-il vraiment ? » | ✅ prête |
 | V2 – Économie | variante à produire | angle « répétiteur à la maison », l'angle qui vend aujourd'hui | à produire |
 | V3 – Compositions | variante à produire | angle « préparer les compositions / examens » | à produire |
 | Témoin | Visuel A (image actuelle) | — | ✅ existant |

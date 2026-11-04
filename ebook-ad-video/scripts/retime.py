@@ -46,7 +46,7 @@ for k, s in enumerate(scenes):
     s["to"] = scenes[k + 1]["from"] if k + 1 < len(scenes) else total
 json.dump(vo, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 json.dump({"total": total, "scenes": scenes}, open(os.path.join(ROOT, f"src/generated/timeline{suf}.json"), "w"), indent=1)
-with open(os.path.join(ROOT, f"exports/sous-titres{suf}.srt"), "w", encoding="utf-8") as f:
+with open(os.path.join(ROOT, f"exports/sous-titres{suf or '-controle'}.srt"), "w", encoding="utf-8") as f:
     for i, r in enumerate(vo["lines"], 1):
         f.write(f"{i}\n{fmt(r['start'])} --> {fmt(r['start'] + r['duration'])}\n{r['text']}\n\n")
 for s in scenes:

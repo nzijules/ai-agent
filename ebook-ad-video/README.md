@@ -4,11 +4,11 @@ Projet Remotion (React + TypeScript) qui produit la publicité vidéo de l'ebook
 
 | Livrable | Fichier |
 |---|---|
-| Vertical 1080×1920, 30 fps, avec voix off + sous-titres animés | `exports/pub-verticale-1080x1920-voix-off.mp4` |
-| Vertical 1080×1920, sans voix off (musique + SFX) | `exports/pub-verticale-1080x1920-sans-voix.mp4` |
-| Carré 1080×1080, avec voix off + sous-titres | `exports/pub-carree-1080x1080-voix-off.mp4` |
-| Carré 1080×1080, sans voix off | `exports/pub-carree-1080x1080-sans-voix.mp4` |
-| Sous-titres (à importer sur les plateformes) | `exports/sous-titres.srt` |
+| Vertical 1080×1920, 30 fps, avec voix off + sous-titres animés | `exports/pub-controle-verticale-1080x1920-voix-off.mp4` |
+| Vertical 1080×1920, sans voix off (musique + SFX) | `exports/pub-controle-verticale-1080x1920-sans-voix.mp4` |
+| Carré 1080×1080, avec voix off + sous-titres | `exports/pub-controle-carree-1080x1080-voix-off.mp4` |
+| Carré 1080×1080, sans voix off | `exports/pub-controle-carree-1080x1080-sans-voix.mp4` |
+| Sous-titres (à importer sur les plateformes) | `exports/sous-titres-controle.srt` |
 | Script intégral de la voix off | [`voiceover/SCRIPT.md`](voiceover/SCRIPT.md) |
 | Storyboard et direction artistique | [`STORYBOARD.md`](STORYBOARD.md) |
 
@@ -79,7 +79,7 @@ python3 scripts/generate_voiceover.py --model /chemin/fr-siwis-medium.onnx
 ```
 
 Le script affiche un avertissement `OVERLAP` si une réplique déborde sur la suivante.
-Il régénère `public/audio/vo/*.wav`, `src/generated/voiceover.json` (synchro + sous-titres animés) et `exports/sous-titres.srt`.
+Il régénère `public/audio/vo/*.wav`, `src/generated/voiceover.json` (synchro + sous-titres animés) et `exports/sous-titres-controle.srt`.
 
 **Voix actuelle** : l'enregistrement fourni (`voiceover/original/voix-off.mp3`), découpé automatiquement en 22 répliques par
 `scripts/split_voiceover.py` (alignement MFCC/DTW sur la version Piper du même texte + coupe sur les pauses).
