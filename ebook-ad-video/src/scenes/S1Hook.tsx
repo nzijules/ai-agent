@@ -6,13 +6,14 @@ import { Bubble, Typewriter } from "../components/Ui";
 import { KineticText } from "../components/Text";
 import { Icon } from "../components/Icons";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at } from "../timeline";
 
 /** 0–8 s — Hook: "Votre enfant utilise ChatGPT… mais apprend-il vraiment ?" */
 export const S1Hook: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const q = sec(3.8); // question moment
+  const q = at("l02", -0.6); // question moment
   const dim = prog(f, q, q + 14);
   const qm = pop(f, q + 6, 9, 0.9);
   const phoneW = L.square ? 600 : 880;
@@ -44,14 +45,14 @@ export const S1Hook: React.FC = () => {
           <Bubble from="user" size={L.s(40)} delay={10} maxWidth={phoneW * 0.8}>
             <Typewriter text="Fais mon exercice 3 page 42 😅" delay={12} cps={1.6} />
           </Bubble>
-          <Bubble from="ai" size={L.s(40)} delay={44} typing={14} maxWidth={phoneW * 0.78}>
+          <Bubble from="ai" size={L.s(40)} delay={32} typing={10} maxWidth={phoneW * 0.78}>
             <div style={{ display: "flex", flexDirection: "column", gap: L.s(10) }}>
               <div style={{ fontWeight: 700 }}>Voici la réponse complète :</div>
               {[0.95, 0.8, 0.9, 0.6].map((w, i) => (
-                <div key={i} style={{ height: L.s(16), borderRadius: 8, background: "#D9E0EE", width: `${w * 100}%`, clipPath: `inset(0 ${100 - prog(f, 60 + i * 5, 72 + i * 5) * 100}% 0 0)` }} />
+                <div key={i} style={{ height: L.s(16), borderRadius: 8, background: "#D9E0EE", width: `${w * 100}%`, clipPath: `inset(0 ${100 - prog(f, 44 + i * 4, 54 + i * 4) * 100}% 0 0)` }} />
               ))}
-              <div style={{ display: "flex", alignItems: "center", gap: 8, color: C.green, fontWeight: 700, fontSize: L.s(28), opacity: prog(f, 84, 92) }}>
-                <Icon name="copy" size={L.s(30)} color={C.green} delay={84} /> Copié !
+              <div style={{ display: "flex", alignItems: "center", gap: 8, color: C.green, fontWeight: 700, fontSize: L.s(28), opacity: prog(f, 62, 70) }}>
+                <Icon name="copy" size={L.s(30)} color={C.green} delay={62} /> Copié !
               </div>
             </div>
           </Bubble>

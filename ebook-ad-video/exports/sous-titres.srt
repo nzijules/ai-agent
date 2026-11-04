@@ -1,88 +1,88 @@
 1
-00:00:00,600 --> 00:00:03,625
+00:00:00,350 --> 00:00:03,375
 Votre enfant utilise déjà ChatGPT pour ses devoirs.
 
 2
-00:00:04,400 --> 00:00:06,282
+00:00:03,595 --> 00:00:05,477
 Mais apprend-il vraiment ?
 
 3
-00:00:09,000 --> 00:00:11,041
+00:00:06,227 --> 00:00:08,268
 Des devoirs bouclés en quelques secondes.
 
 4
-00:00:12,000 --> 00:00:13,582
+00:00:08,488 --> 00:00:10,070
 Des leçons qu'il ne comprend pas.
 
 5
-00:00:14,600 --> 00:00:16,176
+00:00:10,290 --> 00:00:11,866
 Des révisions sans méthode.
 
 6
-00:00:17,000 --> 00:00:19,127
+00:00:12,086 --> 00:00:14,213
 Et des réponses copiées, sans réflexion.
 
 7
-00:00:20,400 --> 00:00:24,198
+00:00:14,433 --> 00:00:18,231
 Obtenir une réponse ne signifie pas comprendre.
 
 8
-00:00:25,400 --> 00:00:28,387
+00:00:18,981 --> 00:00:21,968
 Et si l'IA devenait un vrai tuteur ?
 
 9
-00:00:28,800 --> 00:00:32,072
+00:00:22,188 --> 00:00:25,460
 Un tuteur qui guide votre enfant, au lieu de penser à sa place.
 
 10
-00:00:33,600 --> 00:00:36,823
+00:00:26,460 --> 00:00:29,683
 Découvrez « Apprendre à apprendre avec ChatGPT ».
 
 11
-00:00:38,000 --> 00:00:41,287
+00:00:29,903 --> 00:00:33,190
 Le guide pratique des parents à l'ère de l'IA.
 
 12
-00:00:43,400 --> 00:00:46,684
+00:00:33,940 --> 00:00:37,224
 Comprendre ses leçons, étape par étape.
 
 13
-00:00:48,400 --> 00:00:51,479
+00:00:37,444 --> 00:00:40,523
 Réviser intelligemment, avec des exercices adaptés.
 
 14
-00:00:53,400 --> 00:00:55,987
+00:00:40,743 --> 00:00:43,330
 Développer son autonomie et son esprit critique.
 
 15
-00:00:58,400 --> 00:01:00,674
+00:00:43,550 --> 00:00:45,824
 Et accompagner ses progrès, à ses côtés.
 
 16
-00:01:03,200 --> 00:01:05,844
+00:00:46,574 --> 00:00:49,218
 Une méthode simple, des exemples prêts à l'emploi.
 
 17
-00:01:07,000 --> 00:01:08,785
+00:00:49,438 --> 00:00:51,223
 De la 6e à la Terminale.
 
 18
-00:01:09,400 --> 00:01:14,124
+00:00:51,443 --> 00:00:56,167
 L'IA ne remplace ni l'enseignant, ni les efforts de l'élève.
 
 19
-00:01:15,000 --> 00:01:17,399
+00:00:56,917 --> 00:00:59,316
 Le guide pratique des parents, en format numérique.
 
 20
-00:01:18,400 --> 00:01:21,298
+00:00:59,536 --> 00:01:02,434
 Seulement 3 000 FCFA. Accès immédiat.
 
 21
-00:01:23,000 --> 00:01:25,534
+00:01:03,134 --> 00:01:05,668
 Donnez à votre enfant une meilleure méthode pour apprendre.
 
 22
-00:01:26,600 --> 00:01:28,625
+00:01:05,888 --> 00:01:07,913
 Commandez votre exemplaire dès aujourd'hui.
 

@@ -8,17 +8,16 @@ import { Icon } from "../components/Icons";
 import { KineticText } from "../components/Text";
 import { CtaButton, PhotoCard } from "../components/Ui";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 82.6–90 s — Call to action with animated button + configurable contact. */
-export const CTA_PRESS = 4.6; // seconds after scene start (click SFX is synced to this)
-
 export const S8Cta: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const btnAt = sec(2.6);
-  const press = sec(CTA_PRESS);
+  const btnAt = at("l22", -1.2);
+  const press = at("l22", 0.6);
   const bp = pop(f, btnAt, 11, 0.8);
   const pressV = interpolate(f, [press - 3, press, press + 6], [0, 1, 0], clamp);
   const pulse = f > btnAt + 20 ? 1 + 0.03 * Math.sin((f - btnAt) / 6) : 1;

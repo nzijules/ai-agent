@@ -6,18 +6,20 @@ Outputs (44.1 kHz stereo WAV):
   public/audio/sfx/*.wav            whoosh, pop, impact, riser, ding, click, cash
 Usage: python3 scripts/generate_audio.py
 """
-import os, wave
+import json, os, wave
 import numpy as np
 
 SR = 44100
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 rng = np.random.default_rng(7)
-DUR = 90.0
+_TL = json.load(open(os.path.join(ROOT, "src/generated/timeline.json")))
+_SC = {x["id"]: x for x in _TL["scenes"]}
+DUR = float(_TL["total"])
 BPM = 100.0
 BEAT = 60.0 / BPM          # 0.6 s
 BAR = 4 * BEAT             # 2.4 s
-PIVOT = 24.6               # "Et si l'IA devenait un vrai tuteur ?"
-REVEAL = 33.0              # book reveal
+PIVOT = _SC["S3-Tuteur"]["from"]       # "Et si l'IA devenait un vrai tuteur ?"
+REVEAL = _SC["S4-Revelation"]["from"]  # book reveal
 
 
 def write(path, x):
@@ -179,7 +181,7 @@ def music():
         t0 += BAR; i += 1
     # Part B full groove from REVEAL to end
     t0 = REVEAL; i = 0
-    END = 88.4
+    END = DUR - 1.6
     while t0 < END - 0.01:
         ch, root = B[i % 4]
         d = min(BAR, END - t0)

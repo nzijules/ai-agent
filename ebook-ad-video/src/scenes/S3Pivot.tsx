@@ -7,14 +7,15 @@ import { Icon } from "../components/Icons";
 import { HandNote, KineticText } from "../components/Text";
 import { PhotoCard } from "../components/Ui";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 24.6–33 s — Pivot: "Et si l'IA devenait un vrai tuteur ?" (relative times) */
 export const S3Pivot: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const cmp = sec(4.2);
+  const cmp = at("l09");
   const photoW = L.square ? 420 : 760;
   const photoH = L.square ? 470 : 760;
   const pp = pop(f, 6, 16, 1);
@@ -65,7 +66,7 @@ export const S3Pivot: React.FC = () => {
     <Stage bg={<Background variant="light" />} gap={L.s(40)}>
       <KineticText text="Et si l'IA devenait un *vrai tuteur* ?" size={L.s(88)} delay={8} stagger={3} />
       {content}
-      {!L.square && <HandNote text="Un parent informé, un enfant plus confiant !" size={54} delay={sec(5.2)} rotate={-3} />}
+      {!L.square && <HandNote text="Un parent informé, un enfant plus confiant !" size={54} delay={at("l09", 1.0)} rotate={-3} />}
     </Stage>
   );
 };

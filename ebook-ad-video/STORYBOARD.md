@@ -1,4 +1,6 @@
-# Storyboard — 1 min 30 (format mobile 9:16, déclinaison 1:1)
+# Storyboard — ≈ 1 min 10, narration continue (format mobile 9:16, déclinaison 1:1)
+
+> Les minutages ci-dessous sont ceux de la première version (1:30). Depuis, le montage est recalé automatiquement sur la voix off sans blancs : voir `src/generated/timeline.json`.
 
 ## Direction artistique
 

@@ -12,7 +12,7 @@ Projet Remotion (React + TypeScript) qui produit la publicité vidéo de l'ebook
 | Script intégral de la voix off | [`voiceover/SCRIPT.md`](voiceover/SCRIPT.md) |
 | Storyboard et direction artistique | [`STORYBOARD.md`](STORYBOARD.md) |
 
-Durée : **1 min 30** (2 700 images à 30 fps). Codec : H.264 + AAC.
+Durée : **≈ 1 min 10** — calée sur la voix off, sans blancs entre les phrases (`scripts/retime.py`). Codec : H.264 + AAC.
 
 ---
 
@@ -92,8 +92,11 @@ les durées dans `src/generated/voiceover.json`.
 
 ## 5. Modifier le minutage
 
-`src/timeline.ts` contient le découpage des 8 scènes (en secondes) et le placement des effets sonores.
-Les animations internes de chaque scène sont exprimées en secondes relatives au début de la scène (`sec(…)`).
+Le montage suit la voix off : `scripts/retime.py` enchaîne les répliques sans blanc (pause de 0,22 s dans une scène,
+~0,7 s aux changements de scène) et écrit `src/generated/timeline.json` (bornes des scènes, durée totale).
+Animations et effets sonores sont ancrés sur les répliques (`at("l07")` dans `src/timeline.ts`), donc ils suivent automatiquement.
+Après tout changement de voix : `python3 scripts/retime.py && npm run audio && npm run render:all`.
+Réglages des pauses : constantes `GAP`, `SCENE_BREAK`, `TAIL` en tête de `scripts/retime.py`.
 
 ## 6. Musique et effets sonores
 

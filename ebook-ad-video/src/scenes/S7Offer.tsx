@@ -7,14 +7,15 @@ import { Book3D } from "../components/Book3D";
 import { Icon, IconName } from "../components/Icons";
 import { KineticText } from "../components/Text";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 74.8–82.6 s — Offer: book centred, "Le guide pratique des parents", price. */
 export const S7Offer: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const priceAt = sec(3.6);
+  const priceAt = at("l20");
   const pp = pop(f, priceAt, 9, 0.8);
   const feats: [IconName, string][] = [
     ["file", "Livre numérique"],

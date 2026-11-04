@@ -12,12 +12,12 @@ import { S5Benefits } from "./scenes/S5Benefits";
 import { S6Method } from "./scenes/S6Method";
 import { S7Offer } from "./scenes/S7Offer";
 import { S8Cta } from "./scenes/S8Cta";
-import { OVERLAP, SCENES, SFX } from "./timeline";
+import { OVERLAP, SCENES, SFX, SceneId } from "./timeline";
 import { loadFonts } from "./theme";
 
 loadFonts();
 
-export const SCENE_COMPONENTS: Record<(typeof SCENES)[number]["id"], React.FC> = {
+export const SCENE_COMPONENTS: Record<SceneId, React.FC> = {
   "S1-Accroche": S1Hook,
   "S2-Probleme": S2Problem,
   "S3-Tuteur": S3Pivot,

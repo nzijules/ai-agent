@@ -3,10 +3,10 @@ import React from "react";
 import { Composition, Folder } from "remotion";
 import { Ad, AdProps, SCENE_COMPONENTS } from "./Ad";
 import { SceneWrap } from "./scenes/Stage";
-import { SCENES, TOTAL_FRAMES } from "./timeline";
+import { SCENES, SceneId, TOTAL_FRAMES } from "./timeline";
 import { FPS } from "./theme";
 
-const SceneOnly: React.FC<{ id: (typeof SCENES)[number]["id"] }> = ({ id }) => {
+const SceneOnly: React.FC<{ id: SceneId }> = ({ id }) => {
   const C = SCENE_COMPONENTS[id];
   return (
     <SceneWrap inFrames={0} outFrames={0}>

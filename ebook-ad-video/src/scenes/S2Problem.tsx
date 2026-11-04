@@ -5,21 +5,22 @@ import { Background } from "../components/Background";
 import { Icon, IconName } from "../components/Icons";
 import { Eyebrow, KineticText } from "../components/Text";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at } from "../timeline";
 import { Stage } from "./Stage";
 
-/** 8–24.6 s — Problem. Times below are relative to the scene start (8 s). */
-const ITEMS: { icon: IconName; title: string; sub: string; at: number }[] = [
-  { icon: "clock", title: "Devoirs bouclés en quelques secondes", sub: "…sans avoir rien retenu", at: 1.0 },
-  { icon: "question", title: "Leçons mal comprises", sub: "les mêmes blocages reviennent", at: 4.0 },
-  { icon: "cards", title: "Révisions sans méthode", sub: "beaucoup d'efforts, peu de résultats", at: 6.6 },
-  { icon: "copy", title: "Réponses copiées-collées", sub: "sans réflexion personnelle", at: 9.0 },
+/** Problem — cards and statement are anchored to voice-over lines l03–l07. */
+const ITEMS: { icon: IconName; title: string; sub: string; line: string }[] = [
+  { icon: "clock", title: "Devoirs bouclés en quelques secondes", sub: "…sans avoir rien retenu", line: "l03" },
+  { icon: "question", title: "Leçons mal comprises", sub: "les mêmes blocages reviennent", line: "l04" },
+  { icon: "cards", title: "Révisions sans méthode", sub: "beaucoup d'efforts, peu de résultats", line: "l05" },
+  { icon: "copy", title: "Réponses copiées-collées", sub: "sans réflexion personnelle", line: "l06" },
 ];
 
 export const S2Problem: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const statement = sec(12.2);
+  const statement = at("l07", -0.2);
   const out = prog(f, statement - 10, statement + 4, easeIn);
   const cardW = L.square ? 760 : 880;
   return (
@@ -29,7 +30,7 @@ export const S2Problem: React.FC = () => {
           <Eyebrow size={L.s(30)} bg={C.navy} color={C.yellow}>Le constat des parents</Eyebrow>
         </div>
         {ITEMS.map((it, i) => {
-          const d = sec(it.at);
+          const d = at(it.line);
           const p = pop(f, d, 13, 0.75);
           return (
             <div

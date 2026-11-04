@@ -6,15 +6,16 @@ import { Icon } from "../components/Icons";
 import { Eyebrow, KineticText } from "../components/Text";
 import { Bubble, Typewriter } from "../components/Ui";
 import { useLayout } from "../layout";
-import { C, F, sec } from "../theme";
+import { C, F } from "../theme";
+import { at, lineFrames } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 62.6–74.8 s — How it works (illustrative prompt), audience 6e→Terminale, responsible-use note. */
 export const S6Method: React.FC = () => {
   const f = useCurrentFrame();
   const L = useLayout();
-  const lvl = sec(4.2);
-  const note = sec(6.6);
+  const lvl = at("l17", -0.2);
+  const note = at("l18", -0.2);
   const out = prog(f, note - 8, note + 6, easeIn);
   const w = L.square ? 720 : 880;
   const levels = ["6e", "5e", "4e", "3e", "2nde", "1re", "Tle"];
@@ -67,7 +68,7 @@ export const S6Method: React.FC = () => {
           <div style={{ fontFamily: F.display, fontWeight: 800, fontSize: L.s(54), color: "#fff", textAlign: "center", lineHeight: 1.18 }}>
             L'IA ne remplace ni l'enseignant, ni les efforts de l'élève.
           </div>
-          <div style={{ fontFamily: F.hand, fontWeight: 700, fontSize: L.s(72), color: C.yellow, opacity: prog(f, note + sec(2.6), note + sec(3.1)), rotate: "-3deg" }}>Elle les accompagne.</div>
+          <div style={{ fontFamily: F.hand, fontWeight: 700, fontSize: L.s(72), color: C.yellow, opacity: prog(f, at("l18", -1.2) + lineFrames("l18"), at("l18", -0.8) + lineFrames("l18")), rotate: "-3deg" }}>Elle les accompagne.</div>
         </div>
       </div>
     </Stage>
