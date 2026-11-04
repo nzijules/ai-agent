@@ -39,8 +39,8 @@ Tout est centralisé dans **`src/ad.config.json`** :
 
 ```json
 {
-  "price": "10 000 FCFA",              // affiché à l'écran (scène Offre + sous-titres)
-  "priceSpoken": "dix mille francs CFA", // lu par la voix off (en toutes lettres)
+  "price": "3 000 FCFA",              // affiché à l'écran (scène Offre + sous-titres)
+  "priceSpoken": "trois mille francs CFA", // lu par la voix off (en toutes lettres)
   "ctaLabel": "Commandez votre exemplaire",
   "contactLabel": "WhatsApp",
   "contactValue": "+225 00 00 00 00 00",  // ← à remplacer par votre numéro ou un lien court
