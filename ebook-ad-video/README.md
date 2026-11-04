@@ -81,7 +81,12 @@ python3 scripts/generate_voiceover.py --model /chemin/fr-siwis-medium.onnx
 Le script affiche un avertissement `OVERLAP` si une réplique déborde sur la suivante.
 Il régénère `public/audio/vo/*.wav`, `src/generated/voiceover.json` (synchro + sous-titres animés) et `exports/sous-titres.srt`.
 
-**Voix pro** : pour une voix plus naturelle (ElevenLabs, comédien voix…), enregistrez une réplique par
+**Voix actuelle** : l'enregistrement fourni (`voiceover/original/voix-off.mp3`), découpé automatiquement en 22 répliques par
+`scripts/split_voiceover.py` (alignement MFCC/DTW sur la version Piper du même texte + coupe sur les pauses).
+Pour un nouvel enregistrement continu : remplacez ce fichier, lancez `python3 scripts/split_voiceover.py` (nécessite `pip install librosa`
+et les clips Piper de référence), puis `npm run render:vertical && npm run render:carre`.
+
+**Autre voix pro** : pour une voix plus naturelle (ElevenLabs, comédien voix…), enregistrez une réplique par
 fichier `public/audio/vo/l01.wav … l22.wav` en respectant les créneaux de `script.json`, puis mettez à jour
 les durées dans `src/generated/voiceover.json`.
 
@@ -116,8 +121,8 @@ public/                 polices, images, audio
 ## 8. Crédits et licences
 
 - Polices : Montserrat, Inter, Caveat — SIL Open Font License 1.1 (usage commercial libre).
-- Voix off : synthèse Piper, voix « siwis » (jeu de données SIWIS, CC-BY 4.0 — University of Edinburgh).
-  Mention conseillée en description si la plateforme le permet : « Voix : Piper / SIWIS (CC-BY 4.0) ».
+- Voix off : enregistrement fourni par l'auteur. (Le générateur Piper « siwis », CC-BY 4.0, reste disponible comme voix de secours
+  et sert de référence pour l'alignement.)
 - Musique et SFX : compositions originales générées par script pour ce projet.
 - Remotion : gratuit pour les particuliers et les structures jusqu'à 3 personnes ; au-delà, une licence
   entreprise est requise (https://remotion.pro/license).
