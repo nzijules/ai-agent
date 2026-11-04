@@ -30,9 +30,20 @@ ap = argparse.ArgumentParser(); ap.add_argument("--variant", default="")
 V = ap.parse_args().variant
 suf = f"-{V}" if V else ""
 p = os.path.join(ROOT, f"src/generated/voiceover{suf}.json")
-vo = json.load(open(p, encoding="utf-8"))
+vo = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {"lines": []}
 byid = {l["id"]: l for l in vo["lines"]}
-if V == "controle":
+SHORT = {  # 30 s TikTok cuts: subsets of the full cut's recorded lines (no new recording)
+    "controle-court": ("controle", [("S1-Accroche", ["c01", "c02"], 0.3), ("S2-Probleme", ["c03", "c05", "c06"], 0.35),
+                                    ("S4-Revelation", ["c09"], 0.6), ("S7-Offre", ["c17", "c18"], 0.35), ("S8-Appel", ["c20"], 0.35)]),
+    "economie-court": ("economie", [("S1-Accroche", ["e01", "e02"], 0.3), ("S2-Probleme", ["e03", "e06", "e07"], 0.35),
+                                    ("S4-Revelation", ["l10"], 0.6), ("S7-Offre", ["e19", "l20"], 0.35), ("S8-Appel", ["l22"], 0.35)]),
+}
+if V in SHORT:
+    parent, SCENES = SHORT[V]
+    full = {l["id"]: l for l in json.load(open(os.path.join(ROOT, f"src/generated/voiceover-{parent}.json"), encoding="utf-8"))["lines"]}
+    vo = {"parent": parent, "lines": [dict(full[i]) for _, ids, _ in SCENES for i in ids]}
+    byid = {l["id"]: l for l in vo["lines"]}
+elif V == "controle":
     # optimised script: scenes listed with their own cXX lines, in order
     C = {"S1-Accroche": 2, "S2-Probleme": 4, "S3-Tuteur": 2, "S4-Revelation": 1, "S5-Benefices": 4, "S6-Methode": 2, "S7-Resultat": 1, "S7-Offre": 2, "S8-Appel": 2}
     ids_all = [l["id"] for l in vo["lines"]]; k = 0; new = []

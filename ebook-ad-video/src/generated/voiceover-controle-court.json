@@ -1,0 +1,59 @@
+{
+ "parent": "controle",
+ "lines": [
+  {
+   "id": "c01",
+   "start": 0.3,
+   "duration": 2.947,
+   "text": "Votre enfant utilise déjà ChatGPT pour ses devoirs."
+  },
+  {
+   "id": "c02",
+   "start": 3.467,
+   "duration": 1.0,
+   "text": "Mais… apprend-il vraiment ?"
+  },
+  {
+   "id": "c03",
+   "start": 5.117,
+   "duration": 2.258,
+   "text": "Des devoirs terminés en quelques secondes."
+  },
+  {
+   "id": "c05",
+   "start": 7.595,
+   "duration": 1.515,
+   "text": "Des réponses copiées… sans réflexion."
+  },
+  {
+   "id": "c06",
+   "start": 9.33,
+   "duration": 2.49,
+   "text": "Car obtenir une réponse ne signifie pas comprendre !"
+  },
+  {
+   "id": "c09",
+   "start": 12.72,
+   "duration": 6.199,
+   "text": "Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle."
+  },
+  {
+   "id": "c17",
+   "start": 19.569,
+   "duration": 2.924,
+   "text": "Et tout cela, pour seulement 3 000 FCFA !"
+  },
+  {
+   "id": "c18",
+   "start": 22.713,
+   "duration": 3.939,
+   "text": "Un guide numérique. Un paiement unique. Un accès immédiat."
+  },
+  {
+   "id": "c20",
+   "start": 27.302,
+   "duration": 3.679,
+   "text": "Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !"
+  }
+ ]
+}

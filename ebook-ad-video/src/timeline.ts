@@ -3,6 +3,10 @@ import tlControle from "./generated/timeline-controle.json";
 import voControle from "./generated/voiceover-controle.json";
 import tlEconomie from "./generated/timeline-economie.json";
 import voEconomie from "./generated/voiceover-economie.json";
+import tlControleCourt from "./generated/timeline-controle-court.json";
+import voControleCourt from "./generated/voiceover-controle-court.json";
+import tlEconomieCourt from "./generated/timeline-economie-court.json";
+import voEconomieCourt from "./generated/voiceover-economie-court.json";
 import { FPS } from "./theme";
 
 /**
@@ -14,7 +18,10 @@ import { FPS } from "./theme";
  *  - "controle" : hook « Votre enfant utilise ChatGPT… mais apprend-il vraiment ? »
  *  - "economie" : hook « Un répétiteur, ça se paie chaque mois » (angle of the best-selling visual A)
  */
-export type Variant = "controle" | "economie";
+export type Variant = "controle" | "economie" | "controle-court" | "economie-court";
+/** content angle of a cut (short TikTok cuts reuse their full cut's texts, visuals and recorded lines) */
+export type Angle = "controle" | "economie";
+export const angleOf = (v: Variant): Angle => (v.startsWith("economie") ? "economie" : "controle");
 export type SceneId =
   | "S1-Accroche" | "S2-Probleme" | "S3-Tuteur" | "S4-Revelation"
   | "S5-Benefices" | "S6-Methode" | "S7-Resultat" | "S7-Offre" | "S8-Appel";
@@ -25,12 +32,15 @@ type Raw = { tl: { total: number; scenes: unknown[] }; vo: { lines: Line[] } };
 const RAW: Record<Variant, Raw> = {
   controle: { tl: tlControle, vo: voControle },
   economie: { tl: tlEconomie, vo: voEconomie },
+  "controle-court": { tl: tlControleCourt, vo: voControleCourt },
+  "economie-court": { tl: tlEconomieCourt, vo: voEconomieCourt },
 };
 
 export const OVERLAP = 8; // frames of cross-fade between scenes
 
-export const makeTimeline = (variant: Variant) => {
-  const { tl, vo } = RAW[variant];
+export const makeTimeline = (cut: Variant) => {
+  const { tl, vo } = RAW[cut];
+  const variant = angleOf(cut);
   const SCENES = tl.scenes as Scene[];
   const LINES = vo.lines;
   const line = (id: string) => {
@@ -43,15 +53,16 @@ export const makeTimeline = (variant: Variant) => {
     if (!s) throw new Error(`Line ${id} belongs to no scene`);
     return s;
   };
-  const scene = (id: SceneId) => SCENES.find((s) => s.id === id)!;
+  const scene = (id: SceneId) => SCENES.find((s) => s.id === id);
+  const has = (id: SceneId) => !!scene(id);
   /** Absolute time (s) of a voice-over line start (+ offset). */
   const lineAbs = (id: string, offset = 0) => line(id).start + offset;
   /** Frame, relative to the start of the line's scene, of a voice-over line start (+ offset in seconds). */
   const at = (id: string, offset = 0) => Math.round((line(id).start - sceneOfLine(id).from + offset) * FPS);
   /** Duration of a line in frames */
   const lineFrames = (id: string) => Math.round(line(id).duration * FPS);
-  const sceneAbs = (id: SceneId, offset = 0) => scene(id).from + offset;
-  const linesOf = (id: SceneId) => scene(id).lines;
+  const sceneAbs = (id: SceneId, offset = 0) => (scene(id)?.from ?? 0) + offset;
+  const linesOf = (id: SceneId) => scene(id)?.lines ?? [];
 
   const ln = (id: SceneId) => linesOf(id);
   const s1 = ln("S1-Accroche"), s2 = ln("S2-Probleme"), s3 = ln("S3-Tuteur"), s5 = ln("S5-Benefices");
@@ -66,15 +77,12 @@ export const makeTimeline = (variant: Variant) => {
     ...SCENES.slice(1).map((s): Sfx => ["whoosh", s.from - 0.25, 0.5]),
     ...s2.slice(0, -1).map((id): Sfx => ["pop", lineAbs(id), 0.45]),
     ["whoosh", lineAbs(s2[s2.length - 1], -0.5), 0.4],
-    ["pop", lineAbs(s3[1]), 0.4],
-    ["pop", lineAbs(s3[1], 0.73), 0.45],
+    ...(s3.length > 1 ? ([["pop", lineAbs(s3[1]), 0.4], ["pop", lineAbs(s3[1], 0.73), 0.45]] as Sfx[]) : []),
     ["riser", sceneAbs("S4-Revelation", -1.8), 0.5],
     ["impact", sceneAbs("S4-Revelation", 0.3), 0.75],
     ...s5.map((id): Sfx => ["ding", lineAbs(id, 0.13), 0.28]),
     ...s5.slice(1).map((id): Sfx => ["whoosh", lineAbs(id, -0.45), 0.3]),
-    ["pop", sceneAbs("S6-Methode", 0.6), 0.3],
-    ["pop", sceneAbs("S6-Methode", 2.67), 0.3],
-    ["whoosh", lineAbs(s6[s6.length - 1], -0.45), 0.4],
+    ...(has("S6-Methode") ? ([["pop", sceneAbs("S6-Methode", 0.6), 0.3], ["pop", sceneAbs("S6-Methode", 2.67), 0.3], ["whoosh", lineAbs(s6[s6.length - 1], -0.45), 0.4]] as Sfx[]) : []),
     ...(variant === "economie" ? ([["pop", lineAbs(s7[0], 0.2), 0.4], ["pop", lineAbs(s7[0], 1.6), 0.4]] as Sfx[]) : []),
     ...(variant === "controle" ? ([0, 1, 2].map((k) => ["pop", lineAbs(s7[1], k * 1.1), 0.35]) as Sfx[]) : []),
     ["success", lineAbs(priceLine), 0.5],
@@ -86,9 +94,10 @@ export const makeTimeline = (variant: Variant) => {
     LINES,
     SFX,
     TOTAL_FRAMES: Math.round(tl.total * FPS),
-    music: `audio/music-${variant}.mp3`,
+    cut,
+    music: `audio/music-${cut}.mp3`,
     /** folder of the voice-over clips of this cut */
-    voDir: `audio/vo-${variant}`,
+    voDir: `audio/vo-${variant}`, // short cuts reuse the full cut's clips
     at,
     lineAbs,
     lineFrames,

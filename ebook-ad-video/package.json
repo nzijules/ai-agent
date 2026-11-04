@@ -42,7 +42,10 @@
     "render:eco-vertical-sans-voix": "remotion render Pub-Verticale-Economie-SansVoix exports/pub-economie-verticale-1080x1920-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
     "render:eco-carre": "remotion render Pub-Carree-Economie-VoixOff exports/pub-economie-carree-1080x1080-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
     "render:eco-carre-sans-voix": "remotion render Pub-Carree-Economie-SansVoix exports/pub-economie-carree-1080x1080-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
-    "render:eco-all": "npm run render:eco-vertical && npm run render:eco-vertical-sans-voix && npm run render:eco-carre && npm run render:eco-carre-sans-voix && bash scripts/normalize_audio.sh"
+    "render:eco-all": "npm run render:eco-vertical && npm run render:eco-vertical-sans-voix && npm run render:eco-carre && npm run render:eco-carre-sans-voix && bash scripts/normalize_audio.sh",
+    "render:court-controle": "remotion render Pub-Verticale-Controle-Court-VoixOff exports/tiktok-controle-30s-1080x1920.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:court-economie": "remotion render Pub-Verticale-Economie-Court-VoixOff exports/tiktok-economie-30s-1080x1920.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:courts": "npm run render:court-controle && npm run render:court-economie"
   },
   "allowScripts": {
     "esbuild": false

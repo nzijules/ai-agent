@@ -9,7 +9,7 @@ import { C, F } from "../theme";
 import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
-export type ProblemItem = { icon: IconName; title: string; sub: string; positive?: boolean };
+export type ProblemItem = { icon: IconName; title: string; sub: string; positive?: boolean; /** voice-over line id */ id?: string };
 export type ProblemProps = {
   eyebrow: string;
   items: ProblemItem[];
@@ -18,9 +18,9 @@ export type ProblemProps = {
 
 /** Problem (angle Contrôle) — one card per voice-over line, then the statement. */
 const ITEMS: ProblemItem[] = [
-  { icon: "clock", title: "Devoirs terminés en quelques secondes", sub: "…sans avoir rien retenu" },
-  { icon: "question", title: "Leçons toujours pas comprises", sub: "les mêmes blocages reviennent" },
-  { icon: "copy", title: "Réponses copiées-collées", sub: "sans aucune réflexion" },
+  { id: "c03", icon: "clock", title: "Devoirs terminés en quelques secondes", sub: "…sans avoir rien retenu" },
+  { id: "c04", icon: "question", title: "Leçons toujours pas comprises", sub: "les mêmes blocages reviennent" },
+  { id: "c05", icon: "copy", title: "Réponses copiées-collées", sub: "sans aucune réflexion" },
 ];
 
 export const ProblemScene: React.FC<ProblemProps> = ({ eyebrow, items, statement: st }) => {
@@ -47,8 +47,9 @@ export const ProblemScene: React.FC<ProblemProps> = ({ eyebrow, items, statement
         <div style={{ opacity: prog(f, 0, 10), translate: `0px ${(1 - prog(f, 0, 14)) * 30}px` }}>
           <Eyebrow size={L.s(30)} bg={C.navy} color={C.yellow}>{eyebrow}</Eyebrow>
         </div>
-        {items.map((it, i) => {
-          const d = at(ln[i]);
+        {ln.slice(0, -1).map((lineId, i) => {
+          const it = items.find((x) => x.id === lineId) ?? items[i];
+          const d = at(lineId);
           const tone = it.positive ? { main: C.green, soft: C.greenSoft } : { main: C.red, soft: "#FDE7E8" };
           const p = pop(f, d, 13, 0.75);
           return (

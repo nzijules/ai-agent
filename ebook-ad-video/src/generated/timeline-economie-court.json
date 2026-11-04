@@ -1,0 +1,49 @@
+{
+ "total": 33.91,
+ "scenes": [
+  {
+   "id": "S1-Accroche",
+   "from": 0.0,
+   "lines": [
+    "e01",
+    "e02"
+   ],
+   "to": 7.063
+  },
+  {
+   "id": "S2-Probleme",
+   "from": 7.063,
+   "lines": [
+    "e03",
+    "e06",
+    "e07"
+   ],
+   "to": 16.673
+  },
+  {
+   "id": "S4-Revelation",
+   "from": 16.673,
+   "lines": [
+    "l10"
+   ],
+   "to": 21.029
+  },
+  {
+   "id": "S7-Offre",
+   "from": 21.029,
+   "lines": [
+    "e19",
+    "l20"
+   ],
+   "to": 29.91
+  },
+  {
+   "id": "S8-Appel",
+   "from": 29.91,
+   "lines": [
+    "l22"
+   ],
+   "to": 33.91
+  }
+ ]
+}

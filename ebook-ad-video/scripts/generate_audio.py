@@ -21,7 +21,7 @@ DUR = float(_TL["total"])
 BPM = 100.0
 BEAT = 60.0 / BPM          # 0.6 s
 BAR = 4 * BEAT             # 2.4 s
-PIVOT = _SC["S3-Tuteur"]["from"]       # "Et si l'IA devenait un vrai tuteur ?"
+PIVOT = _SC["S3-Tuteur"]["from"] if "S3-Tuteur" in _SC else _SC["S4-Revelation"]["from"]       # "Et si l'IA devenait un vrai tuteur ?"
 REVEAL = _SC["S4-Revelation"]["from"]  # book reveal
 
 
