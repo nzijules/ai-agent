@@ -7,11 +7,12 @@ import { KineticText } from "../components/Text";
 import { Icon } from "../components/Icons";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at } from "../timeline";
+import { useTL } from "../timeline";
 
 /** 0–8 s — Hook: "Votre enfant utilise ChatGPT… mais apprend-il vraiment ?" */
 export const S1Hook: React.FC = () => {
   const f = useCurrentFrame();
+  const { at } = useTL();
   const L = useLayout();
   const q = at("l02", -0.6); // question moment
   const dim = prog(f, q, q + 14);

@@ -1,0 +1,17 @@
+{
+  "_note": "Variante « Économie » (angle du visuel A : moins cher qu'un répétiteur). Les lignes eXX sont nouvelles et à enregistrer ; les lignes lXX réutilisent l'enregistrement existant. 'text' = sous-titre, 'spoken' = texte lu par la voix provisoire.",
+  "lines": [
+    { "id": "e01", "text": "Un répétiteur, ça se paie chaque mois.", "spoken": "Un répétiteur, ça se paie chaque mois." },
+    { "id": "e02", "text": "Et si votre enfant avait un répétiteur à la maison, disponible à toute heure ?", "spoken": "Et si votre enfant avait un répétiteur à la maison, disponible à toute heure ?" },
+    { "id": "e03", "text": "Les cours particuliers coûtent cher.", "spoken": "Les cours particuliers coûtent cher." },
+    { "id": "e04", "text": "Les heures de répétition sont limitées.", "spoken": "Les heures de répétition sont limitées." },
+    { "id": "e05", "text": "Et le soir, devant ses devoirs, il est souvent seul.", "spoken": "Et le soir, devant ses devoirs, il est souvent seul." },
+    { "id": "e06", "text": "Pourtant, il a déjà ChatGPT dans la poche.", "spoken": "Pourtant, il a déjà Tchat G P T dans la poche." },
+    { "id": "e07", "text": "Encore faut-il savoir s'en servir pour apprendre, et pas pour copier.", "spoken": "Encore faut-il savoir s'en servir pour apprendre… et pas pour copier." },
+    { "id": "l08" }, { "id": "l09" }, { "id": "l10" }, { "id": "l11" },
+    { "id": "l12" }, { "id": "l13" }, { "id": "l14" }, { "id": "l15" },
+    { "id": "l16" }, { "id": "l17" }, { "id": "l18" },
+    { "id": "e19", "text": "Un répétiteur se paie chaque mois. Ce guide, une seule fois.", "spoken": "Un répétiteur se paie chaque mois. Ce guide, une seule fois." },
+    { "id": "l20" }, { "id": "l21" }, { "id": "l22" }
+  ]
+}

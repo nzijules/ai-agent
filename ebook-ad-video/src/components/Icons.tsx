@@ -8,7 +8,8 @@ import { Easing, interpolate, useCurrentFrame } from "remotion";
 export type IconName =
   | "bulb" | "brain" | "cards" | "compass" | "growth" | "clock" | "question" | "book"
   | "copy" | "check" | "x" | "shield" | "download" | "devices" | "lock" | "chat" | "cart"
-  | "sparkle" | "target" | "users" | "file" | "arrow" | "spark4" | "phone" | "link";
+  | "sparkle" | "target" | "users" | "file" | "arrow" | "spark4" | "phone" | "link"
+  | "coins" | "calendar" | "home" | "moon";
 
 const PATHS: Record<IconName, string[]> = {
   bulb: ["M9 18h6", "M10 21h4", "M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"],
@@ -35,6 +36,10 @@ const PATHS: Record<IconName, string[]> = {
   arrow: ["M5 12h14", "M13 6l6 6-6 6"],
   spark4: ["M12 2v6", "M12 16v6", "M2 12h6", "M16 12h6"],
   phone: ["M7 2h10v20H7z", "M11 18h2"],
+  coins: ["M5 7a7 3 0 1 0 14 0a7 3 0 1 0 -14 0", "M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7", "M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"],
+  calendar: ["M4 6h16v14H4z", "M4 10h16", "M8 3v5", "M16 3v5"],
+  home: ["M3 11l9-7 9 7", "M5 10v10h14V10", "M10 20v-6h4v6"],
+  moon: ["M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"],
   link: ["M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1", "M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"],
 };
 

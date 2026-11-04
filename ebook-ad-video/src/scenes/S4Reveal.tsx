@@ -7,12 +7,13 @@ import { Icon } from "../components/Icons";
 import { Eyebrow, KineticText } from "../components/Text";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at } from "../timeline";
+import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 33–42.8 s — Solution reveal: the book lands with an impact, light rays and sparkles. */
 export const S4Reveal: React.FC = () => {
   const f = useCurrentFrame();
+  const { at } = useTL();
   const L = useLayout();
   const land = 10;
   const b = pop(f, land - 8, 12, 1.1);

@@ -7,9 +7,7 @@ import { Icon, IconName } from "../components/Icons";
 import { Eyebrow } from "../components/Text";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at } from "../timeline";
-
-const T = (id: string) => at(id, -0.2);
+import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 42.8–62.6 s — Four benefits, one every 5 s, synced with VO lines l12–l15. */
@@ -22,6 +20,8 @@ export const BENEFITS: { icon: IconName; title: string; sub: string; bg: string;
 
 export const S5Benefits: React.FC = () => {
   const f = useCurrentFrame();
+  const { at } = useTL();
+  const T = (id: string) => at(id, -0.2);
   const L = useLayout();
   const cardW = L.square ? 640 : 880;
   const active = BENEFITS.reduce((a, b, i) => (f >= T(b.line) ? i : a), 0);

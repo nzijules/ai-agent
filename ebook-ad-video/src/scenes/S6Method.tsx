@@ -7,12 +7,13 @@ import { Eyebrow, KineticText } from "../components/Text";
 import { Bubble, Typewriter } from "../components/Ui";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at, lineFrames } from "../timeline";
+import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 62.6–74.8 s — How it works (illustrative prompt), audience 6e→Terminale, responsible-use note. */
 export const S6Method: React.FC = () => {
   const f = useCurrentFrame();
+  const { at, lineFrames } = useTL();
   const L = useLayout();
   const lvl = at("l17", -0.2);
   const note = at("l18", -0.2);

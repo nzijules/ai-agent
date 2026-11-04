@@ -37,7 +37,12 @@
     "render:vertical-sans-voix": "remotion render Pub-Verticale-SansVoix exports/pub-verticale-1080x1920-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
     "render:carre": "remotion render Pub-Carree-VoixOff exports/pub-carree-1080x1080-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
     "render:carre-sans-voix": "remotion render Pub-Carree-SansVoix exports/pub-carree-1080x1080-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
-    "render:all": "npm run render:vertical && npm run render:vertical-sans-voix && npm run render:carre && npm run render:carre-sans-voix && bash scripts/normalize_audio.sh"
+    "render:all": "npm run render:vertical && npm run render:vertical-sans-voix && npm run render:carre && npm run render:carre-sans-voix && bash scripts/normalize_audio.sh",
+    "render:eco-vertical": "remotion render Pub-Verticale-Economie-VoixOff exports/pub-economie-verticale-1080x1920-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:eco-vertical-sans-voix": "remotion render Pub-Verticale-Economie-SansVoix exports/pub-economie-verticale-1080x1920-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:eco-carre": "remotion render Pub-Carree-Economie-VoixOff exports/pub-economie-carree-1080x1080-voix-off.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:eco-carre-sans-voix": "remotion render Pub-Carree-Economie-SansVoix exports/pub-economie-carree-1080x1080-sans-voix.mp4 --codec=h264 --crf=20 --audio-codec=aac",
+    "render:eco-all": "npm run render:eco-vertical && npm run render:eco-vertical-sans-voix && npm run render:eco-carre && npm run render:eco-carre-sans-voix && bash scripts/normalize_audio.sh"
   },
   "allowScripts": {
     "esbuild": false

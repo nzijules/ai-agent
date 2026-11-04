@@ -8,12 +8,13 @@ import { HandNote, KineticText } from "../components/Text";
 import { PhotoCard } from "../components/Ui";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at } from "../timeline";
+import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 24.6–33 s — Pivot: "Et si l'IA devenait un vrai tuteur ?" (relative times) */
 export const S3Pivot: React.FC = () => {
   const f = useCurrentFrame();
+  const { at } = useTL();
   const L = useLayout();
   const cmp = at("l09");
   const photoW = L.square ? 420 : 760;

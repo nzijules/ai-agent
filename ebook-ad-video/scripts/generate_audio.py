@@ -12,7 +12,10 @@ import numpy as np
 SR = 44100
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 rng = np.random.default_rng(7)
-_TL = json.load(open(os.path.join(ROOT, "src/generated/timeline.json")))
+import sys
+VARIANT = sys.argv[1] if len(sys.argv) > 1 else ""   # e.g. "economie" -> timeline-economie.json, music-economie.mp3
+_SUF = f"-{VARIANT}" if VARIANT else ""
+_TL = json.load(open(os.path.join(ROOT, f"src/generated/timeline{_SUF}.json")))
 _SC = {x["id"]: x for x in _TL["scenes"]}
 DUR = float(_TL["total"])
 BPM = 100.0
@@ -269,7 +272,7 @@ if __name__ == "__main__":
     for k, v in sfx().items():
         write(os.path.join(ROOT, "public/audio/sfx", k + ".wav"), v)
     print("Synthesising music bed (this takes ~1-2 min)…")
-    wav = os.path.join(ROOT, "public/audio/music.wav")
+    wav = os.path.join(ROOT, f"public/audio/music{_SUF}.wav")
     write(wav, music())
     # compress to MP3 (requires ffmpeg on PATH)
     os.system(f'ffmpeg -hide_banner -loglevel error -y -i "{wav}" -c:a libmp3lame -b:a 224k "{wav[:-4]}.mp3" && rm "{wav}"')

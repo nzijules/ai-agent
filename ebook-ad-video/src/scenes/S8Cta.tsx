@@ -9,12 +9,13 @@ import { KineticText } from "../components/Text";
 import { CtaButton, PhotoCard } from "../components/Ui";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
-import { at } from "../timeline";
+import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
 /** 82.6–90 s — Call to action with animated button + configurable contact. */
 export const S8Cta: React.FC = () => {
   const f = useCurrentFrame();
+  const { at } = useTL();
   const L = useLayout();
   const btnAt = at("l22", -1.2);
   const press = at("l22", 0.6);

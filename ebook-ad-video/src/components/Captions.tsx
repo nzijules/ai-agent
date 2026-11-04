@@ -1,9 +1,9 @@
 import React from "react";
 import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import vo from "../generated/voiceover.json";
 import { clamp, easeOut } from "../anim";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
+import { useTL } from "../timeline";
 
 type Line = { id: string; start: number; duration: number; text: string };
 
@@ -16,7 +16,7 @@ export const Captions: React.FC = () => {
   const { fps, width } = useVideoConfig();
   const L = useLayout();
   const t = frame / fps;
-  const lines = (vo as { lines: Line[] }).lines;
+  const lines: Line[] = useTL().LINES;
   const line = lines.find((l) => t >= l.start - 0.05 && t < l.start + l.duration + 0.35);
   if (!line) return null;
   const local = t - line.start;
