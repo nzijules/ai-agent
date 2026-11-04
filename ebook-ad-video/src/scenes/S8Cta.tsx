@@ -36,7 +36,7 @@ export const S8Cta: React.FC = () => {
       </div>
       <KineticText text="Donnez à votre enfant une *meilleure méthode* pour apprendre." size={L.s(76)} delay={6} stagger={3} />
       <div style={{ position: "relative", opacity: interpolate(f, [btnAt, btnAt + 6], [0, 1], clamp), scale: String(bp * pulse * (1 - pressV * 0.04)) }}>
-        <CtaButton label={cfg.ctaLabel} size={L.s(44)} shine={prog(f, btnAt + 14, btnAt + 44)} press={pressV} />
+        <CtaButton label={cfg.ctaLabel} icon="download" size={L.s(44)} shine={prog(f, btnAt + 14, btnAt + 44)} press={pressV} />
         {/* tap ripple */}
         <div style={{ position: "absolute", right: L.s(40), top: "50%", width: L.s(40), height: L.s(40), marginTop: -L.s(20), borderRadius: "50%", border: `4px solid ${C.navy}`, opacity: interpolate(f, [press, press + 14], [0.6, 0], clamp), scale: String(interpolate(f, [press, press + 14], [0.5, 3], clamp)) }} />
         {/* cursor */}
