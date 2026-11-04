@@ -1,76 +1,80 @@
 1
-00:00:00,350 --> 00:00:03,797
+00:00:00,350 --> 00:00:03,297
 Votre enfant utilise déjà ChatGPT pour ses devoirs.
 
 2
-00:00:04,017 --> 00:00:05,068
+00:00:03,517 --> 00:00:04,517
 Mais… apprend-il vraiment ?
 
 3
-00:00:05,818 --> 00:00:07,928
+00:00:05,267 --> 00:00:07,525
 Des devoirs terminés en quelques secondes.
 
 4
-00:00:08,148 --> 00:00:10,056
+00:00:07,745 --> 00:00:09,543
 Des leçons qu'il ne comprend toujours pas.
 
 5
-00:00:10,276 --> 00:00:11,892
+00:00:09,763 --> 00:00:11,278
 Des réponses copiées… sans réflexion.
 
 6
-00:00:12,112 --> 00:00:14,560
+00:00:11,498 --> 00:00:13,988
 Car obtenir une réponse ne signifie pas comprendre !
 
 7
-00:00:15,310 --> 00:00:18,705
+00:00:14,738 --> 00:00:18,135
 Et si ChatGPT devenait un véritable tuteur pour votre enfant ?
 
 8
-00:00:18,925 --> 00:00:24,636
+00:00:18,355 --> 00:00:23,562
 Un tuteur qui lui pose les bonnes questions, l'aide à réfléchir et le guide… sans jamais penser à sa place.
 
 9
-00:00:25,636 --> 00:00:31,861
+00:00:24,562 --> 00:00:30,761
 Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle.
 
 10
-00:00:32,611 --> 00:00:36,983
+00:00:31,511 --> 00:00:35,993
 Grâce à ce guide, aidez votre enfant à comprendre ses leçons, étape par étape.
 
 11
-00:00:37,203 --> 00:00:40,025
+00:00:36,213 --> 00:00:38,893
 À réviser avec des quiz interactifs et chronométrés.
 
 12
-00:00:40,245 --> 00:00:44,145
+00:00:39,113 --> 00:00:43,085
 À identifier ses erreurs, renforcer ses connaissances et gagner en autonomie.
 
 13
-00:00:44,365 --> 00:00:47,114
+00:00:43,305 --> 00:00:46,281
 Et surtout, à apprendre à réfléchir… plutôt qu'à recopier !
 
 14
-00:00:47,864 --> 00:00:52,394
+00:00:47,031 --> 00:00:51,421
 Une méthode simple, des exemples prêts à l'emploi, de la sixième à la terminale.
 
 15
-00:00:52,614 --> 00:00:58,816
+00:00:51,641 --> 00:00:57,873
 Parce que l'intelligence artificielle ne remplace ni l'enseignant ni les efforts de l'élève. Elle peut les accompagner.
 
 16
-00:00:59,566 --> 00:01:02,492
-Et tout cela, pour seulement 3 000 FCFA !
+00:00:58,623 --> 00:01:05,046
+Imaginez votre enfant réfléchir par lui-même, réussir ses exercices… et gagner, jour après jour, en autonomie.
 
 17
-00:01:02,712 --> 00:01:06,556
-Un guide numérique. Un paiement unique. Un accès immédiat.
+00:01:05,796 --> 00:01:08,720
+Et tout cela, pour seulement 3 000 FCFA !
 
 18
-00:01:07,256 --> 00:01:14,660
-Ne laissez pas votre enfant utiliser ChatGPT uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser.
+00:01:08,940 --> 00:01:12,879
+Un guide numérique. Un paiement unique. Un accès immédiat.
 
 19
-00:01:14,880 --> 00:01:16,591
-Téléchargez votre guide dès maintenant !
+00:01:13,579 --> 00:01:19,600
+Ne laissez pas ChatGPT réfléchir à sa place : apprenez-lui à s'en servir pour comprendre et progresser.
+
+20
+00:01:19,820 --> 00:01:23,499
+Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !
 

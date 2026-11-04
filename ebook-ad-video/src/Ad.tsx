@@ -12,6 +12,7 @@ import { S4Reveal } from "./scenes/S4Reveal";
 import { S5Benefits } from "./scenes/S5Benefits";
 import { S6Method } from "./scenes/S6Method";
 import { S7Offer } from "./scenes/S7Offer";
+import { S7Result } from "./scenes/S7Result";
 import { S8Cta } from "./scenes/S8Cta";
 import { OVERLAP, SceneId, TimelineProvider, useTL, Variant } from "./timeline";
 import { loadFonts } from "./theme";
@@ -25,6 +26,7 @@ const SHARED: Record<SceneId, React.FC> = {
   "S4-Revelation": S4Reveal,
   "S5-Benefices": S5Benefits,
   "S6-Methode": S6Method,
+  "S7-Resultat": S7Result,
   "S7-Offre": S7Offer,
   "S8-Appel": S8Cta,
 };

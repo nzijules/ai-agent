@@ -16,6 +16,7 @@ SCENES = [  # id, lines, lead-in before first line
     ("S4-Revelation", ["l10", "l11"], 0.7),
     ("S5-Benefices", ["l12", "l13", "l14", "l15"], 0.45),
     ("S6-Methode", ["l16", "l17", "l18"], 0.45),
+    ("S7-Resultat", [], 0.45),  # « Contrôle » only: the transformation the parent can picture
     ("S7-Offre", ["l19", "l20"], 0.45),
     ("S8-Appel", ["l21", "l22"], 0.4),
 ]
@@ -33,7 +34,7 @@ vo = json.load(open(p, encoding="utf-8"))
 byid = {l["id"]: l for l in vo["lines"]}
 if V == "controle":
     # optimised script: scenes listed with their own cXX lines, in order
-    C = {"S1-Accroche": 2, "S2-Probleme": 4, "S3-Tuteur": 2, "S4-Revelation": 1, "S5-Benefices": 4, "S6-Methode": 2, "S7-Offre": 2, "S8-Appel": 2}
+    C = {"S1-Accroche": 2, "S2-Probleme": 4, "S3-Tuteur": 2, "S4-Revelation": 1, "S5-Benefices": 4, "S6-Methode": 2, "S7-Resultat": 1, "S7-Offre": 2, "S8-Appel": 2}
     ids_all = [l["id"] for l in vo["lines"]]; k = 0; new = []
     for sid, _, lead in SCENES:
         n = C[sid]; new.append((sid, ids_all[k:k + n], lead)); k += n
@@ -41,7 +42,7 @@ if V == "controle":
     SCENES = new
 else:
     # a variant replaces some lXX lines by its own eXX lines (same scene, same position)
-    SCENES = [(sid, [i if i in byid else "e" + i[1:] for i in ids], lead) for sid, ids, lead in SCENES]
+    SCENES = [(sid, [i if i in byid else "e" + i[1:] for i in ids], lead) for sid, ids, lead in SCENES if ids]
 t = 0.0; scenes = []
 for sid, ids, lead in SCENES:
     frm = t

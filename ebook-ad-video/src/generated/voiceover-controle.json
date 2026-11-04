@@ -3,116 +3,122 @@
   {
    "id": "c01",
    "start": 0.35,
-   "duration": 3.447,
+   "duration": 2.947,
    "text": "Votre enfant utilise déjà ChatGPT pour ses devoirs."
   },
   {
    "id": "c02",
-   "start": 4.017,
-   "duration": 1.051,
+   "start": 3.517,
+   "duration": 1.0,
    "text": "Mais… apprend-il vraiment ?"
   },
   {
    "id": "c03",
-   "start": 5.818,
-   "duration": 2.11,
+   "start": 5.267,
+   "duration": 2.258,
    "text": "Des devoirs terminés en quelques secondes."
   },
   {
    "id": "c04",
-   "start": 8.148,
-   "duration": 1.908,
+   "start": 7.745,
+   "duration": 1.798,
    "text": "Des leçons qu'il ne comprend toujours pas."
   },
   {
    "id": "c05",
-   "start": 10.276,
-   "duration": 1.616,
+   "start": 9.763,
+   "duration": 1.515,
    "text": "Des réponses copiées… sans réflexion."
   },
   {
    "id": "c06",
-   "start": 12.112,
-   "duration": 2.448,
+   "start": 11.498,
+   "duration": 2.49,
    "text": "Car obtenir une réponse ne signifie pas comprendre !"
   },
   {
    "id": "c07",
-   "start": 15.31,
-   "duration": 3.395,
+   "start": 14.738,
+   "duration": 3.397,
    "text": "Et si ChatGPT devenait un véritable tuteur pour votre enfant ?"
   },
   {
    "id": "c08",
-   "start": 18.925,
-   "duration": 5.711,
+   "start": 18.355,
+   "duration": 5.207,
    "text": "Un tuteur qui lui pose les bonnes questions, l'aide à réfléchir et le guide… sans jamais penser à sa place."
   },
   {
    "id": "c09",
-   "start": 25.636,
-   "duration": 6.225,
+   "start": 24.562,
+   "duration": 6.199,
    "text": "Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents à l'ère de l'intelligence artificielle."
   },
   {
    "id": "c10",
-   "start": 32.611,
-   "duration": 4.372,
+   "start": 31.511,
+   "duration": 4.482,
    "text": "Grâce à ce guide, aidez votre enfant à comprendre ses leçons, étape par étape."
   },
   {
    "id": "c11",
-   "start": 37.203,
-   "duration": 2.822,
+   "start": 36.213,
+   "duration": 2.68,
    "text": "À réviser avec des quiz interactifs et chronométrés."
   },
   {
    "id": "c12",
-   "start": 40.245,
-   "duration": 3.9,
+   "start": 39.113,
+   "duration": 3.972,
    "text": "À identifier ses erreurs, renforcer ses connaissances et gagner en autonomie."
   },
   {
    "id": "c13",
-   "start": 44.365,
-   "duration": 2.749,
+   "start": 43.305,
+   "duration": 2.976,
    "text": "Et surtout, à apprendre à réfléchir… plutôt qu'à recopier !"
   },
   {
    "id": "c14",
-   "start": 47.864,
-   "duration": 4.53,
+   "start": 47.031,
+   "duration": 4.39,
    "text": "Une méthode simple, des exemples prêts à l'emploi, de la sixième à la terminale."
   },
   {
    "id": "c15",
-   "start": 52.614,
-   "duration": 6.202,
+   "start": 51.641,
+   "duration": 6.232,
    "text": "Parce que l'intelligence artificielle ne remplace ni l'enseignant ni les efforts de l'élève. Elle peut les accompagner."
   },
   {
    "id": "c16",
-   "start": 59.566,
-   "duration": 2.926,
-   "text": "Et tout cela, pour seulement 3 000 FCFA !"
+   "start": 58.623,
+   "duration": 6.423,
+   "text": "Imaginez votre enfant réfléchir par lui-même, réussir ses exercices… et gagner, jour après jour, en autonomie."
   },
   {
    "id": "c17",
-   "start": 62.712,
-   "duration": 3.844,
-   "text": "Un guide numérique. Un paiement unique. Un accès immédiat."
+   "start": 65.796,
+   "duration": 2.924,
+   "text": "Et tout cela, pour seulement 3 000 FCFA !"
   },
   {
    "id": "c18",
-   "start": 67.256,
-   "duration": 7.404,
-   "text": "Ne laissez pas votre enfant utiliser ChatGPT uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser."
+   "start": 68.94,
+   "duration": 3.939,
+   "text": "Un guide numérique. Un paiement unique. Un accès immédiat."
   },
   {
    "id": "c19",
-   "start": 74.88,
-   "duration": 1.711,
-   "text": "Téléchargez votre guide dès maintenant !"
+   "start": 73.579,
+   "duration": 6.021,
+   "text": "Ne laissez pas ChatGPT réfléchir à sa place : apprenez-lui à s'en servir pour comprendre et progresser."
+  },
+  {
+   "id": "c20",
+   "start": 79.82,
+   "duration": 3.679,
+   "text": "Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !"
   }
  ]
 }

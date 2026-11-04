@@ -17,7 +17,7 @@ import { FPS } from "./theme";
 export type Variant = "controle" | "economie";
 export type SceneId =
   | "S1-Accroche" | "S2-Probleme" | "S3-Tuteur" | "S4-Revelation"
-  | "S5-Benefices" | "S6-Methode" | "S7-Offre" | "S8-Appel";
+  | "S5-Benefices" | "S6-Methode" | "S7-Resultat" | "S7-Offre" | "S8-Appel";
 type Scene = { id: SceneId; from: number; to: number; lines: string[] };
 export type Line = { id: string; start: number; duration: number; text: string };
 type Raw = { tl: { total: number; scenes: unknown[] }; vo: { lines: Line[] } };

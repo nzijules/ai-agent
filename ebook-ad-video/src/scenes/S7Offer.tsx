@@ -31,7 +31,10 @@ export const S7Offer: React.FC = () => {
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
         <div style={{ width: 1100, height: 1100, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(247,183,24,0.25), rgba(247,183,24,0))", scale: String(0.9 + 0.1 * Math.sin(f / 20)) }} />
       </AbsoluteFill>
-      <KineticText text="Le guide pratique *des parents*" size={L.s(72)} color="#fff" hlText={C.navy} delay={2} stagger={3} />
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: L.s(10) }}>
+        <KineticText text="Une méthode pour *toute sa scolarité*" size={L.s(66)} color="#fff" hlText={C.navy} delay={2} stagger={3} />
+        <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.yellow, opacity: prog(f, 14, 24) }}>de la 6e à la Terminale</div>
+      </div>
       <div style={{ scale: String(0.8 + 0.2 * pop(f, 4, 14, 1)), opacity: prog(f, 4, 12) }}>
         <Book3D width={bookW} rotY={-18 + 18 * Math.sin(f / 60)} rotX={5} shine={prog(f, 20, 70)} />
       </div>

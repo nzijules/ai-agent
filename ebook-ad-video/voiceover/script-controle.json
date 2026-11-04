@@ -78,23 +78,28 @@
     },
     {
       "id": "c16",
+      "text": "Imaginez votre enfant réfléchir par lui-même, réussir ses exercices… et gagner, jour après jour, en autonomie.",
+      "spoken": "Imaginez votre enfant réfléchir par lui-même, réussir ses exercices… et gagner, jour après jour, en autonomie."
+    },
+    {
+      "id": "c17",
       "text": "Et tout cela, pour seulement {PRICE} !",
       "spoken": "Et tout cela, pour seulement {PRICE_SPOKEN} !"
     },
     {
-      "id": "c17",
+      "id": "c18",
       "text": "Un guide numérique. Un paiement unique. Un accès immédiat.",
       "spoken": "Un guide numérique. Un paiement unique. Un accès immédiat."
     },
     {
-      "id": "c18",
-      "text": "Ne laissez pas votre enfant utiliser ChatGPT uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser.",
-      "spoken": "Ne laissez pas votre enfant utiliser Tchat G P T uniquement pour trouver des réponses. Apprenez-lui à s'en servir pour comprendre et progresser."
+      "id": "c19",
+      "text": "Ne laissez pas ChatGPT réfléchir à sa place : apprenez-lui à s'en servir pour comprendre et progresser.",
+      "spoken": "Ne laissez pas Tchat G P T réfléchir à sa place : apprenez-lui à s'en servir pour comprendre et progresser."
     },
     {
-      "id": "c19",
-      "text": "Téléchargez votre guide dès maintenant !",
-      "spoken": "Téléchargez votre guide dès maintenant !"
+      "id": "c20",
+      "text": "Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !",
+      "spoken": "Pour l'aider à devenir autonome, téléchargez votre guide dès maintenant !"
     }
   ]
 }

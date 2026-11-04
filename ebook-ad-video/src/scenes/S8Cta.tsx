@@ -31,7 +31,7 @@ export const S8Cta: React.FC = () => {
           <Book3D width={L.s(L.square ? 130 : 190)} rotY={-22} rotX={4} />
         </div>
       </div>
-      <KineticText text={variant === "controle" ? "Apprenez-lui à s'en servir pour *comprendre et progresser.*" : "Donnez à votre enfant une *meilleure méthode* pour apprendre."} size={L.s(76)} delay={6} stagger={3} />
+      <KineticText text={variant === "controle" ? "Aidez-le à devenir *autonome.*" : "Donnez à votre enfant une *meilleure méthode* pour apprendre."} size={L.s(L.square && variant === "controle" ? 66 : 76)} delay={6} stagger={3} />
       <div style={{ display: "flex", alignItems: "center", gap: L.s(10), fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.navy, background: "#fff", borderRadius: L.s(30), padding: `${L.s(12)}px ${L.s(22)}px`, boxShadow: "0 8px 24px rgba(11,27,58,0.10)", opacity: prog(f, btnAt - 10, btnAt + 2) }}>
         <Icon name="phone" size={L.s(34)} color={C.green} delay={btnAt - 8} /> {cfg.contactLabel} : {cfg.contactValue}
       </div>
