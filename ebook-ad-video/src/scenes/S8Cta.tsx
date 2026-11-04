@@ -1,29 +1,25 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import cfg from "../ad.config.json";
-import { clamp, easeOut, pop, prog } from "../anim";
+import { clamp, pop, prog } from "../anim";
 import { Background } from "../components/Background";
 import { Book3D } from "../components/Book3D";
 import { Icon } from "../components/Icons";
 import { KineticText } from "../components/Text";
-import { CtaButton, PhotoCard } from "../components/Ui";
+import { PhotoCard } from "../components/Ui";
 import { useLayout } from "../layout";
 import { C, F } from "../theme";
 import { useTL } from "../timeline";
 import { Stage } from "./Stage";
 
-/** 82.6–90 s — Call to action with animated button + configurable contact. */
+/** Call to action: instruction + arrows pointing to the real Meta/TikTok button under the video (no fake button). */
 export const S8Cta: React.FC = () => {
   const f = useCurrentFrame();
   const { at } = useTL();
   const L = useLayout();
   const btnAt = at("l22", -1.2);
-  const press = at("l22", 0.6);
   const bp = pop(f, btnAt, 11, 0.8);
-  const pressV = interpolate(f, [press - 3, press, press + 6], [0, 1, 0], clamp);
   const pulse = f > btnAt + 20 ? 1 + 0.03 * Math.sin((f - btnAt) / 6) : 1;
-  // hand cursor
-  const cur = interpolate(f, [press - 22, press - 2], [0, 1], { ...clamp, easing: easeOut });
   const imgW = L.square ? 300 : 520;
   const imgH = L.square ? 210 : 360;
   return (
@@ -35,23 +31,25 @@ export const S8Cta: React.FC = () => {
         </div>
       </div>
       <KineticText text="Donnez à votre enfant une *meilleure méthode* pour apprendre." size={L.s(76)} delay={6} stagger={3} />
-      <div style={{ position: "relative", opacity: interpolate(f, [btnAt, btnAt + 6], [0, 1], clamp), scale: String(bp * pulse * (1 - pressV * 0.04)) }}>
-        <CtaButton label={cfg.ctaLabel} icon="download" size={L.s(44)} shine={prog(f, btnAt + 14, btnAt + 44)} press={pressV} />
-        {/* tap ripple */}
-        <div style={{ position: "absolute", right: L.s(40), top: "50%", width: L.s(40), height: L.s(40), marginTop: -L.s(20), borderRadius: "50%", border: `4px solid ${C.navy}`, opacity: interpolate(f, [press, press + 14], [0.6, 0], clamp), scale: String(interpolate(f, [press, press + 14], [0.5, 3], clamp)) }} />
-        {/* cursor */}
-        <div style={{ position: "absolute", right: -L.s(10), top: "55%", opacity: cur, translate: `${(1 - cur) * 140}px ${(1 - cur) * 160}px`, scale: String(1 - pressV * 0.12) }}>
-          <svg width={L.s(70)} height={L.s(70)} viewBox="0 0 24 24">
-            <path d="M5 3l14 7-6 1.6L10 18z" fill="#fff" stroke={C.navy} strokeWidth={1.6} strokeLinejoin="round" />
-          </svg>
-        </div>
+      <div style={{ display: "flex", alignItems: "center", gap: L.s(10), fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.navy, background: "#fff", borderRadius: L.s(30), padding: `${L.s(12)}px ${L.s(22)}px`, boxShadow: "0 8px 24px rgba(11,27,58,0.10)", opacity: prog(f, btnAt - 10, btnAt + 2) }}>
+        <Icon name="phone" size={L.s(34)} color={C.green} delay={btnAt - 8} /> {cfg.contactLabel} : {cfg.contactValue}
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: L.s(18), flexWrap: "wrap", justifyContent: "center", opacity: prog(f, btnAt + 16, btnAt + 28) }}>
-        <div style={{ display: "flex", alignItems: "center", gap: L.s(10), fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.navy, background: "#fff", borderRadius: L.s(30), padding: `${L.s(12)}px ${L.s(22)}px`, boxShadow: "0 8px 24px rgba(11,27,58,0.10)" }}>
-          <Icon name="phone" size={L.s(34)} color={C.green} delay={btnAt + 16} /> {cfg.contactLabel} : {cfg.contactValue}
+      {/* Instruction pointing to the platform's real CTA button (no fake clickable button) */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: L.s(14), opacity: interpolate(f, [btnAt, btnAt + 6], [0, 1], clamp), scale: String(bp * pulse) }}>
+        <div style={{ display: "flex", alignItems: "center", gap: L.s(16), background: C.navy, color: "#fff", borderRadius: L.s(26), padding: `${L.s(18)}px ${L.s(34)}px`, boxShadow: "0 18px 40px rgba(11,27,58,0.25)" }}>
+          <Icon name="download" size={L.s(48)} color={C.yellow} stroke={2.4} delay={btnAt + 4} drawFrames={14} />
+          <div>
+            <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: L.s(44), lineHeight: 1.05, whiteSpace: "nowrap" }}>{cfg.ctaLabel}</div>
+            <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: L.s(28), color: C.yellow, marginTop: L.s(4), whiteSpace: "nowrap" }}>{cfg.price} · accès immédiat</div>
+          </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: L.s(10), fontFamily: F.body, fontWeight: 700, fontSize: L.s(32), color: C.navy, background: C.yellowSoft, borderRadius: L.s(30), padding: `${L.s(12)}px ${L.s(22)}px` }}>
-          <Icon name="link" size={L.s(34)} color={C.navy} delay={btnAt + 20} /> {cfg.linkLabel}
+        {/* bouncing arrows towards the real button under the video */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", translate: `0px ${Math.abs(Math.sin((f - btnAt) / 7)) * L.s(14)}px` }}>
+          {[0, 1].map((k) => (
+            <svg key={k} width={L.s(64)} height={L.s(34)} viewBox="0 0 24 12" style={{ marginTop: -L.s(6), opacity: interpolate(f, [btnAt + 10 + k * 5, btnAt + 16 + k * 5], [0, k ? 0.55 : 1], clamp) }}>
+              <path d="M3 2l9 8 9-8" stroke={C.yellow} strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ))}
         </div>
       </div>
     </Stage>

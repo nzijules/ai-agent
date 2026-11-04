@@ -76,8 +76,7 @@ export const makeTimeline = (variant: Variant) => {
     ...(variant === "economie" ? ([["pop", lineAbs("e19", 0.2), 0.4], ["pop", lineAbs("e19", 1.6), 0.4]] as Sfx[]) : []),
     ["success", lineAbs("l20"), 0.5],
     ["pop", lineAbs("l22", -1.2), 0.4],
-    ["click", lineAbs("l22", 0.6), 0.8],
-    ["success", lineAbs("l22", 0.65), 0.3],
+    ["ding", lineAbs("l22", -0.9), 0.25],
   ];
   return {
     variant,
