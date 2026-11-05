@@ -90,7 +90,7 @@ export const Problem: React.FC = () => {
               fontSize: 118,
               opacity: swap,
               transform: `translateX(-50%) scale(${0.5 + swap * 0.5})`,
-              filter: "drop-shadow(0 0 40px rgba(62,230,255,0.6))",
+              filter: "drop-shadow(0 0 40px rgba(255,204,0,0.6))",
               ...gradText(),
             }}
           >

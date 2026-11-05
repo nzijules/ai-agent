@@ -30,23 +30,23 @@ export const display = "Montserrat, sans-serif";
 export const body = "Inter, sans-serif";
 export const mono = "'JetBrains Mono', monospace";
 
-// AROSOFT palette (from the logo)
+// Chariow palette (yellow #FFCC00 + anthracite #202028 + white)
 export const C = {
-  bg: "#040A1E",
-  navy: "#16213F",
-  blue: "#0A84FF",
-  royal: "#0047E0",
-  deep: "#001C7A",
-  cyan: "#3EE6FF",
+  bg: "#111114",
+  navy: "#202028",
+  blue: "#FFCC00", // primary (Chariow yellow)
+  royal: "#F2A900", // deep amber
+  deep: "#2A2410",
+  cyan: "#FFE27A", // light yellow accent
   white: "#FFFFFF",
-  soft: "#A9B8E0",
+  soft: "#B9B9C6",
   red: "#FF3B5C",
   green: "#22E39A",
-  gold: "#FFC93C",
+  gold: "#FFCC00",
 };
 
 export const gradText = (from = C.cyan, to = C.blue): React.CSSProperties => ({
-  backgroundImage: `linear-gradient(100deg, ${from} 0%, ${to} 60%, #6B7CFF 100%)`,
+  backgroundImage: `linear-gradient(100deg, ${from} 0%, ${to} 60%, #FFB000 100%)`,
   WebkitBackgroundClip: "text",
   backgroundClip: "text",
   color: "transparent",

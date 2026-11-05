@@ -9,7 +9,7 @@ import { C, body, display, gradText } from "../theme";
 const CONFETTI = new Array(70).fill(0).map((_, i) => ({
   a: random(`ca${i}`) * Math.PI * 2,
   v: 14 + random(`cv${i}`) * 26,
-  c: [C.cyan, C.blue, C.gold, C.white, "#6B7CFF"][i % 5],
+  c: [C.cyan, C.blue, C.gold, C.white, "#FFB000"][i % 5],
   r: random(`cr${i}`) * 360,
   w: 10 + random(`cw${i}`) * 14,
 }));
@@ -65,29 +65,29 @@ const GuideCover: React.FC = () => {
           position: "absolute",
           inset: 0,
           borderRadius: "10px 22px 22px 10px",
-          background: `linear-gradient(160deg, #0b2a8a 0%, ${C.royal} 45%, #00103f 100%)`,
-          boxShadow: "-18px 0 0 #001a66 inset, 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(10,132,255,0.55)",
+          background: `linear-gradient(160deg, #2a2a34 0%, ${C.royal} 45%, #0d0d11 100%)`,
+          boxShadow: "-18px 0 0 #15151b inset, 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(255,204,0,0.55)",
           padding: "44px 40px 40px 52px",
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", top: -120, right: -120, width: 360, height: 360, borderRadius: "50%", background: "radial-gradient(circle, rgba(62,230,255,0.55), transparent 70%)" }} />
+        <div style={{ position: "absolute", top: -120, right: -120, width: 360, height: 360, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,204,0,0.55), transparent 70%)" }} />
         <div style={{ display: "inline-block", padding: "8px 18px", borderRadius: 10, background: C.gold, fontFamily: display, fontWeight: 900, fontSize: 22, color: C.bg, letterSpacing: 2 }}>
           GUIDE PAS À PAS
         </div>
         <div style={{ marginTop: 28, fontFamily: display, fontWeight: 900, fontSize: 50, lineHeight: 1.02, color: C.white }}>
           Vendre des ebooks
-          <span style={{ display: "block", ...gradText(C.cyan, "#8FD8FF") }}>sans montrer son visage</span>
+          <span style={{ display: "block", ...gradText(C.cyan, "#FFE27A") }}>sans montrer son visage</span>
         </div>
         <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 10 }}>
           {["Claude Code", "Vibe Motion Design", "Meta Ads & TikTok Ads"].map((t) => (
-            <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: body, fontWeight: 700, fontSize: 25, color: "#dfe7ff" }}>
+            <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: body, fontWeight: 700, fontSize: 25, color: "#e8e8f0" }}>
               <Check size={26} color={C.cyan} /> {t}
             </div>
           ))}
         </div>
-        <div style={{ position: "absolute", left: 52, bottom: 34, width: 170, padding: "8px 10px", borderRadius: 10, background: "rgba(255,255,255,0.95)" }}>
-          <Img src={staticFile("arosoft-logo.png")} style={{ width: "100%", display: "block" }} />
+        <div style={{ position: "absolute", left: 52, bottom: 34, width: 170 }}>
+          <Img src={staticFile("arosoft-logo-white.png")} style={{ width: "100%", display: "block" }} />
         </div>
         {/* sheen */}
         <div
@@ -118,7 +118,7 @@ export const CTA: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ alignItems: "center" }}>
-      <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 42%, rgba(10,132,255,0.45), transparent 55%)` }} />
+      <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 42%, rgba(255,204,0,0.45), transparent 55%)` }} />
       <div style={{ ...head, marginTop: 270, textAlign: "center", fontFamily: display, fontWeight: 800, fontSize: 60, color: C.white, lineHeight: 1.1 }}>
         J&apos;ai préparé pour toi
         <div style={{ fontWeight: 900, fontSize: 76, ...gradText() }}>un guide pratique</div>
@@ -135,7 +135,7 @@ export const CTA: React.FC = () => {
             height: 1100,
             marginLeft: -550,
             marginTop: -550,
-            background: `repeating-conic-gradient(from ${f}deg, rgba(62,230,255,0.10) 0deg 8deg, transparent 8deg 22deg)`,
+            background: `repeating-conic-gradient(from ${f}deg, rgba(255,204,0,0.10) 0deg 8deg, transparent 8deg 22deg)`,
             maskImage: "radial-gradient(circle, black 20%, transparent 65%)",
             WebkitMaskImage: "radial-gradient(circle, black 20%, transparent 65%)",
           }}
@@ -183,11 +183,11 @@ export const CTA: React.FC = () => {
             padding: "36px 60px",
             borderRadius: 999,
             background: `linear-gradient(135deg, ${C.cyan}, ${C.blue} 50%, ${C.royal})`,
-            boxShadow: `0 0 ${40 + 30 * (pulse - 1) * 20}px rgba(62,230,255,0.8), 0 20px 50px rgba(0,0,0,0.5)`,
+            boxShadow: `0 0 ${40 + 30 * (pulse - 1) * 20}px rgba(255,204,0,0.8), 0 20px 50px rgba(0,0,0,0.5)`,
             fontFamily: display,
             fontWeight: 900,
             fontSize: 54,
-            color: C.white,
+            color: C.navy,
             letterSpacing: 1,
             whiteSpace: "nowrap",
             opacity: btn,
@@ -213,6 +213,9 @@ export const CTA: React.FC = () => {
 
       <div style={{ ...sub, position: "absolute", top: 1700, width: 920, textAlign: "center", fontFamily: body, fontWeight: 700, fontSize: 44, color: C.white, lineHeight: 1.3 }}>
         Écris et vends ton <span style={{ color: C.gold }}>premier ebook</span> aujourd&apos;hui.
+        <div style={{ marginTop: 18, fontSize: 32, fontWeight: 500, color: C.soft }}>
+          Disponible sur <span style={{ color: C.blue, fontWeight: 700 }}>Chariow</span> · Mobile Money & carte
+        </div>
       </div>
 
       <Confetti />

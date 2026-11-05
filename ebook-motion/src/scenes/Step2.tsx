@@ -52,7 +52,7 @@ export const Step2: React.FC = () => {
       </div>
 
       <div style={{ display: "flex", gap: 30, marginTop: 50 }}>
-        <Pill label="Meta Ads" delay={88} dir={-1} style={{ background: "linear-gradient(135deg, #0A84FF, #0047E0)", boxShadow: "0 0 40px rgba(10,132,255,0.6)" }} />
+        <Pill label="Meta Ads" delay={88} dir={-1} style={{ background: "linear-gradient(135deg, #0A84FF, #0047E0)", boxShadow: "0 0 40px rgba(255,204,0,0.6)" }} />
         <Pill
           label="TikTok Ads"
           delay={112}
@@ -73,7 +73,7 @@ export const Step2: React.FC = () => {
               left: -i * 150,
               top: -i * 112.5,
               borderRadius: "50%",
-              border: "2px solid rgba(62,230,255,0.3)",
+              border: "2px solid rgba(255,204,0,0.3)",
             }}
           />
         ))}
@@ -85,7 +85,7 @@ export const Step2: React.FC = () => {
             left: -450,
             top: -337.5,
             borderRadius: "50%",
-            background: `conic-gradient(from ${f * 4}deg, rgba(62,230,255,0.35), transparent 18%)`,
+            background: `conic-gradient(from ${f * 4}deg, rgba(255,204,0,0.35), transparent 18%)`,
           }}
         />
         {DOTS.map((d, i) => {
@@ -124,8 +124,8 @@ export const Step2: React.FC = () => {
             height: 330,
             borderRadius: 30,
             padding: 8,
-            background: "linear-gradient(160deg, #2a3a6a, #0b1430)",
-            boxShadow: "0 0 50px rgba(10,132,255,0.7)",
+            background: "linear-gradient(160deg, #3a3a46, #16161c)",
+            boxShadow: "0 0 50px rgba(255,204,0,0.7)",
           }}
         >
           <div
@@ -133,7 +133,7 @@ export const Step2: React.FC = () => {
               width: "100%",
               height: "100%",
               borderRadius: 24,
-              background: `linear-gradient(${f * 3}deg, ${C.blue}, #6B7CFF, ${C.cyan})`,
+              background: `linear-gradient(${f * 3}deg, ${C.blue}, #FFB000, ${C.cyan})`,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -141,7 +141,7 @@ export const Step2: React.FC = () => {
               gap: 10,
             }}
           >
-            <PlayIcon size={60} />
+            <PlayIcon size={60} color={C.navy} />
             <div style={{ fontFamily: body, fontWeight: 700, fontSize: 20, color: C.white, background: "rgba(0,0,0,0.35)", padding: "4px 12px", borderRadius: 8 }}>
               Sponsorisé
             </div>

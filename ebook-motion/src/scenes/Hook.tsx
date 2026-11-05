@@ -37,7 +37,7 @@ export const Hook: React.FC = () => {
             fontSize: 210,
             lineHeight: 1,
             transform: `scale(${w2})`,
-            filter: `drop-shadow(0 0 40px rgba(10,132,255,0.8))`,
+            filter: `drop-shadow(0 0 40px rgba(255,204,0,0.8))`,
             ...gradText(),
           }}
         >
@@ -85,7 +85,7 @@ export const Hook: React.FC = () => {
           color: C.cyan,
           letterSpacing: 2,
           textShadow: `0 0 30px ${C.cyan}`,
-          boxShadow: `0 0 40px rgba(62,230,255,0.5), inset 0 0 30px rgba(62,230,255,0.3)`,
+          boxShadow: `0 0 40px rgba(255,204,0,0.5), inset 0 0 30px rgba(255,204,0,0.3)`,
         }}
       >
         0 COMPÉTENCE

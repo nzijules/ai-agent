@@ -16,7 +16,7 @@ const Word: React.FC<{ text: string; delay: number; size: number }> = ({ text, d
         lineHeight: 0.95,
         opacity: interpolate(p, [0, 0.2], [0, 1], clamp),
         transform: `translateY(${(1 - p) * -200}px) scale(${interpolate(p, [0, 1], [1.8, 1])})`,
-        filter: "drop-shadow(0 0 30px rgba(10,132,255,0.7))",
+        filter: "drop-shadow(0 0 30px rgba(255,204,0,0.7))",
         ...gradText(C.white, C.cyan),
       }}
     >
@@ -29,7 +29,7 @@ const MiniVideo: React.FC = () => {
   const f = useCurrentFrame();
   const views = Math.round(interpolate(f, [80, 200], [0, 1200000], clamp));
   return (
-    <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: 40, background: "#071338" }}>
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: 40, background: "#1c1c24" }}>
       {[0, 1, 2, 3].map((i) => {
         const a = f * 2 + i * 90;
         return (
@@ -42,7 +42,7 @@ const MiniVideo: React.FC = () => {
               width: 100,
               height: 100,
               borderRadius: i % 2 ? "50%" : 24,
-              background: [C.cyan, C.blue, "#6B7CFF", C.gold][i],
+              background: [C.blue, C.white, "#FF8A3C", C.cyan][i],
               transform: `rotate(${f * 3 + i * 40}deg)`,
               opacity: 0.85,
             }}
@@ -124,7 +124,7 @@ export const Secret: React.FC = () => {
               marginLeft: -(280 + i * 70),
               marginTop: -(280 + i * 70),
               borderRadius: "50%",
-              border: `3px dashed rgba(62,230,255,${0.45 - i * 0.2})`,
+              border: `3px dashed rgba(255,204,0,${0.45 - i * 0.2})`,
               transform: `rotate(${f * (i ? -1 : 1.4)}deg)`,
               opacity: phone,
             }}
@@ -136,8 +136,8 @@ export const Secret: React.FC = () => {
             inset: 0,
             borderRadius: 52,
             padding: 12,
-            background: "linear-gradient(160deg, #2a3a6a, #0b1430)",
-            boxShadow: "0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(10,132,255,0.5)",
+            background: "linear-gradient(160deg, #3a3a46, #16161c)",
+            boxShadow: "0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,204,0,0.5)",
           }}
         >
           <div style={{ position: "relative", width: "100%", height: "100%" }}>

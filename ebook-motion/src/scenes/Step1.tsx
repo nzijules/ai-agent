@@ -62,9 +62,9 @@ export const Step1: React.FC = () => {
           width: 920,
           minHeight: 470,
           borderRadius: 30,
-          background: "rgba(6,12,32,0.92)",
-          border: "2px solid rgba(62,230,255,0.35)",
-          boxShadow: "0 30px 90px rgba(0,0,0,0.6), 0 0 50px rgba(10,132,255,0.35)",
+          background: "rgba(16,16,20,0.95)",
+          border: "2px solid rgba(255,204,0,0.35)",
+          boxShadow: "0 30px 90px rgba(0,0,0,0.6), 0 0 50px rgba(255,204,0,0.35)",
           overflow: "hidden",
           opacity: term,
           transform: `perspective(1400px) rotateX(${(1 - term) * 40}deg) translateY(${(1 - term) * 200}px) scale(${interpolate(book, [0, 1], [1, 0.94])})`,
@@ -95,8 +95,8 @@ export const Step1: React.FC = () => {
               width: 190,
               height: 300,
               borderRadius: 20,
-              background: `linear-gradient(160deg, ${d < 0 ? C.blue : "#6B7CFF"}, ${C.deep})`,
-              border: "3px solid rgba(255,255,255,0.4)",
+              background: `linear-gradient(160deg, ${d < 0 ? "#2f2f3a" : "#24242c"}, ${C.navy})`,
+              border: `3px solid ${C.blue}`,
               opacity: book,
               transform: `rotate(${d * 14 * book}deg) scale(${book})`,
               boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
@@ -106,7 +106,7 @@ export const Step1: React.FC = () => {
               fontFamily: display,
               fontWeight: 900,
               fontSize: 34,
-              color: C.white,
+              color: C.blue,
             }}
           >
             VIDÉO

@@ -22,8 +22,8 @@ export const Background: React.FC<{ intensity?: number }> = ({ intensity = 1 }) 
     <AbsoluteFill style={{ backgroundColor: C.bg, overflow: "hidden" }}>
       <AbsoluteFill
         style={{
-          background: `radial-gradient(700px circle at ${b1x}px ${b1y}px, rgba(10,132,255,${0.42 * intensity}), transparent 70%),
-            radial-gradient(800px circle at ${b2x}px ${b2y}px, rgba(70,40,255,${0.35 * intensity}), transparent 70%)`,
+          background: `radial-gradient(700px circle at ${b1x}px ${b1y}px, rgba(255,204,0,${0.42 * intensity}), transparent 70%),
+            radial-gradient(800px circle at ${b2x}px ${b2y}px, rgba(255,140,0,${0.35 * intensity}), transparent 70%)`,
         }}
       />
       {/* perspective grid floor */}
@@ -36,7 +36,7 @@ export const Background: React.FC<{ intensity?: number }> = ({ intensity = 1 }) 
           height: 900,
           transform: "perspective(600px) rotateX(62deg)",
           transformOrigin: "bottom",
-          backgroundImage: `linear-gradient(rgba(62,230,255,0.22) 2px, transparent 2px), linear-gradient(90deg, rgba(62,230,255,0.22) 2px, transparent 2px)`,
+          backgroundImage: `linear-gradient(rgba(255,204,0,0.22) 2px, transparent 2px), linear-gradient(90deg, rgba(255,204,0,0.22) 2px, transparent 2px)`,
           backgroundSize: "120px 120px",
           backgroundPosition: `0 ${gridShift}px`,
           maskImage: "linear-gradient(to top, black 10%, transparent 90%)",

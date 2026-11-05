@@ -14,7 +14,7 @@ export const Turn: React.FC = () => {
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
       <AbsoluteFill
         style={{
-          background: `radial-gradient(circle at 50% 50%, rgba(62,230,255,${0.15 + 0.1 * Math.sin(f / 4)}), transparent 55%)`,
+          background: `radial-gradient(circle at 50% 50%, rgba(255,204,0,${0.15 + 0.1 * Math.sin(f / 4)}), transparent 55%)`,
         }}
       />
       <div style={{ transform: `scale(${zoom})`, textAlign: "center" }}>

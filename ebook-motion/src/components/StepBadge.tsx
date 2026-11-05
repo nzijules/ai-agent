@@ -13,7 +13,7 @@ export const StepBadge: React.FC<{ n: string; delay?: number }> = ({ n, delay = 
         gap: 18,
         padding: "14px 30px 14px 14px",
         borderRadius: 999,
-        background: "rgba(10,132,255,0.15)",
+        background: "rgba(255,204,0,0.15)",
         border: `2px solid ${C.blue}`,
         fontFamily: display,
         fontWeight: 800,
@@ -33,6 +33,7 @@ export const StepBadge: React.FC<{ n: string; delay?: number }> = ({ n, delay = 
           justifyContent: "center",
           fontWeight: 900,
           fontSize: 34,
+          color: C.navy,
           letterSpacing: 0,
         }}
       >
