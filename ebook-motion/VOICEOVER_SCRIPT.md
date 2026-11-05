@@ -40,7 +40,7 @@ J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le mainten
 
 ## Intégrer la voix-off
 
-1. Mets ton fichier dans `ebook-motion/public/voiceover.mp3`.
+1. La voix-off actuelle est `ebook-motion/public/voiceover.mp3` (déjà intégrée et synchronisée).
 2. Rends la vidéo avec la voix (la musique baisse automatiquement) :
    ```bash
    npx remotion render EbookAd out/arosoft-ebook-vibe-motion-vo.mp4 --props='{"voiceover":"voiceover.mp3"}'

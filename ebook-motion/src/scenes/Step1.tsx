@@ -8,10 +8,10 @@ import { C, body, display, gradText, mono } from "../theme";
 // 18s – 27s : "Étape 1 : tu demandes à Claude Code d'écrire ton ebook… et de créer tes vidéos animées. Tu décris, il crée."
 type Line = { kind: "cmd" | "ok"; text: string; at: number };
 const LINES: Line[] = [
-  { kind: "cmd", text: "Écris un ebook de 40 pages sur « Gagner de l'argent avec WhatsApp »", at: 30 },
-  { kind: "ok", text: "8 chapitres rédigés · couverture créée", at: 92 },
-  { kind: "cmd", text: "Crée 3 vidéos motion design pour ma pub", at: 110 },
-  { kind: "ok", text: "3 vidéos prêtes à publier", at: 160 },
+  { kind: "cmd", text: "Écris un ebook de 40 pages sur « Gagner de l'argent avec WhatsApp »", at: 34 },
+  { kind: "ok", text: "8 chapitres rédigés · couverture créée", at: 80 },
+  { kind: "cmd", text: "Crée 3 vidéos motion design pour ma pub", at: 112 },
+  { kind: "ok", text: "3 vidéos prêtes à publier", at: 145 },
 ];
 const CPS = 1.6; // chars per frame
 
@@ -40,8 +40,8 @@ const TermLine: React.FC<{ line: Line }> = ({ line }) => {
 export const Step1: React.FC = () => {
   const title = usePop(8);
   const term = useSpring(16, { damping: 16 });
-  const book = useSpring(182, { damping: 11 });
-  const tag = usePop(205);
+  const book = useSpring(158, { damping: 11 });
+  const tag = usePop(178);
 
   return (
     <AbsoluteFill style={{ alignItems: "center" }}>

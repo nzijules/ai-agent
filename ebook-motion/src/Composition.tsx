@@ -19,18 +19,22 @@ type Props = {
   voiceover: string | null;
 };
 
-// Timeline (seconds) — matches the voice-over script in VOICEOVER_SCRIPT.md
+// Timeline (seconds) — synced to the pauses of public/voiceover.mp3 (see VOICEOVER_SCRIPT.md)
 export const SCENES = [
-  { id: "hook", from: 0, dur: 5, C: Hook },
-  { id: "problem", from: 5, dur: 6, C: Problem },
-  { id: "secret", from: 11, dur: 7, C: Secret },
-  { id: "step1", from: 18, dur: 9, C: Step1 },
-  { id: "step2", from: 27, dur: 8, C: Step2 },
-  { id: "step3", from: 35, dur: 8, C: Step3 },
-  { id: "recap", from: 43, dur: 5, C: Recap },
-  { id: "turn", from: 48, dur: 4, C: Turn },
-  { id: "cta", from: 52, dur: 12, C: CTA },
+  { id: "hook", from: 0, dur: 5.3, C: Hook },
+  { id: "problem", from: 5.3, dur: 6.9, C: Problem },
+  { id: "secret", from: 12.2, dur: 7.4, C: Secret },
+  { id: "step1", from: 19.6, dur: 8.3, C: Step1 },
+  { id: "step2", from: 27.9, dur: 8.1, C: Step2 },
+  { id: "step3", from: 36, dur: 6.7, C: Step3 },
+  { id: "recap", from: 42.7, dur: 6.3, C: Recap },
+  { id: "turn", from: 49, dur: 2.3, C: Turn },
+  { id: "cta", from: 51.3, dur: 12.7, C: CTA },
 ] as const;
+
+// The music's big drop is at 52s in music.wav; trimming 0.7s lands it on the CTA (51.3s).
+const MUSIC_OFFSET = 21;
+const VO_END = 60;
 
 const TOTAL = 64;
 
@@ -46,11 +50,10 @@ const ProgressBar: React.FC = () => {
 
 export const EbookAd: React.FC<Props> = ({ voiceover }) => {
   const f = useCurrentFrame();
-  const bgIntensity = interpolate(f, [sec(48), sec(50), sec(52)], [1, 0.35, 1.2], {
+  const bgIntensity = interpolate(f, [sec(46.5), sec(49.5), sec(51.3)], [1, 0.35, 1.2], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const musicVol = voiceover ? 0.22 : 0.6;
 
   return (
     <AbsoluteFill style={{ backgroundColor: C.bg }}>
@@ -70,7 +73,13 @@ export const EbookAd: React.FC<Props> = ({ voiceover }) => {
       {/* ---- audio ---- */}
       <Audio
         src={staticFile("music.wav")}
-        volume={(fr) => musicVol * interpolate(fr, [sec(TOTAL) - 45, sec(TOTAL)], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        trimBefore={MUSIC_OFFSET}
+        volume={(fr) => {
+          const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+          // ducked under the voice, swells back once the voice-over ends
+          const base = voiceover ? interpolate(fr, [sec(VO_END), sec(VO_END) + 15], [0.2, 0.55], cl) : 0.6;
+          return base * interpolate(fr, [sec(TOTAL) - 50, sec(TOTAL)], [1, 0], cl);
+        }}
       />
       {voiceover && <Audio src={staticFile(voiceover)} volume={1} />}
       {SCENES.slice(1).map(({ id, from }) => (
@@ -79,11 +88,11 @@ export const EbookAd: React.FC<Props> = ({ voiceover }) => {
         </Sequence>
       ))}
       {NOTIF_TIMES.map((t) => (
-        <Sequence key={`c-${t}`} from={sec(35) + t} durationInFrames={30} layout="none">
+        <Sequence key={`c-${t}`} from={sec(36) + t} durationInFrames={30} layout="none">
           <Audio src={staticFile("sfx-cash.wav")} volume={0.4} />
         </Sequence>
       ))}
-      {[sec(5) + 4, sec(5) + 26, sec(5) + 48, sec(52) + 96, sec(52) + 150].map((t) => (
+      {[sec(5.3) + 6, sec(5.3) + 40, sec(5.3) + 79, sec(51.3) + 92, sec(51.3) + 130].map((t) => (
         <Sequence key={`p-${t}`} from={t} durationInFrames={10} layout="none">
           <Audio src={staticFile("sfx-pop.wav")} volume={0.4} />
         </Sequence>
@@ -101,7 +110,7 @@ export const MyComposition = () => {
       fps={FPS}
       width={1080}
       height={1920}
-      defaultProps={{ voiceover: null } as Props}
+      defaultProps={{ voiceover: "voiceover.mp3" } as Props}
     />
   );
 };

@@ -109,10 +109,10 @@ const GuideCover: React.FC = () => {
 export const CTA: React.FC = () => {
   const f = useCurrentFrame();
   const head = usePop(4);
-  const price = useSpring(96, { damping: 8, stiffness: 160 });
-  const btn = useSpring(150, { damping: 12 });
-  const sub = usePop(200);
-  const pulse = 1 + Math.max(0, Math.sin((f - 150) / 5)) * 0.05 * (f > 165 ? 1 : 0);
+  const price = useSpring(130, { damping: 8, stiffness: 160 });
+  const btn = useSpring(92, { damping: 12 });
+  const sub = usePop(172);
+  const pulse = 1 + Math.max(0, Math.sin((f - 92) / 5)) * 0.05 * (f > 110 ? 1 : 0);
   const flash = interpolate(f, [0, 12], [1, 0], clamp);
   const arrowY = Math.sin(f / 5) * 14;
 

@@ -53,15 +53,15 @@ export const Recap: React.FC = () => {
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 20 }}>
       <Slam text="ZÉRO VISAGE." delay={2} />
-      <Slam text="ZÉRO" delay={22} />
-      <Slam text="COMPÉTENCE." delay={28} />
+      <Slam text="ZÉRO" delay={46} />
+      <Slam text="COMPÉTENCE." delay={52} />
       <div style={{ height: 60 }} />
-      <Chip label="Claude Code" delay={58} accent />
-      <Op t="+" delay={68} />
-      <Chip label="Une bonne offre" delay={74} />
-      <Op t="+" delay={84} />
-      <Chip label="Meta & TikTok Ads" delay={90} />
-      <div style={{ ...usePop(110), marginTop: 20, fontFamily: display, fontWeight: 900, fontSize: 84, ...gradText(C.green, C.cyan) }}>
+      <Chip label="Claude Code" delay={90} accent />
+      <Op t="+" delay={112} />
+      <Chip label="Une bonne offre" delay={118} />
+      <Op t="+" delay={150} />
+      <Chip label="Meta & TikTok Ads" delay={158} />
+      <div style={{ ...usePop(168), marginTop: 20, fontFamily: display, fontWeight: 900, fontSize: 84, ...gradText(C.green, C.cyan) }}>
         = DES VENTES
       </div>
     </AbsoluteFill>

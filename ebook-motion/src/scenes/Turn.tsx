@@ -8,8 +8,8 @@ export const Turn: React.FC = () => {
   const f = useCurrentFrame();
   const a = usePop(4);
   const text = "C'EST TON TOUR.";
-  const zoom = interpolate(f, [0, 120], [1, 1.25]);
-  const flash = interpolate(f, [110, 120], [0, 1], clamp);
+  const zoom = interpolate(f, [0, 69], [1, 1.25]);
+  const flash = interpolate(f, [60, 69], [0, 1], clamp);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
       <AbsoluteFill
@@ -21,7 +21,7 @@ export const Turn: React.FC = () => {
         <div style={{ ...a, fontFamily: display, fontWeight: 600, fontSize: 70, color: C.soft }}>Et maintenant…</div>
         <div style={{ marginTop: 30, fontFamily: display, fontWeight: 900, fontSize: 132, lineHeight: 1.05, width: 900 }}>
           {text.split("").map((ch, i) => {
-            const at = 34 + i * 3;
+            const at = 30 + i * 1.5;
             if (ch === " " && i === 9) return <br key={i} />;
             const p = interpolate(f, [at, at + 8], [0, 1], clamp);
             return (

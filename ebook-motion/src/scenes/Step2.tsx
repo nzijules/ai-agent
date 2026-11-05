@@ -9,7 +9,7 @@ import { C, body, display, gradText } from "../theme";
 const DOTS = new Array(36).fill(0).map((_, i) => {
   const r = 150 + random(`r${i}`) * 300;
   const a = random(`a${i}`) * Math.PI * 2;
-  return { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.75, hit: random(`h${i}`) > 0.55, at: 70 + random(`t${i}`) * 90 };
+  return { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.75, hit: random(`h${i}`) > 0.55, at: 155 + random(`t${i}`) * 70 };
 });
 
 const Pill: React.FC<{ label: string; delay: number; dir: number; style: React.CSSProperties }> = ({ label, delay, dir, style }) => {
@@ -36,9 +36,9 @@ const Pill: React.FC<{ label: string; delay: number; dir: number; style: React.C
 export const Step2: React.FC = () => {
   const f = useCurrentFrame();
   const title = usePop(8);
-  const radar = useSpring(50, { damping: 18 });
-  const reached = Math.round(interpolate(f, [70, 200], [0, 250000], clamp));
-  const counter = usePop(66);
+  const radar = useSpring(60, { damping: 18 });
+  const reached = Math.round(interpolate(f, [150, 235], [0, 250000], clamp));
+  const counter = usePop(150);
 
   return (
     <AbsoluteFill style={{ alignItems: "center" }}>
@@ -52,10 +52,10 @@ export const Step2: React.FC = () => {
       </div>
 
       <div style={{ display: "flex", gap: 30, marginTop: 50 }}>
-        <Pill label="Meta Ads" delay={22} dir={-1} style={{ background: "linear-gradient(135deg, #0A84FF, #0047E0)", boxShadow: "0 0 40px rgba(10,132,255,0.6)" }} />
+        <Pill label="Meta Ads" delay={88} dir={-1} style={{ background: "linear-gradient(135deg, #0A84FF, #0047E0)", boxShadow: "0 0 40px rgba(10,132,255,0.6)" }} />
         <Pill
           label="TikTok Ads"
-          delay={32}
+          delay={112}
           dir={1}
           style={{ background: "#0b0b12", border: "3px solid #fff", textShadow: "-4px 0 #25F4EE, 4px 0 #FE2C55", boxShadow: "0 0 40px rgba(254,44,85,0.4)" }}
         />

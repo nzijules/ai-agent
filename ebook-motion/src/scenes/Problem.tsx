@@ -6,9 +6,9 @@ import { C, display, gradText } from "../theme";
 
 // 5s – 11s : "Pas de caméra. Pas de design. Pas de code. Tu penses que c'est impossible ? Détrompe-toi."
 const items = [
-  { label: "Pas de caméra", Icon: CameraIcon, at: 4 },
-  { label: "Pas de design", Icon: PaletteIcon, at: 26 },
-  { label: "Pas de code", Icon: CodeIcon, at: 48 },
+  { label: "Pas de caméra", Icon: CameraIcon, at: 6 },
+  { label: "Pas de design", Icon: PaletteIcon, at: 40 },
+  { label: "Pas de code", Icon: CodeIcon, at: 79 },
 ];
 
 const Item: React.FC<{ label: string; Icon: React.FC<{ size?: number }>; at: number }> = ({ label, Icon, at }) => {
@@ -43,10 +43,10 @@ const Item: React.FC<{ label: string; Icon: React.FC<{ size?: number }>; at: num
 
 export const Problem: React.FC = () => {
   const f = useCurrentFrame();
-  const out = interpolate(f, [92, 104], [1, 0], clamp);
-  const imp = useSpring(96, { damping: 10 });
-  const glitch = f > 96 && f < 128 && f % 4 < 2 ? 10 : 0;
-  const swap = useSpring(128, { damping: 12 });
+  const out = interpolate(f, [110, 122], [1, 0], clamp);
+  const imp = useSpring(118, { damping: 10 });
+  const glitch = f > 118 && f < 170 && f % 4 < 2 ? 10 : 0;
+  const swap = useSpring(172, { damping: 12 });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
@@ -64,7 +64,7 @@ export const Problem: React.FC = () => {
         ))}
       </div>
 
-      {f > 94 && (
+      {f > 116 && (
         <div style={{ position: "absolute", textAlign: "center" }}>
           <div
             style={{

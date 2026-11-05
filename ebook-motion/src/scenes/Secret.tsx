@@ -77,8 +77,8 @@ const MiniVideo: React.FC = () => {
 export const Secret: React.FC = () => {
   const f = useCurrentFrame();
   const pill = usePop(2);
-  const phone = useSpring(56, { damping: 15 });
-  const sub = usePop(110);
+  const phone = useSpring(80, { damping: 15 });
+  const sub = usePop(100);
   return (
     <AbsoluteFill style={{ alignItems: "center" }}>
       <div
@@ -98,9 +98,9 @@ export const Secret: React.FC = () => {
         LE SECRET
       </div>
       <div style={{ marginTop: 36, textAlign: "center" }}>
-        <Word text="VIBE" delay={14} size={200} />
-        <Word text="MOTION" delay={24} size={168} />
-        <Word text="DESIGN" delay={34} size={168} />
+        <Word text="VIBE" delay={36} size={200} />
+        <Word text="MOTION" delay={44} size={168} />
+        <Word text="DESIGN" delay={52} size={168} />
       </div>
 
       <div

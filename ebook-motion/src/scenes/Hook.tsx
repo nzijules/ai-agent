@@ -13,8 +13,8 @@ export const Hook: React.FC = () => {
   const face = usePop(52);
   const strike = interpolate(f, [62, 80], [0, 1], clamp);
   const t2 = usePop(66);
-  const stamp = useSpring(112, { damping: 11, stiffness: 220 });
-  const shake = f > 112 && f < 124 ? Math.sin(f * 3) * (124 - f) * 1.4 : 0;
+  const stamp = useSpring(116, { damping: 11, stiffness: 220 });
+  const shake = f > 116 && f < 128 ? Math.sin(f * 3) * (128 - f) * 1.4 : 0;
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", transform: `translateX(${shake}px)` }}>

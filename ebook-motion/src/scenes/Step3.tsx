@@ -6,7 +6,7 @@ import { StepBadge } from "../components/StepBadge";
 import { C, body, display, gradText } from "../theme";
 
 // 35s – 43s : "Étape 3 : les clients achètent, les notifications tombent… pendant que toi, tu restes dans l'ombre."
-export const NOTIF_TIMES = [40, 66, 92, 118];
+export const NOTIF_TIMES = [40, 62, 84, 104];
 const NAMES = ["Awa · Abidjan", "Moussa · Dakar", "Grâce · Douala", "Kofi · Lomé"];
 
 const Notif: React.FC<{ i: number }> = ({ i }) => {
@@ -50,8 +50,8 @@ const Notif: React.FC<{ i: number }> = ({ i }) => {
 export const Step3: React.FC = () => {
   const f = useCurrentFrame();
   const title = usePop(8);
-  const fig = useSpring(140, { damping: 20 });
-  const txt = usePop(160);
+  const fig = useSpring(128, { damping: 20 });
+  const txt = usePop(140);
   const rim = interpolate(Math.sin(f / 10), [-1, 1], [0.5, 1]);
 
   return (
