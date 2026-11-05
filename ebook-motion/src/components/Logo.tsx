@@ -9,9 +9,9 @@ export const Logo: React.FC = () => {
     <div
       style={{
         position: "absolute",
-        top: 60,
-        right: 56,
-        width: 270,
+        top: 56,
+        right: 48,
+        width: 190,
         filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.6))",
         transform: `scale(${p}) translateY(${(1 - p) * -40}px)`,
         transformOrigin: "top right",
