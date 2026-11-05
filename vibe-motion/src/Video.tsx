@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, interpolate, Sequence, staticFile } from "remotion";
 import { Audio } from "@remotion/media";
 import { Background, Flash, SceneWrap } from "./components";
+import { Logo } from "./Logo";
 import { CTA, Hook, Proof, Step1, Step2, Step3, Step4, Title, Tool } from "./scenes";
 import { HAS_VOICEOVER, SCENES, VOICE_END } from "./theme";
 
@@ -34,6 +35,7 @@ export const VibeMotion: React.FC = () => {
       {list.slice(1, 7).map(([key]) => (
         <Flash key={key} at={SCENES[key][0]} />
       ))}
+      <Logo />
       <Audio
         src={staticFile("music.mp3")}
         volume={(f) =>

@@ -699,7 +699,7 @@ export const CTA: React.FC = () => {
         />
       </AbsoluteFill>
       <Confetti />
-      <Center gap={26} style={{ justifyContent: "flex-start", paddingTop: 170 }}>
+      <Center gap={26} style={{ justifyContent: "flex-start", paddingTop: 235 }}>
         <div
           style={{
             fontFamily: F.body,
