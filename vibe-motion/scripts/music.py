@@ -2,7 +2,10 @@
 import numpy as np, wave, sys
 SR = 44100
 BPM = 116
-DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 57.0
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 63.5
+# Riser de R0 à R1 (début du CTA) ; transitions de scènes (s)
+R0, R1 = 49.1, 53.1
+CUTS = [4.5, 11.33, 18.6, 24.73, 31.1, 37.43, 44.8]
 OUT = sys.argv[1] if len(sys.argv) > 1 else "music.wav"
 beat = 60 / BPM
 N = int(SR * DUR)
@@ -73,8 +76,8 @@ nbars = int(DUR / bar) + 1
 # Sections (en secondes) : intro calme, build, drop, break, finale
 def section(t):
     if t < 4.5: return "intro"
-    if t < 44: return "main"
-    if t < 46: return "riser"
+    if t < R0 + 2: return "main"
+    if t < R1: return "riser"
     return "final"
 
 # Pads (accords) – filtrés
@@ -144,7 +147,7 @@ for b in range(int(DUR / beat) + 1):
 add(melo, 0, 1.0, 0.15)
 
 # Riser avant le CTA (bruit filtré montant) + impact
-r0, r1 = 42.0, 46.0
+r0, r1 = R0, R1
 n = int((r1 - r0) * SR); t = np.arange(n) / SR
 noise = rng.standard_normal(n); noise = np.diff(noise, prepend=0)
 riser = noise * (t / (r1 - r0)) ** 2 * 0.12
@@ -155,7 +158,7 @@ boom = np.sin(2*np.pi*np.cumsum(30 + 80*np.exp(-t*6))/SR) * np.exp(-t*1.6) * 0.9
 boom += rng.standard_normal(n) * np.exp(-t*4) * 0.1
 add(boom, r1)
 # petit "whoosh" à chaque changement de scène
-for ts in [4.5, 10, 16, 22, 28, 34, 40]:
+for ts in CUTS:
     n = int(0.5 * SR); t = np.arange(n) / SR
     w = np.diff(rng.standard_normal(n), prepend=0) * np.sin(np.pi * t / 0.5) ** 2 * 0.06
     add(w, ts - 0.35, 1.0, 0.0)

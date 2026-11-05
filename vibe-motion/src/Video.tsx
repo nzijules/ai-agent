@@ -1,9 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Sequence, staticFile } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, staticFile } from "remotion";
 import { Audio } from "@remotion/media";
 import { Background, Flash, SceneWrap } from "./components";
 import { CTA, Hook, Proof, Step1, Step2, Step3, Step4, Title, Tool } from "./scenes";
-import { HAS_VOICEOVER, SCENES } from "./theme";
+import { HAS_VOICEOVER, SCENES, VOICE_END } from "./theme";
 
 const list: [keyof typeof SCENES, React.FC][] = [
   ["hook", Hook],
@@ -36,7 +36,14 @@ export const VibeMotion: React.FC = () => {
       ))}
       <Audio
         src={staticFile("music.mp3")}
-        volume={HAS_VOICEOVER ? 0.28 : 0.9}
+        volume={(f) =>
+          HAS_VOICEOVER
+            ? interpolate(f, [0, 6, VOICE_END, VOICE_END + 20], [0.35, 0.24, 0.24, 0.75], {
+                extrapolateLeft: "clamp",
+                extrapolateRight: "clamp",
+              })
+            : 0.9
+        }
       />
       {HAS_VOICEOVER ? <Audio src={staticFile("voiceover.mp3")} volume={1} /> : null}
     </AbsoluteFill>

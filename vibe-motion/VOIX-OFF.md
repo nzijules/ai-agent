@@ -1,6 +1,6 @@
 # Script voix-off — « Vibe Motion Design avec Claude Code »
 
-Durée totale : **57 secondes** · Ton : énergique, chaleureux, tutoiement, débit dynamique.
+Durée totale : **57 secondes** (version finale calée sur la voix Brian : 63,5 s) · Ton : énergique, chaleureux, tutoiement, débit dynamique.
 Chaque bloc doit tenir dans sa fenêtre (les images sont calées dessus).
 
 | # | Temps | Texte à lire |
@@ -32,3 +32,7 @@ J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le mainten
 1. Dépose le fichier dans `public/voiceover.mp3`
 2. Dans `src/theme.ts`, mets `HAS_VOICEOVER = true` (la musique baisse automatiquement)
 3. Rends la vidéo : `REMOTION_CHROME=<chemin chrome> npx remotion render VibeMotion out/vibe-motion-design.mp4`
+
+## Version finale
+
+La voix-off ElevenLabs (Brian) est intégrée dans `public/voiceover.mp3`. Les scènes et les animations ont été recalées sur les pauses de la voix (début des blocs : 0 / 4,8 / 11,6 / 18,9 / 25,1 / 31,4 / 37,8 / 45,1 / 53,4 s).
