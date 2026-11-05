@@ -15,7 +15,7 @@ export const useLayout = () => {
     k,
     s: (n: number) => Math.round(n * k),
     // content box (where scene content lives)
-    top: square ? 56 : 230,
+    top: square ? 56 : 262, // leaves room for the logo (top-right)
     bottom: square ? 175 : 520, // distance from bottom edge kept free (captions live just above platform UI)
     side: square ? 70 : 100,
     // captions band (only used in voice-over version)

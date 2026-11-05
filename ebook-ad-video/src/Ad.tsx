@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Sequence, staticFile, useVideoConfig } from "remotion";
 import { Audio } from "@remotion/media";
 import { Captions } from "./components/Captions";
+import { Logo } from "./components/Logo";
 import { SceneWrap } from "./scenes/Stage";
 import { S1Hook } from "./scenes/S1Hook";
 import { S1HookEconomie } from "./scenes/S1HookEconomie";
@@ -73,6 +74,7 @@ const AdInner: React.FC<Omit<AdProps, "variant">> = ({ voiceover, captions }) =>
           </Sequence>
         );
       })}
+      <Logo />
       {captions && voiceover && <Captions />}
       <Audio src={staticFile(tl.music)} volume={musicVolume} />
       {voiceover &&
