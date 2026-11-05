@@ -1,0 +1,60 @@
+{
+  "_note": "Vidéo TikTok « Compositions » (angle du visuel C). Voix finale : Brian (ElevenLabs, eleven_multilingual_v2).",
+  "lines": [
+    {
+      "id": "k01",
+      "text": "Les compositions approchent…",
+      "spoken": "Les compositions approchent…"
+    },
+    {
+      "id": "k02",
+      "text": "…et votre enfant n'est toujours pas prêt ?",
+      "spoken": "…et votre enfant n'est toujours pas prêt ?"
+    },
+    {
+      "id": "k03",
+      "text": "Il révise la veille.",
+      "spoken": "Il révise la veille."
+    },
+    {
+      "id": "k04",
+      "text": "Il panique le jour J.",
+      "spoken": "Il panique le jour J."
+    },
+    {
+      "id": "k05",
+      "text": "Et devant sa copie… il oublie tout.",
+      "spoken": "Et devant sa copie… il oublie tout."
+    },
+    {
+      "id": "k06",
+      "text": "Le problème n'est pas l'effort : c'est la méthode.",
+      "spoken": "Le problème n'est pas l'effort : c'est la méthode."
+    },
+    {
+      "id": "k07",
+      "text": "Découvrez « Apprendre à apprendre avec ChatGPT », le guide pratique des parents.",
+      "spoken": "Découvrez « Apprendre à apprendre avec Tchat G P T », le guide pratique des parents."
+    },
+    {
+      "id": "k08",
+      "text": "Votre enfant s'entraîne chaque soir avec des quiz chronométrés, comme le jour de la composition.",
+      "spoken": "Votre enfant s'entraîne chaque soir avec des quiz chronométrés, comme le jour de la composition."
+    },
+    {
+      "id": "k09",
+      "text": "Et tout cela, pour seulement {PRICE} !",
+      "spoken": "Et tout cela, pour seulement {PRICE_SPOKEN} !"
+    },
+    {
+      "id": "k10",
+      "text": "Un guide numérique. Un paiement unique. Un accès immédiat.",
+      "spoken": "Un guide numérique. Un paiement unique. Un accès immédiat."
+    },
+    {
+      "id": "k11",
+      "text": "Pour qu'il arrive serein le jour J, téléchargez votre guide dès maintenant !",
+      "spoken": "Pour qu'il arrive serein le jour J, téléchargez votre guide dès maintenant !"
+    }
+  ]
+}

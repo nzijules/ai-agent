@@ -7,6 +7,8 @@ import { S1Hook } from "./scenes/S1Hook";
 import { S1HookEconomie } from "./scenes/S1HookEconomie";
 import { S2Problem } from "./scenes/S2Problem";
 import { S2ProblemEconomie } from "./scenes/S2ProblemEconomie";
+import { S1HookComposition } from "./scenes/S1HookComposition";
+import { S2ProblemComposition } from "./scenes/S2ProblemComposition";
 import { S3Pivot } from "./scenes/S3Pivot";
 import { S4Reveal } from "./scenes/S4Reveal";
 import { S5Benefits } from "./scenes/S5Benefits";
@@ -34,6 +36,7 @@ const SHARED: Record<SceneId, React.FC> = {
 export const SCENE_COMPONENTS: Record<Angle, Record<SceneId, React.FC>> = {
   controle: SHARED,
   economie: { ...SHARED, "S1-Accroche": S1HookEconomie, "S2-Probleme": S2ProblemEconomie },
+  composition: { ...SHARED, "S1-Accroche": S1HookComposition, "S2-Probleme": S2ProblemComposition },
 };
 
 export type AdProps = { voiceover: boolean; captions: boolean; variant: Variant };

@@ -39,7 +39,14 @@ SHORT = {  # 30 s TikTok cuts: subsets of the full cut's recorded lines (no new 
     "economie-court": ("economie", [("S1-Accroche", ["e01", "e02"], 0.3), ("S2-Probleme", ["e03", "e06", "e07"], 0.35),
                                     ("S4-Revelation", ["l10"], 0.6), ("S7-Offre", ["e19", "l20"], 0.35), ("S8-Appel", ["l22"], 0.35)]),
 }
-if V in SHORT:
+COMPOSITION = [("S1-Accroche", 2, 0.3), ("S2-Probleme", 4, 0.35), ("S4-Revelation", 1, 0.6),
+               ("S5-Benefices", 1, 0.35), ("S7-Offre", 2, 0.35), ("S8-Appel", 1, 0.35)]
+if V == "composition":  # 40 s TikTok cut, own script (kXX lines)
+    ids_all = [l["id"] for l in vo["lines"]]; k = 0; SCENES = []
+    for sid, n, lead in COMPOSITION:
+        SCENES.append((sid, ids_all[k:k + n], lead)); k += n
+    assert k == len(ids_all), (k, len(ids_all))
+elif V in SHORT:
     parent, SCENES = SHORT[V]
     full = {l["id"]: l for l in json.load(open(os.path.join(ROOT, f"src/generated/voiceover-{parent}.json"), encoding="utf-8"))["lines"]}
     vo = {"parent": parent, "lines": [dict(full[i]) for _, ids, _ in SCENES for i in ids]}

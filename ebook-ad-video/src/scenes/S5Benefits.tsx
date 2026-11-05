@@ -27,12 +27,16 @@ const CONTROLE: Benefit[] = [
   { id: "c13", icon: "brain", title: "Réfléchir, pas recopier", sub: "Apprendre à réfléchir… plutôt qu'à recopier.", bg: C.pink, fg: "#C2364A" },
 ];
 
+const COMPOSITION: Benefit[] = [
+  { id: "k08", icon: "target", title: "Quiz chronométrés", sub: "Pour s'entraîner comme le jour de la composition.", bg: C.yellowSoft, fg: "#B07F00", quiz: true },
+];
+
 export const S5Benefits: React.FC = () => {
   const f = useCurrentFrame();
   const { at, variant, linesOf } = useTL();
   const lnS = linesOf("S5-Benefices");
   // « Contrôle » cut (optimised script): its own 4 benefits, incl. timed interactive quizzes
-  const pool = variant === "controle" ? CONTROLE : BENEFITS;
+  const pool = variant === "controle" ? CONTROLE : variant === "composition" ? COMPOSITION : BENEFITS;
   // one card per voice-over line of the scene (the 35 s TikTok cut keeps only the quiz)
   const list: (Benefit & { line: string })[] = lnS.map((id, i) => ({ ...(pool.find((b) => b.id === id) ?? pool[i]), line: id }));
   const single = list.length === 1;
@@ -46,7 +50,7 @@ export const S5Benefits: React.FC = () => {
         <Book3D width={L.s(L.square ? 80 : 110)} rotY={-20} rotX={4} shadow={false} />
         <div>
           <Eyebrow size={L.s(26)} bg={C.navy} color={C.yellow}>Avec ce guide</Eyebrow>
-          <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: L.s(54), color: C.navy, marginTop: L.s(10), lineHeight: 1.05, whiteSpace: "nowrap" }}>{single ? "Pour mieux réviser" : `${list.length} bénéfices clés`}</div>
+          <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: L.s(54), color: C.navy, marginTop: L.s(10), lineHeight: 1.05, whiteSpace: "nowrap" }}>{single ? (variant === "composition" ? "Pour ses compositions" : "Pour mieux réviser") : `${list.length} bénéfices clés`}</div>
         </div>
       </div>
       {/* Feature card stack */}

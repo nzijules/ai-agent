@@ -7,6 +7,8 @@ import tlControleCourt from "./generated/timeline-controle-court.json";
 import voControleCourt from "./generated/voiceover-controle-court.json";
 import tlEconomieCourt from "./generated/timeline-economie-court.json";
 import voEconomieCourt from "./generated/voiceover-economie-court.json";
+import tlComposition from "./generated/timeline-composition.json";
+import voComposition from "./generated/voiceover-composition.json";
 import { FPS } from "./theme";
 
 /**
@@ -18,10 +20,10 @@ import { FPS } from "./theme";
  *  - "controle" : hook « Votre enfant utilise ChatGPT… mais apprend-il vraiment ? »
  *  - "economie" : hook « Un répétiteur, ça se paie chaque mois » (angle of the best-selling visual A)
  */
-export type Variant = "controle" | "economie" | "controle-court" | "economie-court";
+export type Variant = "controle" | "economie" | "controle-court" | "economie-court" | "composition";
 /** content angle of a cut (short TikTok cuts reuse their full cut's texts, visuals and recorded lines) */
-export type Angle = "controle" | "economie";
-export const angleOf = (v: Variant): Angle => (v.startsWith("economie") ? "economie" : "controle");
+export type Angle = "controle" | "economie" | "composition";
+export const angleOf = (v: Variant): Angle => (v.startsWith("economie") ? "economie" : v.startsWith("composition") ? "composition" : "controle");
 export type SceneId =
   | "S1-Accroche" | "S2-Probleme" | "S3-Tuteur" | "S4-Revelation"
   | "S5-Benefices" | "S6-Methode" | "S7-Resultat" | "S7-Offre" | "S8-Appel";
@@ -34,6 +36,7 @@ const RAW: Record<Variant, Raw> = {
   economie: { tl: tlEconomie, vo: voEconomie },
   "controle-court": { tl: tlControleCourt, vo: voControleCourt },
   "economie-court": { tl: tlEconomieCourt, vo: voEconomieCourt },
+  composition: { tl: tlComposition, vo: voComposition },
 };
 
 export const OVERLAP = 8; // frames of cross-fade between scenes

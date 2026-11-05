@@ -28,6 +28,7 @@ const cuts: { variant: Variant; tag: string; short?: boolean }[] = [
   // 30 s TikTok cuts: vertical, with voice-over only
   { variant: "controle-court", tag: "-Controle-Court", short: true },
   { variant: "economie-court", tag: "-Economie-Court", short: true },
+  { variant: "composition", tag: "-Composition", short: true },
 ];
 
 export const RemotionRoot: React.FC = () => (

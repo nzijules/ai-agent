@@ -1,0 +1,58 @@
+{
+ "total": 35.58,
+ "scenes": [
+  {
+   "id": "S1-Accroche",
+   "from": 0.0,
+   "lines": [
+    "k01",
+    "k02"
+   ],
+   "to": 3.867
+  },
+  {
+   "id": "S2-Probleme",
+   "from": 3.867,
+   "lines": [
+    "k03",
+    "k04",
+    "k05",
+    "k06"
+   ],
+   "to": 11.304
+  },
+  {
+   "id": "S4-Revelation",
+   "from": 11.304,
+   "lines": [
+    "k07"
+   ],
+   "to": 16.462
+  },
+  {
+   "id": "S5-Benefices",
+   "from": 16.462,
+   "lines": [
+    "k08"
+   ],
+   "to": 22.534
+  },
+  {
+   "id": "S7-Offre",
+   "from": 22.534,
+   "lines": [
+    "k09",
+    "k10"
+   ],
+   "to": 30.122
+  },
+  {
+   "id": "S8-Appel",
+   "from": 30.122,
+   "lines": [
+    "k11"
+   ],
+   "to": 35.58
+  }
+ ]
+}
