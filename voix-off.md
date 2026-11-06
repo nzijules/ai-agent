@@ -26,3 +26,8 @@ node video/render.js "$PWD/claude-motion.html" video/silencieux.mp4 8400,12800,1
 ```
 
 Ensuite, ajouter l'audio avec ffmpeg : chaque clip est placé 0,5 s après le début de sa scène (0,5 / 8,9 / 21,7 / 35,7 / 49,2 s), et la phrase d'abonnement à 57,0 s.
+
+## Version TikTok (9:16)
+
+`video/claude-en-mouvement-tiktok.mp4` : 1080×1920, 30 images/s, 62,3 s, même voix et même minutage.
+Rendu : `VERTICAL=1 node video/render.js "$PWD/claude-motion.html" video/silencieux-vertical.mp4 8400,12800,14000,13500,13600 30`, puis même mixage audio que ci-dessus.
