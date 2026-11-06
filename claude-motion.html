@@ -25,6 +25,7 @@
     --term-muted: #8d867b;
     --shadow: 0 30px 60px -30px rgba(60, 40, 20, .35);
     --scene: var(--c-claude);
+    --logo-filter: none;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -39,6 +40,7 @@
       --c-code: #6fd3a0;
       --c-design: #b49bf5;
       --shadow: 0 30px 70px -30px rgba(0, 0, 0, .8);
+      --logo-filter: drop-shadow(0 0 .7px #fff) drop-shadow(0 0 .7px #fff) drop-shadow(0 0 10px rgba(255, 255, 255, .22));
     }
   }
   :root[data-theme="dark"] {
@@ -53,6 +55,7 @@
     --c-code: #6fd3a0;
     --c-design: #b49bf5;
     --shadow: 0 30px 70px -30px rgba(0, 0, 0, .8);
+    --logo-filter: drop-shadow(0 0 .7px #fff) drop-shadow(0 0 .7px #fff) drop-shadow(0 0 10px rgba(255, 255, 255, .22));
   }
 
   * { box-sizing: border-box; }
@@ -270,7 +273,8 @@
   .seg.on .lbl { color: var(--ink); }
   .seg .rail { display: block; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
   .seg .fill { display: block; height: 100%; width: 0; background: var(--scene); }
-  .note { position: fixed; z-index: 4; top: 16px; right: 18px; font: 500 11px "JetBrains Mono", monospace; color: var(--muted); }
+  .note { position: fixed; z-index: 4; top: 66px; right: 18px; font: 500 11px "JetBrains Mono", monospace; color: var(--muted); }
+  .logo { position: fixed; z-index: 4; top: 12px; right: 18px; height: 46px; width: auto; filter: var(--logo-filter); }
   .brandmark { position: fixed; z-index: 4; top: 14px; left: 18px; font: italic 600 18px "Fraunces", serif; }
   .brandmark b { color: var(--scene); font-style: normal; }
 
@@ -285,6 +289,7 @@
   /* ---------- Vertical 9:16 (TikTok / Reels) : ?render&vertical, viewport 540×960 ---------- */
   body.vertical .scene { padding: 84px 58px 200px 24px; align-content: center; }
   body.vertical .note { display: none; }
+  body.vertical .logo { top: 64px; right: 22px; height: 48px; }
   body.vertical .brandmark { top: 28px; left: 24px; font-size: 17px; }
   body.vertical .lead { display: none; }
   body.vertical [data-chips] .chip:nth-child(n+4) { display: none; }
@@ -350,6 +355,7 @@
 </div>
 <div class="wipe" aria-hidden="true"></div>
 <div class="brandmark">Claude <b>·</b> en mouvement</div>
+<img class="logo" src="assets/arosoft-monogramme.png" alt="AroSoft" />
 <div class="note">Explainer non officiel</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
