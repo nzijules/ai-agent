@@ -1,6 +1,6 @@
 # Voix-off – MoMo « 0 Frais » (18 s)
 
-**Ton :** chaleureux, complice, énergique sans crier. Une voix ivoirienne, jeune et souriante, qui parle comme un ami.
+**Ton :** chaleureux, complice, énergique sans crier. Une voix jeune et souriante, en français standard, sans argot ni expressions locales.
 **Débit :** environ 2,5 mots par seconde. Marquer les silences indiqués : ils laissent respirer les impacts visuels.
 **Musique :** afro-pop / coupé-décalé léger, environ 110 BPM, avec un « drop » à 3 s, au moment où « Avec MoMo » apparaît.
 
@@ -21,19 +21,6 @@
 
 **Texte seul, à lire d'une traite (environ 40 mots) :**
 > Frais par-ci… frais par-là… On te facture ailleurs ? Avec MoMo… c'est gratuit ! Zéro frais sur tes transferts interopérables… même au-delà de 8 000 francs ! Envoie vers tous les réseaux, partout dans l'UEMOA. Plus simple. Plus libre. Pour tout le monde. MoMo, by MTN. Demain, c'est maintenant !
-
----
-
-## Variante « parler ivoirien » (réseaux sociaux)
-
-| Timecode | Voix-off |
-|---|---|
-| 0:00 – 0:03 | **Eh ! On te prend frais là-bas encore ?** |
-| 0:03 – 0:05 | **Avec MoMo, c'est gratuit oh !** |
-| 0:05 – 0:09.7 | **Zéro frais sur tes transferts vers les autres réseaux… même si tu dépasses 8 000 F !** |
-| 0:09.7 – 0:12.3 | **Tu envoies tranquille, partout dans l'UEMOA.** |
-| 0:12.3 – 0:14.5 | **C'est simple, c'est libre, c'est pour tout le monde.** |
-| 0:14.5 – 0:18 | **MoMo MTN… Demain c'est maintenant !** |
 
 ---
 
