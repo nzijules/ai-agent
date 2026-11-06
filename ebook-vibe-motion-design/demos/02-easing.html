@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comparer les easings</title><link rel="stylesheet" href="_base.css">
+<style>
+.lanes{width:min(480px,80vw);display:flex;flex-direction:column;gap:26px}
+.lane{position:relative;height:46px;border-bottom:1px dashed #ffffff30}
+.lane b{position:absolute;left:0;top:-4px;font-size:13px;font-weight:600;color:#ffffffb0}
+.dot{position:absolute;bottom:6px;left:0;width:26px;height:26px;border-radius:50%;animation:go 1s both infinite;animation-direction:alternate}
+.l1 .dot{background:#9a90b8;animation-timing-function:linear}
+.l2 .dot{background:#ff5b2e;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+.l3 .dot{background:#7c4dff;animation-timing-function:cubic-bezier(.34,1.56,.64,1)}
+@keyframes go{from{left:0}to{left:calc(100% - 26px)}}
+.goal{position:absolute;right:0;bottom:0;width:2px;height:40px;background:#ffffff40}
+</style></head><body>
+<a class="back" href="../index.html">← Ebook</a>
+<div class="lanes">
+<div class="lane l1"><b>Linear — mécanique</b><div class="goal"></div><div class="dot"></div></div>
+<div class="lane l2"><b>Ease-out — naturel</b><div class="goal"></div><div class="dot"></div></div>
+<div class="lane l3"><b>Overshoot — énergique</b><div class="goal"></div><div class="dot"></div></div>
+</div>
+<button class="replay">↻ Rejouer</button><script src="_replay.js"></script></body></html>

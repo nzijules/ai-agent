@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le décalage (stagger)</title><link rel="stylesheet" href="_base.css">
+<style>
+.row{margin:18px 0;text-align:center}
+.row small{display:block;font-size:13px;font-weight:600;letter-spacing:.12em;color:#ffffff90;margin-bottom:6px}
+.word{font-size:clamp(36px,9vw,64px);font-weight:800;display:flex;justify-content:center}
+.word span{display:inline-block;animation:up .5s cubic-bezier(.22,1,.36,1) both}
+.b span{animation-delay:calc(var(--i)*90ms)}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.b .word{color:#ff9a3c}
+</style></head><body>
+<a class="back" href="../index.html">← Ebook</a>
+<div class="row a"><small>SANS DÉCALAGE</small><div class="word"><span>M</span><span>O</span><span>T</span><span>I</span><span>O</span><span>N</span></div></div>
+<div class="row b"><small>AVEC DÉCALAGE DE 90 MS</small><div class="word"><span style="--i:0">M</span><span style="--i:1">O</span><span style="--i:2">T</span><span style="--i:3">I</span><span style="--i:4">O</span><span style="--i:5">N</span></div></div>
+<button class="replay">↻ Rejouer</button><script src="_replay.js"></script></body></html>

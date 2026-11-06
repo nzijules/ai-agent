@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Première animation</title><link rel="stylesheet" href="_base.css">
+<style>
+body{background:radial-gradient(circle at 50% 30%,#2a1f45,#110e18 70%)}
+h1{font-size:clamp(48px,12vw,110px);font-weight:800;margin:0;letter-spacing:-.02em;display:flex}
+h1 span{display:inline-block;animation:drop .7s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--i)*90ms)}
+@keyframes drop{from{transform:translateY(-120px) scale(.6);opacity:0}to{transform:none;opacity:1}}
+.balls{display:flex;gap:22px;margin-top:40px;height:90px;align-items:flex-end}
+.ball{width:28px;height:28px;border-radius:50%;animation:bounce .55s cubic-bezier(.5,0,.5,1) infinite alternate;animation-delay:calc(.8s + var(--i)*120ms)}
+@keyframes bounce{from{transform:translateY(0) scale(1.15,.85)}to{transform:translateY(-62px) scale(.95,1.05)}}
+</style></head><body>
+<a class="back" href="../index.html">← Ebook</a>
+<h1 aria-label="Bonjour"><span style="--i:0">B</span><span style="--i:1">o</span><span style="--i:2">n</span><span style="--i:3">j</span><span style="--i:4">o</span><span style="--i:5">u</span><span style="--i:6">r</span></h1>
+<div class="balls"><div class="ball" style="--i:0;background:#ff5b2e"></div><div class="ball" style="--i:1;background:#ff9a3c"></div><div class="ball" style="--i:2;background:#7c4dff"></div><div class="ball" style="--i:3;background:#2ec4b6"></div></div>
+<button class="replay">↻ Rejouer</button><script src="_replay.js"></script></body></html>

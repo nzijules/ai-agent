@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Vibe Motion Design avec Claude Code</title>
-<meta name="description" content="Ebook : le guide pratique pour créer du motion design en décrivant vos intentions à Claude Code — CSS, GSAP, Remotion, prompts et méthode." />
+<meta name="description" content="Ebook pour débutants : créer vos premières animations et vidéos en décrivant ce que vous voulez à Claude Code, sans savoir coder." />
 <style>
   :root {
     --bg: #ffffff;
@@ -12,7 +12,11 @@
     --muted: #5b5670;
     --accent: #ff5b2e;
     --accent-2: #7c4dff;
+    --ok: #138a5e;
+    --warn: #b4540a;
     --soft: #f6f3ff;
+    --soft-ok: #ecf8f2;
+    --soft-warn: #fff4ea;
     --code-bg: #1b1726;
     --code-fg: #f2eefc;
     --border: #e7e2f3;
@@ -20,27 +24,24 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #110e18; --fg: #eeeaf7; --muted: #a8a2bd; --soft: #1c1727;
+      --soft-ok: #12241c; --soft-warn: #2a1c10; --ok: #4fd1a0; --warn: #f0a160;
       --border: #2d2640; --code-bg: #0b0910;
     }
   }
   :root[data-theme="dark"] {
     --bg: #110e18; --fg: #eeeaf7; --muted: #a8a2bd; --soft: #1c1727;
+    --soft-ok: #12241c; --soft-warn: #2a1c10; --ok: #4fd1a0; --warn: #f0a160;
     --border: #2d2640; --code-bg: #0b0910;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--fg);
-    line-height: 1.65;
-    font-size: 17px;
+    background: var(--bg); color: var(--fg); line-height: 1.65; font-size: 17px;
   }
   .book { max-width: 820px; margin: 0 auto; padding: 0 16px 80px; }
   h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
-  h2 {
-    font-size: 2rem; margin: 0 0 .25rem;
-  }
+  h2 { font-size: 2rem; margin: 0 0 .25rem; }
   h2 .num {
     display: block; font-size: .85rem; font-weight: 600; letter-spacing: .14em;
     text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
@@ -56,18 +57,68 @@
     overflow-x: auto; font-size: .82rem; line-height: 1.55;
   }
   pre .c { color: #9a90b8; }
+  kbd {
+    font-family: inherit; font-size: .85em; border: 1px solid var(--border); border-bottom-width: 3px;
+    border-radius: 6px; padding: .05em .45em; background: var(--soft);
+  }
+
+  /* Encadrés */
   .prompt {
     border-left: 4px solid var(--accent); background: var(--soft); padding: 14px 18px;
-    border-radius: 0 10px 10px 0; margin: 1rem 0; font-style: italic;
+    border-radius: 0 10px 10px 0; margin: 1rem 0;
   }
   .prompt::before {
-    content: "Prompt"; display: block; font-style: normal; font-weight: 700; font-size: .72rem;
+    content: "À écrire à Claude"; display: block; font-weight: 700; font-size: .72rem;
     letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
   }
-  .tip {
-    border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin: 1.25rem 0;
+  .expect, .stuck, .tip, .warn {
+    border-radius: 10px; padding: 14px 18px; margin: 1.25rem 0;
   }
-  .tip strong:first-child { color: var(--accent-2); }
+  .expect { background: var(--soft-ok); border: 1px solid color-mix(in srgb, var(--ok) 30%, transparent); }
+  .expect > strong:first-child { color: var(--ok); }
+  .stuck { background: var(--soft-warn); border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); }
+  .stuck > strong:first-child { color: var(--warn); }
+  .tip { border: 1px solid var(--border); }
+  .tip > strong:first-child { color: var(--accent-2); }
+  .expect p:last-child, .stuck p:last-child, .tip p:last-child { margin-bottom: 0; }
+  .expect ul, .stuck ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+
+  details.curious {
+    border: 1px dashed var(--border); border-radius: 10px; padding: 10px 16px; margin: 1.25rem 0;
+  }
+  details.curious summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+  details.curious[open] summary { margin-bottom: .5rem; }
+
+  .level {
+    display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    padding: .2em .6em; border-radius: 999px; vertical-align: middle; margin-left: .35rem;
+    background: var(--soft); color: var(--accent-2); white-space: nowrap;
+  }
+  .level.l1 { color: var(--ok); background: var(--soft-ok); }
+  .level.l3 { color: var(--warn); background: var(--soft-warn); }
+  .meta-line { color: var(--muted); font-size: .92rem; margin: .4rem 0 1rem; }
+
+  ol.steps { counter-reset: s; list-style: none; padding-left: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding-left: 2.6rem; margin: 1.1rem 0; }
+  ol.steps > li::before {
+    content: counter(s); position: absolute; left: 0; top: -.1rem; width: 1.8rem; height: 1.8rem;
+    border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: .9rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  figure { margin: 1.5rem 0; }
+  figure img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
+  figcaption { font-size: .88rem; color: var(--muted); margin-top: .5rem; }
+  figcaption a { white-space: nowrap; }
+
+  .chat { border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin: 1.25rem 0; font-size: .95rem; }
+  .chat .who { font-weight: 700; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+  .chat .you { color: var(--accent); }
+  .chat .claude { color: var(--accent-2); }
+  .chat p { margin: .15rem 0 .8rem; }
+  .chat p:last-child { margin-bottom: 0; }
+  .chat .ask { background: var(--soft); border-radius: 8px; padding: 8px 12px; display: block; }
+
   table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .92rem; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { background: var(--soft); }
@@ -78,8 +129,19 @@
   ol.toc a:hover { color: var(--accent); }
   ul.check { list-style: none; padding-left: 0; }
   ul.check li::before { content: "☐  "; color: var(--accent); }
+  dl.glossary dt { font-weight: 700; margin-top: .9rem; }
+  dl.glossary dd { margin: .1rem 0 0; color: var(--muted); }
 
-  /* ---------- Couverture ---------- */
+  .paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 1rem 0; }
+  .path { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .path h4 { margin: 0 0 .3rem; font-size: 1rem; }
+  .path p { margin: 0; font-size: .92rem; color: var(--muted); }
+
+  .loop svg { width: 100%; height: auto; max-width: 560px; display: block; margin: 0 auto; }
+  .loop text { font-family: Inter, sans-serif; fill: var(--fg); }
+  .loop .sub { fill: var(--muted); }
+
+  /* Couverture */
   .cover {
     min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
     position: relative; overflow: hidden; padding: 48px 0;
@@ -87,9 +149,10 @@
   .cover .kicker { font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-size: .8rem; }
   .cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); margin: .5rem 0 1rem; font-weight: 800; }
   .cover h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .cover .sub { font-size: 1.25rem; color: var(--muted); max-width: 34ch; }
+  .cover .sub { font-size: 1.25rem; color: var(--muted); max-width: 36ch; }
+  .cover .badge { display: inline-block; margin-top: 1.25rem; font-weight: 600; font-size: .9rem; padding: .35em .9em; border-radius: 999px; background: var(--soft-ok); color: var(--ok); }
   .cover .meta { margin-top: 2.5rem; font-size: .9rem; color: var(--muted); }
-  .orbs { position: relative; height: 140px; margin: 2rem 0; }
+  .orbs { position: relative; height: 140px; margin: 2rem 0 1rem; }
   .orb {
     position: absolute; top: 50px; width: 40px; height: 40px; border-radius: 50%;
     background: var(--accent); animation: bounce 1.6s cubic-bezier(.34,1.56,.64,1) infinite alternate;
@@ -103,22 +166,23 @@
   }
   @media (prefers-reduced-motion: reduce) { .orb { animation: none; } }
 
-  /* ---------- Impression / PDF ---------- */
+  /* Impression / PDF */
   @page { size: A4; margin: 18mm 16mm 20mm; }
   @media print {
     body { font-size: 11pt; }
     .book { max-width: none; padding: 0; }
     .cover { min-height: 255mm; page-break-after: always; }
+    .cover h1 em { background: none; color: var(--accent); -webkit-text-fill-color: var(--accent); }
     section.chapter { page-break-before: always; border-top: none; margin-top: 0; padding-top: 0; }
-    pre, .prompt, .tip, table { page-break-inside: avoid; }
+    pre, .prompt, .tip, .expect, .stuck, table, figure, .chat, details.curious, .path { page-break-inside: avoid; }
     h3 { page-break-after: avoid; }
     .orb { animation: none; }
-    .cover h1 em { background: none; color: var(--accent); -webkit-text-fill-color: var(--accent); }
     .orb:nth-child(1) { transform: translateY(30px); }
     .orb:nth-child(2) { transform: translateY(0); }
     .orb:nth-child(3) { transform: translateY(-25px); }
     .orb:nth-child(4) { transform: translateY(-40px); }
     pre { white-space: pre-wrap; word-break: break-word; }
+    details.curious summary { list-style: none; }
   }
 </style>
 </head>
@@ -127,533 +191,802 @@
 
 <!-- ================= COUVERTURE ================= -->
 <header class="cover">
-  <div class="kicker">Ebook · Guide pratique</div>
+  <div class="kicker">Ebook · Guide pratique pour débutants</div>
   <h1>Vibe <em>Motion Design</em> avec Claude Code</h1>
-  <p class="sub">Créer des animations, des vidéos et des interfaces vivantes en décrivant ce que vous ressentez — et laisser Claude écrire le code.</p>
+  <p class="sub">Créez vos premières animations et vidéos en décrivant simplement ce que vous voulez. Pas besoin de savoir coder.</p>
   <div class="orbs" aria-hidden="true">
     <div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div>
   </div>
-  <div class="meta">Édition 2026 · CSS · GSAP · Remotion · Lottie · Bibliothèque de prompts incluse</div>
+  <div><span class="badge">✓ Première animation en 10 minutes</span></div>
+  <div class="meta">Édition 2026 · 3 niveaux progressifs · Démos animées · 30 prompts prêts à l'emploi · Glossaire</div>
 </header>
 
-<!-- ================= SOMMAIRE ================= -->
-<section class="chapter" id="sommaire">
-  <h2><span class="num">Sommaire</span>Ce que vous allez apprendre</h2>
-  <ol class="toc">
-    <li><a href="#intro">Introduction — Qu'est-ce que le « vibe motion design » ?</a></li>
-    <li><a href="#outils">La boîte à outils du motion en code</a></li>
-    <li><a href="#setup">Installer et préparer Claude Code</a></li>
-    <li><a href="#vocabulaire">Le vocabulaire du mouvement : parler comme un motion designer</a></li>
-    <li><a href="#projet1">Projet 1 — Une animation de logo en CSS et GSAP</a></li>
-    <li><a href="#projet2">Projet 2 — Une vidéo motion design avec Remotion</a></li>
-    <li><a href="#boucle">La boucle « vibe » : itérer au ressenti</a></li>
-    <li><a href="#claudemd">Le fichier CLAUDE.md du motion designer</a></li>
-    <li><a href="#prompts">Bibliothèque de 30 prompts prêts à l'emploi</a></li>
-    <li><a href="#export">Exporter et diffuser : MP4, GIF, Lottie, réseaux sociaux</a></li>
-    <li><a href="#erreurs">Erreurs fréquentes et dépannage</a></li>
-    <li><a href="#conclusion">Conclusion et checklist finale</a></li>
+<!-- ================= COMMENT LIRE ================= -->
+<section class="chapter" id="lire">
+  <h2><span class="num">Avant tout</span>Comment lire ce livre</h2>
+  <p class="lead">Ce livre est fait pour quelqu'un qui n'a jamais codé et n'a jamais ouvert un terminal. Si c'est votre cas, vous êtes au bon endroit.</p>
+
+  <p>Il est construit en <strong>trois niveaux</strong>. Ne sautez pas d'étape : chaque niveau s'appuie sur le précédent.</p>
+  <div class="paths">
+    <div class="path"><h4>Niveau 1 <span class="level l1">Débutant</span></h4><p>Installer, réussir une première animation, apprendre à dialoguer avec Claude. Chapitres 0 à 4.</p></div>
+    <div class="path"><h4>Niveau 2 <span class="level">Intermédiaire</span></h4><p>Animations plus riches pour le web, avec la librairie GSAP. Chapitre 5.</p></div>
+    <div class="path"><h4>Niveau 3 <span class="level l3">Avancé</span></h4><p>De vraies vidéos MP4 pour les réseaux sociaux, avec Remotion. Chapitre 6.</p></div>
+  </div>
+
+  <h3>Les encadrés que vous allez croiser</h3>
+  <div class="prompt">Le texte exact à copier-coller dans Claude Code.</div>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>Le résultat attendu, pour savoir si tout s'est bien passé.</p></div>
+  <div class="stuck"><strong>Ça ne marche pas ?</strong><p>Les problèmes les plus courants à cette étape, et quoi faire.</p></div>
+  <details class="curious"><summary>Pour les curieux (facultatif)</summary><p>Le code ou les détails techniques. Vous pouvez <strong>toujours</strong> sauter ces encadrés : ils ne sont pas nécessaires pour réussir.</p></details>
+
+  <div class="tip"><strong>Une règle à garder en tête :</strong> vous n'avez pas besoin de comprendre le code que Claude écrit. Votre rôle, c'est de dire ce que vous voulez, de regarder le résultat, et de dire ce qui ne va pas. Claude s'occupe du reste.</div>
+
+  <h3>Sommaire</h3>
+  <ol class="toc" start="0">
+    <li><a href="#avant">Avant de commencer : installer Claude Code (20 min)</a></li>
+    <li><a href="#premiere">Votre première animation en 10 minutes</a></li>
+    <li><a href="#vocabulaire">Parler comme un motion designer</a></li>
+    <li><a href="#boucle">La boucle « vibe » : améliorer pas à pas</a></li>
+    <li><a href="#projet-logo">Projet niveau 1 : animer votre nom ou votre logo</a></li>
+    <li><a href="#gsap">Niveau 2 : des animations plus riches avec GSAP</a></li>
+    <li><a href="#remotion">Niveau 3 : créer une vraie vidéo avec Remotion</a></li>
+    <li><a href="#claudemd">Le fichier CLAUDE.md : la mémoire de votre style</a></li>
+    <li><a href="#prompts">30 prompts classés par niveau</a></li>
+    <li><a href="#export">Exporter et partager</a></li>
+    <li><a href="#depannage">Dépannage : les problèmes de débutant</a></li>
+    <li><a href="#couts">Coûts et limites</a></li>
+    <li><a href="#glossaire">Glossaire</a></li>
+    <li><a href="#programme">Votre programme de 7 jours et checklist finale</a></li>
   </ol>
 </section>
 
-<!-- ================= 1. INTRO ================= -->
-<section class="chapter" id="intro">
-  <h2><span class="num">Chapitre 1</span>Qu'est-ce que le « vibe motion design » ?</h2>
-  <p class="lead">Le motion design, c'est l'art de donner du mouvement au graphisme. Le « vibe » motion design, c'est le faire en décrivant une intention plutôt qu'en déplaçant des images clés à la main.</p>
+<!-- ================= 0. AVANT DE COMMENCER ================= -->
+<section class="chapter" id="avant">
+  <h2><span class="num">Chapitre 0 <span class="level l1">Niveau 1</span></span>Avant de commencer : installer Claude Code</h2>
+  <p class="lead">Environ 20 minutes, une seule fois. Ensuite, vous n'y penserez plus.</p>
 
-  <p>Le terme vient du <strong>vibe coding</strong> : on décrit à une IA ce qu'on veut obtenir, on regarde le résultat, on dit ce qui ne va pas, et on recommence. On ne se perd pas dans les détails de syntaxe : on reste concentré sur le <em>ressenti</em>.</p>
-
-  <p>Appliqué au motion design, ça donne des échanges comme celui-ci :</p>
-  <div class="prompt">Fais apparaître le titre lettre par lettre, comme si quelqu'un le tapait avec énergie. Chaque lettre doit rebondir légèrement en arrivant. Durée totale : moins de 2 secondes.</div>
-  <p>Claude Code écrit le code (CSS, JavaScript, React…), lance un aperçu, et vous ajustez : <em>« plus nerveux »</em>, <em>« moins de rebond »</em>, <em>« la dernière lettre doit arriver avec un petit flash »</em>.</p>
-
-  <h3>Pourquoi passer par le code ?</h3>
+  <h3>De quoi avez-vous besoin ?</h3>
   <ul>
-    <li><strong>Tout est paramétrable.</strong> Une couleur, un texte ou une durée devient une variable. Vous pouvez générer 50 variantes d'une même vidéo.</li>
-    <li><strong>Tout est versionné.</strong> Avec Git, vous revenez à n'importe quelle version précédente.</li>
-    <li><strong>C'est gratuit et ouvert.</strong> CSS, GSAP, Remotion ou Three.js tournent dans un navigateur, sans licence de logiciel lourd.</li>
-    <li><strong>C'est directement utilisable.</strong> Une animation CSS va droit dans un site web, une vidéo Remotion s'exporte en MP4.</li>
+    <li><strong>Un ordinateur</strong> : Mac (macOS 13 ou plus récent), Windows 10 ou 11, ou Linux. Une tablette ou un téléphone ne suffisent pas pour ce livre.</li>
+    <li><strong>Un abonnement Claude payant</strong> (Pro au minimum). Le plan gratuit de claude.ai <strong>n'inclut pas</strong> Claude Code. Voir le <a href="#couts">chapitre 11</a>.</li>
+    <li><strong>Un navigateur</strong> récent (Chrome, Edge, Firefox ou Safari) pour regarder vos animations.</li>
+    <li><strong>Une connexion internet.</strong></li>
   </ul>
 
-  <h3>Ce que Claude Code apporte</h3>
-  <p>Claude Code est un agent : il ne se contente pas de proposer du code dans une fenêtre de discussion. Il <strong>crée les fichiers</strong>, <strong>installe les dépendances</strong>, <strong>lance le serveur d'aperçu</strong>, peut <strong>capturer des images</strong> de votre animation pour les examiner, et <strong>corrige</strong> ses propres erreurs. Vous jouez le rôle de directeur artistique, et lui celui d'animateur technique.</p>
-
-  <div class="tip"><strong>À retenir :</strong> votre valeur ajoutée, c'est le goût et l'intention. Plus vous savez décrire précisément un mouvement, meilleurs seront les résultats. Le chapitre 4 vous donne le vocabulaire pour le faire.</div>
-</section>
-
-<!-- ================= 2. OUTILS ================= -->
-<section class="chapter" id="outils">
-  <h2><span class="num">Chapitre 2</span>La boîte à outils du motion en code</h2>
-  <p class="lead">Inutile de tout maîtriser. Choisissez l'outil selon ce que vous voulez livrer.</p>
-
-  <div class="table-wrap">
-  <table>
-    <tr><th>Outil</th><th>Idéal pour</th><th>Livrable</th><th>Difficulté</th></tr>
-    <tr><td><strong>CSS (transitions, keyframes)</strong></td><td>Micro-interactions, boutons, loaders, apparitions</td><td>Site web</td><td>Facile</td></tr>
-    <tr><td><strong>GSAP</strong></td><td>Timelines complexes, animations au scroll, textes animés</td><td>Site web</td><td>Moyenne</td></tr>
-    <tr><td><strong>Motion (ex-Framer Motion)</strong></td><td>Interfaces React fluides, transitions de pages</td><td>Application web</td><td>Moyenne</td></tr>
-    <tr><td><strong>Remotion</strong></td><td>Vidéos en React : pubs, intros, sous-titres animés, data viz</td><td>MP4, WebM, GIF</td><td>Moyenne</td></tr>
-    <tr><td><strong>Lottie</strong></td><td>Animations vectorielles légères pour apps et sites</td><td>Fichier JSON</td><td>Moyenne</td></tr>
-    <tr><td><strong>SVG + SMIL / JS</strong></td><td>Logos animés, icônes, tracés qui se dessinent</td><td>Site web, intégration</td><td>Facile à moyenne</td></tr>
-    <tr><td><strong>Three.js / React Three Fiber</strong></td><td>3D, particules, effets immersifs</td><td>Site web, vidéo</td><td>Avancée</td></tr>
-    <tr><td><strong>Canvas / p5.js</strong></td><td>Art génératif, motifs, simulations</td><td>Site web, image, vidéo</td><td>Moyenne</td></tr>
-  </table>
+  <h3>Choisissez votre porte d'entrée</h3>
+  <p>Il existe deux façons d'utiliser Claude Code. Les deux font exactement la même chose.</p>
+  <div class="paths">
+    <div class="path"><h4>A. L'application de bureau <span class="level l1">Recommandé</span></h4><p>Une application avec des fenêtres et des boutons, comme n'importe quel logiciel. Aucun terminal.</p></div>
+    <div class="path"><h4>B. Le terminal</h4><p>Une fenêtre où l'on tape du texte. Un peu plus intimidant au début, mais très pratique ensuite.</p></div>
   </div>
+  <p>Si vous hésitez, prenez <strong>A</strong>. Vous pourrez passer à B plus tard.</p>
 
-  <h3>Quel outil choisir ?</h3>
-  <ul>
-    <li>Vous voulez <strong>animer un site</strong> → CSS d'abord, GSAP si ça se complique.</li>
-    <li>Vous voulez <strong>une vidéo</strong> (Reels, TikTok, YouTube, pub) → Remotion.</li>
-    <li>Vous voulez <strong>une animation à intégrer dans une app mobile</strong> → Lottie.</li>
-    <li>Vous voulez <strong>de la 3D</strong> → Three.js.</li>
-  </ul>
-  <p>Et si vous ne savez pas, demandez simplement :</p>
-  <div class="prompt">Je veux créer une intro de 5 secondes pour ma chaîne YouTube avec mon logo et un effet de particules. Quel outil me recommandes-tu et pourquoi ? Ne code rien pour l'instant.</div>
-</section>
+  <h3>Option A : l'application de bureau</h3>
+  <ol class="steps">
+    <li>Allez sur <strong>claude.com/download</strong> et téléchargez l'application Claude pour votre ordinateur (Mac ou Windows).</li>
+    <li>Installez-la comme n'importe quel logiciel, puis ouvrez-la et connectez-vous avec votre compte Claude.</li>
+    <li>Ouvrez l'onglet <strong>Code</strong> de l'application.</li>
+    <li>Quand l'application vous demande un dossier de travail, créez un nouveau dossier sur votre Bureau, nommé <code>mon-studio-motion</code>, et choisissez-le.</li>
+  </ol>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>Une zone de discussion où vous pouvez écrire à Claude, avec le nom de votre dossier affiché. C'est prêt : passez directement au <a href="#premiere">chapitre 1</a>.</p></div>
 
-<!-- ================= 3. SETUP ================= -->
-<section class="chapter" id="setup">
-  <h2><span class="num">Chapitre 3</span>Installer et préparer Claude Code</h2>
-  <p class="lead">Quinze minutes de préparation vous feront gagner des heures.</p>
+  <h3>Option B : le terminal</h3>
+  <p><strong>Un terminal</strong>, c'est une fenêtre où l'on donne des ordres à l'ordinateur en tapant du texte, appelés « commandes ». On tape (ou on colle) une commande, puis on appuie sur <kbd>Entrée</kbd>.</p>
 
-  <h3>Prérequis</h3>
-  <ul>
-    <li>Un compte Claude (abonnement Pro ou Max) ou une clé API Anthropic.</li>
-    <li><strong>Node.js 18+</strong> installé (nécessaire pour la plupart des outils de motion web).</li>
-    <li>Un terminal, et idéalement un éditeur comme VS Code.</li>
-    <li><strong>FFmpeg</strong> pour convertir vos vidéos (facultatif au début ; Remotion gère son propre rendu).</li>
-  </ul>
+  <ol class="steps">
+    <li><strong>Ouvrir le terminal.</strong>
+      <ul>
+        <li><strong>Mac</strong> : appuyez sur <kbd>Cmd</kbd> + <kbd>Espace</kbd>, tapez <code>Terminal</code>, puis <kbd>Entrée</kbd>.</li>
+        <li><strong>Windows</strong> : ouvrez le menu Démarrer, tapez <code>PowerShell</code>, puis cliquez sur « Windows PowerShell ».</li>
+      </ul>
+    </li>
+    <li><strong>Installer Claude Code.</strong> Copiez la commande qui correspond à votre système, collez-la dans le terminal et appuyez sur <kbd>Entrée</kbd>.
+<pre><span class="c"># Mac ou Linux</span>
+curl -fsSL https://claude.ai/install.sh | bash
 
-  <h3>Installation</h3>
-<pre><span class="c"># Installer Claude Code (via npm)</span>
-npm install -g @anthropic-ai/claude-code
+<span class="c"># Windows (PowerShell)</span>
+irm https://claude.ai/install.ps1 | iex</pre>
+      L'installation peut prendre une minute <strong>sans rien afficher</strong>. C'est normal, patientez.
+    </li>
+    <li><strong>Vérifier l'installation.</strong> <strong>Fermez</strong> le terminal, rouvrez-en un nouveau, puis tapez :
+<pre>claude --version</pre>
+    </li>
+    <li><strong>Créer votre dossier de travail et lancer Claude.</strong> Tapez ces commandes une par une :
+<pre><span class="c"># Aller sur le Bureau</span>
+cd Desktop
 
-<span class="c"># Créer un dossier de travail et lancer Claude</span>
-mkdir mon-studio-motion &amp;&amp; cd mon-studio-motion
-git init
+<span class="c"># Créer le dossier « mon-studio-motion »</span>
+mkdir mon-studio-motion
+
+<span class="c"># Entrer dans ce dossier</span>
+cd mon-studio-motion
+
+<span class="c"># Lancer Claude Code</span>
 claude</pre>
-  <p>Au premier lancement, Claude Code vous demande de vous connecter. Ensuite, vous discutez avec lui directement dans le terminal. Vous pouvez aussi utiliser l'application de bureau, l'extension VS Code ou la version web sur claude.ai/code.</p>
-
-  <h3>Les commandes utiles à connaître</h3>
-  <div class="table-wrap">
-  <table>
-    <tr><th>Commande</th><th>À quoi elle sert</th></tr>
-    <tr><td><code>/init</code></td><td>Génère un fichier <code>CLAUDE.md</code> qui décrit votre projet à Claude.</td></tr>
-    <tr><td><code>/clear</code></td><td>Repart d'une conversation vide (utile quand on change de sujet).</td></tr>
-    <tr><td><code>/plugin</code></td><td>Ajoute des plugins et des skills (par exemple les skills Remotion).</td></tr>
-    <tr><td><code>Échap</code></td><td>Interrompt Claude s'il part dans la mauvaise direction.</td></tr>
-    <tr><td><code>Maj + Tab</code></td><td>Change de mode de permission (dont le mode plan, pour réfléchir avant d'agir).</td></tr>
-  </table>
-  </div>
-
-  <h3>Donner des yeux à Claude</h3>
-  <p>Une animation se juge à l'œil. Pour que Claude puisse vérifier son travail, demandez-lui de <strong>capturer des images</strong> de l'animation à différents moments avec Playwright (un navigateur automatisé) :</p>
-  <div class="prompt">Installe Playwright et crée un script <code>snap.js</code> qui ouvre <code>index.html</code>, puis prend une capture à 0 s, 0,5 s, 1 s et 2 s. Après chaque modification, lance-le et regarde les images pour vérifier que l'animation correspond à ce que je demande.</div>
-  <p>Vous pouvez aussi glisser vos propres captures d'écran ou images de référence dans la conversation : Claude sait les lire.</p>
-
-  <div class="tip"><strong>Astuce :</strong> faites un <code>git commit</code> à chaque étape qui vous plaît. Si une itération casse tout, dites simplement « reviens au dernier commit ».</div>
-</section>
-
-<!-- ================= 4. VOCABULAIRE ================= -->
-<section class="chapter" id="vocabulaire">
-  <h2><span class="num">Chapitre 4</span>Le vocabulaire du mouvement</h2>
-  <p class="lead">« Fais un truc stylé » donne un résultat moyen. « Entrée en ease-out avec un léger overshoot et un stagger de 60 ms » donne un résultat pro.</p>
-
-  <h3>Le timing et l'easing</h3>
-  <div class="table-wrap">
-  <table>
-    <tr><th>Terme</th><th>Ce que ça veut dire</th><th>Quand l'utiliser</th></tr>
-    <tr><td><strong>Linear</strong></td><td>Vitesse constante, mécanique</td><td>Rotations infinies, défilements</td></tr>
-    <tr><td><strong>Ease-out</strong></td><td>Démarre vite, ralentit à la fin</td><td>Éléments qui <em>entrent</em> à l'écran</td></tr>
-    <tr><td><strong>Ease-in</strong></td><td>Démarre lentement, accélère</td><td>Éléments qui <em>sortent</em> de l'écran</td></tr>
-    <tr><td><strong>Ease-in-out</strong></td><td>Doux au début et à la fin</td><td>Déplacements d'un point A à un point B</td></tr>
-    <tr><td><strong>Spring (ressort)</strong></td><td>Mouvement physique avec rebond naturel</td><td>Interfaces vivantes, apparitions ludiques</td></tr>
-    <tr><td><strong>Overshoot</strong></td><td>Dépasse la cible puis revient</td><td>Donner de l'énergie, du « pop »</td></tr>
-    <tr><td><strong>Stagger</strong></td><td>Décalage entre plusieurs éléments</td><td>Listes, lettres, grilles</td></tr>
-  </table>
-  </div>
-
-  <h3>Les durées de référence</h3>
-  <ul>
-    <li><strong>100 à 200 ms</strong> : retour d'une interaction (survol, clic).</li>
-    <li><strong>200 à 400 ms</strong> : apparition d'un élément d'interface.</li>
-    <li><strong>400 à 800 ms</strong> : transition de page, mouvement important.</li>
-    <li><strong>1 à 3 s</strong> : séquence narrative, logo animé.</li>
-  </ul>
-
-  <h3>Les 12 principes de l'animation (version express)</h3>
-  <p>Hérités des studios Disney, ils restent la base de tout mouvement crédible. Citez-les dans vos prompts :</p>
-  <ol>
-    <li><strong>Squash &amp; stretch</strong> — écraser et étirer pour suggérer la matière.</li>
-    <li><strong>Anticipation</strong> — un petit mouvement inverse avant l'action.</li>
-    <li><strong>Mise en scène</strong> — guider le regard vers l'essentiel.</li>
-    <li><strong>Animation directe ou pose à pose</strong> — fluidité ou contrôle.</li>
-    <li><strong>Follow-through &amp; overlapping</strong> — les parties ne s'arrêtent pas toutes en même temps.</li>
-    <li><strong>Slow in &amp; slow out</strong> — c'est l'easing.</li>
-    <li><strong>Arcs</strong> — les mouvements naturels suivent des courbes.</li>
-    <li><strong>Action secondaire</strong> — un détail qui enrichit l'action principale.</li>
-    <li><strong>Timing</strong> — la vitesse donne le poids et l'émotion.</li>
-    <li><strong>Exagération</strong> — pousser le mouvement pour qu'il se lise.</li>
-    <li><strong>Volume</strong> — garder des formes cohérentes.</li>
-    <li><strong>Appeal</strong> — rendre le tout agréable à regarder.</li>
+      Au premier lancement, une page s'ouvre dans votre navigateur pour vous connecter à votre compte Claude.
+    </li>
   </ol>
 
-  <h3>Traduire une émotion en paramètres</h3>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><ul>
+    <li>À l'étape 3 : un numéro de version, par exemple <code>2.1.211 (Claude Code)</code>.</li>
+    <li>À l'étape 4 : un message de bienvenue de Claude Code et une zone où écrire.</li>
+  </ul></div>
+
+  <div class="stuck"><strong>Ça ne marche pas ?</strong><ul>
+    <li><strong>« command not found: claude »</strong> ou <strong>« claude n'est pas reconnu »</strong> : vous avez sans doute oublié de fermer et rouvrir le terminal. Si le problème persiste, prenez l'option A (application de bureau).</li>
+    <li><strong>Sur Windows, « irm n'est pas reconnu »</strong> : vous êtes dans l'« Invite de commandes » et non dans PowerShell. Ouvrez PowerShell.</li>
+    <li><strong>Sur Windows, le Bureau est introuvable</strong> : il est parfois dans OneDrive. Tapez <code>cd OneDrive\Desktop</code> (ou <code>cd OneDrive\Bureau</code>).</li>
+    <li><strong>Autre erreur</strong> : copiez le message d'erreur et cherchez-le dans la page de dépannage officielle (code.claude.com/docs, rubrique « Troubleshoot installation »).</li>
+  </ul></div>
+
+  <h3>Comprendre les demandes de permission</h3>
+  <p>Avant de créer un fichier ou de lancer une commande, Claude vous <strong>demande la permission</strong>. C'est une sécurité : rien ne se passe sur votre ordinateur sans votre accord.</p>
+  <ul>
+    <li>Pour vos projets d'animation, vous pouvez accepter les créations et modifications de fichiers <strong>dans votre dossier</strong>.</li>
+    <li>Lisez la demande si Claude veut <strong>supprimer</strong> quelque chose ou agir <strong>en dehors</strong> de votre dossier. En cas de doute, refusez et demandez-lui : <em>« Explique-moi ce que tu veux faire et pourquoi. »</em></li>
+  </ul>
+
+  <h3>Les 3 raccourcis à connaître (dans le terminal)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Touche</th><th>Effet</th></tr>
+    <tr><td><kbd>Échap</kbd></td><td>Arrête Claude immédiatement s'il part dans la mauvaise direction. Vous pouvez ensuite le recadrer.</td></tr>
+    <tr><td><kbd>Échap</kbd> <kbd>Échap</kbd> (deux fois)</td><td>Ouvre le menu « rewind » pour <strong>revenir en arrière</strong> à un moment précédent de la conversation et du code. Votre bouton « annuler ».</td></tr>
+    <tr><td><kbd>Maj</kbd> + <kbd>Tab</kbd></td><td>Change le mode de travail, par exemple le <strong>mode plan</strong>, où Claude réfléchit et vous propose un plan avant de toucher à quoi que ce soit.</td></tr>
+  </table>
+  </div>
+  <p>Dans l'application de bureau, vous retrouvez les mêmes possibilités sous forme de boutons.</p>
+</section>
+
+<!-- ================= 1. PREMIÈRE ANIMATION ================= -->
+<section class="chapter" id="premiere">
+  <h2><span class="num">Chapitre 1 <span class="level l1">Niveau 1</span></span>Votre première animation en 10 minutes</h2>
+  <p class="lead">Pas de théorie pour l'instant. On fait bouger quelque chose à l'écran, tout de suite.</p>
+
+  <h3>Étape 1 : la demande</h3>
+  <p>Dans Claude Code (application ou terminal), copiez-collez ce texte et envoyez-le :</p>
+  <div class="prompt">Crée un fichier index.html tout simple, sans rien installer. Sur un fond violet foncé, le mot « Bonjour » apparaît lettre par lettre : chaque lettre tombe du haut et rebondit légèrement en arrivant. Juste en dessous, quatre petites balles de couleurs différentes rebondissent en boucle, l'une après l'autre. Explique-moi ensuite comment ouvrir le fichier pour voir le résultat.</div>
+
+  <h3>Étape 2 : ce qui va se passer</h3>
+  <p>Claude va réfléchir quelques secondes, puis vous demander la permission de créer le fichier. Voici à quoi ressemble l'échange (simplifié) :</p>
+  <div class="chat">
+    <div class="who you">Vous</div><p>Crée un fichier index.html tout simple…</p>
+    <div class="who claude">Claude</div><p>Je vais créer une page avec le mot « Bonjour » animé et quatre balles qui rebondissent.</p>
+    <p><span class="ask">Créer le fichier <code>index.html</code> ? → <strong>Oui</strong></span></p>
+    <p>C'est fait. Pour voir le résultat, ouvrez le dossier <code>mon-studio-motion</code> et double-cliquez sur <code>index.html</code>.</p>
+  </div>
+  <p>Acceptez la création du fichier.</p>
+
+  <h3>Étape 3 : regarder le résultat</h3>
+  <p>Ouvrez votre dossier <code>mon-studio-motion</code> (sur le Bureau) et <strong>double-cliquez sur <code>index.html</code></strong>. Le fichier s'ouvre dans votre navigateur. Vous pouvez aussi demander à Claude : <em>« Ouvre index.html dans mon navigateur. »</em></p>
+
+  <figure>
+    <img src="img/01-premiere-animation.png" alt="Six images successives de l'animation : les lettres de Bonjour tombent une à une, puis quatre balles colorées rebondissent." />
+    <figcaption>Un exemple de résultat, image par image. Le vôtre sera différent : Claude ne produit jamais deux fois exactement la même chose, et c'est normal. <a href="demos/01-premiere-animation.html">Voir la démo animée →</a></figcaption>
+  </figure>
+
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>Le mot « Bonjour » qui apparaît en moins de 2 secondes, puis des balles qui rebondissent sans s'arrêter. Pour revoir l'animation, rechargez la page (<kbd>F5</kbd>, ou <kbd>Cmd</kbd> + <kbd>R</kbd> sur Mac).</p></div>
+
+  <div class="stuck"><strong>Ça ne marche pas ?</strong><ul>
+    <li><strong>La page est blanche</strong> : dites à Claude « La page est blanche quand je l'ouvre, corrige le problème. »</li>
+    <li><strong>Je ne trouve pas le fichier</strong> : demandez « Dans quel dossier se trouve index.html exactement ? »</li>
+    <li><strong>Le fichier s'ouvre dans un éditeur de texte au lieu du navigateur</strong> : faites un clic droit sur le fichier, puis « Ouvrir avec » et choisissez votre navigateur.</li>
+  </ul></div>
+
+  <h3>Étape 4 : trois retouches pour vous entraîner</h3>
+  <p>Envoyez ces demandes l'une après l'autre. Après chacune, rechargez la page dans le navigateur.</p>
+  <div class="prompt">Remplace « Bonjour » par mon prénom : [votre prénom].</div>
+  <div class="prompt">Les lettres arrivent trop lentement. Rends l'animation deux fois plus rapide.</div>
+  <div class="prompt">Ajoute un bouton « Rejouer » en bas à droite qui relance l'animation.</div>
+
+  <div class="tip"><strong>Bravo :</strong> vous venez de faire du vibe motion design. Vous avez décrit un mouvement, regardé le résultat, puis donné des retours pour l'améliorer. Tout le reste du livre, c'est cette même boucle, en plus précis.</div>
+
+  <details class="curious"><summary>Pour les curieux : qu'a écrit Claude ?</summary>
+    <p>Une page HTML (la structure : le texte, les balles) et du CSS (le style et les animations). Le cœur de l'animation des lettres ressemble à ceci :</p>
+<pre>span {
+  display: inline-block;
+  animation: tomber 0.7s cubic-bezier(.34, 1.56, .64, 1) both;
+  animation-delay: calc(var(--i) * 90ms); <span class="c">/* chaque lettre attend un peu plus */</span>
+}
+@keyframes tomber {
+  from { transform: translateY(-120px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}</pre>
+    <p>« keyframes » décrit l'état de départ et l'état d'arrivée. Le navigateur calcule tout ce qu'il y a entre les deux.</p>
+  </details>
+</section>
+
+<!-- ================= 2. VOCABULAIRE ================= -->
+<section class="chapter" id="vocabulaire">
+  <h2><span class="num">Chapitre 2 <span class="level l1">Niveau 1</span></span>Parler comme un motion designer</h2>
+  <p class="lead">« Fais un truc stylé » donne un résultat moyen. Quelques mots précis donnent un résultat professionnel.</p>
+
+  <p>Bonne nouvelle : il suffit de <strong>6 notions</strong> pour décrire presque n'importe quel mouvement.</p>
+
+  <h3>1. La durée</h3>
+  <p>Combien de temps dure le mouvement. Les animations d'interface sont beaucoup plus courtes qu'on ne l'imagine :</p>
+  <ul>
+    <li><strong>0,1 à 0,2 s</strong> : réaction à un clic ou un survol.</li>
+    <li><strong>0,2 à 0,4 s</strong> : un élément qui apparaît.</li>
+    <li><strong>0,4 à 0,8 s</strong> : un grand déplacement, un changement de page.</li>
+    <li><strong>1 à 3 s</strong> : une petite séquence, un logo animé.</li>
+  </ul>
+
+  <h3>2. L'easing (la façon d'accélérer et de freiner)</h3>
+  <p>Dans la vraie vie, rien ne démarre ni ne s'arrête d'un coup. L'easing décrit comment un objet accélère et ralentit. C'est <strong>la notion la plus importante</strong> du motion design.</p>
+  <figure>
+    <img src="img/02-easing.png" alt="Trois balles partent en même temps vers une ligne d'arrivée. La balle linear avance à vitesse constante, la balle ease-out arrive vite puis freine, la balle overshoot dépasse la ligne puis revient." />
+    <figcaption>Trois balles, même durée (1 s), trois easings différents. La balle « ease-out » paraît la plus naturelle ; la balle « overshoot » dépasse la ligne d'arrivée puis revient. <a href="demos/02-easing.html">Voir la démo animée →</a></figcaption>
+  </figure>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Mot à utiliser</th><th>Effet</th><th>Quand l'utiliser</th></tr>
+    <tr><td><strong>linear</strong></td><td>Vitesse constante, mécanique</td><td>Rotations infinies, textes qui défilent</td></tr>
+    <tr><td><strong>ease-out</strong></td><td>Arrive vite, freine en douceur</td><td>Tout ce qui <em>entre</em> à l'écran (le plus utile)</td></tr>
+    <tr><td><strong>ease-in</strong></td><td>Démarre doucement, accélère</td><td>Tout ce qui <em>sort</em> de l'écran</td></tr>
+    <tr><td><strong>ease-in-out</strong></td><td>Doux au départ et à l'arrivée</td><td>Déplacement d'un point à un autre</td></tr>
+    <tr><td><strong>spring / ressort</strong></td><td>Mouvement physique avec un petit rebond</td><td>Interfaces ludiques et vivantes</td></tr>
+  </table>
+  </div>
+
+  <h3>3. L'overshoot (le dépassement)</h3>
+  <p>L'objet va un peu trop loin, puis revient à sa place. Ça donne de l'énergie et du « pop ». À doser : trop d'overshoot fait « dessin animé ».</p>
+
+  <h3>4. Le stagger (le décalage)</h3>
+  <p>Quand plusieurs éléments s'animent, on les fait partir <strong>l'un après l'autre</strong> plutôt que tous ensemble. C'est ce qui rend une animation fluide et élégante.</p>
+  <figure>
+    <img src="img/03-stagger.png" alt="Deux fois le mot MOTION. En haut, toutes les lettres apparaissent en même temps. En bas, elles apparaissent une par une avec 90 millisecondes d'écart." />
+    <figcaption>En haut, sans décalage : tout arrive d'un bloc. En bas, avec 90 ms de décalage : le regard suit le mot. <a href="demos/03-stagger.html">Voir la démo animée →</a></figcaption>
+  </figure>
+
+  <h3>5. L'anticipation</h3>
+  <p>Un petit mouvement dans le sens inverse <strong>avant</strong> l'action, comme on plie les genoux avant de sauter. Ça rend le mouvement crédible.</p>
+
+  <h3>6. Le chevauchement (overlapping)</h3>
+  <p>L'étape suivante commence <strong>avant</strong> que la précédente soit tout à fait finie. Sans ça, une séquence paraît saccadée, comme une suite de diapositives.</p>
+
+  <h3>Traduire une ambiance en mots</h3>
+  <p>Vous savez ce que vous voulez <em>ressentir</em> ? Ce tableau vous donne les mots à mettre dans votre demande.</p>
   <div class="table-wrap">
   <table>
     <tr><th>Ambiance voulue</th><th>Ce qu'il faut demander</th></tr>
-    <tr><td>Premium, luxe</td><td>Mouvements lents (600–1000 ms), ease-in-out doux, peu d'éléments, beaucoup d'espace</td></tr>
-    <tr><td>Énergique, jeune</td><td>Durées courtes, springs avec rebond, couleurs vives, stagger rapide</td></tr>
-    <tr><td>Tech, futuriste</td><td>Glitch, lignes qui se tracent, mouvements linéaires, typographie monospace</td></tr>
-    <tr><td>Calme, bien-être</td><td>Fondus, flottements lents, boucles respirantes de 4 à 6 s</td></tr>
-    <tr><td>Corporate, sérieux</td><td>Glissements sobres, ease-out, pas de rebond, alignements stricts</td></tr>
-  </table>
-  </div>
-</section>
-
-<!-- ================= 5. PROJET 1 ================= -->
-<section class="chapter" id="projet1">
-  <h2><span class="num">Chapitre 5</span>Projet 1 — Logo animé en CSS et GSAP</h2>
-  <p class="lead">Votre premier projet complet, du prompt initial au fichier final.</p>
-
-  <h3>Étape 1 : le brief</h3>
-  <p>Commencez toujours par un brief structuré. Voici un modèle :</p>
-  <div class="prompt">Crée une page <code>index.html</code> autonome (sans framework) avec une animation d'intro pour le logo texte « NOVA ».
-Ambiance : tech et premium. Fond presque noir, texte blanc.
-Séquence : 1) une ligne horizontale se trace au centre (400 ms, ease-out) ; 2) les lettres montent depuis la ligne une par une avec un stagger de 80 ms et un léger overshoot ; 3) un reflet lumineux balaie le mot de gauche à droite ; 4) le slogan « Build the future » apparaît en fondu dessous.
-Durée totale : environ 2,5 s. Respecte prefers-reduced-motion. Utilise GSAP depuis un CDN.</div>
-
-  <h3>Étape 2 : ce que Claude produit</h3>
-  <p>Claude va généralement écrire quelque chose de cette forme (extrait simplifié) :</p>
-<pre>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-  tl.from(".line",    { scaleX: 0, duration: 0.4 })
-    .from(".letter",  { yPercent: 110, opacity: 0, duration: 0.6,
-                        stagger: 0.08, ease: "back.out(1.7)" }, "-=0.1")
-    .fromTo(".shine", { xPercent: -120 }, { xPercent: 120, duration: 0.8,
-                        ease: "power2.inOut" }, "-=0.2")
-    .from(".tagline", { opacity: 0, y: 10, duration: 0.5 }, "-=0.4");
-&lt;/script&gt;</pre>
-  <p>Remarquez le paramètre <code>"-=0.1"</code> : il fait démarrer une étape légèrement avant la fin de la précédente. C'est ce chevauchement (overlapping) qui rend une animation fluide plutôt que saccadée.</p>
-
-  <h3>Étape 3 : itérer au ressenti</h3>
-  <p>Ouvrez la page, regardez, puis donnez des retours <strong>sensoriels et précis</strong> :</p>
-  <div class="prompt">Les lettres arrivent trop « cartoon ». Réduis l'overshoot de moitié et ajoute un léger flou de mouvement pendant la montée. Le reflet est trop rapide, ralentis-le à 1,2 s.</div>
-  <div class="prompt">Ajoute une anticipation : juste avant que les lettres montent, la ligne s'écrase légèrement verticalement pendant 100 ms.</div>
-  <div class="prompt">Ajoute des contrôles en bas de page : un bouton « Rejouer » et un curseur pour ralentir l'animation (timeScale de 0,25 à 1), pour que je puisse l'étudier image par image.</div>
-
-  <div class="tip"><strong>Le réflexe pro :</strong> le curseur de vitesse est votre meilleur ami. À 25 % de la vitesse, vous voyez immédiatement les défauts de timing qu'on ne remarque pas en temps réel.</div>
-
-  <h3>Version 100 % CSS (sans librairie)</h3>
-  <p>Pour un site léger, demandez : <em>« Refais exactement la même animation en CSS pur, avec des @keyframes et animation-delay calculé par une variable CSS --i sur chaque lettre. »</em></p>
-<pre>.letter {
-  display: inline-block;
-  animation: rise .6s cubic-bezier(.34, 1.56, .64, 1) both;
-  animation-delay: calc(400ms + var(--i) * 80ms);
-}
-@keyframes rise {
-  from { transform: translateY(110%); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .letter { animation: none; }
-}</pre>
-</section>
-
-<!-- ================= 6. PROJET 2 ================= -->
-<section class="chapter" id="projet2">
-  <h2><span class="num">Chapitre 6</span>Projet 2 — Une vidéo avec Remotion</h2>
-  <p class="lead">Remotion transforme des composants React en vidéo. Chaque image est une fonction du numéro de frame : parfait pour une IA qui écrit du code.</p>
-
-  <h3>Démarrer le projet</h3>
-  <div class="prompt">Crée un nouveau projet Remotion dans le dossier <code>promo</code> avec le template vide en TypeScript. Format vertical 1080×1920, 30 images par seconde, durée 10 secondes. Lance ensuite le Studio Remotion pour que je puisse prévisualiser.</div>
-  <p>En coulisses, Claude exécute quelque chose comme :</p>
-<pre>npx create-video@latest promo
-cd promo
-npm install
-npx remotion studio</pre>
-  <p>Le <strong>Studio Remotion</strong> s'ouvre dans votre navigateur avec une timeline, un lecteur et la possibilité de modifier les paramètres en direct.</p>
-
-  <h3>Les briques de base</h3>
-  <div class="table-wrap">
-  <table>
-    <tr><th>Élément</th><th>Rôle</th></tr>
-    <tr><td><code>useCurrentFrame()</code></td><td>Donne le numéro de l'image en cours. Tout le mouvement en découle.</td></tr>
-    <tr><td><code>interpolate()</code></td><td>Convertit un intervalle de frames en valeurs (opacité, position…).</td></tr>
-    <tr><td><code>spring()</code></td><td>Crée un mouvement physique de ressort.</td></tr>
-    <tr><td><code>&lt;Sequence&gt;</code></td><td>Place une scène à un moment précis de la timeline.</td></tr>
-    <tr><td><code>&lt;AbsoluteFill&gt;</code></td><td>Calque plein écran, comme un calque dans After Effects.</td></tr>
-    <tr><td><code>&lt;Composition&gt;</code></td><td>Déclare une vidéo (taille, durée, fps) dans <code>Root.tsx</code>.</td></tr>
+    <tr><td>Premium, luxe</td><td>Mouvements lents (0,6 à 1 s), ease-in-out doux, peu d'éléments, beaucoup d'espace vide</td></tr>
+    <tr><td>Énergique, jeune</td><td>Durées courtes, ressort avec rebond, couleurs vives, décalage rapide</td></tr>
+    <tr><td>Tech, futuriste</td><td>Lignes qui se dessinent, effet glitch, mouvements nets, police monospace</td></tr>
+    <tr><td>Calme, bien-être</td><td>Fondus, éléments qui flottent lentement, boucles de 4 à 6 s</td></tr>
+    <tr><td>Sérieux, institutionnel</td><td>Glissements sobres en ease-out, pas de rebond, alignements stricts</td></tr>
   </table>
   </div>
 
-  <h3>Exemple : une scène de titre</h3>
-<pre>import { AbsoluteFill, interpolate, spring,
-         useCurrentFrame, useVideoConfig } from "remotion";
+  <div class="tip"><strong>Phrase modèle à réutiliser :</strong> « [Élément] entre par [direction] en [durée], en ease-out avec un léger overshoot. Les [éléments multiples] arrivent avec un décalage de [80 ms]. Ambiance : [premium / énergique / calme…]. »</div>
 
-export const Title: React.FC&lt;{ text: string }&gt; = ({ text }) =&gt; {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  <span class="c">// Ressort : 0 → 1 avec un rebond naturel</span>
-  const pop = spring({ frame, fps, config: { damping: 12 } });
-
-  <span class="c">// Fondu sur les 15 premières images</span>
-  const opacity = interpolate(frame, [0, 15], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-
-  return (
-    &lt;AbsoluteFill style={{ background: "#110e18",
-                           justifyContent: "center", alignItems: "center" }}&gt;
-      &lt;h1 style={{ color: "white", fontSize: 140, opacity,
-                   transform: `scale(${pop})` }}&gt;
-        {text}
-      &lt;/h1&gt;
-    &lt;/AbsoluteFill&gt;
-  );
-};</pre>
-
-  <h3>Assembler un storyboard</h3>
-  <p>Le plus efficace est de décrire votre vidéo comme un storyboard, scène par scène, avec les timings :</p>
-  <div class="prompt">Construis cette vidéo promo de 10 s pour l'application « Budgy » :
-0–2 s : le logo apparaît avec un spring, fond dégradé violet → orange qui tourne lentement.
-2–5 s : trois bénéfices apparaissent l'un après l'autre (« Suivez vos dépenses », « Épargnez sans effort », « 100 % gratuit »), chacun glisse depuis la droite avec une icône animée.
-5–8 s : une maquette de téléphone entre par le bas, avec un graphique en barres qui se remplit.
-8–10 s : appel à l'action « Téléchargez Budgy » qui pulse, puis fondu au noir.
-Rends les textes et couleurs paramétrables via des props (schéma zod) pour que je puisse les modifier dans le Studio.</div>
-
-  <h3>Rendre la vidéo</h3>
-<pre>npx remotion render <span class="c">&lt;id-de-la-composition&gt;</span> out/promo.mp4</pre>
-  <p>Grâce aux props, vous pouvez ensuite générer des dizaines de déclinaisons (langues, produits, couleurs) à partir du même code :</p>
-  <div class="prompt">Écris un script qui lit <code>produits.csv</code> et génère une vidéo par ligne en passant le nom, le prix et la couleur en props.</div>
-
-  <div class="tip"><strong>Bon à savoir :</strong> des skills Remotion officiels existent pour Claude Code (installables via <code>/plugin</code>). Ils donnent à Claude les bonnes pratiques à jour de Remotion : sous-titres animés, audio, transitions, rendu. Vérifiez aussi la licence de Remotion : gratuite pour les particuliers et les petites équipes, payante au-delà d'une certaine taille d'entreprise.</div>
+  <details class="curious"><summary>Pour aller plus loin : les 12 principes de l'animation</summary>
+    <p>Ces six notions viennent des 12 principes de l'animation, formulés par les animateurs des studios Disney dans les années 1930 : squash &amp; stretch (écraser et étirer), anticipation, mise en scène, animation directe ou pose à pose, follow-through &amp; overlapping, slow in &amp; slow out (l'easing), arcs, action secondaire, timing, exagération, volume, appeal. Vous pouvez les citer tels quels dans vos demandes : Claude les connaît.</p>
+  </details>
 </section>
 
-<!-- ================= 7. BOUCLE ================= -->
+<!-- ================= 3. BOUCLE ================= -->
 <section class="chapter" id="boucle">
-  <h2><span class="num">Chapitre 7</span>La boucle « vibe » : itérer au ressenti</h2>
+  <h2><span class="num">Chapitre 3 <span class="level l1">Niveau 1</span></span>La boucle « vibe » : améliorer pas à pas</h2>
   <p class="lead">La méthode qui fait la différence entre un résultat « généré par IA » et un résultat qui a du caractère.</p>
 
+  <div class="loop">
+    <svg viewBox="0 0 560 300" role="img" aria-label="Schéma en boucle : décrire, laisser Claude créer, regarder, corriger, sauvegarder, puis recommencer.">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff5b2e"/></marker></defs>
+      <ellipse cx="280" cy="150" rx="200" ry="105" fill="none" stroke="#ff5b2e" stroke-width="2" stroke-dasharray="5 6" opacity=".55"/>
+      <path d="M 360 54 A 200 105 0 0 1 470 120" fill="none" stroke="#ff5b2e" stroke-width="2.5" marker-end="url(#ar)"/>
+      <path d="M 455 205 A 200 105 0 0 1 340 252" fill="none" stroke="#ff5b2e" stroke-width="2.5" marker-end="url(#ar)"/>
+      <path d="M 220 252 A 200 105 0 0 1 105 205" fill="none" stroke="#ff5b2e" stroke-width="2.5" marker-end="url(#ar)"/>
+      <path d="M 90 120 A 200 105 0 0 1 200 54" fill="none" stroke="#ff5b2e" stroke-width="2.5" marker-end="url(#ar)"/>
+      <g text-anchor="middle">
+        <circle cx="280" cy="45" r="7" fill="#ff5b2e"/><text x="280" y="28" font-weight="700" font-size="15">1. Décrire</text>
+        <circle cx="480" cy="150" r="7" fill="#ff9a3c"/><text x="480" y="180" font-weight="700" font-size="15">2. Claude crée</text>
+        <circle cx="280" cy="255" r="7" fill="#7c4dff"/><text x="280" y="285" font-weight="700" font-size="15">3. Regarder</text>
+        <circle cx="80" cy="150" r="7" fill="#2ec4b6"/><text x="80" y="180" font-weight="700" font-size="15">4. Corriger</text>
+        <text x="280" y="140" font-weight="800" font-size="17">5. Sauvegarder</text>
+        <text x="280" y="162" class="sub" font-size="13">dès qu'une version vous plaît</text>
+      </g>
+    </svg>
+  </div>
+
   <h3>Les 5 temps de la boucle</h3>
-  <ol>
-    <li><strong>Intention</strong> — Décrivez l'émotion, le contexte, la durée et les contraintes.</li>
-    <li><strong>Génération</strong> — Laissez Claude produire une première version complète, même imparfaite.</li>
-    <li><strong>Observation</strong> — Regardez à vitesse normale, puis au ralenti. Notez ce qui vous gêne.</li>
-    <li><strong>Retour précis</strong> — Une ou deux remarques à la fois, formulées en termes de mouvement.</li>
-    <li><strong>Sauvegarde</strong> — Commit dès qu'une version vous plaît.</li>
+  <ol class="steps">
+    <li><strong>Décrire.</strong> L'ambiance, ce qui bouge, la durée, et où ce sera utilisé.</li>
+    <li><strong>Laisser Claude créer.</strong> Acceptez une première version imparfaite : c'est un brouillon.</li>
+    <li><strong>Regarder.</strong> D'abord à vitesse normale, puis au ralenti (voir l'astuce plus bas). Notez ce qui vous gêne.</li>
+    <li><strong>Corriger.</strong> <strong>Une ou deux remarques à la fois</strong>, pas dix. Sinon Claude risque d'en oublier ou de tout casser.</li>
+    <li><strong>Sauvegarder.</strong> Dès qu'une version vous plaît, demandez à Claude de la sauvegarder.</li>
   </ol>
+
+  <h3>Sauvegarder et revenir en arrière</h3>
+  <p>C'est votre filet de sécurité. Deux méthodes, à utiliser ensemble :</p>
+  <ul>
+    <li><strong>Revenir en arrière tout de suite</strong> : appuyez deux fois sur <kbd>Échap</kbd> (menu « rewind ») et choisissez le moment où tout allait bien. Ou écrivez simplement : <em>« Annule ta dernière modification. »</em></li>
+    <li><strong>Garder des versions pour toujours</strong> : demandez à Claude d'utiliser <strong>Git</strong>, un outil qui garde un historique de toutes vos versions. Vous n'avez pas besoin d'apprendre Git, Claude s'en charge :</li>
+  </ul>
+  <div class="prompt">Mets en place Git dans ce dossier, puis sauvegarde la version actuelle avec le nom « première version qui marche ». À l'avenir, quand je te dis « sauvegarde », fais pareil avec un nom qui décrit le changement.</div>
+  <div class="prompt">Montre-moi la liste de mes versions sauvegardées, puis reviens à la version « première version qui marche ».</div>
 
   <h3>Les bons et les mauvais retours</h3>
   <div class="table-wrap">
   <table>
     <tr><th>Retour flou</th><th>Retour efficace</th></tr>
     <tr><td>« C'est bof. »</td><td>« Le titre arrive trop tard, il doit être lisible dès 0,5 s. »</td></tr>
-    <tr><td>« Plus dynamique. »</td><td>« Divise toutes les durées par 1,5 et ajoute un overshoot sur les entrées. »</td></tr>
+    <tr><td>« Plus dynamique. »</td><td>« Rends tout 1,5 fois plus rapide et ajoute un léger overshoot sur les entrées. »</td></tr>
     <tr><td>« C'est bizarre. »</td><td>« Les cartes s'arrêtent toutes en même temps : décale leur arrivée de 50 ms. »</td></tr>
-    <tr><td>« Fais plus beau. »</td><td>« Remplace le fondu par un masque qui révèle le texte du bas vers le haut. »</td></tr>
+    <tr><td>« Fais plus beau. »</td><td>« Remplace le fondu par un effet où le texte se dévoile du bas vers le haut. »</td></tr>
   </table>
   </div>
+  <p>Vous ne trouvez pas les mots ? Décrivez ce que vous ressentez, et demandez de l'aide : <em>« Ça me paraît lourd et lent, mais je ne sais pas pourquoi. Propose-moi trois pistes. »</em></p>
 
-  <h3>Techniques avancées de pilotage</h3>
-  <ul>
-    <li><strong>Les références visuelles.</strong> Glissez une capture d'une animation qui vous inspire : <em>« Reproduis le style de mouvement de cette image, pas son contenu. »</em></li>
-    <li><strong>Les variantes.</strong> <em>« Propose 3 versions de cette transition : une sobre, une ludique, une cinématique. Mets-les côte à côte sur une même page. »</em></li>
-    <li><strong>Les paramètres exposés.</strong> <em>« Ajoute un panneau de réglages (durée, intensité du rebond, couleur) pour que je trouve moi-même le bon dosage. »</em> Ensuite, donnez à Claude les valeurs retenues.</li>
-    <li><strong>Le mode plan.</strong> Pour un projet complexe, demandez d'abord un plan (storyboard, architecture des fichiers) avant toute ligne de code.</li>
-    <li><strong>La vérification autonome.</strong> <em>« Après chaque changement, capture les frames 0, 30, 60 et 90 et vérifie que rien ne déborde du cadre. »</em></li>
-  </ul>
+  <h3>Trois astuces qui changent tout</h3>
+  <div class="prompt">Ajoute en bas de la page un bouton « Rejouer » et un curseur pour ralentir l'animation jusqu'à 4 fois moins vite, pour que je puisse l'étudier.</div>
+  <p><strong>Le ralenti</strong> révèle immédiatement les défauts qu'on ne voit pas à vitesse normale.</p>
+  <div class="prompt">Propose 3 versions de cette animation sur la même page, côte à côte : une sobre, une ludique, une spectaculaire.</div>
+  <p><strong>Les variantes</strong> : comparer est plus facile que décrire. Choisissez, puis affinez celle qui vous plaît.</p>
+  <div class="prompt">Ajoute un petit panneau de réglages avec des curseurs pour la durée, l'intensité du rebond et la couleur principale, pour que je trouve moi-même le bon dosage.</div>
+  <p><strong>Les réglages</strong> : vous trouvez le bon dosage à la main, puis vous dites à Claude « garde ces valeurs-là et retire le panneau ».</p>
 
-  <div class="tip"><strong>Règle d'or :</strong> si après trois itérations ça ne converge pas, ne vous acharnez pas. Revenez au dernier commit, faites <code>/clear</code> et reformulez votre brief à partir de ce que vous avez appris.</div>
+  <h3>Montrer plutôt que décrire</h3>
+  <p>Vous pouvez glisser une image dans la conversation (une capture d'écran, une affiche, un logo) : Claude sait les regarder. Par exemple : <em>« Voici une capture d'une animation que j'aime. Inspire-toi de son style et de ses couleurs, pas de son contenu. »</em></p>
+
+  <div class="tip"><strong>Règle d'or :</strong> si après trois corrections ça ne s'améliore pas, arrêtez de vous acharner. Revenez à la dernière version sauvegardée, commencez une nouvelle conversation (commande <code>/clear</code> dans le terminal, ou « Nouvelle session » dans l'application), puis reformulez votre demande avec ce que vous avez appris.</div>
 </section>
 
-<!-- ================= 8. CLAUDE.MD ================= -->
+<!-- ================= 4. PROJET LOGO ================= -->
+<section class="chapter" id="projet-logo">
+  <h2><span class="num">Chapitre 4 <span class="level l1">Niveau 1</span></span>Projet : animer votre nom ou votre logo</h2>
+  <p class="meta-line">Durée : 30 à 45 minutes · Rien à installer · Résultat : une page web avec votre nom animé, utilisable en intro de site ou en vidéo</p>
+  <p class="lead">On construit l'animation en <strong>5 petites étapes</strong>, une demande à la fois. C'est exactement ainsi que travaillent les pros.</p>
+
+  <figure>
+    <img src="img/04-logo.png" alt="Six images successives : une ligne dégradée se trace, les lettres de NOVA montent une à une depuis la ligne, puis le slogan Build the future apparaît." />
+    <figcaption>Le résultat visé, avec le nom fictif « NOVA ». <a href="demos/04-logo.html">Voir la démo animée →</a></figcaption>
+  </figure>
+
+  <p>Conseil : commencez une nouvelle conversation et créez un sous-dossier pour ce projet. Écrivez par exemple : <em>« Crée un dossier logo et travaille dedans pour la suite. »</em></p>
+
+  <ol class="steps">
+    <li><strong>La base.</strong>
+      <div class="prompt">Crée un fichier logo.html sans rien installer : fond presque noir, et au centre le mot « [VOTRE NOM] » en blanc, très grand et en gras. Pas encore d'animation.</div>
+      <div class="expect"><strong>Ce que vous devriez voir</strong><p>Votre nom, immobile, au centre de la page.</p></div>
+    </li>
+    <li><strong>La ligne.</strong>
+      <div class="prompt">Ajoute sous le mot une fine ligne avec un dégradé orange vers violet. Au chargement, la ligne se dessine de gauche à droite en 0,4 s, en ease-out.</div>
+    </li>
+    <li><strong>Les lettres.</strong>
+      <div class="prompt">Maintenant, les lettres sont cachées au départ. Juste après la ligne, elles montent depuis la ligne, une par une, avec un décalage de 80 ms et un léger overshoot. On ne doit pas voir les lettres sous la ligne.</div>
+      <div class="expect"><strong>Ce que vous devriez voir</strong><p>Les lettres « sortent » de la ligne comme d'une fente. Si elles apparaissent toutes en même temps, dites : « Les lettres apparaissent toutes ensemble, je veux un décalage entre chaque lettre. »</p></div>
+    </li>
+    <li><strong>Le reflet.</strong>
+      <div class="prompt">Quand toutes les lettres sont arrivées, fais passer un reflet lumineux sur le mot, de gauche à droite, en 1 seconde.</div>
+    </li>
+    <li><strong>Le slogan et la finition.</strong>
+      <div class="prompt">Pour finir, fais apparaître en fondu sous la ligne le slogan « [VOTRE SLOGAN] », en petites majuscules espacées. Ajoute un bouton « Rejouer ». Si la personne a désactivé les animations dans son système, affiche directement l'état final sans mouvement.</div>
+      <div class="prompt">Sauvegarde cette version avec le nom « logo animé terminé ».</div>
+    </li>
+  </ol>
+
+  <h3>Et maintenant, affinez</h3>
+  <p>Utilisez le ralenti du chapitre 3, puis essayez des corrections comme :</p>
+  <ul>
+    <li><em>« Les lettres font trop dessin animé : réduis l'overshoot de moitié. »</em></li>
+    <li><em>« Ajoute une anticipation : juste avant que les lettres montent, la ligne s'écrase légèrement pendant 0,1 s. »</em></li>
+    <li><em>« Utilise mon vrai logo : voici le fichier logo.svg. Fais en sorte que son contour se dessine, puis qu'il se remplisse de couleur. »</em> (déposez d'abord votre fichier SVG dans le dossier du projet)</li>
+  </ul>
+
+  <details class="curious"><summary>Pour les curieux : à quoi ressemble le code de l'étape 3 ?</summary>
+<pre>.mot span {
+  display: inline-block;
+  animation: monter 0.7s cubic-bezier(.34, 1.4, .64, 1) both;
+  animation-delay: calc(450ms + var(--i) * 80ms);
+}
+@keyframes monter {
+  from { transform: translateY(110%); }
+  to   { transform: none; }
+}
+.masque { overflow: hidden; } <span class="c">/* cache les lettres sous la ligne */</span>
+
+@media (prefers-reduced-motion: reduce) {
+  .mot span { animation: none; } <span class="c">/* respect des réglages d'accessibilité */</span>
+}</pre>
+    <p>Le <code>cubic-bezier(.34, 1.4, .64, 1)</code> est un easing avec overshoot : le chiffre 1.4 signifie que la lettre dépasse sa position d'arrivée avant de revenir.</p>
+  </details>
+
+  <div class="tip"><strong>Et pour en faire une vidéo ?</strong> Demandez : <em>« Enregistre cette animation en vidéo MP4 de 4 secondes, au format carré 1080×1080. »</em> Claude installera ce qu'il faut. Voir le <a href="#export">chapitre 9</a>.</div>
+</section>
+
+<!-- ================= 5. GSAP ================= -->
+<section class="chapter" id="gsap">
+  <h2><span class="num">Chapitre 5 <span class="level">Niveau 2</span></span>Des animations plus riches avec GSAP</h2>
+  <p class="meta-line">Prérequis : avoir terminé le chapitre 4 · Rien à installer</p>
+  <p class="lead">Quand une animation comporte beaucoup d'étapes, ou qu'elle doit réagir au défilement de la page, le CSS seul devient difficile à manier. C'est là qu'intervient GSAP.</p>
+
+  <h3>GSAP, c'est quoi ?</h3>
+  <p><strong>GSAP</strong> est une <strong>librairie</strong>, c'est-à-dire un ensemble d'outils déjà écrits par d'autres, que Claude peut utiliser dans votre page. C'est la référence du motion design sur le web. Elle se charge depuis internet : vous n'avez rien à installer.</p>
+  <p>Son point fort est la <strong>timeline</strong> : une ligne du temps sur laquelle on place les étapes, comme dans un logiciel de montage vidéo.</p>
+
+  <h3>Quand passer à GSAP ?</h3>
+  <ul>
+    <li>Votre animation a <strong>plus de 4 ou 5 étapes</strong> enchaînées.</li>
+    <li>Vous voulez que des éléments s'animent <strong>quand on fait défiler la page</strong> (le « scroll »).</li>
+    <li>Vous voulez pouvoir <strong>mettre en pause, rembobiner ou ralentir</strong> facilement une séquence.</li>
+  </ul>
+  <p>Sinon, restez en CSS : c'est plus léger. En cas de doute, demandez à Claude : <em>« Pour ce que je veux faire, vaut-il mieux du CSS simple ou GSAP ? Explique-moi simplement. »</em></p>
+
+  <h3>Exercice : une page d'accueil qui s'anime au défilement</h3>
+  <ol class="steps">
+    <li><div class="prompt">Crée une page accueil.html pour une marque fictive de café, « Kafé ». Trois sections : un grand titre, trois cartes de produits, et un bouton « Commander ». Pas encore d'animation. Utilise des formes de couleur à la place des photos.</div></li>
+    <li><div class="prompt">Avec GSAP chargé depuis internet, anime le titre à l'ouverture de la page : il monte en fondu en 0,8 s, en ease-out.</div></li>
+    <li><div class="prompt">Avec le module ScrollTrigger de GSAP, fais apparaître les trois cartes quand on fait défiler la page jusqu'à elles : elles montent l'une après l'autre avec un décalage de 0,15 s.</div></li>
+    <li><div class="prompt">Fais pulser doucement le bouton « Commander » toutes les 3 secondes pour attirer l'œil, sans que ce soit agaçant.</div></li>
+    <li><div class="prompt">Vérifie que tout reste fluide sur téléphone, et qu'il n'y a aucun mouvement pour les personnes qui ont désactivé les animations. Puis sauvegarde.</div></li>
+  </ol>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>En ouvrant la page, le titre apparaît. En descendant avec la molette ou le doigt, les cartes surgissent une par une. Pour tester l'affichage sur téléphone, demandez : « Comment voir ma page comme sur un téléphone dans mon navigateur ? »</p></div>
+
+  <details class="curious"><summary>Pour les curieux : une timeline GSAP</summary>
+<pre>const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+tl.from(".ligne",   { scaleX: 0, duration: 0.4 })
+  .from(".lettre",  { yPercent: 110, duration: 0.6, stagger: 0.08,
+                      ease: "back.out(1.7)" }, "-=0.1")
+  .from(".slogan",  { opacity: 0, y: 10, duration: 0.5 }, "-=0.3");</pre>
+    <p><code>"-=0.1"</code> signifie « commence 0,1 s avant la fin de l'étape précédente » : c'est le chevauchement du chapitre 2.</p>
+  </details>
+</section>
+
+<!-- ================= 6. REMOTION ================= -->
+<section class="chapter" id="remotion">
+  <h2><span class="num">Chapitre 6 <span class="level l3">Niveau 3</span></span>Créer une vraie vidéo avec Remotion</h2>
+  <p class="meta-line">Prérequis : chapitres 1 à 4 terminés · Installation de Node.js (15 min) · Durée : 1 à 2 heures</p>
+  <p class="lead">Remotion fabrique de vraies vidéos MP4, prêtes à publier sur TikTok, Instagram ou YouTube, à partir de code écrit par Claude.</p>
+
+  <h3>Pourquoi c'est un niveau au-dessus</h3>
+  <p>Jusqu'ici, vous aviez un seul fichier, ouvert dans le navigateur. Avec Remotion, Claude crée un <strong>projet</strong> : un dossier avec plusieurs fichiers et des outils installés sur votre ordinateur. Rien de difficile pour vous, mais il y a plus d'étapes, et donc plus d'endroits où ça peut coincer. Avancez lentement.</p>
+
+  <h3>Étape 0 : installer Node.js</h3>
+  <p><strong>Node.js</strong> est un logiciel gratuit dont Remotion a besoin pour fonctionner. Commencez par demander à Claude :</p>
+  <div class="prompt">Vérifie si Node.js est installé sur mon ordinateur, et quelle version. Dis-moi s'il convient pour utiliser Remotion.</div>
+  <p>S'il n'est pas installé : allez sur <strong>nodejs.org</strong>, téléchargez la version marquée <strong>LTS</strong> (la version stable), et installez-la comme un logiciel classique en gardant les options par défaut. Ensuite, <strong>fermez et relancez</strong> Claude Code, puis reposez la question.</p>
+
+  <h3>Étape 1 : créer le projet</h3>
+  <div class="prompt">Crée un nouveau projet Remotion vide dans un dossier nommé « ma-video ». Format vertical 1080×1920 (pour Reels et TikTok), 30 images par seconde, durée 10 secondes. Installe tout ce qu'il faut, puis ouvre le Studio Remotion pour que je puisse voir l'aperçu. Explique-moi chaque étape simplement.</div>
+  <p>L'installation peut prendre quelques minutes. Claude va vous demander plusieurs permissions pour lancer des commandes : acceptez-les tant qu'elles concernent le dossier <code>ma-video</code>.</p>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>Une page s'ouvre dans votre navigateur : c'est le <strong>Studio Remotion</strong>. Au centre, un aperçu vertical (vide pour l'instant). En bas, une <strong>ligne du temps</strong> avec un bouton lecture. Si la page ne s'ouvre pas toute seule, demandez à Claude l'adresse à ouvrir (souvent <code>http://localhost:3000</code>).</p></div>
+
+  <div class="stuck"><strong>Ça ne marche pas ?</strong><ul>
+    <li><strong>« npx n'est pas reconnu »</strong> ou <strong>« node: command not found »</strong> : Node.js n'est pas installé, ou Claude Code a été lancé avant son installation. Relancez Claude Code.</li>
+    <li><strong>« Port 3000 already in use »</strong> : un aperçu tourne déjà. Dites « Arrête l'ancien aperçu et relance le Studio. »</li>
+    <li><strong>L'installation semble bloquée</strong> depuis plus de 10 minutes : appuyez sur <kbd>Échap</kbd> et demandez « Où en est l'installation ? Recommence si besoin. »</li>
+  </ul></div>
+
+  <h3>Étape 2 : une scène à la fois</h3>
+  <p>Ne demandez pas toute la vidéo d'un coup. Construisez-la <strong>scène par scène</strong>, en vérifiant dans le Studio après chaque demande.</p>
+  <ol class="steps">
+    <li><div class="prompt">Scène 1 (de 0 à 2 s) : sur un fond en dégradé violet vers orange, le nom « Budgy » apparaît au centre avec un effet ressort. Montre-moi le résultat dans le Studio.</div></li>
+    <li><div class="prompt">Scène 2 (de 2 à 5 s) : trois phrases apparaissent l'une après l'autre en glissant depuis la droite : « Suivez vos dépenses », « Épargnez sans effort », « 100 % gratuit ».</div></li>
+    <li><div class="prompt">Scène 3 (de 5 à 8 s) : un téléphone stylisé monte depuis le bas, avec à l'écran un graphique en barres qui se remplit.</div></li>
+    <li><div class="prompt">Scène 4 (de 8 à 10 s) : le texte « Téléchargez Budgy » pulse au centre, puis tout disparaît en fondu au noir.</div></li>
+  </ol>
+  <div class="tip"><strong>Pensez aux marges :</strong> sur TikTok et Instagram, le haut et le bas de l'écran sont couverts par des boutons. Demandez : <em>« Garde tous les textes à au moins 150 pixels du haut et du bas de l'image. »</em></div>
+
+  <h3>Étape 3 : rendre la vidéo modifiable sans code</h3>
+  <div class="prompt">Rends le nom de l'application, les trois phrases et les deux couleurs du dégradé modifiables directement dans le Studio, sans que j'aie besoin de toucher au code.</div>
+  <p>Vous pourrez ainsi changer les textes et les couleurs dans le panneau de droite du Studio, et voir le résultat en direct.</p>
+
+  <h3>Étape 4 : exporter en MP4</h3>
+  <div class="prompt">Exporte la vidéo en fichier MP4 dans un dossier « exports », puis dis-moi où le trouver.</div>
+  <div class="expect"><strong>Ce que vous devriez voir</strong><p>Une barre de progression pendant le rendu (de quelques secondes à quelques minutes), puis un fichier <code>.mp4</code> que vous pouvez ouvrir, envoyer sur votre téléphone et publier.</p></div>
+
+  <h3>Bonus : des dizaines de vidéos d'un coup</h3>
+  <div class="prompt">J'ai un fichier produits.csv avec trois colonnes : nom, prix, couleur. Génère une vidéo par ligne en utilisant ce modèle.</div>
+  <p>C'est l'un des grands avantages du motion design par le code : une fois le modèle prêt, les déclinaisons sont presque gratuites.</p>
+
+  <h3>Donner à Claude les bonnes pratiques Remotion</h3>
+  <p>L'équipe de Remotion publie des <strong>skills</strong> pour Claude Code : des fiches d'instructions qui donnent à Claude les bonnes pratiques à jour de Remotion (sous-titres animés, son, transitions…). Demandez simplement :</p>
+  <div class="prompt">Installe les skills officiels de Remotion pour Claude Code dans ce projet, en suivant la documentation de Remotion (remotion.dev, rubrique AI / Skills).</div>
+  <p>Puis relancez Claude Code dans le dossier du projet pour qu'il les prenne en compte.</p>
+
+  <div class="tip"><strong>Licence :</strong> Remotion est gratuit pour les particuliers et les petites structures, mais payant pour les entreprises au-delà d'une certaine taille. Vérifiez les conditions à jour sur remotion.dev avant un usage commercial.</div>
+
+  <details class="curious"><summary>Pour les curieux : à quoi ressemble une scène Remotion ?</summary>
+<pre>import { AbsoluteFill, interpolate, spring,
+         useCurrentFrame, useVideoConfig } from "remotion";
+
+export const Titre = ({ texte }) =&gt; {
+  const frame = useCurrentFrame();          <span class="c">// numéro de l'image en cours</span>
+  const { fps } = useVideoConfig();
+  const pop = spring({ frame, fps, config: { damping: 12 } }); <span class="c">// effet ressort</span>
+  const opacite = interpolate(frame, [0, 15], [0, 1], {
+    extrapolateRight: "clamp",
+  });                                       <span class="c">// fondu sur 15 images</span>
+
+  return (
+    &lt;AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}&gt;
+      &lt;h1 style={{ fontSize: 140, opacity: opacite, transform: `scale(${pop})` }}&gt;
+        {texte}
+      &lt;/h1&gt;
+    &lt;/AbsoluteFill&gt;
+  );
+};</pre>
+    <p>Dans Remotion, chaque image de la vidéo est calculée à partir de son numéro. C'est pour ça que le rendu est toujours identique à l'aperçu.</p>
+  </details>
+</section>
+
+<!-- ================= 7. CLAUDE.MD ================= -->
 <section class="chapter" id="claudemd">
-  <h2><span class="num">Chapitre 8</span>Le CLAUDE.md du motion designer</h2>
-  <p class="lead">Le fichier <code>CLAUDE.md</code> à la racine du projet est lu par Claude à chaque session. C'est votre charte de mouvement.</p>
+  <h2><span class="num">Chapitre 7</span>Le fichier CLAUDE.md : la mémoire de votre style</h2>
+  <p class="lead">Fatigué de répéter vos couleurs, vos polices et vos préférences à chaque nouvelle conversation ? Ce fichier règle le problème.</p>
 
-  <p>Copiez ce modèle et adaptez-le à votre marque :</p>
-<pre># Projet : Studio motion de [Ma Marque]
+  <p><strong>CLAUDE.md</strong> est un simple fichier texte placé dans votre dossier de travail. Claude le lit automatiquement au début de chaque conversation. Vous y notez une fois pour toutes votre identité visuelle et vos règles.</p>
 
-## Stack
-- Vidéos : Remotion (TypeScript), 30 fps
-- Web : CSS natif d'abord, GSAP 3 si timeline complexe
-- Aperçu : `npx remotion studio` / serveur local `npx serve`
+  <h3>Le créer sans rien écrire vous-même</h3>
+  <div class="prompt">Je veux créer un fichier CLAUDE.md pour mes projets d'animation. Pose-moi des questions une par une sur ma marque (couleurs, polices, ambiance, formats que j'utilise, préférences de mouvement), puis rédige le fichier à partir de mes réponses.</div>
 
-## Identité de mouvement
-- Personnalité : confiante, chaleureuse, jamais agressive
-- Easing par défaut : cubic-bezier(0.22, 1, 0.36, 1) (ease-out expo)
-- Entrées : 300–500 ms, ease-out. Sorties : 200–300 ms, ease-in
-- Stagger standard : 60 ms
-- Rebond : léger uniquement (spring damping ≥ 12), jamais sur le texte long
-- Toujours respecter prefers-reduced-motion sur le web
+  <h3>Exemple de fichier obtenu</h3>
+<pre># Mon studio d'animation – Marque « Kafé »
 
-## Couleurs et typographie
-- Primaire #FF5B2E, secondaire #7C4DFF, fond #110E18
+## Ambiance
+- Chaleureuse, confiante, jamais agressive
+
+## Mouvement
+- Entrées : 0,3 à 0,5 s, en ease-out
+- Sorties : 0,2 à 0,3 s, en ease-in
+- Décalage standard entre éléments : 60 ms
+- Rebond léger uniquement, jamais sur les longs textes
+- Toujours prévoir une version sans mouvement (accessibilité)
+
+## Couleurs et polices
+- Principale #FF5B2E, secondaire #7C4DFF, fond #110E18
 - Titres : Inter ExtraBold ; textes : Inter Regular
 
-## Formats vidéo
-- Vertical 1080×1920 (Reels/TikTok/Shorts), carré 1080×1080, 16:9 1920×1080
-- Marges de sécurité : 120 px en haut et en bas sur le vertical
+## Formats que j'utilise
+- Vertical 1080×1920 (Reels, TikTok), marges de 150 px en haut et en bas
+- Carré 1080×1080 (Instagram, LinkedIn)
 
-## Méthode de travail
-- Après chaque modification, capture des frames clés et vérifie le rendu
-- Garde textes, couleurs et durées dans des props ou des variables
-- Ne supprime jamais une scène sans me demander</pre>
-
-  <p>Avec ce fichier, un prompt aussi court que <em>« fais une story Instagram pour annoncer notre nouvelle fonctionnalité »</em> produira un résultat déjà conforme à votre identité.</p>
+## Façon de travailler
+- Explique-moi simplement ce que tu fais, je débute
+- Après chaque modification, vérifie que le résultat s'affiche correctement
+- Ne supprime jamais un fichier sans me demander
+- Quand je dis « sauvegarde », fais une sauvegarde Git avec un nom clair</pre>
+  <p>Avec ce fichier, une demande aussi courte que <em>« fais une story pour annoncer notre nouveau café glacé »</em> donnera un résultat déjà conforme à votre style.</p>
+  <div class="tip"><strong>Astuce :</strong> le fichier évolue avec vous. Quand vous trouvez un réglage qui vous plaît, dites : <em>« Ajoute cette règle à CLAUDE.md. »</em></div>
 </section>
 
-<!-- ================= 9. PROMPTS ================= -->
+<!-- ================= 8. PROMPTS ================= -->
 <section class="chapter" id="prompts">
-  <h2><span class="num">Chapitre 9</span>Bibliothèque de 30 prompts</h2>
-  <p class="lead">Copiez, adaptez les mots entre crochets, et lancez.</p>
+  <h2><span class="num">Chapitre 8</span>30 prompts classés par niveau</h2>
+  <p class="lead">Remplacez les mots entre crochets, puis copiez-collez. Commencez par les prompts de niveau 1.</p>
 
-  <h3>Micro-interactions web</h3>
-  <ol>
-    <li>Crée un bouton [Acheter] avec un effet magnétique qui suit légèrement le curseur au survol, et une onde qui part du point de clic.</li>
-    <li>Fais un loader de 3 points qui rebondissent avec squash &amp; stretch, en boucle infinie, en CSS pur.</li>
-    <li>Anime une case à cocher : la coche se dessine comme un trait de stylo en 250 ms.</li>
-    <li>Crée un interrupteur jour/nuit où le soleil se transforme en lune avec un morphing SVG.</li>
-    <li>Fais un compteur qui monte de 0 à [12 500] avec un ralentissement à la fin, déclenché quand il entre dans l'écran.</li>
-    <li>Ajoute un effet de survol sur des cartes : légère inclinaison 3D qui suit la souris et reflet brillant.</li>
-  </ol>
-
-  <h3>Texte et typographie</h3>
-  <ol start="7">
-    <li>Fais apparaître ce titre mot par mot avec un masque qui révèle chaque mot du bas vers le haut.</li>
-    <li>Crée un effet machine à écrire avec un curseur qui clignote et des fautes de frappe corrigées en direct.</li>
-    <li>Applique un effet glitch RGB de 300 ms sur le titre toutes les 4 secondes.</li>
-    <li>Anime le texte [Bienvenue] dans 5 langues qui se succèdent avec une transition de type « slot machine ».</li>
-    <li>Crée une typographie cinétique : les mots de la phrase [citation] apparaissent en rythme, avec des tailles et positions variées.</li>
-  </ol>
-
-  <h3>Logos et identité</h3>
-  <ol start="12">
-    <li>Voici mon logo en SVG [fichier]. Anime-le : le contour se trace, puis le remplissage apparaît en fondu, puis il pulse une fois.</li>
-    <li>Décompose mon logo en formes géométriques qui s'assemblent depuis les bords de l'écran.</li>
-    <li>Crée une animation de logo en boucle de 4 s, discrète, utilisable en arrière-plan de stream.</li>
-    <li>Propose 3 animations de logo différentes (sobre, ludique, cinématique) sur une seule page de comparaison.</li>
-  </ol>
-
-  <h3>Vidéo (Remotion)</h3>
-  <ol start="16">
-    <li>Crée une vidéo verticale de 15 s qui présente [3 conseils] avec une scène par conseil et des transitions en glissement.</li>
-    <li>Transcris ce fichier audio [voix.mp3] et génère des sous-titres animés mot par mot, style TikTok, mot actif surligné.</li>
-    <li>Fais une vidéo data viz : un graphique en barres animé à partir de ce CSV, avec les valeurs qui comptent.</li>
-    <li>Crée une intro YouTube de 5 s avec mon logo, des particules et un son de whoosh synchronisé.</li>
-    <li>Génère un template de témoignage client : photo, citation qui s'écrit, nom et note en étoiles qui s'allument.</li>
-    <li>Fais une animation de carte : une ligne trace un trajet de [Dakar] à [Paris] avec un avion qui suit le tracé.</li>
-    <li>Crée un compte à rebours de 10 s pour un lancement de produit, avec un rythme qui s'accélère.</li>
-  </ol>
-
-  <h3>Scroll et pages</h3>
-  <ol start="23">
-    <li>Crée une landing page où chaque section entre au scroll avec un stagger, en GSAP ScrollTrigger.</li>
-    <li>Fais un effet de parallaxe sur 3 couches d'illustration au scroll, désactivé en reduced-motion.</li>
-    <li>Crée une transition entre deux pages où l'image de la carte s'agrandit jusqu'à devenir l'en-tête de la page suivante.</li>
-    <li>Fais une section « storytelling » épinglée où un produit tourne à mesure qu'on scrolle.</li>
-  </ol>
-
-  <h3>Génératif et 3D</h3>
-  <ol start="27">
-    <li>Crée un fond animé de dégradés fluides qui se déforment lentement, en Canvas, léger en CPU.</li>
-    <li>Fais un champ de particules qui forment le mot [NOVA] puis se dispersent quand la souris passe.</li>
-    <li>Crée une scène Three.js avec une sphère déformée par du bruit qui réagit au son du micro.</li>
-    <li>Génère un motif géométrique animé en boucle parfaite de 6 s, exportable en vidéo pour un écran d'accueil.</li>
-  </ol>
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>Prompt</th><th>Résultat attendu</th></tr>
+    <tr><th colspan="3">Niveau 1 · CSS · rien à installer</th></tr>
+    <tr><td>1</td><td>Crée un loader de 3 points qui rebondissent en s'écrasant légèrement à chaque contact, en boucle.</td><td>Un indicateur de chargement</td></tr>
+    <tr><td>2</td><td>Crée un bouton [Acheter] qui grossit un peu au survol et fait une onde au clic.</td><td>Un bouton vivant</td></tr>
+    <tr><td>3</td><td>Fais une case à cocher dont la coche se dessine comme un trait de stylo en 0,25 s.</td><td>Une micro-interaction</td></tr>
+    <tr><td>4</td><td>Fais apparaître ce titre mot par mot, chaque mot se dévoilant du bas vers le haut : « [votre phrase] ».</td><td>Un titre animé</td></tr>
+    <tr><td>5</td><td>Crée un effet machine à écrire pour « [texte] », avec un curseur qui clignote.</td><td>Un texte tapé en direct</td></tr>
+    <tr><td>6</td><td>Crée un fond en dégradé de couleurs qui change très lentement, en boucle, apaisant.</td><td>Un fond d'écran animé</td></tr>
+    <tr><td>7</td><td>Fais des cartes qui se soulèvent légèrement avec une ombre quand la souris passe dessus.</td><td>Des cartes interactives</td></tr>
+    <tr><td>8</td><td>Crée une icône de cœur qui bat deux fois quand on clique dessus, avec des petites particules.</td><td>Un bouton « J'aime »</td></tr>
+    <tr><td>9</td><td>Crée un interrupteur jour/nuit où le soleil se transforme en lune.</td><td>Un interrupteur animé</td></tr>
+    <tr><td>10</td><td>Voici mon logo [logo.svg] : fais en sorte que son contour se dessine, puis qu'il se remplisse de couleur.</td><td>Un logo animé</td></tr>
+    <tr><td>11</td><td>Fais un compteur qui monte de 0 à [12 500] en ralentissant à la fin.</td><td>Un chiffre clé animé</td></tr>
+    <tr><td>12</td><td>Fais passer un effet « glitch » sur le titre pendant 0,3 s toutes les 4 secondes.</td><td>Un effet tech</td></tr>
+    <tr><th colspan="3">Niveau 2 · GSAP ou JavaScript · rien à installer</th></tr>
+    <tr><td>13</td><td>Fais apparaître chaque section de ma page au défilement, avec un décalage entre les éléments.</td><td>Une page qui se révèle</td></tr>
+    <tr><td>14</td><td>Crée un effet de profondeur (parallaxe) avec 3 couches de formes qui bougent à des vitesses différentes au défilement.</td><td>Un effet de profondeur</td></tr>
+    <tr><td>15</td><td>Crée un bouton « magnétique » qui suit légèrement la souris quand elle s'approche.</td><td>Un bouton original</td></tr>
+    <tr><td>16</td><td>Fais défiler « [Bienvenue] » dans 5 langues, comme les rouleaux d'une machine à sous.</td><td>Un titre multilingue</td></tr>
+    <tr><td>17</td><td>Fais une section où un produit tourne sur lui-même à mesure que l'on fait défiler la page.</td><td>Un effet de présentation produit</td></tr>
+    <tr><td>18</td><td>Crée des particules qui forment le mot [NOVA], puis se dispersent quand la souris passe dessus.</td><td>Un effet interactif spectaculaire</td></tr>
+    <tr><td>19</td><td>Propose 3 animations d'intro pour mon logo (sobre, ludique, spectaculaire) sur une seule page, avec un bouton « Rejouer » pour chacune.</td><td>Une page de comparaison</td></tr>
+    <tr><td>20</td><td>Crée une transition où la carte cliquée s'agrandit jusqu'à remplir l'écran.</td><td>Une transition fluide</td></tr>
+    <tr><th colspan="3">Niveau 3 · Remotion · vidéo MP4</th></tr>
+    <tr><td>21</td><td>Crée une vidéo verticale de 15 s qui présente [3 conseils], une scène par conseil, avec des transitions en glissement.</td><td>Un Reel ou un TikTok</td></tr>
+    <tr><td>22</td><td>Transcris [voix.mp3] et ajoute des sous-titres animés mot par mot, le mot prononcé étant surligné.</td><td>Des sous-titres style TikTok</td></tr>
+    <tr><td>23</td><td>Crée une intro de 5 s pour ma chaîne YouTube avec mon logo et des particules.</td><td>Une intro de chaîne</td></tr>
+    <tr><td>24</td><td>Fais un graphique en barres animé à partir de [données.csv], avec les chiffres qui défilent.</td><td>Une vidéo de chiffres clés</td></tr>
+    <tr><td>25</td><td>Crée un modèle de témoignage client : photo, citation qui s'écrit, nom, et étoiles qui s'allument.</td><td>Une vidéo de preuve sociale</td></tr>
+    <tr><td>26</td><td>Anime une carte : une ligne trace le trajet de [Dakar] à [Paris] et un avion suit la ligne.</td><td>Une animation de voyage</td></tr>
+    <tr><td>27</td><td>Crée un compte à rebours de 10 s pour un lancement, avec un rythme qui s'accélère.</td><td>Une vidéo de teasing</td></tr>
+    <tr><td>28</td><td>Fais un motif géométrique animé qui boucle parfaitement en 6 s.</td><td>Un fond pour écran ou stream</td></tr>
+    <tr><td>29</td><td>Crée une citation animée en typographie : les mots apparaissent en rythme, avec des tailles différentes.</td><td>Une vidéo de citation</td></tr>
+    <tr><td>30</td><td>À partir de [produits.csv], génère une vidéo promo par produit avec le même modèle.</td><td>Des dizaines de vidéos</td></tr>
+  </table>
+  </div>
 </section>
 
-<!-- ================= 10. EXPORT ================= -->
+<!-- ================= 9. EXPORT ================= -->
 <section class="chapter" id="export">
-  <h2><span class="num">Chapitre 10</span>Exporter et diffuser</h2>
-  <p class="lead">Une belle animation ne sert à rien si elle est mal exportée.</p>
+  <h2><span class="num">Chapitre 9</span>Exporter et partager</h2>
+  <p class="lead">Vous n'avez pas besoin de connaître les réglages techniques : dites à Claude <strong>où</strong> vous voulez publier, il choisira le bon format.</p>
 
-  <h3>Les formats selon la destination</h3>
   <div class="table-wrap">
   <table>
-    <tr><th>Destination</th><th>Format</th><th>Dimensions conseillées</th></tr>
-    <tr><td>Reels, TikTok, Shorts, Stories</td><td>MP4 (H.264)</td><td>1080×1920, 30 fps</td></tr>
-    <tr><td>Post Instagram / LinkedIn</td><td>MP4</td><td>1080×1080 ou 1080×1350</td></tr>
-    <tr><td>YouTube</td><td>MP4</td><td>1920×1080 ou 3840×2160</td></tr>
-    <tr><td>Email, Slack, documentation</td><td>GIF (ou WebP animé)</td><td>600–800 px de large</td></tr>
-    <tr><td>Site web</td><td>CSS/JS natif ou WebM</td><td>Responsive</td></tr>
-    <tr><td>Application mobile</td><td>Lottie (JSON)</td><td>Vectoriel</td></tr>
+    <tr><th>Où publier ?</th><th>Format</th><th>Dimensions</th></tr>
+    <tr><td>Reels, TikTok, Shorts, Stories</td><td>Vidéo MP4</td><td>1080×1920 (vertical)</td></tr>
+    <tr><td>Post Instagram ou LinkedIn</td><td>Vidéo MP4</td><td>1080×1080 (carré) ou 1080×1350</td></tr>
+    <tr><td>YouTube</td><td>Vidéo MP4</td><td>1920×1080 (horizontal)</td></tr>
+    <tr><td>Email, WhatsApp, présentation</td><td>GIF</td><td>600 à 800 px de large</td></tr>
+    <tr><td>Votre site web</td><td>Le fichier HTML/CSS lui-même</td><td>S'adapte à l'écran</td></tr>
   </table>
   </div>
 
-  <h3>Commandes d'export</h3>
-<pre><span class="c"># Vidéo MP4 avec Remotion</span>
-npx remotion render <span class="c">&lt;composition&gt;</span> out/video.mp4
+  <h3>Les demandes à faire</h3>
+  <div class="prompt">Transforme mon animation logo.html en vidéo MP4 de 4 secondes au format vertical 1080×1920 pour TikTok. Installe ce qu'il faut et explique-moi ce que tu installes.</div>
+  <div class="prompt">Convertis cette vidéo en GIF de moins de 5 Mo pour l'envoyer par email.</div>
+  <div class="prompt">Explique-moi simplement comment mettre cette animation sur mon site [WordPress / Wix / Shopify…].</div>
 
-<span class="c"># GIF avec Remotion</span>
-npx remotion render <span class="c">&lt;composition&gt;</span> out/anim.gif --codec=gif
+  <details class="curious"><summary>Pour les curieux : les commandes utilisées</summary>
+<pre><span class="c"># Rendu d'une vidéo Remotion en MP4</span>
+npx remotion render <span class="c">&lt;nom-de-la-composition&gt;</span> exports/video.mp4
 
-<span class="c"># Convertir une vidéo en GIF de bonne qualité avec FFmpeg</span>
+<span class="c"># Conversion d'une vidéo en GIF avec FFmpeg (outil gratuit de conversion vidéo)</span>
 ffmpeg -i video.mp4 -vf "fps=15,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen[p];[b][p]paletteuse" anim.gif</pre>
-  <p>Vous n'avez pas besoin de retenir ces commandes : <em>« exporte en GIF de moins de 5 Mo pour Slack »</em> suffit, Claude choisit les bons réglages.</p>
-
-  <h3>Capturer une animation web en vidéo</h3>
-  <div class="prompt">Avec Playwright, enregistre <code>index.html</code> en vidéo pendant 4 s à 1080×1080, puis convertis le résultat en MP4 avec FFmpeg pour le poster sur LinkedIn.</div>
-
-  <h3>Vers Lottie</h3>
-  <p>Claude peut écrire directement un fichier Lottie JSON pour des animations simples (formes, icônes). Pour des animations complexes, le plus fiable reste de dessiner dans un outil dédié puis de demander à Claude d'intégrer et de piloter le fichier Lottie dans votre app (lecture, pause, segments, interaction).</p>
+    <p>Pour transformer une page HTML en vidéo, Claude utilise souvent Playwright, un outil qui pilote un navigateur et l'enregistre.</p>
+  </details>
 </section>
 
-<!-- ================= 11. ERREURS ================= -->
-<section class="chapter" id="erreurs">
-  <h2><span class="num">Chapitre 11</span>Erreurs fréquentes et dépannage</h2>
+<!-- ================= 10. DÉPANNAGE ================= -->
+<section class="chapter" id="depannage">
+  <h2><span class="num">Chapitre 10</span>Dépannage : les problèmes de débutant</h2>
+  <p class="lead">Le réflexe numéro 1 : <strong>copiez le message d'erreur et collez-le à Claude</strong> en lui demandant de l'expliquer et de corriger.</p>
 
+  <h3>Installation et démarrage</h3>
   <div class="table-wrap">
   <table>
-    <tr><th>Problème</th><th>Cause probable</th><th>Quoi dire à Claude</th></tr>
-    <tr><td>L'animation saccade</td><td>Animation de <code>top/left/width</code> au lieu de <code>transform</code></td><td>« N'anime que transform et opacity, et ajoute will-change là où c'est utile. »</td></tr>
-    <tr><td>Tout bouge en même temps</td><td>Pas de stagger, pas de hiérarchie</td><td>« Définis un ordre d'entrée : titre, puis sous-titre, puis visuels, avec 80 ms d'écart. »</td></tr>
-    <tr><td>Ça fait « généré par IA »</td><td>Easings par défaut, effets empilés</td><td>« Retire la moitié des effets. Un seul mouvement signature, le reste sobre. »</td></tr>
-    <tr><td>Rendu Remotion différent de l'aperçu</td><td>Utilisation de <code>Math.random()</code>, de timers ou d'animations CSS</td><td>« Rends tout déterministe : utilise random() de Remotion et base tout sur useCurrentFrame. »</td></tr>
-    <tr><td>Polices qui changent au rendu</td><td>Police pas encore chargée</td><td>« Charge les polices avec @remotion/google-fonts ou delayRender. »</td></tr>
-    <tr><td>Texte coupé en vertical</td><td>Pas de marges de sécurité</td><td>« Garde 120 px de marge en haut et en bas, et vérifie avec des captures. »</td></tr>
-    <tr><td>Claude tourne en rond</td><td>Contexte trop chargé, brief flou</td><td>Revenir au dernier commit, <code>/clear</code>, reformuler.</td></tr>
+    <tr><th>Problème</th><th>Solution</th></tr>
+    <tr><td>« command not found: claude » / « n'est pas reconnu »</td><td>Fermez et rouvrez le terminal. Sinon, utilisez l'application de bureau.</td></tr>
+    <tr><td>On me dit que mon plan ne permet pas d'utiliser Claude Code</td><td>Le plan gratuit n'inclut pas Claude Code : il faut au moins l'abonnement Pro.</td></tr>
+    <tr><td>Je ne sais plus dans quel dossier je suis</td><td>Demandez à Claude : « Dans quel dossier travailles-tu ? Liste les fichiers. »</td></tr>
+    <tr><td>« npx » ou « node » n'est pas reconnu</td><td>Installez Node.js (version LTS sur nodejs.org), puis relancez Claude Code.</td></tr>
   </table>
   </div>
 
-  <h3>Accessibilité : non négociable</h3>
+  <h3>Pendant le travail</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Problème</th><th>Solution</th></tr>
+    <tr><td>La page est blanche</td><td>« La page est blanche, trouve et corrige le problème. »</td></tr>
+    <tr><td>Je ne vois pas mes modifications</td><td>Rechargez la page (<kbd>F5</kbd> ou <kbd>Cmd</kbd>+<kbd>R</kbd>). Vérifiez que vous ouvrez le bon fichier.</td></tr>
+    <tr><td>L'animation saccade</td><td>« L'animation saccade. Optimise-la pour qu'elle soit fluide, en n'animant que la position, la taille et l'opacité. »</td></tr>
+    <tr><td>Tout bouge en même temps, c'est confus</td><td>« Définis un ordre : d'abord le titre, puis le sous-titre, puis le reste, avec 0,1 s d'écart. »</td></tr>
+    <tr><td>Ça fait « généré par IA »</td><td>« Retire la moitié des effets. Garde un seul mouvement marquant, le reste sobre. »</td></tr>
+    <tr><td>Claude a tout cassé</td><td><kbd>Échap</kbd> <kbd>Échap</kbd> pour revenir en arrière, ou « Reviens à la dernière version sauvegardée. »</td></tr>
+    <tr><td>Claude tourne en rond</td><td>Revenez à une version qui marchait, ouvrez une nouvelle conversation et reformulez plus simplement.</td></tr>
+    <tr><td>« Port already in use »</td><td>« Arrête les aperçus déjà lancés et relance-le. »</td></tr>
+    <tr><td>Message de limite d'utilisation atteinte</td><td>Votre quota est épuisé pour le moment. Attendez l'heure indiquée, ou voir le <a href="#couts">chapitre 11</a>.</td></tr>
+    <tr><td>La vidéo exportée diffère de l'aperçu (Remotion)</td><td>« Le rendu final ne ressemble pas à l'aperçu. Rends l'animation entièrement basée sur le numéro d'image, sans hasard ni minuteur. »</td></tr>
+    <tr><td>Textes coupés sur TikTok/Instagram</td><td>« Garde tous les textes à au moins 150 px du haut et du bas. »</td></tr>
+  </table>
+  </div>
+
+  <h3>Accessibilité : les bons réflexes</h3>
   <ul>
-    <li>Respectez <code>prefers-reduced-motion</code> : proposez une version sans mouvement ou avec de simples fondus.</li>
-    <li>Évitez les flashs de plus de 3 fois par seconde (risque pour les personnes épileptiques).</li>
-    <li>Ne bloquez jamais l'accès au contenu derrière une animation longue.</li>
-    <li>Sous-titrez vos vidéos.</li>
+    <li>Certaines personnes ont le mal des transports devant les animations. Demandez toujours une <strong>version sans mouvement</strong> pour elles (Claude connaît le réglage « prefers-reduced-motion »).</li>
+    <li>Pas de clignotement de plus de 3 fois par seconde : c'est dangereux pour les personnes épileptiques.</li>
+    <li>Ne faites jamais attendre une animation longue avant d'afficher le contenu.</li>
+    <li>Sous-titrez vos vidéos : beaucoup de gens les regardent sans le son.</li>
   </ul>
 </section>
 
-<!-- ================= 12. CONCLUSION ================= -->
-<section class="chapter" id="conclusion">
-  <h2><span class="num">Chapitre 12</span>Conclusion et checklist finale</h2>
-  <p class="lead">L'IA ne remplace pas le regard du motion designer. Elle supprime la friction entre l'idée et l'écran.</p>
+<!-- ================= 11. COÛTS ================= -->
+<section class="chapter" id="couts">
+  <h2><span class="num">Chapitre 11</span>Coûts et limites</h2>
+  <p class="lead">Mieux vaut savoir à l'avance ce qui est gratuit, ce qui est payant, et où sont les limites.</p>
 
-  <p>Le vibe motion design vous permet de tester dix idées dans le temps qu'il fallait pour en produire une. Votre rôle change : vous devenez celui ou celle qui <strong>imagine</strong>, <strong>juge</strong> et <strong>affine</strong>. Plus vous nourrissez votre culture visuelle (regardez des génériques, des pubs, des interfaces primées), plus vos prompts deviennent précis, et plus vos résultats se démarquent.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Élément</th><th>Coût</th><th>À savoir</th></tr>
+    <tr><td><strong>Claude Code</strong></td><td>Inclus dans les abonnements payants (Pro, Max, Team, Enterprise) ou payé à l'usage via une clé API</td><td>Pas disponible avec le plan gratuit. Les tarifs à jour sont sur claude.com/pricing.</td></tr>
+    <tr><td><strong>Limites d'utilisation</strong></td><td>Comprises dans l'abonnement</td><td>Chaque abonnement a un quota d'utilisation qui se renouvelle régulièrement. Les longues sessions et les gros projets (vidéo) le consomment plus vite. Les abonnements Max offrent davantage de marge.</td></tr>
+    <tr><td><strong>CSS, GSAP, navigateur</strong></td><td>Gratuit</td><td>GSAP est gratuit, y compris pour un usage commercial.</td></tr>
+    <tr><td><strong>Node.js, FFmpeg, Playwright</strong></td><td>Gratuit</td><td>Logiciels libres.</td></tr>
+    <tr><td><strong>Remotion</strong></td><td>Gratuit ou payant</td><td>Gratuit pour les particuliers et les petites structures, licence payante au-delà. Vérifiez sur remotion.dev.</td></tr>
+  </table>
+  </div>
 
-  <h3>Checklist avant de livrer</h3>
-  <ul class="check">
-    <li>L'intention est claire : on comprend le message en un seul visionnage.</li>
-    <li>Il y a une hiérarchie : l'œil sait où regarder à chaque instant.</li>
-    <li>Les easings sont choisis (pas de linear par défaut sur les entrées).</li>
-    <li>Les éléments se chevauchent naturellement (stagger, overlapping).</li>
-    <li>La vitesse a été vérifiée au ralenti.</li>
-    <li>Le format et les marges correspondent à la plateforme.</li>
-    <li>prefers-reduced-motion est respecté sur le web ; la vidéo est sous-titrée.</li>
-    <li>Textes, couleurs et durées sont paramétrables pour les déclinaisons.</li>
-    <li>La version finale est commitée dans Git.</li>
+  <h3>Économiser votre quota</h3>
+  <ul>
+    <li>Commencez une <strong>nouvelle conversation</strong> pour chaque nouveau projet : une très longue conversation coûte plus cher à chaque message.</li>
+    <li>Soyez <strong>précis dès le départ</strong> : une bonne demande vaut mieux que cinq corrections.</li>
+    <li>Utilisez le <strong>fichier CLAUDE.md</strong> pour ne pas répéter vos préférences.</li>
+    <li>Pour les projets complexes, demandez d'abord <strong>un plan</strong> (mode plan, <kbd>Maj</kbd> + <kbd>Tab</kbd>) avant que Claude n'écrive quoi que ce soit.</li>
   </ul>
 
-  <h3>Votre premier défi</h3>
-  <div class="prompt">Lis le CLAUDE.md, puis crée une vidéo verticale de 8 secondes qui présente mon activité en une phrase, avec mon logo animé à la fin. Propose d'abord un storyboard en 4 scènes, attends ma validation, puis code-la.</div>
+  <h3>Ce que Claude ne fait pas (encore) bien</h3>
+  <ul>
+    <li><strong>Le dessin illustré complexe</strong> (personnages, illustrations détaillées) : préparez-les dans un logiciel de dessin ou demandez à un illustrateur, puis faites-les animer par Claude.</li>
+    <li><strong>Le jugement esthétique final</strong> : Claude peut vérifier qu'une animation s'affiche correctement, mais c'est vous qui savez si elle est <em>belle</em> et juste pour votre public.</li>
+    <li><strong>Les droits</strong> : n'utilisez que des polices, musiques et images dont vous avez les droits.</li>
+  </ul>
+</section>
 
-  <p style="margin-top:3rem; color: var(--muted);">À vous de jouer. Lancez <code>claude</code>, décrivez le mouvement que vous avez en tête, et regardez-le prendre vie.</p>
+<!-- ================= 12. GLOSSAIRE ================= -->
+<section class="chapter" id="glossaire">
+  <h2><span class="num">Chapitre 12</span>Glossaire</h2>
+  <p class="lead">Tous les mots techniques du livre, expliqués simplement.</p>
+  <dl class="glossary">
+    <dt>Anticipation</dt><dd>Petit mouvement inverse juste avant l'action principale, pour la rendre crédible.</dd>
+    <dt>CLAUDE.md</dt><dd>Fichier texte que Claude lit au début de chaque conversation. Vous y notez votre style et vos règles.</dd>
+    <dt>Commande</dt><dd>Instruction tapée dans le terminal, validée par la touche Entrée.</dd>
+    <dt>CSS</dt><dd>Langage qui décrit l'apparence d'une page web : couleurs, tailles, positions, et animations simples.</dd>
+    <dt>Dossier de travail</dt><dd>Le dossier de votre ordinateur dans lequel Claude crée et modifie les fichiers.</dd>
+    <dt>Durée</dt><dd>Temps que prend un mouvement, en secondes (s) ou millisecondes (ms). 1 s = 1 000 ms.</dd>
+    <dt>Easing</dt><dd>La façon dont un mouvement accélère et ralentit (linear, ease-out, ease-in…).</dd>
+    <dt>FFmpeg</dt><dd>Logiciel gratuit qui convertit les vidéos d'un format à un autre (MP4, GIF…).</dd>
+    <dt>fps (images par seconde)</dt><dd>Nombre d'images affichées chaque seconde dans une vidéo. 30 fps est le standard des réseaux sociaux.</dd>
+    <dt>Git</dt><dd>Outil qui garde l'historique de toutes les versions de vos fichiers. Claude peut l'utiliser pour vous.</dd>
+    <dt>GSAP</dt><dd>Librairie très populaire pour créer des animations web complexes, avec une ligne du temps.</dd>
+    <dt>HTML</dt><dd>Langage qui décrit le contenu d'une page web (titres, textes, images). S'ouvre dans un navigateur.</dd>
+    <dt>Keyframes (images clés)</dt><dd>Les états importants d'une animation (le début, la fin, parfois des étapes). L'ordinateur calcule les images entre les deux.</dd>
+    <dt>Librairie</dt><dd>Ensemble d'outils déjà écrits par d'autres, que l'on réutilise dans son projet.</dd>
+    <dt>localhost</dt><dd>Adresse qui désigne votre propre ordinateur. Un aperçu comme <code>http://localhost:3000</code> n'est visible que par vous.</dd>
+    <dt>Lottie</dt><dd>Format d'animation vectorielle léger, utilisé dans les applications mobiles et les sites.</dd>
+    <dt>Mode plan</dt><dd>Mode de Claude Code où il propose un plan sans rien modifier, en attendant votre accord.</dd>
+    <dt>MP4</dt><dd>Le format de vidéo le plus courant, accepté partout.</dd>
+    <dt>Node.js</dt><dd>Logiciel gratuit qui permet de faire tourner des outils comme Remotion sur votre ordinateur.</dd>
+    <dt>Overlapping (chevauchement)</dt><dd>Démarrer une étape avant la fin de la précédente, pour une animation fluide.</dd>
+    <dt>Overshoot (dépassement)</dt><dd>L'objet va un peu au-delà de sa position finale, puis revient.</dd>
+    <dt>Playwright</dt><dd>Outil qui pilote un navigateur automatiquement : captures d'écran, enregistrement vidéo d'une page.</dd>
+    <dt>prefers-reduced-motion</dt><dd>Réglage du système qui signale qu'une personne préfère moins d'animations. Un bon site le respecte.</dd>
+    <dt>Prompt</dt><dd>Le texte que vous écrivez à Claude pour lui demander quelque chose.</dd>
+    <dt>Remotion</dt><dd>Outil qui fabrique de vraies vidéos MP4 à partir de code.</dd>
+    <dt>Rendu (render)</dt><dd>L'étape où l'ordinateur calcule toutes les images et produit le fichier vidéo final.</dd>
+    <dt>Rewind</dt><dd>Menu de Claude Code (<kbd>Échap</kbd> <kbd>Échap</kbd>) pour revenir à un moment précédent de la conversation et du code.</dd>
+    <dt>Scroll (défilement)</dt><dd>Le fait de faire descendre une page avec la molette ou le doigt.</dd>
+    <dt>Skill</dt><dd>Fiche d'instructions qui donne à Claude un savoir-faire spécialisé (par exemple les bonnes pratiques Remotion).</dd>
+    <dt>Spring (ressort)</dt><dd>Mouvement qui imite un ressort, avec un rebond naturel.</dd>
+    <dt>Stagger (décalage)</dt><dd>Faire démarrer plusieurs éléments l'un après l'autre, avec un petit écart.</dd>
+    <dt>Studio Remotion</dt><dd>L'interface d'aperçu de Remotion, qui s'ouvre dans le navigateur, avec une ligne du temps.</dd>
+    <dt>SVG</dt><dd>Format d'image vectorielle (logos, icônes) qui reste net à toutes les tailles et peut être animé.</dd>
+    <dt>Terminal</dt><dd>Fenêtre où l'on donne des ordres à l'ordinateur en tapant du texte.</dd>
+    <dt>Timeline (ligne du temps)</dt><dd>Représentation des étapes d'une animation dans le temps, comme dans un logiciel de montage.</dd>
+  </dl>
+</section>
+
+<!-- ================= 13. PROGRAMME ================= -->
+<section class="chapter" id="programme">
+  <h2><span class="num">Chapitre 13</span>Votre programme de 7 jours</h2>
+  <p class="lead">30 à 60 minutes par jour. À la fin de la semaine, vous aurez publié votre première vidéo animée.</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Jour</th><th>Objectif</th><th>Chapitres</th></tr>
+    <tr><td>1</td><td>Installer Claude Code et réussir l'animation « Bonjour »</td><td>0, 1</td></tr>
+    <tr><td>2</td><td>Apprendre les 6 notions et refaire « Bonjour » avec trois ambiances différentes</td><td>2</td></tr>
+    <tr><td>3</td><td>Pratiquer la boucle : ralenti, variantes, sauvegardes. Faire 3 prompts de niveau 1</td><td>3, 8</td></tr>
+    <tr><td>4</td><td>Animer votre nom ou votre logo</td><td>4</td></tr>
+    <tr><td>5</td><td>Créer votre CLAUDE.md et exporter votre logo animé en vidéo</td><td>7, 9</td></tr>
+    <tr><td>6</td><td>Page web animée avec GSAP, ou installation de Node.js et première scène Remotion</td><td>5 ou 6</td></tr>
+    <tr><td>7</td><td>Finir une vidéo verticale de 10 s et la publier</td><td>6, 9</td></tr>
+  </table>
+  </div>
+
+  <h3>Checklist avant de publier</h3>
+  <ul class="check">
+    <li>On comprend le message en un seul visionnage.</li>
+    <li>L'œil sait où regarder à chaque instant (un seul élément principal à la fois).</li>
+    <li>Les éléments arrivent avec un décalage, pas tous d'un bloc.</li>
+    <li>Les entrées utilisent un easing (ease-out ou ressort), pas un mouvement mécanique.</li>
+    <li>J'ai regardé l'animation au ralenti.</li>
+    <li>Le format et les marges correspondent à la plateforme.</li>
+    <li>Il existe une version sans mouvement (site) ou des sous-titres (vidéo).</li>
+    <li>La version finale est sauvegardée.</li>
+  </ul>
+
+  <h3>Le mot de la fin</h3>
+  <p>L'IA ne remplace pas votre regard. Elle supprime simplement la difficulté technique entre votre idée et l'écran. Plus vous regardez d'animations (publicités, génériques, applications que vous aimez), plus vos demandes deviennent précises, et plus vos résultats se démarquent.</p>
+  <div class="prompt">Lis mon fichier CLAUDE.md, puis propose-moi un storyboard en 4 scènes pour une vidéo verticale de 8 secondes qui présente mon activité en une phrase, avec mon logo animé à la fin. Attends ma validation avant de coder.</div>
+  <p style="margin-top:2.5rem; color: var(--muted);">À vous de jouer. Ouvrez Claude Code, décrivez le mouvement que vous avez en tête, et regardez-le prendre vie.</p>
 </section>
 
 </main>
+<script>
+  // Ouvre les encadrés « Pour les curieux » à l'impression
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details').forEach(d => d.open = true));
+</script>
 </body>
 </html>
