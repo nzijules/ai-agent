@@ -85,7 +85,7 @@
   #zero { font-size: 340px; margin-right: -10px; }
   .fl { font-size: 250px; }
   #sub { position: absolute; left: -400px; width: 800px; top: 150px; text-align: center; color: var(--ink); font-weight: 900; font-size: 62px; line-height: 1.12; }
-  #sub b { display: inline-block; }
+  #sub b { display: inline-block; transform-origin: left center; }
 
   #ticker {
     left: 50%; top: 1130px; width: 760px; margin-left: -380px; height: 120px; border-radius: 70px;
@@ -98,6 +98,12 @@
   #ticker .sep { width: 3px; height: 70px; background: rgba(255,255,255,.2); }
 
   /* Scene D */
+  #frame { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  #stage.v { height: 1920px; }
+  #stage.v #frame { top: 285px; }
+  #stage.v #sD::before { content: ""; position: absolute; left: 0; right: 0; top: -285px; bottom: -285px; z-index: -1;
+    background: radial-gradient(120% 90% at 50% 45%, #13508a 0%, var(--navy) 50%, var(--navy-2) 100%); }
+  #stage.v #sD { isolation: isolate; }
   #sD { background: radial-gradient(120% 90% at 50% 45%, #13508a 0%, var(--navy) 50%, var(--navy-2) 100%); clip-path: circle(0% at 50% 52%); }
   #sD-title { top: 170px; color: #fff; font-weight: 600; font-size: 70px; line-height: 1.12; }
   #sD-title .y { color: var(--yellow); font-weight: 900; }
@@ -155,6 +161,7 @@
   <div class="abs" id="rays"></div>
   <div class="layer" id="sparks"></div>
 
+  <div id="frame">
   <!-- Scene A -->
   <div class="layer" id="sA">
     <div class="tag" id="t0"><small>Frais</small>−150 F<i class="strike"></i></div>
@@ -232,6 +239,7 @@
     <div class="fi f2 hash">#DemainCest<br>Maintenant</div>
   </div>
   <div class="abs" id="disclaim">(*) Uniquement dans l’UEMOA</div>
+  </div>
   <div class="abs" id="bottomBar"></div>
   <div class="layer" id="fade"></div>
 </div>
@@ -240,6 +248,9 @@
 <div id="ui"><button id="pp">Lecture ▶</button><input id="scrub" type="range" min="0" max="19.7" step="0.01" value="0"><span id="tc">0.00s</span></div>
 
 <script>
+const VERT = new URLSearchParams(location.search).has('v');
+const H = VERT ? 1920 : 1350;
+if (VERT) document.getElementById('stage').classList.add('v');
 const DUR = 19.7;
 // voice-over sync: [real time, animation time]
 const MAP = [[0,0],[3.4,2.7],[3.7,3.0],[4.15,3.36],[4.85,3.40],[5.3,3.8],[5.75,4.95],[6.0,5.25],[7.75,7.0],[8.8,7.05],
@@ -299,7 +310,7 @@ const fraisL = $$('#frais .fl');
 
 // background pattern
 const pat = $('#pattern'); const dots = [];
-for (let r = 0; r < 9; r++) for (let c = 0; c < 7; c++) {
+for (let r = 0; r < Math.ceil(H / 170) + 2; r++) for (let c = 0; c < 7; c++) {
   const d = document.createElement('div'); d.className = 'pdot';
   d.style.left = (c * 170 - 40 + (r % 2) * 85) + 'px'; d.style.top = (r * 170 - 60) + 'px'; pat.appendChild(d); dots.push(d);
 }
@@ -307,7 +318,7 @@ for (let r = 0; r < 9; r++) for (let c = 0; c < 7; c++) {
 const sp = $('#sparks'); const sparks = [];
 let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 for (let i = 0; i < 26; i++) { const s = document.createElement('div'); s.className = 'spark'; sp.appendChild(s);
-  sparks.push({ el: s, x: rnd() * 1080, y: rnd() * 1350, sp: 20 + rnd() * 50, ph: rnd() * 6.28, sz: .4 + rnd() * .9 }); }
+  sparks.push({ el: s, x: rnd() * 1080, y: rnd() * H, sp: 20 + rnd() * 50, ph: rnd() * 6.28, sz: .4 + rnd() * .9 }); }
 // coins
 const coinsL = $('#coins'); const coins = [];
 for (let i = 0; i < 6; i++) { const c = document.createElement('div'); c.className = 'coin'; c.textContent = 'F'; coinsL.appendChild(c); coins.push(c); }
@@ -341,7 +352,7 @@ function render(T) {
   // bg
   dots.forEach((d, i) => { d.style.transform = `translate(${Math.sin(tr * .4 + i) * 10}px, ${(tr * 18) % 170}px)`; });
   sparks.forEach((s) => {
-    const y = ((s.y - t * s.sp) % 1350 + 1350) % 1350;
+    const y = ((s.y - t * s.sp) % H + H) % H;
     s.el.style.transform = `translate(${s.x + Math.sin(tr + s.ph) * 20}px, ${y}px) scale(${s.sz * (0.6 + 0.4 * Math.sin(tr * 3 + s.ph))})`;
     s.el.style.opacity = 0.25 + 0.35 * Math.sin(tr * 2 + s.ph) ** 2;
   });
@@ -465,7 +476,7 @@ const params = new URLSearchParams(location.search);
 const isRender = params.has('render');
 function fit() {
   if (isRender) { E.stage.dataset.fit = ''; return; }
-  const s = Math.min(innerWidth / 1080, innerHeight / 1350);
+  const s = Math.min(innerWidth / 1080, innerHeight / H);
   E.stage.dataset.fit = `scale(${s})`;
 }
 addEventListener('resize', fit); fit();
