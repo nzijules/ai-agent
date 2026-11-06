@@ -233,6 +233,20 @@
   .card p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 15px; }
   .outro-title { font-size: clamp(38px, 6vw, 72px); line-height: .95; }
   .outro-title em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .cta {
+    margin-top: 26px; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px;
+    padding: 12px 12px 12px 16px; border-radius: 20px;
+    background: var(--panel-strong); border: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  .scene.active .cta { animation: rise .9s cubic-bezier(.2, .8, .2, 1) forwards, glow 2.4s ease-in-out infinite; animation-delay: var(--d), calc(var(--d) + 1s); }
+  @keyframes glow { 50% { box-shadow: var(--shadow), 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent); } }
+  .bell { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+  .bell svg { width: 18px; height: 18px; fill: currentColor; transform-origin: 50% 10%; }
+  .scene.active .bell svg { animation: ring 1.6s ease-in-out infinite; animation-delay: calc(var(--d, 8.1s) + .6s); }
+  .cta .bell svg { --d: 8.1s; }
+  @keyframes ring { 0%, 50%, 100% { transform: none; } 10% { transform: rotate(16deg); } 20% { transform: rotate(-14deg); } 30% { transform: rotate(10deg); } 40% { transform: rotate(-6deg); } }
+  .cta-text { font-size: clamp(16px, 1.7vw, 19px); }
+  .cta-btn { font-weight: 600; font-size: 15px; padding: 11px 16px; border-radius: 14px; background: var(--accent); color: #fff; }
 
   /* ---------- Controls ---------- */
   .hud {
@@ -426,7 +440,7 @@
   </section>
 
   <!-- 5. OUTRO -->
-  <section class="scene center" data-key="outro" data-dur="10000" aria-label="Récapitulatif">
+  <section class="scene center" data-key="outro" data-dur="13600" aria-label="Récapitulatif">
     <div style="width:100%;display:grid;place-items:center">
       <h2 class="outro-title rise">Trois outils.<br><em>Une seule intelligence.</em></h2>
       <div class="cards">
@@ -447,6 +461,11 @@
         </div>
       </div>
       <p class="sub rise" style="--d:1.3s">Et vous, <strong>par lequel allez-vous commencer ?</strong></p>
+      <div class="cta rise" style="--d:8.1s">
+        <span class="bell" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-5.5-6.84V3a1.5 1.5 0 0 0-3 0v1.16A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg></span>
+        <span class="cta-text">Je t'instruirai <strong>chaque jour</strong> sur cette page.</span>
+        <span class="cta-btn">Abonne-toi pour ne rien manquer</span>
+      </div>
     </div>
   </section>
 </main>

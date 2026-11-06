@@ -1,8 +1,8 @@
-// Usage : node render.js <html> <out.mp4> <durs> [fps] [maxSeconds]
+// Usage : node render.js <html> <out.mp4> <durs> [fps] [maxSeconds] [startSeconds]
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 (async () => {
-  const [html, out, durs, fpsArg, maxArg] = process.argv.slice(2);
+  const [html, out, durs, fpsArg, maxArg, startArg] = process.argv.slice(2);
   const fps = +(fpsArg || 30);
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.5, colorScheme: 'dark' });
@@ -15,7 +15,9 @@ const { spawn } = require('child_process');
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
   const t0 = Date.now();
-  for (let i = 0; i < frames; i++) {
+  const first = Math.round(+(startArg || 0) * fps);
+  for (let i = 1; i < first; i++) await p.evaluate(ms => window.__advance(ms), 1000 / fps);
+  for (let i = first; i < frames; i++) {
     if (i > 0) await p.evaluate(ms => window.__advance(ms), 1000 / fps);
     const buf = await p.screenshot({ type: 'jpeg', quality: 92 });
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
