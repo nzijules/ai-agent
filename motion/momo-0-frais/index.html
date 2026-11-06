@@ -256,11 +256,13 @@ const VERT = new URLSearchParams(location.search).has('v');
 const H = VERT ? 1920 : 1350;
 if (VERT) document.getElementById('stage').classList.add('v');
 // default: music only, original 18 s pacing. ?vo = voice-over version (19.7 s, retimed on the voice)
-const WITH_VO = new URLSearchParams(location.search).has('vo');
-const DUR = WITH_VO ? 19.7 : 18;
+// default: voice-over + music (19.2 s, retimed on the voice). ?music = music only, original 18 s pacing
+const WITH_VO = !new URLSearchParams(location.search).has('music');
+const DUR = WITH_VO ? 19.2 : 18;
 // voice-over sync: [real time, animation time]
-const MAP = [[0,0],[3.4,2.7],[3.7,3.0],[4.15,3.36],[4.85,3.40],[5.3,3.8],[5.75,4.95],[6.0,5.25],[7.75,7.0],[8.8,7.05],
-  [10.4,9.2],[13.25,12.25],[15.1,13.15],[15.75,14.0],[16.0,14.3],[19.35,17.65],[19.7,18.0]];
+const MAP = [[0,0],[2.05,2.7],[2.35,3.0],[2.75,3.36],[3.0,3.40],[3.4,3.8],[3.75,4.95],[4.0,5.25],[4.7,6.2],
+  [6.75,6.55],[7.25,7.0],[7.8,7.5],[9.0,9.2],[9.6,10.0],[11.75,12.25],[12.6,12.7],[13.55,13.15],[14.35,14.0],
+  [14.6,14.3],[15.8,15.5],[16.5,15.62],[16.9,15.74],[17.4,16.14],[18.8,17.65],[19.2,18.0]];
 const remap = (T) => { if (!WITH_VO) return Math.min(T, 18); for (let i = 1; i < MAP.length; i++) if (T <= MAP[i][0]) {
   const [a, x] = MAP[i - 1], [b, y] = MAP[i]; return x + (y - x) * (T - a) / (b - a); } return 18; };
 const $ = (s) => document.querySelector(s);
@@ -495,7 +497,7 @@ if (isRender) { document.body.classList.add('render'); render(0); }
 else {
   // audio is the master clock so the picture stays in sync with the voice-over
   const vo = $('#vo'), scrub = $('#scrub'), tc = $('#tc'), pp = $('#pp');
-  vo.src = WITH_VO ? 'voix-off.mp3' : 'musique.mp3'; scrub.max = DUR;
+  vo.src = WITH_VO ? 'mix-voix-musique.mp3' : 'musique.mp3'; scrub.max = DUR;
   let playing = false, start = 0, cur = 0;
   const setBtn = () => { pp.textContent = playing ? 'Pause' : 'Lecture ▶'; };
   pp.onclick = () => {
