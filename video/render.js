@@ -1,3 +1,4 @@
+// VERTICAL=1 pour le format 9:16 (1080×1920)
 // Usage : node render.js <html> <out.mp4> <durs> [fps] [maxSeconds] [startSeconds]
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
@@ -5,9 +6,10 @@ const { spawn } = require('child_process');
   const [html, out, durs, fpsArg, maxArg, startArg] = process.argv.slice(2);
   const fps = +(fpsArg || 30);
   const b = await chromium.launch();
-  const p = await b.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.5, colorScheme: 'dark' });
+  const V = !!process.env.VERTICAL;
+  const p = await b.newPage({ viewport: V ? { width: 540, height: 960 } : { width: 1280, height: 720 }, deviceScaleFactor: V ? 2 : 1.5, colorScheme: 'dark' });
   p.on('pageerror', e => console.error('pageerror', e.message));
-  await p.goto(`file://${html}?render&durs=${durs}`);
+  await p.goto(`file://${html}?render${V ? '&vertical' : ''}&durs=${durs}`);
   await p.evaluate(() => document.fonts.ready);
   await p.evaluate(() => window.__ready);
   const total = await p.evaluate(() => window.__totalMs);

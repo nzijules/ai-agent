@@ -281,6 +281,35 @@
 
   body.paused *, body.paused *::before, body.paused *::after { animation-play-state: paused !important; }
   body.render .hud { display: none; }
+
+  /* ---------- Vertical 9:16 (TikTok / Reels) : ?render&vertical, viewport 540×960 ---------- */
+  body.vertical .scene { padding: 84px 58px 200px 24px; align-content: center; }
+  body.vertical .note { display: none; }
+  body.vertical .brandmark { top: 28px; left: 24px; font-size: 17px; }
+  body.vertical .lead { display: none; }
+  body.vertical [data-chips] .chip:nth-child(n+4) { display: none; }
+  body.vertical .chip { font-size: 14px; padding: 9px 12px; }
+  body.vertical h2 { font-size: 50px; }
+  body.vertical .chat { padding: 14px; gap: 10px; }
+  body.vertical .msg { font-size: 15px; padding: 12px 14px; }
+  body.vertical .term-body { font-size: 12.5px; padding: 14px; line-height: 1.65; }
+  body.vertical .banner { padding: 7px 10px; margin: 4px 0 10px; }
+  body.vertical .prompt { font-size: 15px; padding: 12px 14px; }
+  body.vertical .poster { inset: 6% 16%; }
+  body.vertical .layers { display: none; }
+  body.vertical .mega { font-size: 120px; }
+  body.vertical .trio { flex-direction: column; align-items: center; gap: 10px; }
+  body.vertical .pill { font-size: 14px; padding: 12px 16px; }
+  body.vertical .sub { font-size: 18px; line-height: 1.45; }
+  body.vertical .outro-title { font-size: 44px; }
+  body.vertical .cards { gap: 10px; margin: 22px 0 14px; }
+  body.vertical .card { padding: 14px 16px; }
+  body.vertical .card .verb { font-size: 32px; }
+  body.vertical .card h3 { margin: 0; font-size: 12px; }
+  body.vertical .card p { display: none; }
+  body.vertical .card { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  body.vertical .cta { flex-direction: column; gap: 10px; padding: 14px; margin-top: 18px; }
+  body.vertical .cta-text { text-align: center; font-size: 16px; }
   body.render .scene { padding-bottom: 88px; }
 
   @media (max-width: 860px) {
@@ -653,6 +682,7 @@
 
   // ---- Render mode (?render[&durs=ms,ms,...]) : frame-by-frame clock for video export ----
   const qs = new URLSearchParams(location.search);
+  if (qs.has('vertical')) document.body.classList.add('vertical');
   if (qs.has('render') && !reduce) {
     const durs = (qs.get('durs') || '').split(',').map(Number);
     scenes.forEach((s, i) => { if (durs[i] > 0) s.dataset.dur = durs[i]; });
