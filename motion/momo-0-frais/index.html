@@ -236,10 +236,16 @@
   <div class="layer" id="fade"></div>
 </div>
 
-<div id="ui"><button id="pp">Pause</button><input id="scrub" type="range" min="0" max="18" step="0.01" value="0"><span id="tc">0.00s</span></div>
+<audio id="vo" src="voix-off.mp3" preload="auto"></audio>
+<div id="ui"><button id="pp">Lecture ▶</button><input id="scrub" type="range" min="0" max="19.7" step="0.01" value="0"><span id="tc">0.00s</span></div>
 
 <script>
-const DUR = 18;
+const DUR = 19.7;
+// voice-over sync: [real time, animation time]
+const MAP = [[0,0],[3.4,2.7],[3.7,3.0],[4.15,3.36],[4.85,3.40],[5.3,3.8],[5.75,4.95],[6.0,5.25],[7.75,7.0],[8.8,7.05],
+  [10.4,9.2],[13.25,12.25],[15.1,13.15],[15.75,14.0],[16.0,14.3],[19.35,17.65],[19.7,18.0]];
+const remap = (T) => { for (let i = 1; i < MAP.length; i++) if (T <= MAP[i][0]) {
+  const [a, x] = MAP[i - 1], [b, y] = MAP[i]; return x + (y - x) * (T - a) / (b - a); } return 18; };
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
@@ -324,18 +330,20 @@ const fmt = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '
 const show = (el, on) => { el.style.visibility = on ? 'visible' : 'hidden'; };
 
 // ---------- render ----------
-function render(t) {
+let tr = 0;
+function render(T) {
+  tr = T; const t = remap(T);
   // global camera shake on impacts
   let sh = 0;
   [3.4, 3.78, 6.2, 14.95].forEach((h) => { const d = t - h; if (d > 0 && d < .35) sh += (1 - d / .35) * 14 * Math.sin(d * 90); });
   E.stage.style.transform = `${E.stage.dataset.fit || ''} translate(${sh}px, ${sh * .6}px)`;
 
   // bg
-  dots.forEach((d, i) => { d.style.transform = `translate(${Math.sin(t * .4 + i) * 10}px, ${(t * 18) % 170}px)`; });
+  dots.forEach((d, i) => { d.style.transform = `translate(${Math.sin(tr * .4 + i) * 10}px, ${(tr * 18) % 170}px)`; });
   sparks.forEach((s) => {
     const y = ((s.y - t * s.sp) % 1350 + 1350) % 1350;
-    s.el.style.transform = `translate(${s.x + Math.sin(t + s.ph) * 20}px, ${y}px) scale(${s.sz * (0.6 + 0.4 * Math.sin(t * 3 + s.ph))})`;
-    s.el.style.opacity = 0.25 + 0.35 * Math.sin(t * 2 + s.ph) ** 2;
+    s.el.style.transform = `translate(${s.x + Math.sin(tr + s.ph) * 20}px, ${y}px) scale(${s.sz * (0.6 + 0.4 * Math.sin(tr * 3 + s.ph))})`;
+    s.el.style.opacity = 0.25 + 0.35 * Math.sin(tr * 2 + s.ph) ** 2;
   });
 
   // ---- Scene A (0 – 3.1)
@@ -349,7 +357,7 @@ function render(t) {
       const pin = pr(t, .55 + i * .12, 1.0 + i * .12, oB);
       const st = pr(t, 1.75 + i * .07, 2.0 + i * .07, oC);
       const fall = pr(t, 2.2 + i * .06, 2.9 + i * .06, iC);
-      g.style.transform = `translate(${x}px, ${y + fall * 700}px) rotate(${r + Math.sin(t * 2.2 + i) * 3 + fall * (i % 2 ? 60 : -60)}deg) scale(${pin})`;
+      g.style.transform = `translate(${x}px, ${y + fall * 700}px) rotate(${r + Math.sin(tr * 2.2 + i) * 3 + fall * (i % 2 ? 60 : -60)}deg) scale(${pin})`;
       g.style.opacity = clamp(pin * 3) * (1 - fall);
       strikes[i].style.width = (st * 92) + '%';
     });
@@ -358,9 +366,9 @@ function render(t) {
   // ---- Scene B (3.0 – 5.25)
   show(E.sB, t > 2.95 && t < 5.3);
   E.rays.style.opacity = kf(t, [[2.95, 0], [3.3, .9, oC], [5.0, .9], [5.4, 0], [14.6, 0], [15.0, .55, oC], [17.6, .55], [18, 0]]);
-  E.rays.style.transform = `rotate(${t * 12}deg)`;
+  E.rays.style.transform = `rotate(${tr * 12}deg)`;
   if (t > 2.95 && t < 5.3) {
-    const a = pr(t, 3.0, 3.42, oB), b = pr(t, 3.38, 3.8, oB), ex = pr(t, 4.95, 5.25, iC);
+    const a = pr(t, 3.0, 3.42, oB), b = pr(t, 3.40, 3.8, oB), ex = pr(t, 4.95, 5.25, iC);
     E.sB1.style.transform = `scale(${lerp(2.4, 1, a) * (1 - ex * .4)}) translateY(${-ex * 60}px)`; E.sB1.style.opacity = clamp(a * 2) * (1 - ex);
     E.sB2.style.transform = `scale(${b * (1 - ex * .4)}) rotate(${(1 - b) * -10}deg) translateY(${ex * 60}px)`; E.sB2.style.opacity = clamp(b * 2) * (1 - ex);
   }
@@ -382,17 +390,17 @@ function render(t) {
       E.sub.style.opacity = pr(t, 15.4, 15.75);
       E.sub.style.transform = `translateY(${(1 - pr(t, 15.4, 15.8, oQ)) * 40}px)`;
     }
-    const breath = 1 + Math.sin(t * 3) * .012;
+    const breath = 1 + Math.sin(tr * 3) * .012;
     E.grp.style.transform = `translate(${cx - 540}px, ${cy - 700}px) scale(${sc * breath})`;
     E.inner.style.opacity = inOp;
     // ripples
     E.rips.forEach((r, i) => { const p = pr(t, t0 + .2 + i * .22, t0 + 1.4 + i * .22, oC); r.style.transform = `scale(${1 + p * .7})`; r.style.opacity = p > 0 && p < 1 ? (1 - p) * .8 : 0; });
     // zero drop
     const dz = pr(t, t0 + .45, t0 + 1.2, oBn);
-    E.zero.style.transform = `translateY(${(1 - dz) * -900}px) rotate(${Math.sin(t * 2.4) * 2}deg)`;
+    E.zero.style.transform = `translateY(${(1 - dz) * -900}px) rotate(${Math.sin(tr * 2.4) * 2}deg)`;
     E.zero.style.opacity = dz > 0 ? 1 : 0;
     fraisL.forEach((l, i) => { const p = pr(t, t0 + .85 + i * .07, t0 + 1.3 + i * .07, oB);
-      l.style.transform = `scale(${p}) translateY(${Math.sin(t * 3 + i * .7) * 6}px)`; l.style.opacity = clamp(p * 3); });
+      l.style.transform = `scale(${p}) translateY(${Math.sin(tr * 3 + i * .7) * 6}px)`; l.style.opacity = clamp(p * 3); });
     // 8000F pulse
     const pul = inC ? pr(t, 7.0, 7.5) : pr(t, 16.0, 16.5);
     E.k8.style.transform = `scale(${1 + Math.sin(pul * Math.PI) * .18})`;
@@ -411,7 +419,7 @@ function render(t) {
     E.sD.style.transform = `translateX(${-out * 1080}px)`;
     wD.forEach((w, i) => { const p = pr(t, 9.95 + i * .06, 10.4 + i * .06, oQ); w.style.transform = `translateY(${(1 - p) * 110}%)`; });
     [E.n1, E.n2].forEach((n, i) => { const p = pr(t, 10.15 + i * .14, 10.6 + i * .14, oB);
-      n.style.transform = `scale(${p}) translateY(${Math.sin(t * 2.5 + i * 2) * 8}px)`; n.style.opacity = clamp(p * 3); });
+      n.style.transform = `scale(${p}) translateY(${Math.sin(tr * 2.5 + i * 2) * 8}px)`; n.style.opacity = clamp(p * 3); });
     coins.forEach((c, i) => {
       const p = pr(t, 10.55 + i * .17, 11.25 + i * .17, ioC);
       const x0 = 230, x1 = 850, y0 = 690, cyp = 420;
@@ -464,15 +472,24 @@ addEventListener('resize', fit); fit();
 window.__seek = (t) => render(t);
 if (isRender) { document.body.classList.add('render'); render(0); }
 else {
-  let playing = true, start = performance.now(), cur = 0;
-  const scrub = $('#scrub'), tc = $('#tc'), pp = $('#pp');
-  pp.onclick = () => { playing = !playing; pp.textContent = playing ? 'Pause' : 'Lecture'; if (playing) start = performance.now() - cur * 1000; };
-  scrub.oninput = () => { cur = +scrub.value; start = performance.now() - cur * 1000; render(cur); tc.textContent = cur.toFixed(2) + 's'; };
+  // audio is the master clock so the picture stays in sync with the voice-over
+  const vo = $('#vo'), scrub = $('#scrub'), tc = $('#tc'), pp = $('#pp');
+  let playing = false, start = 0, cur = 0;
+  const setBtn = () => { pp.textContent = playing ? 'Pause' : 'Lecture ▶'; };
+  pp.onclick = () => {
+    playing = !playing; setBtn();
+    if (playing) { start = performance.now() - cur * 1000; vo.currentTime = cur; vo.play().catch(() => {}); } else vo.pause();
+  };
+  scrub.oninput = () => { cur = +scrub.value; start = performance.now() - cur * 1000; vo.currentTime = cur; render(cur); tc.textContent = cur.toFixed(2) + 's'; };
   const loop = (now) => {
-    if (playing) { cur = ((now - start) / 1000) % DUR; render(cur); scrub.value = cur; tc.textContent = cur.toFixed(2) + 's'; }
+    if (playing) {
+      cur = !vo.paused && !vo.ended ? vo.currentTime : (now - start) / 1000;
+      if (cur >= DUR) { cur = 0; start = now; vo.currentTime = 0; vo.play().catch(() => {}); }
+      render(cur); scrub.value = cur; tc.textContent = cur.toFixed(2) + 's';
+    }
     requestAnimationFrame(loop);
   };
-  document.fonts.ready.then(() => { start = performance.now(); requestAnimationFrame(loop); });
+  document.fonts.ready.then(() => { render(16.5); requestAnimationFrame(loop); });
 }
 </script>
 </body>
