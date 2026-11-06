@@ -26,6 +26,9 @@
     --shadow: 0 30px 60px -30px rgba(60, 40, 20, .35);
     --scene: var(--c-claude);
     --logo-filter: none;
+    --wm-filter: brightness(0.1);
+    --logo-clair: block;
+    --logo-sombre: none;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -40,7 +43,10 @@
       --c-code: #6fd3a0;
       --c-design: #b49bf5;
       --shadow: 0 30px 70px -30px rgba(0, 0, 0, .8);
-      --logo-filter: drop-shadow(0 0 .7px #fff) drop-shadow(0 0 .7px #fff) drop-shadow(0 0 10px rgba(255, 255, 255, .22));
+      --wm-filter: none;
+      --logo-filter: none;
+      --logo-clair: none;
+      --logo-sombre: block;
     }
   }
   :root[data-theme="dark"] {
@@ -55,7 +61,10 @@
     --c-code: #6fd3a0;
     --c-design: #b49bf5;
     --shadow: 0 30px 70px -30px rgba(0, 0, 0, .8);
-    --logo-filter: drop-shadow(0 0 .7px #fff) drop-shadow(0 0 .7px #fff) drop-shadow(0 0 10px rgba(255, 255, 255, .22));
+    --logo-filter: none;
+    --wm-filter: none;
+    --logo-clair: none;
+    --logo-sombre: block;
   }
 
   * { box-sizing: border-box; }
@@ -137,6 +146,21 @@
 
   /* ---------- Intro ---------- */
   .mega { font-size: clamp(76px, 17vw, 220px); line-height: .9; }
+  /* Logo Claude animé (intro) */
+  .claude-logo { --ww: clamp(240px, 42vw, 540px); --gap: clamp(14px, 2.2vw, 30px); --shift: calc((var(--ww) + var(--gap)) / 2); display: flex; align-items: center; justify-content: center; gap: var(--gap); margin: 26px 0 6px; }
+  .cl-spark { display: inline-block; width: clamp(84px, 13vw, 168px); opacity: 0; transform: translateX(var(--shift)) scale(.15) rotate(-200deg); }
+  .cl-spark img, .cl-word img { display: block; width: 100%; height: auto; }
+  .cl-spark img { animation: spin 14s linear infinite; }
+  .cl-word { display: inline-block; width: var(--ww); opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-24px); filter: var(--wm-filter); }
+  .scene.active .cl-spark { animation: sparkIn 1.9s ease-out .2s forwards; }
+  .scene.active .cl-word { animation: wordIn .8s cubic-bezier(.6, 0, .2, 1) 1.9s forwards; }
+  @keyframes sparkIn { 0% { opacity: 0; transform: translateX(var(--shift)) scale(.15) rotate(-200deg); } 40% { opacity: 1; transform: translateX(var(--shift)) scale(1.12) rotate(12deg); } 60% { opacity: 1; transform: translateX(var(--shift)) scale(1) rotate(0deg); } 100% { opacity: 1; transform: none; animation-timing-function: cubic-bezier(.6, 0, .2, 1); } }
+  @keyframes wordIn { 0% { opacity: 1; clip-path: inset(0 100% 0 0); transform: translateX(-24px); } 100% { opacity: 1; clip-path: inset(0 0 0 0); transform: none; } }
+  .spark-img { width: 18px; height: 18px; flex: none; display: inline-block; }
+  .spin-slow { animation: spin 6s linear infinite; }
+  .spin-fast { animation: spin 1.4s linear infinite; }
+  .outro-spark { width: 46px; height: 46px; margin: 0 auto 12px; display: block; }
+  .outro-spark img { width: 100%; height: 100%; animation: spin 10s linear infinite; }
   .mega span { display: inline-block; opacity: 0; transform: translateY(60%) rotate(8deg); }
   .scene.active .mega span { animation: letter .9s cubic-bezier(.2, .9, .2, 1.1) forwards; animation-delay: calc(var(--i) * 70ms + .2s); }
   @keyframes letter { to { opacity: 1; transform: none; } }
@@ -228,7 +252,7 @@
   .layers div { height: 8px; border-radius: 4px; background: var(--line); }
 
   /* ---------- Outro ---------- */
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 36px 0 30px; width: 100%; max-width: 980px; text-align: left; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 24px 0 18px; width: 100%; max-width: 980px; text-align: left; }
   .card { background: var(--panel-strong); border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
   .card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--c); }
   .card .verb { font: italic 400 34px/1 "Fraunces", serif; color: var(--c); }
@@ -237,7 +261,7 @@
   .outro-title { font-size: clamp(38px, 6vw, 72px); line-height: .95; }
   .outro-title em { font-style: italic; font-weight: 400; color: var(--accent); }
   .cta {
-    margin-top: 26px; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px;
+    margin-top: 16px; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px;
     padding: 12px 12px 12px 16px; border-radius: 20px;
     background: var(--panel-strong); border: 1px solid var(--line); box-shadow: var(--shadow);
   }
@@ -273,8 +297,10 @@
   .seg.on .lbl { color: var(--ink); }
   .seg .rail { display: block; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
   .seg .fill { display: block; height: 100%; width: 0; background: var(--scene); }
-  .note { position: fixed; z-index: 4; top: 108px; right: 18px; font: 500 11px "JetBrains Mono", monospace; color: var(--muted); }
-  .logo { position: fixed; z-index: 4; top: 10px; right: 18px; height: 92px; width: auto; filter: var(--logo-filter); }
+  .note { position: fixed; z-index: 4; top: 98px; right: 18px; font: 500 11px "JetBrains Mono", monospace; color: var(--muted); }
+  .logo { position: fixed; z-index: 4; top: 12px; right: 18px; height: 78px; width: auto; }
+  .logo-clair { display: var(--logo-clair); }
+  .logo-sombre { display: var(--logo-sombre); }
   .brandmark { position: fixed; z-index: 4; top: 14px; left: 18px; font: italic 600 18px "Fraunces", serif; }
   .brandmark b { color: var(--scene); font-style: normal; }
 
@@ -289,7 +315,7 @@
   /* ---------- Vertical 9:16 (TikTok / Reels) : ?render&vertical, viewport 540×960 ---------- */
   body.vertical .scene { padding: 84px 58px 200px 24px; align-content: center; }
   body.vertical .note { display: none; }
-  body.vertical .logo { top: 60px; right: 20px; height: 84px; }
+  body.vertical .logo { top: 60px; right: 20px; height: 70px; }
   body.vertical .brandmark { top: 28px; left: 24px; font-size: 17px; }
   body.vertical .lead { display: none; }
   body.vertical [data-chips] .chip:nth-child(n+4) { display: none; }
@@ -303,6 +329,9 @@
   body.vertical .poster { inset: 6% 16%; }
   body.vertical .layers { display: none; }
   body.vertical .mega { font-size: 120px; }
+  body.vertical .cl-spark { width: 78px; }
+  body.vertical .claude-logo { --ww: 300px; --gap: 14px; }
+  body.vertical .outro-spark { width: 48px; height: 48px; margin-bottom: 12px; }
   body.vertical .trio { flex-direction: column; align-items: center; gap: 10px; }
   body.vertical .pill { font-size: 14px; padding: 12px 16px; }
   body.vertical .sub { font-size: 18px; line-height: 1.45; }
@@ -343,7 +372,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .orb, .wipe.go { animation: none !important; }
-    .rise, .mega span, .hide, .blk { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+    .rise, .mega span, .hide, .blk, .cl-spark, .cl-word { clip-path: none !important; opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
   }
 </style>
 </head>
@@ -355,7 +384,8 @@
 </div>
 <div class="wipe" aria-hidden="true"></div>
 <div class="brandmark">Claude <b>·</b> en mouvement</div>
-<img class="logo" src="assets/arosoft-logo.png" alt="AroSoft" />
+<img class="logo logo-clair" src="assets/arosoft-logo.png" alt="AroSoft" />
+<img class="logo logo-sombre" src="assets/arosoft-logo-fond-sombre.png" alt="AroSoft" />
 <div class="note">Explainer non officiel</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -368,15 +398,16 @@
   <section class="scene center" data-key="intro" data-dur="6500" aria-label="Introduction">
     <div>
       <span class="tag rise" style="--d:.1s">Une même intelligence</span>
-      <h1 class="mega" style="margin-top:22px" aria-label="Claude">
-        <span style="--i:0">C</span><span style="--i:1">l</span><span style="--i:2">a</span><span style="--i:3">u</span><span style="--i:4">d</span><span style="--i:5">e</span>
+      <h1 class="claude-logo" aria-label="Claude">
+        <span class="cl-spark"><img src="assets/claude-etincelle.png" alt="" /></span>
+        <span class="cl-word"><img src="assets/claude-logotype.png" alt="" /></span>
       </h1>
       <div class="trio">
-        <span class="pill rise" style="--d:1.0s"><i style="background:var(--c-claude)"></i>Claude</span>
-        <span class="pill rise" style="--d:1.25s"><i style="background:var(--c-code)"></i>Claude Code</span>
-        <span class="pill rise" style="--d:1.5s"><i style="background:var(--c-design)"></i>Claude Design</span>
+        <span class="pill rise" style="--d:2.0s"><i style="background:var(--c-claude)"></i>Claude</span>
+        <span class="pill rise" style="--d:2.2s"><i style="background:var(--c-code)"></i>Claude Code</span>
+        <span class="pill rise" style="--d:2.4s"><i style="background:var(--c-design)"></i>Claude Design</span>
       </div>
-      <p class="sub rise" style="--d:2.1s"><strong>Penser</strong>, <strong>construire</strong>, <strong>imaginer</strong> — trois façons de travailler avec l'IA.</p>
+      <p class="sub rise" style="--d:2.9s"><strong>Penser</strong>, <strong>construire</strong>, <strong>imaginer</strong> — trois façons de travailler avec l'IA.</p>
     </div>
   </section>
 
@@ -398,9 +429,9 @@
       <div class="bar"><i></i><i></i><i></i><span>claude.ai — Nouvelle conversation</span></div>
       <div class="chat">
         <div class="msg user" data-type="Voici le contrat fournisseur (32 pages). Quels sont les points à risque pour nous ?"></div>
-        <div class="msg bot hide" data-thinking><div class="who"><svg class="spark"><use href="#spark"/></svg>Claude</div><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="msg bot hide" data-thinking><div class="who"><img class="spark-img spin-fast" src="assets/claude-etincelle.png" alt="" />Claude</div><div class="dots"><i></i><i></i><i></i></div></div>
         <div class="msg bot hide" data-answer>
-          <div class="who"><svg class="spark"><use href="#spark"/></svg>Claude</div>
+          <div class="who"><img class="spark-img" src="assets/claude-etincelle.png" alt="" />Claude</div>
           J'ai relevé 3 points à surveiller :
           <ol>
             <li class="hide"><strong>Art. 7</strong> — renouvellement automatique de 3 ans.</li>
@@ -458,7 +489,7 @@
       </div>
     </div>
     <div class="design-wrap rise" style="--d:.35s">
-      <div class="prompt"><svg class="spark"><use href="#spark"/></svg><span data-type="Une affiche pour un concert de jazz au coucher du soleil, ton chaud et élégant"></span></div>
+      <div class="prompt"><img class="spark-img spin-slow" src="assets/claude-etincelle.png" alt="" /><span data-type="Une affiche pour un concert de jazz au coucher du soleil, ton chaud et élégant"></span></div>
       <div class="canvas" data-canvas>
         <div class="layers" aria-hidden="true"><div class="blk"></div><div class="blk" style="width:70%"></div><div class="blk" style="width:85%"></div><div class="blk" style="width:60%"></div></div>
         <div class="poster blk" data-b="frame">
@@ -477,6 +508,7 @@
   <!-- 5. OUTRO -->
   <section class="scene center" data-key="outro" data-dur="13600" aria-label="Récapitulatif">
     <div style="width:100%;display:grid;place-items:center">
+      <span class="outro-spark rise"><img src="assets/claude-etincelle.png" alt="" /></span>
       <h2 class="outro-title rise">Trois outils.<br><em>Une seule intelligence.</em></h2>
       <div class="cards">
         <div class="card rise" style="--c:var(--c-claude);--d:.4s">
