@@ -31,3 +31,12 @@ Ensuite, ajouter l'audio avec ffmpeg : chaque clip est placé 0,5 s après le d�
 
 `video/claude-en-mouvement-tiktok.mp4` : 1080×1920, 30 images/s, 62,3 s, même voix et même minutage.
 Rendu : `VERTICAL=1 node video/render.js "$PWD/claude-motion.html" video/silencieux-vertical.mp4 8400,12800,14000,13500,13600 30`, puis même mixage audio que ci-dessus.
+
+## Musique de fond
+
+`video/audio/musique.mp3` : instrumental chill électronique original de 63 s, généré avec ElevenLabs Music (eleven_music_v2_5).
+Le mixage (`video/mix.sh`) baisse automatiquement la musique quand la voix parle (environ 14 dB sous la voix), la remonte entre les phrases, puis la fait apparaître et disparaître en fondu. Sonie finale : environ −14 LUFS.
+
+```bash
+cd video && ./mix.sh <vidéo_source.mp4> <sortie.mp4>
+```
