@@ -14,3 +14,14 @@ Ton : chaleureux, posé, complice. Rythme : environ 2,5 mots par seconde, avec d
 ## Version courte (format Reels / TikTok, environ 20 s)
 
 > Claude, c'est trois outils. Claude pense avec vous : il lit, rédige, analyse. Claude Code code pour vous : il modifie, teste et livre. Claude Design imagine avec vous : du prompt à l'affiche en quelques secondes. Et vous, par lequel allez-vous commencer ?
+
+## Vidéo MP4
+
+`video/claude-en-mouvement.mp4` : 1920×1080, 30 images/s, 58,7 s, voix « Sébastien » (ElevenLabs, eleven_v4).
+Les clips bruts sont dans `video/audio/`. Pour refaire le rendu :
+
+```bash
+node video/render.js "$PWD/claude-motion.html" video/silencieux.mp4 8400,12800,14000,13500,10000 30
+```
+
+Ensuite, ajouter l'audio avec ffmpeg : chaque clip est placé 0,5 s après le début de sa scène (0,5 / 8,9 / 21,7 / 35,7 / 49,2 s).

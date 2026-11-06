@@ -266,6 +266,8 @@
   @keyframes wipe { 0% { transform: translateX(-101%); } 50% { transform: translateX(0); } 100% { transform: translateX(101%); } }
 
   body.paused *, body.paused *::before, body.paused *::after { animation-play-state: paused !important; }
+  body.render .hud { display: none; }
+  body.render .scene { padding-bottom: 88px; }
 
   @media (max-width: 860px) {
     .split { grid-template-columns: 1fr; gap: 18px; }
@@ -482,18 +484,20 @@
   let waiters = [];
   const wait = ms => reduce ? Promise.resolve() : new Promise(res => waiters.push({ at: clock + ms, res, g: gen }));
 
+  function step(dt) {
+    clock += dt;
+    const due = waiters.filter(w => w.at <= clock);
+    waiters = waiters.filter(w => w.at > clock && w.g === gen);
+    due.forEach(w => w.g === gen && w.res());
+    const dur = +scenes[current].dataset.dur;
+    const p = Math.min((clock - sceneStart) / dur, 1);
+    segs[current].querySelector('.fill').style.width = (p * 100) + '%';
+    if (p >= 1) go((current + 1) % scenes.length, true);
+  }
+
   function tick(t) {
     const dt = Math.min(t - last, 100); last = t;
-    if (playing) {
-      clock += dt;
-      const due = waiters.filter(w => w.at <= clock);
-      waiters = waiters.filter(w => w.at > clock && w.g === gen);
-      due.forEach(w => w.g === gen && w.res());
-      const dur = +scenes[current].dataset.dur;
-      const p = Math.min((clock - sceneStart) / dur, 1);
-      segs[current].querySelector('.fill').style.width = (p * 100) + '%';
-      if (p >= 1) go((current + 1) % scenes.length, true);
-    }
+    if (playing) step(dt);
     requestAnimationFrame(tick);
   }
 
@@ -627,6 +631,25 @@
     if (e.key === 'ArrowLeft') go((current - 1 + scenes.length) % scenes.length);
   });
   document.addEventListener('visibilitychange', () => { last = performance.now(); });
+
+  // ---- Render mode (?render[&durs=ms,ms,...]) : frame-by-frame clock for video export ----
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('render') && !reduce) {
+    const durs = (qs.get('durs') || '').split(',').map(Number);
+    scenes.forEach((s, i) => { if (durs[i] > 0) s.dataset.dur = durs[i]; });
+    document.body.classList.add('render');
+    const born = new WeakMap();
+    const sync = () => document.getAnimations().forEach(a => {
+      if (!born.has(a)) { born.set(a, clock); a.pause(); }
+      a.currentTime = Math.max(0, clock - born.get(a));
+    });
+    const flush = () => new Promise(r => setTimeout(r, 0));
+    window.__totalMs = scenes.reduce((t, s) => t + +s.dataset.dur, 0);
+    window.__advance = async ms => { step(ms); await flush(); await flush(); sync(); };
+    go(0);
+    window.__ready = flush().then(sync);
+    return;
+  }
 
   setPlaying(playing);
   go(0);
