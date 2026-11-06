@@ -98,6 +98,8 @@
   #ticker .sep { width: 3px; height: 70px; background: rgba(255,255,255,.2); }
 
   /* Scene D */
+  #topLogo { display: none; left: 50%; top: 105px; height: 110px; transform: translateX(-50%); opacity: 0; }
+  #stage.v #topLogo { display: block; }
   #frame { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
   #stage.v { height: 1920px; }
   #stage.v #frame { top: 285px; }
@@ -113,7 +115,8 @@
   .node .ic { width: 120px; height: 120px; border-radius: 30px; display: grid; place-items: center; }
   .node .nm { font-weight: 900; font-size: 34px; color: var(--ink); }
   .node .ds { font-weight: 800; font-size: 20px; color: #6b7a8c; letter-spacing: 2px; text-transform: uppercase; margin-top: -14px; }
-  #n1 { left: 230px; } #n1 .ic { background: var(--yellow); }
+  #n1 { left: 230px; } #n1 .ic { background: none; }
+  .node .ic.logo img { display: block; filter: drop-shadow(0 8px 14px rgba(0,0,0,.25)); }
   #n2 { left: 850px; } #n2 .ic { background: #e6eef7; }
   .coin { position: absolute; left: 0; top: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #fff1a6, var(--yellow) 55%, #e0a800); border: 5px solid #fff3b0;
@@ -161,6 +164,7 @@
   <div class="abs" id="rays"></div>
   <div class="layer" id="sparks"></div>
 
+  <img class="abs" id="topLogo" src="img/momo-lockup.png" alt="MoMo from MTN">
   <div id="frame">
   <!-- Scene A -->
   <div class="layer" id="sA">
@@ -188,7 +192,7 @@
       <span class="line" data-split>tes <span class="b">transferts interopérables</span></span>
     </div>
     <div class="node" id="n1">
-      <div class="ic"><svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#0b3560" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+      <div class="ic logo"><img src="img/momo-icon.png" alt="MoMo" width="132" height="132"></div>
       <div class="nm">MoMo</div><div class="ds">Toi</div>
     </div>
     <div class="node" id="n2">
@@ -234,7 +238,7 @@
   </div>
 
   <div class="abs" id="foot">
-    <div class="fi f0"><span class="momo-chip">MoMo</span><span class="vbar"></span><span class="mtn-oval">MTN</span></div>
+    <div class="fi f0"><img src="img/momo-lockup.png" alt="MoMo from MTN" height="96"></div>
     <div class="fi f1 spi"><span>π</span>SPI</div>
     <div class="fi f2 hash">#DemainCest<br>Maintenant</div>
   </div>
@@ -469,6 +473,10 @@ function render(T) {
   E.disc2.style.opacity = pr(t, 15.9, 16.3) * .85;
   E.bar.style.transform = `scaleX(${pr(t, 15.3, 15.9, ioC)})`;
 
+  // vertical: brand lockup in the top band
+  const tl = document.getElementById('topLogo');
+  tl.style.opacity = pr(t, .2, .7) * (1 - pr(t, 14.2, 14.6));
+  tl.style.transform = `translateX(-50%) translateY(${(1 - pr(t, .2, .8, oQ)) * -30}px)`;
   // loop fade
   E.fade.style.opacity = Math.max(1 - pr(t, 0, .25), pr(t, 17.65, 18));
 }
