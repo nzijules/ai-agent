@@ -1,0 +1,37 @@
+{
+  "name": "novembre-bleu-arosoft",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Novembre Bleu 2026 - film de sensibilisation au cancer de la prostate (Côte d'Ivoire) - Remotion",
+  "scripts": {
+    "media": "node scripts/scan-media.mjs",
+    "studio": "npm run media && remotion studio",
+    "typecheck": "tsc --noEmit",
+    "timeline": "tsx scripts/export-timeline.ts",
+    "preview:15s": "npm run media && remotion render NovembreBleu-Preview15s out/preview-S01-S03-15s.mp4",
+    "render:vertical": "npm run media && remotion render NovembreBleu-Vertical out/novembre-bleu-1080x1920-raw.mp4 && bash scripts/master.sh out/novembre-bleu-1080x1920-raw.mp4 out/novembre-bleu-1080x1920.mp4",
+    "render:horizontal": "npm run media && remotion render NovembreBleu-Horizontal out/novembre-bleu-1920x1080-raw.mp4 && bash scripts/master.sh out/novembre-bleu-1920x1080-raw.mp4 out/novembre-bleu-1920x1080.mp4",
+    "render:all": "npm run render:vertical && npm run render:horizontal",
+    "verify": "tsx scripts/verify.ts",
+    "music": "npm run timeline && python3 -I scripts/generate-music.py scripts/timeline.json public/assets/audio",
+    "logo": "python3 -I scripts/process-logo.py public/assets/logos/arosoft-logo-source.jpg public/assets/logos",
+    "stills": "tsx scripts/stills.ts",
+    "render:scene": "remotion render"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.541",
+    "@remotion/fonts": "4.0.541",
+    "@remotion/media": "4.0.541",
+    "@remotion/paths": "4.0.541",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.541"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/montserrat": "5.3.0",
+    "@types/react": "19.1.8",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
+  }
+}
