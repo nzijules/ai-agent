@@ -12,16 +12,16 @@ avec sous-titres français intégrés et fichier **SRT**.
 | Élément | État |
 |---|---|
 | Voix-off | **Fichier fourni** (`public/assets/audio/voix-off-novembre-bleu.mp3`, 74,95 s), utilisé tel quel, phrase par phrase |
-| Images / vidéos des 15 plans | **PLACEHOLDERS** : illustrations vectorielles animées, **étiquetées à l'écran** « PLACEHOLDER Sxx » |
+| Images / vidéos des 15 plans | **PLACEHOLDERS** : illustrations vectorielles animées. Étiquettes à l'écran masquées par défaut (à la demande du client) ; `--props='{"showPlaceholderTags":true}'` pour les réafficher |
 | Musique | **Piste PROVISOIRE** générée par script (piano + nappe) : à remplacer par la musique originale |
 | Transitions sonores | **Provisoires** (souffles et scintillements générés) |
 | Logo AroSoft | Extrait du fichier fourni, fond blanc retiré, slogan retiré, lettres navy passées en blanc pour les fonds sombres (**variante à faire valider par la marque**) |
-| Logo institutionnel | **Emplacement réservé** sur l'end card (aucun logo inventé) |
+| Logo institutionnel | Aucun logo inventé ; cadre d'emplacement masqué par défaut (visible avec `showPlaceholderTags`) |
 | Validation médicale | **Requise avant diffusion** (voir `docs/RAPPORT-VERIFICATION.md`) |
 
 Pour remplacer un placeholder : déposer `s01.jpg` … `s15.mp4` dans `public/assets/images/` ou
 `public/assets/videos/` (voir `docs/MEDIAS.md`). Le plan bascule automatiquement sur le média réel
-(caméra cinématographique et étalonnage appliqués) et l'étiquette PLACEHOLDER disparaît.
+(caméra cinématographique et étalonnage appliqués).
 
 ## Installation
 

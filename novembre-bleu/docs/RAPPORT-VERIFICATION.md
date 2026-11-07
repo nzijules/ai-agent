@@ -139,4 +139,4 @@ Corrections faites pendant la vérification :
 3. Fournir le logo institutionnel et valider la variante « reverse » du logo AroSoft (idéalement fournir un SVG officiel).
 4. Confirmer le texte final de la VO (§3) et faire un contrôle à l'écoute de la synchro.
 5. Obtenir la validation médicale (§5).
-6. Rendre en version finale avec `showPlaceholderTags=false` uniquement quand tous les médias sont en place.
+6. Les étiquettes PLACEHOLDER et le cadre « logo institutionnel » sont masqués par défaut à la demande du client (props `showPlaceholderTags=false`). Les illustrations restent néanmoins provisoires tant que les médias réels ne sont pas intégrés.

@@ -23,7 +23,7 @@ export type FilmProps = {
 
 export const defaultFilmProps: FilmProps = {
   showSubtitles: true,
-  showPlaceholderTags: true,
+  showPlaceholderTags: false,
   musicLevel: 0.55,
   musicDuckedLevel: 0.2,
 };

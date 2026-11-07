@@ -41,7 +41,8 @@ export const EndCard: React.FC<{titleAt: number; taglineAt: number; brandAt: num
           <div style={{width: interpolate(frame, [titleAt + 8, titleAt + 28], [0, 160 * u], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}), height: 4 * u, background: colors.gold, borderRadius: 2}} />
           <Caption text="Le courage, c'est aussi de prendre soin de sa santé." at={taglineAt} size={(vertical ? 44 : 40) * u} align={vertical ? 'center' : 'left'} weight={600} />
           <Caption text="Parlez-en à un professionnel de santé." at={taglineAt + 26} size={(vertical ? 30 : 28) * u} align={vertical ? 'center' : 'left'} color={colors.gold} />
-          {/* Emplacement logo institutionnel */}
+          {/* Emplacement logo institutionnel : cadre visible uniquement avec showPlaceholderTags=true */}
+          {showTags && (
           <div
             style={{
               marginTop: 24 * u,
@@ -64,6 +65,7 @@ export const EndCard: React.FC<{titleAt: number; taglineAt: number; brandAt: num
           >
             {showTags ? 'EMPLACEMENT LOGO INSTITUTIONNEL — fichier officiel à fournir' : ''}
           </div>
+          )}
         </div>
       </AbsoluteFill>
       <div style={{position: 'absolute', display: 'none'}}>{brandAt}</div>
