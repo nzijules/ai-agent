@@ -40,5 +40,5 @@ Fabrication : voir la section 8 de `PREPRODUCTION.md`.
 
 ## Version TikTok Arosoft (9:16, 43 s)
 
-- `out/tiktok/Arosoft_La-fraude-a-l-ere-de-l-IA_TikTok.mp4` : 1080 × 1920, sans légende, hacker encapuchonné en visuel central, accroche « STOP. », 3 réflexes, appel au partage.
+- `out/tiktok/Arosoft_La-fraude-a-l-ere-de-l-IA_TikTok.mp4` : 1080 × 1920, sans légende, photo du hacker fournie en visuel central (`public/hacker.jpg`), logo Arosoft en haut à droite, accroche « STOP. », 3 réflexes, appel au partage.
 - Texte : `tiktok/script_vo.txt` (voix témoin provisoire). Composition Remotion `FraudeIATikTok` (`src/tiktok/`).

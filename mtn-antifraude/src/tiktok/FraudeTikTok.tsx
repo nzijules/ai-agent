@@ -1,6 +1,6 @@
 /**
  * « La fraude à l'ère de l'IA » – version TikTok Arosoft (1080 × 1920, ~43 s).
- * Visuel central : le hacker encapuchonné, présent en continu pendant toute la séquence de menace.
+ * Visuel central : la photo du hacker fournie (public/hacker.jpg), présente en continu pendant toute la séquence de menace.
  * Zones sûres TikTok : rien d'important sous y ≈ 1500 (légende / description), ni dans la colonne droite basse (boutons).
  */
 import React from 'react';
@@ -24,8 +24,28 @@ const Lines: React.FC<{t: number; at: number; lines: string[]; size: number; col
 );
 
 /* ---------- le hacker (image centrale) ---------- */
-const HW = 720, HL = (W - HW) / 2, HT = 600; // largeur, gauche, haut
-const FACE = {x: HL + 0.505 * HW, y: HT + 0.4375 * HW * 1.2}; // centre du visage dans le cadre
+const FACE = {x: 535, y: 1318}; // centre du visage (ombre de la capuche) sur la photo 1080 × 1920
+
+/** Photo du hacker + pluie de code animée (la photo est fixe : on l'anime par la caméra et les surcouches). */
+const CodeRain: React.FC<{t: number; o?: number}> = ({t, o = 0.35}) => (
+  <AbsoluteFill style={{opacity: o, mixBlendMode: 'screen', pointerEvents: 'none'}}>
+    {[...Array(20)].map((_, k) => {
+      const x = 20 + k * 54, speed = 120 + rnd(k) * 220, len = 14;
+      const y = ((t * speed + rnd(k + 9) * 1900) % 2300) - 400;
+      return (
+        <div key={k} style={{position: 'absolute', left: x, top: y, fontFamily: 'monospace', fontSize: 24, lineHeight: '26px', color: '#5fb4ff', whiteSpace: 'pre', textShadow: '0 0 8px #0487F3'}}>
+          {[...Array(len)].map((__, j) => (rnd(k * 31 + j + Math.floor(t * 8)) > 0.5 ? '1' : '0')).join('\n')}
+        </div>
+      );
+    })}
+  </AbsoluteFill>
+);
+const HackerPhoto: React.FC<{t: number; jitter?: number}> = ({t, jitter = 0}) => (
+  <AbsoluteFill style={{transform: `translateX(${jitter}px)`}}>
+    <Img src={staticFile('hacker.jpg')} style={{width: W, height: H}} />
+    <AbsoluteFill style={{background: `radial-gradient(ellipse at ${FACE.x}px ${FACE.y}px, rgba(4,135,243,${0.1 + 0.06 * Math.sin(t * 3)}) 0%, rgba(0,0,0,0) 35%)`}} />
+  </AbsoluteFill>
+);
 const FACES: Partial<PersonProps>[] = [
   {skin: SKINS[2], hair: 'short', glasses: true, outfit: '#15171c', accent: '#f2f2f2', seed: 4}, // visage imité
   {skin: SKINS[4], hair: 'short', beard: true, outfit: '#2C5DAA', accent: '#1d3f78', seed: 5}, // formateur
@@ -35,7 +55,7 @@ const FACES: Partial<PersonProps>[] = [
 const Mask: React.FC<{t: number; who: Partial<PersonProps>; o: number; jitter?: number}> = ({t, who, o, jitter = 0}) => {
   const w = 605; // le visage du personnage (rx 76) recouvre celui du hacker
   return (
-    <div style={{position: 'absolute', left: FACE.x - 302 + jitter, top: FACE.y - 252, width: w, height: w * 1.2, opacity: o, clipPath: 'ellipse(118px 165px at 302px 252px)', filter: `drop-shadow(0 0 24px ${AB.bright})`}}>
+    <div style={{position: 'absolute', left: FACE.x - 302 + jitter, top: FACE.y - 252, width: w, height: w * 1.2, opacity: o, clipPath: 'ellipse(104px 128px at 302px 262px)', filter: `drop-shadow(0 0 24px ${AB.bright})`}}>
       <Person t={t} width={w} {...who} mood="smile" />
       <div style={{position: 'absolute', inset: 0, background: 'repeating-linear-gradient(0deg, rgba(4,135,243,.28) 0 3px, transparent 3px 8px)'}} />
     </div>
@@ -70,14 +90,13 @@ const Menace: React.FC<{t: number}> = ({t}) => {
   const targets: [string, string, number, number][] = [['TON ARGENT', 'argent', 60, 720], ['TON CODE MOBILE MONEY', 'code', 60, 900], ['TES COMPTES', 'comptes', 60, 1080]];
   return (
     <AbsoluteFill style={{background: bgDark}}>
-      <NeuralNet t={t} w={W} h={H} n={34} o={0.35} color={NET} />
       {/* le hacker */}
       <AbsoluteFill style={{transform: `translate(${dr.x}px,${dr.y}px) scale(${push})`, transformOrigin: `${FACE.x}px ${FACE.y}px`, opacity: enter}}>
-        <div style={{position: 'absolute', left: HL + swap * 14 * Math.sin(t * 90), top: HT, filter: `drop-shadow(0 0 40px rgba(4,135,243,.35))`}}>
-          <Hooded t={t} width={HW} rim={AB.bright} phone={mi < 0} />
-        </div>
+        <HackerPhoto t={t} jitter={swap * 14 * Math.sin(t * 90)} />
         {mi >= 0 && <Mask t={t} who={FACES[mi]} o={maskO} jitter={swap * 10 * Math.sin(t * 70)} />}
       </AbsoluteFill>
+      <CodeRain t={t} o={0.28} />
+      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(2,4,12,.55) 0%, rgba(2,4,12,0) 32%)'}} />
       {/* accroche */}
       <AbsoluteFill style={{opacity: 1 - prog(t, v - 0.25, 0.25)}}>
         <div style={{position: 'absolute', left: 0, right: 0, top: 230}}>
@@ -186,17 +205,17 @@ const Imite: React.FC<{t: number}> = ({t}) => {
   const dis = prog(t, sauf + 0.2, 1.1, (x) => x);
   return (
     <AbsoluteFill style={{background: bgDark}}>
-      <NeuralNet t={t} w={W} h={H} n={34} o={0.3} color={NET} />
-      {/* le hacker se désintègre en tranches */}
-      {[...Array(14)].map((_, k) => {
-        const h = 1100 / 14, y0 = HT - 40 + k * h;
-        const off = dis * (rnd(k) - 0.5) * 900 * (0.4 + dis);
+      {/* la photo du hacker se désintègre en tranches */}
+      {[...Array(16)].map((_, k) => {
+        const h = H / 16, y0 = k * h;
+        const off = dis * (rnd(k) - 0.5) * 1000 * (0.4 + dis);
         return (
           <div key={k} style={{position: 'absolute', left: 0, top: y0, width: W, height: h + 1, overflow: 'hidden', opacity: 1 - dis * (0.6 + rnd(k + 3) * 0.4)}}>
-            <div style={{position: 'absolute', left: HL + off, top: HT - y0}}><Hooded t={t} width={HW} rim={AB.bright} phone={false} /></div>
+            <div style={{position: 'absolute', left: off, top: -y0}}><HackerPhoto t={t} /></div>
           </div>
         );
       })}
+      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(2,4,12,.6) 0%, rgba(2,4,12,0) 35%)'}} />
       <div style={{position: 'absolute', left: 0, right: 0, top: 280}}>
         <Lines t={t} at={at('imite') - 0.05} lines={["L'IA IMITE", 'TOUT.']} size={130} mode="slam" gap={0} step={0.2} />
       </div>
@@ -240,11 +259,11 @@ const Outro: React.FC<{t: number}> = ({t}) => {
   );
 };
 
-/* ---------- logo Arosoft (haut gauche, sous les onglets TikTok) ---------- */
+/* ---------- logo Arosoft (haut droite, sous l'icône de recherche TikTok) ---------- */
 const Logo: React.FC<{t: number}> = ({t}) => {
   const light = prog(t, SC.reflexes[0] + 0.2, 0.3) * (1 - prog(t, SC.imite[0], 0.2));
   const o = prog(t, 0.5, 0.4) * (1 - prog(t, SC.outro[0], 0.3));
-  const st: React.CSSProperties = {position: 'absolute', left: 60, top: 140, width: 150};
+  const st: React.CSSProperties = {position: 'absolute', right: 50, top: 150, width: 150};
   return (
     <AbsoluteFill style={{pointerEvents: 'none', opacity: o}}>
       <Img src={staticFile('arosoft-logo-mark-white.png')} style={{...st, opacity: 1 - light}} />
