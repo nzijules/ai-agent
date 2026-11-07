@@ -94,7 +94,7 @@ Si Remotion ne peut pas télécharger son navigateur (réseau restreint), indiqu
 
 ## 6. Origine des assets
 
-- **Logo, duo homme/femme** : extraits de l'affiche officielle (`public/img/affiche-reference.jpg`) avec `scripts/extract_assets.py`. Le logo n'est pas redessiné.
+- **Logo, duo homme/femme** : extraits de l'affiche officielle (`public/img/affiche-reference.jpg`) avec `scripts/extract_assets.py` ; le logo est détouré sans fond (`scripts/logo_transparent.py`, PNG transparent) et n'est pas redessiné. Dans la vidéo, il porte un fin liseré blanc pour rester lisible sur les fonds bordeaux et marine.
 - **Plans photoréalistes** (rue d'Abidjan, promotrice avec un client, équipe en magasin) : générés avec ElevenLabs (Seedream 5 Pro). Les polos sont volontairement unis : une IA ne reproduit pas fidèlement un logo, la marque est donc portée par les éléments graphiques.
 - **Voix-off, musique, effets sonores** : générés avec ElevenLabs (musique vérifiée sans paroles).
 - **Polices** : Anton et Montserrat (SIL Open Font License), via Fontsource.

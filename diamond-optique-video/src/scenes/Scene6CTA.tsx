@@ -76,7 +76,7 @@ export const Scene6CTA: React.FC = () => {
             {/* en-tête */}
             <div style={{background: C.navy, padding: '58px 16px 14px', display: 'flex', alignItems: 'center', gap: 10}}>
               <div style={{width: 46, height: 46, borderRadius: '50%', background: '#fff', overflow: 'hidden', display: 'flex', alignItems: 'center'}}>
-                <Img src={staticFile('img/logo-diamond-optique.png')} style={{width: 46}} />
+                <Img src={staticFile('img/logo-diamond-optique.png')} style={{width: 44, marginLeft: 1}} />
               </div>
               <div>
                 <div style={{color: '#fff', fontWeight: 800, fontSize: 17}}>Diamond Optique</div>
