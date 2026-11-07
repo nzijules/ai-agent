@@ -8,10 +8,10 @@ Storyboard détaillé et minuté : [`STORYBOARD.md`](./STORYBOARD.md).
 
 | Fichier | Contenu |
 |---|---|
-| `out/et-si-cetait-dans-deux-ans_sous-titres.mp4` | Vidéo finale avec sous-titres animés incrustés |
-| `out/et-si-cetait-dans-deux-ans.mp4` | Vidéo finale sans sous-titres incrustés |
-| `out/et-si-cetait-dans-deux-ans.srt` | Sous-titres (import natif TikTok / YouTube / Instagram) |
-| `public/audio/voiceover.wav` | Voix-off seule |
+| `livrables/et-si-cetait-dans-deux-ans_sous-titres.mp4` | Vidéo finale avec sous-titres animés incrustés |
+| `livrables/et-si-cetait-dans-deux-ans.mp4` | Vidéo finale sans sous-titres incrustés |
+| `livrables/et-si-cetait-dans-deux-ans.srt` | Sous-titres (import natif TikTok / YouTube / Instagram) |
+| `livrables/voix-off.mp3`, `public/audio/voiceover.wav` | Voix-off seule |
 | `public/audio/music.wav`, `public/audio/sfx.wav` | Stems musique et effets |
 | `public/audio/mix.wav` | Mix final (−14 LUFS intégré, −1 dBTP) intégré à la vidéo |
 | `public/brand/logo-arosoft.png` | Logo détouré, sans légende, version pour fond sombre |
@@ -60,6 +60,9 @@ python3 scripts/build_audio.py       # musique, SFX, mix
 python3 scripts/build_srt.py
 npx remotion render EtSiCetaitDansDeuxAns-SousTitres out/et-si-cetait-dans-deux-ans_sous-titres.mp4
 npx remotion render EtSiCetaitDansDeuxAns out/et-si-cetait-dans-deux-ans.mp4
+# conversion finale (yuv420p plage TV, compatible toutes plateformes) :
+ffmpeg -i out/X.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" -c:v libx264 -preset slow -crf 17 \
+  -c:a copy -movflags +faststart livrables/X.mp4
 ```
 
 Pour utiliser un Chromium déjà installé plutôt que celui que télécharge Remotion : `export REMOTION_BROWSER=/chemin/vers/chrome-headless-shell`.
