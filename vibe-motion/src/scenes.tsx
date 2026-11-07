@@ -75,8 +75,8 @@ export const Hook: React.FC = () => {
       <PopWords text="CRÉER DES VIDÉOS" size={118} gradient delay={14} />
       <PopWords text="ANIMÉES ?" size={150} delay={26} />
       <div style={{ height: 40 }} />
-      <Neg text="sans savoir monter" d={80} />
-      <Neg text="sans savoir coder" d={104} />
+      <Neg text="sans savoir monter" d={78} />
+      <Neg text="sans savoir coder" d={100} />
     </Center>
   );
 };
@@ -86,7 +86,7 @@ export const Title: React.FC = () => {
   const frame = useCurrentFrame();
   const words = ["VIBE", "MOTION", "DESIGN"];
   const pulse = beatPulse(frame + 135);
-  const badge = useSpr(155, 10);
+  const badge = useSpr(165, 10);
   const sub = useSpr(80, 12);
   return (
     <Center gap={0}>
@@ -188,8 +188,8 @@ export const Title: React.FC = () => {
 export const Tool: React.FC = () => {
   const frame = useCurrentFrame();
   const logo = useSpr(4, 9);
-  const name = useSpr(46, 12);
-  const term = useSpr(110, 14);
+  const name = useSpr(40, 12);
+  const term = useSpr(100, 14);
   return (
     <Center gap={36}>
       <div
@@ -239,7 +239,7 @@ export const Tool: React.FC = () => {
           fontSize: 46,
           color: C.dim,
           textAlign: "center",
-          opacity: interpolate(frame, [82, 95], [0, 1], clamp),
+          opacity: interpolate(frame, [70, 83], [0, 1], clamp),
         }}
       >
         L'assistant IA qui écrit le code
@@ -249,11 +249,11 @@ export const Tool: React.FC = () => {
       <div style={{ width: "100%", opacity: term, transform: `translateY(${(1 - term) * 300}px)` }}>
         <Terminal>
           <div>
-            <span style={{ color: C.green }}>$</span> <Typewriter text="claude" start={120} cps={0.4} cursor={frame < 140} />
+            <span style={{ color: C.green }}>$</span> <Typewriter text="claude" start={108} cps={0.4} cursor={frame < 128} />
           </div>
-          {frame > 142 ? (
+          {frame > 130 ? (
             <div style={{ color: C.orange, marginTop: 10 }}>
-              ✻ <Typewriter text="Bienvenue ! Que veux-tu créer ?" start={144} cps={1.2} />
+              ✻ <Typewriter text="Bienvenue ! Que veux-tu créer ?" start={132} cps={1.2} />
             </div>
           ) : null}
         </Terminal>
@@ -278,9 +278,9 @@ export const Step1: React.FC = () => {
       </div>
       <div style={{ display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "center" }}>
         {[
-          ["Couleurs", C.orange, 116],
-          ["Texte", C.pink, 136],
-          ["Ambiance", C.violet, 154],
+          ["Couleurs", C.orange, 122],
+          ["Texte", C.pink, 144],
+          ["Ambiance", C.violet, 165],
         ].map(([l, c, d]) => (
           <CheckChip key={l as string} label={l as string} color={c as string} delay={d as number} />
         ))}
@@ -379,14 +379,14 @@ export const Step3: React.FC = () => {
   const frame = useCurrentFrame();
   const phone = useSpr(20, 13);
   const asks = [
-    { t: "Plus grand !", at: 92, c: C.orange },
-    { t: "Plus rapide !", at: 120, c: C.cyan },
-    { t: "Plus de couleurs !", at: 155, c: C.pink },
+    { t: "Plus grand !", at: 110, c: C.orange },
+    { t: "Plus rapide !", at: 143, c: C.cyan },
+    { t: "Plus de couleurs !", at: 181, c: C.pink },
   ];
-  const big = interpolate(frame, [98, 110], [1, 1.22], { ...clamp, easing: Easing.out(Easing.back(3)) });
-  const speed = frame > 126 ? 3.5 : 0.8;
-  const spin = frame > 126 ? (frame - 126) * 9 : 0;
-  const hue = interpolate(frame, [160, 174], [0, 1], clamp);
+  const big = interpolate(frame, [116, 128], [1, 1.22], { ...clamp, easing: Easing.out(Easing.back(3)) });
+  const speed = frame > 149 ? 3.5 : 0.8;
+  const spin = frame > 149 ? (frame - 149) * 9 : 0;
+  const hue = interpolate(frame, [187, 200], [0, 1], clamp);
   return (
     <Center gap={40} style={{ justifyContent: "flex-start", paddingTop: 200 }}>
       <StepHeader n="03" title="Ajuste en discutant" color={C.pink} />
@@ -488,9 +488,9 @@ const Bubble: React.FC<{ text: string; at: number; color: string }> = ({ text, a
 /* 7 — Étape 4 : exporter ---------------------------------------------- */
 export const Step4: React.FC = () => {
   const frame = useCurrentFrame();
-  const prog = interpolate(frame, [30, 84], [0, 100], { ...clamp, easing: Easing.inOut(Easing.quad) });
-  const done = frame > 84;
-  const file = useSpr(86, 9);
+  const prog = interpolate(frame, [36, 90], [0, 100], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  const done = frame > 90;
+  const file = useSpr(92, 9);
   const R = 190;
   const circ = 2 * Math.PI * R;
   const nets = [
@@ -557,11 +557,11 @@ export const Step4: React.FC = () => {
             </div>
           )}
         </div>
-        {done ? <Shockwave at={84} color={C.green} count={2} /> : null}
+        {done ? <Shockwave at={90} color={C.green} count={2} /> : null}
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 20, justifyContent: "center", maxWidth: 900 }}>
         {nets.map(([n, c], i) => (
-          <NetPill key={n} label={n} color={c} delay={[90, 120, 158, 190][i]} />
+          <NetPill key={n} label={n} color={c} delay={[120, 141, 160, 180][i]} />
         ))}
       </div>
     </Center>
@@ -595,17 +595,17 @@ const NetPill: React.FC<{ label: string; color: string; delay: number }> = ({ la
 export const Proof: React.FC = () => {
   const frame = useCurrentFrame();
   // montée en tension avant le CTA (riser musical)
-  const tension = interpolate(frame, [200, 249], [0, 1], clamp);
+  const tension = interpolate(frame, [185, 231], [0, 1], clamp);
   const shake = tension * 10;
   const sx = (random(`sx${frame}`) - 0.5) * shake;
   const sy = (random(`sy${frame}`) - 0.5) * shake;
   const stats = [
     { v: 0, suf: "", l: "compétence", c: C.orange, d: 8 },
     { v: 0, suf: "", l: "logiciel compliqué", c: C.cyan, d: 54 },
-    { v: 100, suf: "%", l: "ton idée", c: C.pink, d: 108 },
+    { v: 100, suf: "%", l: "ton idée", c: C.pink, d: 110 },
   ];
-  const last = useSpr(150, 11);
-  const last2 = useSpr(195, 10);
+  const last = useSpr(152, 11);
+  const last2 = useSpr(190, 10);
   return (
     <Center gap={34} style={{ transform: `translate(${sx}px, ${sy}px) scale(${1 + tension * 0.08})` }}>
       {stats.map((s) => (
@@ -642,7 +642,7 @@ export const Proof: React.FC = () => {
           Faite exactement comme ça.
         </div>
       </div>
-      <AbsoluteFill style={{ background: "#fff", opacity: interpolate(frame, [238, 249], [0, 0.9], clamp), pointerEvents: "none" }} />
+      <AbsoluteFill style={{ background: "#fff", opacity: interpolate(frame, [220, 231], [0, 0.9], clamp), pointerEvents: "none" }} />
     </Center>
   );
 };
@@ -676,11 +676,11 @@ const Stat: React.FC<{ v: number; suf: string; l: string; c: string; d: number }
 /* 9 — Appel à l'action ------------------------------------------------- */
 export const CTA: React.FC = () => {
   const frame = useCurrentFrame();
-  const pulse = beatPulse(frame + 1593);
+  const pulse = beatPulse(frame + 1563);
   const book = useSpr(10, 10);
-  const price = useSpr(136, 8, 0.6, 140);
-  const btn = useSpr(94, 10);
-  const last = useSpr(178, 12);
+  const price = useSpr(193, 8, 0.6, 140);
+  const btn = useSpr(100, 10);
+  const last = useSpr(248, 12);
   const intro = useSpr(0, 12);
   const flash = interpolate(frame, [0, 14], [1, 0], clamp);
   return (
@@ -790,7 +790,7 @@ export const CTA: React.FC = () => {
             style={{
               fontFamily: F.display,
               fontWeight: 900,
-              fontSize: 170,
+              fontSize: 134,
               lineHeight: 1,
               color: "transparent",
               backgroundImage: GOLD,
@@ -800,7 +800,7 @@ export const CTA: React.FC = () => {
               letterSpacing: -4,
             }}
           >
-            5000F
+            10.000F
           </div>
         </div>
         {/* bouton */}

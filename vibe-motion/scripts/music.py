@@ -2,10 +2,10 @@
 import numpy as np, wave, sys
 SR = 44100
 BPM = 116
-DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 63.5
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 65.2
 # Riser de R0 à R1 (début du CTA) ; transitions de scènes (s)
-R0, R1 = 49.1, 53.1
-CUTS = [4.5, 11.33, 18.6, 24.73, 31.1, 37.43, 44.8]
+R0, R1 = 48.1, 52.1
+CUTS = [4.5, 11.8, 17.77, 24.2, 30.57, 37.57, 44.4]
 OUT = sys.argv[1] if len(sys.argv) > 1 else "music.wav"
 beat = 60 / BPM
 N = int(SR * DUR)

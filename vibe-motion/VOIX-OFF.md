@@ -13,7 +13,7 @@ Chaque bloc doit tenir dans sa fenêtre (les images sont calées dessus).
 | 6 | 0:28 – 0:34 | Étape trois : tu ajustes en discutant. Plus grand ! Plus rapide ! Plus de couleurs ! |
 | 7 | 0:34 – 0:40 | Étape quatre : tu exportes en MP4, prêt pour TikTok, WhatsApp, Instagram et Facebook. |
 | 8 | 0:40 – 0:46 | Zéro compétence. Zéro logiciel compliqué. Juste ton idée. Cette vidéo ? Faite exactement comme ça. |
-| 9 | 0:46 – 0:57 | J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le maintenant à seulement cinq mille francs… et fais ton premier montage aujourd'hui ! |
+| 9 | 0:46 – 0:57 | J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le maintenant à seulement dix mille francs… et fais ton premier montage aujourd'hui ! |
 
 ## Texte brut (à coller dans le générateur de voix)
 
@@ -25,7 +25,7 @@ Ton outil secret : Claude Code. Un assistant IA qui écrit le code de ta vidéo�
 Étape trois : tu ajustes en discutant. Plus grand ! Plus rapide ! Plus de couleurs !
 Étape quatre : tu exportes en MP4, prêt pour TikTok, WhatsApp, Instagram et Facebook.
 Zéro compétence. Zéro logiciel compliqué. Juste ton idée. Cette vidéo ? Faite exactement comme ça.
-J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le maintenant à seulement cinq mille francs… et fais ton premier montage aujourd'hui !
+J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le maintenant à seulement dix mille francs… et fais ton premier montage aujourd'hui !
 
 ## Intégrer la voix-off
 
@@ -35,4 +35,4 @@ J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le mainten
 
 ## Version finale
 
-La voix-off ElevenLabs (Brian) est intégrée dans `public/voiceover.mp3`. Les scènes et les animations ont été recalées sur les pauses de la voix (début des blocs : 0 / 4,8 / 11,6 / 18,9 / 25,1 / 31,4 / 37,8 / 45,1 / 53,4 s).
+Voix-off intégrée : `public/voiceover.mp3` (prix : 10.000F, 62,7 s). Scènes recalées sur les pauses de la voix (début des blocs : 0 / 4,8 / 12,1 / 18,1 / 24,5 / 30,9 / 37,9 / 44,7 / 52,4 s). Vidéo : 65,2 s.

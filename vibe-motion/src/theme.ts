@@ -29,18 +29,18 @@ export const F = {
 // Découpage des scènes (en images, 30 i/s) – calé sur la musique
 export const SCENES = {
   hook: [0, 135],
-  title: [135, 340],
-  tool: [340, 558],
-  step1: [558, 742],
-  step2: [742, 933],
-  step3: [933, 1123],
-  step4: [1123, 1344],
-  proof: [1344, 1593],
-  cta: [1593, 1905],
+  title: [135, 354],
+  tool: [354, 533],
+  step1: [533, 726],
+  step2: [726, 917],
+  step3: [917, 1127],
+  step4: [1127, 1332],
+  proof: [1332, 1563],
+  cta: [1563, 1956],
 } as const;
-export const TOTAL = 1905;
+export const TOTAL = 1956;
 // Fin de la voix-off (en images) : la musique remonte ensuite
-export const VOICE_END = 1824;
+export const VOICE_END = 1873;
 
 // Mets à true après avoir déposé public/voiceover.mp3
 export const HAS_VOICEOVER = true;
