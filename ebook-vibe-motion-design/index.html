@@ -142,45 +142,20 @@
   .loop .sub { fill: var(--muted); }
 
   /* Couverture */
-  .cover {
-    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-    position: relative; overflow: hidden; padding: 48px 0;
-  }
-  .cover .kicker { font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-size: .8rem; }
-  .cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); margin: .5rem 0 1rem; font-weight: 800; }
-  .cover h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .cover .sub { font-size: 1.25rem; color: var(--muted); max-width: 36ch; }
-  .cover .badge { display: inline-block; margin-top: 1.25rem; font-weight: 600; font-size: .9rem; padding: .35em .9em; border-radius: 999px; background: var(--soft-ok); color: var(--ok); }
-  .cover .meta { margin-top: 2.5rem; font-size: .9rem; color: var(--muted); }
-  .orbs { position: relative; height: 140px; margin: 2rem 0 1rem; }
-  .orb {
-    position: absolute; top: 50px; width: 40px; height: 40px; border-radius: 50%;
-    background: var(--accent); animation: bounce 1.6s cubic-bezier(.34,1.56,.64,1) infinite alternate;
-  }
-  .orb:nth-child(2) { left: 60px; background: #ff9a3c; animation-delay: .12s; }
-  .orb:nth-child(3) { left: 120px; background: var(--accent-2); animation-delay: .24s; }
-  .orb:nth-child(4) { left: 180px; background: #2ec4b6; animation-delay: .36s; }
-  @keyframes bounce {
-    from { transform: translateY(40px) scale(1, .9); }
-    to   { transform: translateY(-40px) scale(.95, 1.05); }
-  }
-  @media (prefers-reduced-motion: reduce) { .orb { animation: none; } }
+  .cover { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 0; }
+  .cover img { display: block; width: 100%; max-width: 640px; height: auto; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
 
   /* Impression / PDF */
   @page { size: A4; margin: 18mm 16mm 20mm; }
   @media print {
     body { font-size: 11pt; }
     .book { max-width: none; padding: 0; }
-    .cover { min-height: 255mm; page-break-after: always; }
-    .cover h1 em { background: none; color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    @page couverture { margin: 0; }
+    .cover { page: couverture; width: 210mm; height: 297mm; min-height: 0; padding: 0; margin: 0; page-break-after: always; overflow: hidden; }
+    .cover img { width: 210mm; height: 297mm; max-width: none; object-fit: cover; object-position: center; border-radius: 0; box-shadow: none; }
     section.chapter { page-break-before: always; border-top: none; margin-top: 0; padding-top: 0; }
     pre, .prompt, .tip, .expect, .stuck, table, figure, .chat, details.curious, .path { page-break-inside: avoid; }
     h3 { page-break-after: avoid; }
-    .orb { animation: none; }
-    .orb:nth-child(1) { transform: translateY(30px); }
-    .orb:nth-child(2) { transform: translateY(0); }
-    .orb:nth-child(3) { transform: translateY(-25px); }
-    .orb:nth-child(4) { transform: translateY(-40px); }
     pre { white-space: pre-wrap; word-break: break-word; }
     details.curious summary { list-style: none; }
   }
@@ -191,14 +166,7 @@
 
 <!-- ================= COUVERTURE ================= -->
 <header class="cover">
-  <div class="kicker">Ebook · Guide pratique pour débutants</div>
-  <h1>Vibe <em>Motion Design</em> avec Claude Code</h1>
-  <p class="sub">Créez vos premières animations et vidéos en décrivant simplement ce que vous voulez. Pas besoin de savoir coder.</p>
-  <div class="orbs" aria-hidden="true">
-    <div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div>
-  </div>
-  <div><span class="badge">✓ Première animation en 10 minutes</span></div>
-  <div class="meta">Édition 2026 · 3 niveaux progressifs · Démos animées · 30 prompts prêts à l'emploi · Glossaire</div>
+  <img src="img/couverture.png" alt="Couverture : Réaliser le vibe motion design pas à pas avec Claude Code – Guide pratique – AroSoft" />
 </header>
 
 <!-- ================= COMMENT LIRE ================= -->
