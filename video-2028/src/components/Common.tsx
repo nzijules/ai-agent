@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Img, random, staticFile, useCurrentFrame } from "remotion";
-import { C, F, ip, ease, rand, useT } from "../lib/theme";
+import { C, F, ip, ease, rand, scene, useT } from "../lib/theme";
 
 /* ───────────── Fond : halo, grille en perspective, particules ───────────── */
 export const Backdrop: React.FC<{
@@ -99,7 +99,8 @@ export const Logo: React.FC = () => {
         top: 205,
         right: 64,
         width: 190,
-        opacity: ip(t, [0.4, 1.4], [0, 0.96]),
+        // masqué pendant l'appel à l'action, où le logo apparaît en grand au centre
+        opacity: ip(t, [0.4, 1.4], [0, 0.96]) * ip(t, [scene(11).start - 0.3, scene(11).start + 0.2], [1, 0]),
         translate: `0px ${ip(t, [0.4, 1.4], [-14, 0])}px`,
         filter: "drop-shadow(0 4px 18px rgba(0,0,0,0.55))",
       }}

@@ -337,14 +337,15 @@ prog_major = [
     (45, [64, 69, 72, 76]),  # Am
 ]
 up_start = S[7]["start"]
-up_end = S[10]["start"]
+up_end = S[11]["start"]  # la progression continue, allégée, sous la scène 10
 t0 = up_start
 i = 0
 while t0 < up_end - 0.01:
     root, chord = prog_major[i % 4]
     bdur = min(bar, up_end - t0)
     in_s8 = S[8]["start"] <= t0 < S[9]["start"]
-    in_s9 = t0 >= S[9]["start"]
+    in_s9 = S[9]["start"] <= t0 < S[10]["start"]
+    in_s10 = t0 >= S[10]["start"]  # écran final + voix : pas de batterie, plus intime
     place(music, reverb(stereo(pad([note(c) for c in chord], bdur + 0.8, 2200 if not in_s8 else 3200,
                                    0.085, 0.6, 0.8), 0, 12), IR_HALL, 0.4), t0)
     place(music, stereo(sub(note(root - 12), bdur, 0.24)), t0)
@@ -358,6 +359,8 @@ while t0 < up_end - 0.01:
         bt = t0 + b * BEAT
         if bt >= up_end:
             break
+        if in_s10:
+            continue
         if t0 >= up_start + bar:  # kick à partir de la 2e mesure
             place(music, stereo(kick(0.5 if (in_s8 or in_s9) else 0.38)), bt)
         if in_s8 or in_s9:
@@ -368,9 +371,10 @@ while t0 < up_end - 0.01:
     i += 1
 place(music, riser(2.4, 0.2), S[8]["start"] - 2.4)
 place(music, riser(2.4, 0.22), S[10]["start"] - 2.4)
+place(music, riser(1.8, 0.16), S[11]["start"] - 1.8)
 
-# 6) Écran final : accord final ample (C add9) + cloche
-fin = S[10]["start"]
+# 6) Appel à l'action : accord final ample (C add9) + cloche
+fin = S[11]["start"]
 place(music, reverb(stereo(pad([note(48), note(55), note(62), note(64), note(67)], T - fin, 2600, 0.14, 0.05, 3.0),
                            0, 14), IR_HALL, 0.5), fin)
 place(music, stereo(sub(note(36), T - fin, 0.3)), fin)
@@ -407,6 +411,8 @@ for yt in CUES["years"]:
     place(sfx, stereo(tick(0.25, 2600)), yt)
     place(sfx, type_hit(0.25), yt)
 place(sfx, impact(0.65), CUES["endImpact"])
+place(sfx, impact(0.4), CUES["ctaImpact"])
+place(sfx, type_hit(0.4), CUES["ctaContact"])
 
 # ───────────────────────── mixage ─────────────────────────
 def read_wav(p):

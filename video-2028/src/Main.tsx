@@ -22,6 +22,7 @@ import { S7Renversement } from "./scenes/S7Renversement";
 import { S8Redefinition } from "./scenes/S8Redefinition";
 import { S9Conclusion } from "./scenes/S9Conclusion";
 import { S10Final } from "./scenes/S10Final";
+import { S11Contact } from "./scenes/S11Contact";
 
 export const mainSchema = z.object({
   subtitles: z.boolean(),
@@ -64,8 +65,11 @@ export const Main: React.FC<z.infer<typeof mainSchema>> = ({ subtitles, audio })
         <SceneShell {...s(9)} enter="zoom" exit="bloom" push={0}>
           <S9Conclusion />
         </SceneShell>
-        <SceneShell {...s(10)} enter="bloom" exit="cut" push={0.03}>
+        <SceneShell {...s(10)} enter="bloom" exit="zoom" push={0.03}>
           <S10Final />
+        </SceneShell>
+        <SceneShell {...s(11)} enter="zoom" exit="cut" push={0.025}>
+          <S11Contact />
         </SceneShell>
 
         <LightSlit at={scene(2).start} />
@@ -74,6 +78,7 @@ export const Main: React.FC<z.infer<typeof mainSchema>> = ({ subtitles, audio })
         <LightSlit at={scene(6).start} color={C.orange} />
         <LightSlit at={scene(7).start} color={C.white} />
         <LightSlit at={scene(9).start} vertical />
+        <LightSlit at={scene(11).start} />
 
         <FilmFinish />
         <Logo />

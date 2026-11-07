@@ -1,6 +1,6 @@
 # « ET SI C'ÉTAIT DANS DEUX ANS ? » — vidéo motion design (9:16)
 
-Vidéo verticale de 89 s (1080 × 1920, 30 fps, H.264) sur la transformation du travail par l'IA, produite entièrement en code : **Remotion (React + TypeScript)** pour l'image, une voix-off **ElevenLabs** (voix « Brian », fournie par le client ; Piper TTS en solution locale de repli), **Python/NumPy/SciPy** pour la musique et le sound design, **FFmpeg** pour le traitement audio.
+Vidéo verticale de 96,5 s (1080 × 1920, 30 fps, H.264) sur la transformation du travail par l'IA, produite entièrement en code : **Remotion (React + TypeScript)** pour l'image, une voix-off fournie par le client (`voix-source/voix-off-v3.mp3`, ElevenLabs ; Piper TTS en solution locale de repli), **Python/NumPy/SciPy** pour la musique et le sound design, **FFmpeg** pour le traitement audio.
 
 Storyboard détaillé et minuté : [`STORYBOARD.md`](./STORYBOARD.md).
 
@@ -72,7 +72,7 @@ Le reste de la chaîne (sous-titres, ducking de la musique sous la voix, mix, SR
 
 ## Droits
 
-- **Voix** : ElevenLabs, voix « Brian » (eleven_multilingual_v2), générée par le client sur son compte — vérifier que l'offre ElevenLabs utilisée autorise l'usage commercial (offres payantes). Repli local : Piper `fr_FR-upmc-medium`, corpus UPMC, CC-BY-SA 4.0.
+- **Voix** : fichier fourni par le client (`voix-source/voix-off-v3.mp3`, ElevenLabs) — vérifier que l'offre ElevenLabs utilisée autorise l'usage commercial (offres payantes). Repli local : Piper `fr_FR-upmc-medium`, corpus UPMC, CC-BY-SA 4.0.
 - **Musique et effets sonores** : intégralement synthétisés par `scripts/build_audio.py`, aucun sample tiers.
 - **Polices** : Space Grotesk, Inter, JetBrains Mono — SIL Open Font License.
 - **Remotion** : gratuit pour les particuliers et les entreprises de 3 personnes maximum ; au-delà, une licence entreprise est requise (https://remotion.pro/license).

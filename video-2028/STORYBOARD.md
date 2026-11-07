@@ -1,6 +1,6 @@
 # Storyboard minuté — « ET SI C'ÉTAIT DANS DEUX ANS ? »
 
-Format 1080 × 1920 (9:16) · 30 fps · 89 s · voix-off FR masculine · musique et sound design originaux.
+Format 1080 × 1920 (9:16) · 30 fps · 96,5 s · voix-off FR masculine (fournie par le client) · musique et sound design originaux.
 Les minutages des scènes sont dans `src/data/timeline.json` et ceux des répliques dans `scripts/script.json` (sources uniques pour l'image et le son).
 
 **Zones de sécurité (TikTok / Reels / Shorts)**
@@ -22,6 +22,7 @@ Les minutages des scènes sont dans `src/data/timeline.json` et ceux des répliq
 | 7 | 52,7 – 62,3 s | **Le renversement** | Aube : la lumière monte de l'horizon, rayons. Le professionnel (de dos) **se redresse**, lève le bras et pilote des interfaces : « Pilotage de projet », « Analyse de scénarios », « Décision ✓ ». **MENACE** (orange, barré) se décode en **OPPORTUNITÉ** (cyan). | 53,4 s « Mais l'IA n'est pas seulement une menace. » · 56,6 s « C'est aussi une opportunité… » | Impact lumineux, passage en majeur, pads et pluck |
 | 8 | 62,3 – 73,5 s | **La redéfinition** | Tunnel de lignes lumineuses qui accélère. **APPRENDRE. EXPÉRIMENTER. AUTOMATISER. CRÉER. DÉCIDER.** — chaque mot a son propre mouvement (profondeur, masque, élévation, rebond, ouverture centrale), compteur 01/05 et pile des étapes franchies. | 62,8 / 65,0 / 67,0 / 69,0 s les 4 injonctions | Batterie complète, impact sur chaque mot |
 | 9 | 73,5 – 83,6 s | **La conclusion** | Retour à l'horloge : 2026 → 2027 → 2028. Recul de caméra : l'horloge s'élève dans le ciel, révélant un professionnel debout face à une métropole au crépuscule (fenêtres éclairées, balise sur la tour). | 74,0 s « Dans deux ans… » · *pause* · 80,2 s « La question est simple : aurez-vous changé avec lui ? » | Tics sur chaque année, montée finale |
-| 10 | 83,6 – 89,0 s | **Écran final** | « N'ATTENDEZ PAS **2028** / POUR DEVENIR / **INDISPENSABLE** / EN **2028.** » en masques successifs, filet lumineux, puis « Votre transformation commence **aujourd'hui.** » Balayage lumineux sur le titre. | — | Impact, accord final de do (add9) et cloche |
+| 10 | 83,6 – 89,6 s | **Écran final** | « N'ATTENDEZ PAS **2028** / POUR DEVENIR / **INDISPENSABLE** / EN **2028.** » en masques successifs, filet lumineux, puis « Votre transformation commence **aujourd'hui.** » Balayage lumineux sur le titre. | 84,0 s « Redéfinissez-vous dès maintenant. » · 86,1 s « L'IA est l'une des disciplines les plus faciles à apprendre. » | Impact, progression majeure allégée (sans batterie) |
+| 11 | 89,6 – 96,5 s | **Appel à l'action** | « BESOIN D'UNE / **FORMATION** / D'INITIATION ? » en masques. Sur « Contactez », le logo AROSOFT apparaît en grand au centre (net après un flou, halo bleu, anneau qui se trace, onde cyan) ; le petit logo du coin s'efface pour éviter le doublon. | 90,0 s « Besoin d'une formation d'initiation ? » · 92,5 s « Contactez AROSOFT. » | Montée courte, impact, accord final de do (add9) et cloche |
 
 Transitions : chaque changement de scène a son propre mouvement (zoom traversant, glissé latéral, iris, glitch, bloom lumineux, élévation), ponctué par une fente lumineuse dont la couleur suit la dramaturgie (cyan, bleu, orange au moment du risque, blanc au renversement).

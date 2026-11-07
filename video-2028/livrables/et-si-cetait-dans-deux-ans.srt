@@ -1,100 +1,116 @@
 1
-00:00:01,500 --> 00:00:05,670
+00:00:01,500 --> 00:00:06,540
 Et si, dans seulement deux ans, votre
-entreprise n'avait plus besoin de vous…
+entreprise n'avait plus besoin de vous… de
+la même manière ?
 
 2
-00:00:06,450 --> 00:00:07,580
-de la même manière ?
-
-3
-00:00:08,300 --> 00:00:12,180
+00:00:08,300 --> 00:00:12,160
 L'intelligence artificielle ne se contente
 plus de répondre à des questions.
 
-4
-00:00:12,600 --> 00:00:13,660
+3
+00:00:12,600 --> 00:00:13,580
 Elle analyse.
 
-5
-00:00:13,700 --> 00:00:14,760
+4
+00:00:13,700 --> 00:00:14,750
 Elle rédige.
 
-6
-00:00:14,800 --> 00:00:15,800
+5
+00:00:14,800 --> 00:00:15,710
 Elle développe.
 
-7
-00:00:16,000 --> 00:00:17,250
+6
+00:00:16,000 --> 00:00:17,170
 Elle automatise.
 
-8
-00:00:18,600 --> 00:00:21,900
+7
+00:00:18,600 --> 00:00:22,090
 Ce qui prenait des heures peut désormais
 prendre quelques minutes.
 
-9
-00:00:26,400 --> 00:00:30,890
+8
+00:00:26,400 --> 00:00:30,450
 Alors, quand une entreprise peut produire
 davantage avec les mêmes ressources…
 
-10
-00:00:31,000 --> 00:00:33,570
+9
+00:00:31,000 --> 00:00:33,280
 elle finit par repenser son organisation.
 
-11
-00:00:35,400 --> 00:00:40,310
+10
+00:00:35,400 --> 00:00:39,800
 La vraie question n'est plus seulement :
 est-ce que l'IA va remplacer mon métier ?
 
-12
-00:00:41,200 --> 00:00:43,270
+11
+00:00:41,200 --> 00:00:43,190
 Mais quelle valeur vais-je encore apporter
 ?
 
-13
-00:00:44,600 --> 00:00:47,770
+12
+00:00:44,600 --> 00:00:47,660
 L'expérience seule ne garantit plus votre
 avenir.
 
-14
-00:00:48,000 --> 00:00:51,890
+13
+00:00:48,000 --> 00:00:51,450
 Et ce que vous maîtrisez aujourd'hui
 pourrait ne plus suffire demain.
 
-15
-00:00:53,400 --> 00:00:55,890
-Mais l'IA n'est pas seulement une menace.
+14
+00:00:53,400 --> 00:00:56,470
+Mais l'intelligence artificielle n'est pas
+seulement une menace.
 
-16
-00:00:56,600 --> 00:01:00,670
+15
+00:00:56,600 --> 00:01:00,600
 C'est aussi une opportunité extraordinaire
 pour ceux qui décident d'évoluer.
 
-17
-00:01:02,800 --> 00:01:04,940
-Apprenez à travailler avec l'IA.
+16
+00:01:02,350 --> 00:01:05,110
+Apprenez à travailler avec l'intelligence
+artificielle.
 
-18
-00:01:05,000 --> 00:01:06,870
+17
+00:01:05,150 --> 00:01:06,840
 Développez votre jugement.
 
-19
-00:01:07,000 --> 00:01:08,780
+18
+00:01:07,000 --> 00:01:08,750
 Renforcez vos compétences.
 
-20
-00:01:09,000 --> 00:01:12,030
+19
+00:01:09,000 --> 00:01:12,190
 Et devenez celui ou celle qui pilote la
 transformation.
 
-21
-00:01:14,000 --> 00:01:18,580
+20
+00:01:14,000 --> 00:01:18,850
 Dans deux ans, le monde du travail aura
 peut-être changé plus vite que vous ne
 l'imaginez.
 
-22
+21
 00:01:20,200 --> 00:01:23,280
 La question est simple : aurez-vous changé
 avec lui ?
+
+22
+00:01:24,000 --> 00:01:26,000
+Redéfinissez-vous dès maintenant.
+
+23
+00:01:26,100 --> 00:01:29,520
+L'IA est l'une des disciplines les plus
+faciles à apprendre.
+
+24
+00:01:30,000 --> 00:01:32,350
+Besoin d'une formation d'initiation ?
+
+25
+00:01:32,500 --> 00:01:34,200
+Contactez AROSOFT.
