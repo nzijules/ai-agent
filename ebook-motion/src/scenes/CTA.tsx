@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame } from "remotion";
 import { clamp, usePop, useSpring } from "../components/anim";
-import { ArrowDown, Check } from "../components/Icons";
+import { ArrowDown } from "../components/Icons";
 import { C, body, display, gradText } from "../theme";
 
 // 52s – 64s : "J'ai préparé un guide pratique et pas à pas pour toi. Télécharge-le maintenant à seulement 10 000 francs,
@@ -43,53 +43,40 @@ const Confetti: React.FC = () => {
   );
 };
 
+const COVER_W = 520;
+const COVER_H = Math.round((COVER_W * 1395) / 913);
+
+/** The real AROSOFT guide (public/guide-cover.png, cut out from the mockup). */
 const GuideCover: React.FC = () => {
   const f = useCurrentFrame();
   const p = useSpring(8, { damping: 12 });
   const float = Math.sin(f / 18) * 14;
-  const tilt = Math.sin(f / 30) * 8;
+  const tilt = Math.sin(f / 30) * 6;
+  const src = staticFile("guide-cover.png");
   return (
     <div
       style={{
         position: "relative",
-        width: 460,
-        height: 640,
-        transform: `perspective(1200px) rotateY(${interpolate(p, [0, 1], [-100, -14]) + tilt}deg) rotateX(4deg) translateY(${float + (1 - p) * 200}px) scale(${0.5 + p * 0.5})`,
+        width: COVER_W,
+        height: COVER_H,
+        transform: `perspective(1200px) rotateY(${interpolate(p, [0, 1], [-70, 0]) + tilt}deg) translateY(${float + (1 - p) * 200}px) scale(${0.5 + p * 0.5})`,
         opacity: interpolate(p, [0, 0.2], [0, 1], clamp),
+        filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.75)) drop-shadow(0 0 50px rgba(255,204,0,0.35))",
       }}
     >
-      {/* pages thickness */}
-      <div style={{ position: "absolute", top: 12, bottom: 12, right: -22, width: 26, borderRadius: "0 8px 8px 0", background: "repeating-linear-gradient(90deg,#e8ecf8 0 3px,#c9d1ea 3px 5px)" }} />
+      <Img src={src} style={{ width: "100%", height: "100%", display: "block" }} />
+      {/* sheen, clipped to the book's shape */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          borderRadius: "10px 22px 22px 10px",
-          background: `linear-gradient(160deg, #2a2a34 0%, ${C.royal} 45%, #0d0d11 100%)`,
-          boxShadow: "-18px 0 0 #15151b inset, 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(255,204,0,0.55)",
-          padding: "44px 40px 40px 52px",
           overflow: "hidden",
+          maskImage: `url(${src})`,
+          WebkitMaskImage: `url(${src})`,
+          maskSize: "100% 100%",
+          WebkitMaskSize: "100% 100%",
         }}
       >
-        <div style={{ position: "absolute", top: -120, right: -120, width: 360, height: 360, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,204,0,0.55), transparent 70%)" }} />
-        <div style={{ display: "inline-block", padding: "8px 18px", borderRadius: 10, background: C.gold, fontFamily: display, fontWeight: 900, fontSize: 22, color: C.bg, letterSpacing: 2 }}>
-          GUIDE PAS À PAS
-        </div>
-        <div style={{ marginTop: 28, fontFamily: display, fontWeight: 900, fontSize: 50, lineHeight: 1.02, color: C.white }}>
-          Vendre des ebooks
-          <span style={{ display: "block", ...gradText(C.cyan, "#FFE27A") }}>sans montrer son visage</span>
-        </div>
-        <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 10 }}>
-          {["Claude Code", "Vibe Motion Design", "Meta Ads & TikTok Ads"].map((t) => (
-            <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: body, fontWeight: 700, fontSize: 25, color: "#e8e8f0" }}>
-              <Check size={26} color={C.cyan} /> {t}
-            </div>
-          ))}
-        </div>
-        <div style={{ position: "absolute", left: 52, bottom: 34, width: 170 }}>
-          <Img src={staticFile("arosoft-logo-white.png")} style={{ width: "100%", display: "block" }} />
-        </div>
-        {/* sheen */}
         <div
           style={{
             position: "absolute",
@@ -146,8 +133,8 @@ export const CTA: React.FC = () => {
         <div
           style={{
             position: "absolute",
-            right: -200,
-            top: 450,
+            right: -190,
+            top: 560,
             width: 300,
             height: 300,
             transform: `scale(${price}) rotate(${interpolate(price, [0, 1], [-90, 10])}deg)`,
