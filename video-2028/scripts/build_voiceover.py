@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Génère la voix-off (Piper TTS, local) + les timings de sous-titres.
+"""Construit la piste voix-off + les timings de sous-titres.
+
+Deux sources possibles (scripts/script.json) :
+  - "recording" : un enregistrement externe (ex. ElevenLabs). Chaque réplique est extraite
+    selon recording.segments puis placée à son "start" sur la timeline ;
+  - sinon "voice" : synthèse locale Piper TTS.
 
 Entrée  : scripts/script.json
 Sorties : public/audio/voiceover.wav   (piste voix seule, 48 kHz, durée totale de la vidéo)
@@ -15,7 +20,6 @@ import wave
 from pathlib import Path
 
 import numpy as np
-from piper import PiperVoice, SynthesisConfig
 
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
@@ -23,17 +27,21 @@ TOTAL_SECONDS = json.loads((ROOT / "src/data/timeline.json").read_text())["total
 
 cfg = json.loads((ROOT / "scripts/script.json").read_text(encoding="utf-8"))
 vcfg = cfg["voice"]
-model_path = ROOT / vcfg["model"]
-if not model_path.exists():
-    sys.exit(f"Modèle TTS absent : {model_path}\nVoir README.md (section Voix-off) pour le télécharger.")
+rec = cfg.get("recording")
 
-voice = PiperVoice.load(str(model_path))
-syn = SynthesisConfig(
-    speaker_id=vcfg.get("speaker"),
-    length_scale=vcfg.get("length_scale", 1.0),
-    noise_scale=vcfg.get("noise_scale", 0.667),
-    noise_w_scale=vcfg.get("noise_w", 0.8),
-)
+if not rec:
+    from piper import PiperVoice, SynthesisConfig
+
+    model_path = ROOT / vcfg["model"]
+    if not model_path.exists():
+        sys.exit(f"Modèle TTS absent : {model_path}\nVoir README.md (section Voix-off) pour le télécharger.")
+    voice = PiperVoice.load(str(model_path))
+    syn = SynthesisConfig(
+        speaker_id=vcfg.get("speaker"),
+        length_scale=vcfg.get("length_scale", 1.0),
+        noise_scale=vcfg.get("noise_scale", 0.667),
+        noise_w_scale=vcfg.get("noise_w", 0.8),
+    )
 
 # Chaîne de traitement « voix de studio » : pitch légèrement plus grave, chaleur,
 # présence, de-essing doux, compression, très légère ambiance.
@@ -51,6 +59,33 @@ FILTER = ",".join([
     "aecho=0.8:0.6:38|71:0.10|0.06",
     "alimiter=limit=0.89",
 ])
+
+
+# Enregistrement externe déjà propre : nettoyage léger uniquement (pas de pitch ni d'écho).
+REC_FILTER = ",".join([
+    "highpass=f=70",
+    "equalizer=f=3000:t=q:w=1.5:g=1.2",
+    "acompressor=threshold=0.12:ratio=2.2:attack=10:release=150:makeup=1.3",
+    "alimiter=limit=0.89",
+])
+rec_audio = None
+if rec:
+    proc = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(ROOT / rec["file"]),
+         "-af", REC_FILTER, "-ac", "1", "-ar", str(SR), "-f", "f32le", "pipe:1"],
+        capture_output=True, check=True,
+    )
+    rec_audio = np.frombuffer(proc.stdout, dtype=np.float32).copy()
+
+
+def extract(line_id: str) -> np.ndarray:
+    """Extrait une réplique de l'enregistrement, avec fondus de 12 ms (pas de clic)."""
+    a, b = rec["segments"][line_id]
+    x = rec_audio[max(0, int((a - 0.03) * SR)): int((b + 0.06) * SR)].copy()
+    f = int(0.012 * SR)
+    x[:f] *= np.linspace(0, 1, f)
+    x[-f:] *= np.linspace(1, 0, f)
+    return x
 
 
 def synth(text: str) -> np.ndarray:
@@ -79,9 +114,12 @@ track = np.zeros(int(TOTAL_SECONDS * SR), dtype=np.float32)
 captions = []
 prev_end = 0.0
 for line in cfg["lines"]:
-    audio = synth(line.get("tts", line["text"]))
-    a, b = trim_bounds(audio)
-    audio = audio[max(0, a - 960): b + 2400]  # garde 20 ms avant / 50 ms après
+    if rec:
+        audio = extract(line["id"])
+    else:
+        audio = synth(line.get("tts", line["text"]))
+        a, b = trim_bounds(audio)
+        audio = audio[max(0, a - 960): b + 2400]  # garde 20 ms avant / 50 ms après
     start = float(line["start"])
     dur = len(audio) / SR
     end = start + dur

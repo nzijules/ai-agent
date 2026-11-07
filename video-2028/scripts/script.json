@@ -1,5 +1,33 @@
 {
-  "_comment": "Texte voix-off. 'tts' = texte envoyé au moteur (orthographe phonétique si besoin), 'text' = texte affiché en sous-titre. 'start' en secondes sur la timeline finale. Après modification : python3 scripts/build_voiceover.py && python3 scripts/build_audio.py",
+  "_comment": "Texte voix-off. Si 'recording' est présent, la voix vient de ce fichier enregistré : chaque réplique est extraite selon recording.segments [début, fin] (secondes dans le fichier) puis placée à son 'start'. Supprimer 'recording' pour revenir à la synthèse Piper ('voice'). 'tts' = texte envoyé au moteur (orthographe phonétique si besoin), 'text' = texte affiché en sous-titre. 'start' en secondes sur la timeline finale. Après modification : python3 scripts/build_voiceover.py && python3 scripts/build_audio.py",
+  "recording": {
+    "file": "voix-source/voix-elevenlabs-brian.mp3",
+    "credit": "ElevenLabs — voix « Brian », eleven_multilingual_v2 (générée par le client)",
+    "segments": {
+      "s1a": [0.0, 3.86],
+      "s1b": [4.43, 5.22],
+      "s2a": [6.03, 9.57],
+      "s2b": [10.11, 10.85],
+      "s2c": [11.34, 12.15],
+      "s2d": [12.57, 13.23],
+      "s2e": [13.66, 14.57],
+      "s3a": [15.14, 18.1],
+      "s4a": [18.69, 22.84],
+      "s4b": [23.48, 25.71],
+      "s5a": [26.45, 31.02],
+      "s5b": [31.78, 33.51],
+      "s6a": [34.11, 36.94],
+      "s6b": [37.36, 40.91],
+      "s7a": [41.63, 43.78],
+      "s7b": [44.09, 47.82],
+      "s8a": [48.29, 50.09],
+      "s8b": [50.49, 52.02],
+      "s8c": [52.47, 53.91],
+      "s8d": [54.34, 57.03],
+      "s9a": [57.64, 61.88],
+      "s9b": [62.46, 65.2]
+    }
+  },
   "voice": {
     "model": "tts-models/fr_FR-upmc-medium.onnx",
     "speaker": 1,
@@ -11,32 +39,24 @@
   "lines": [
     {"id": "s1a", "scene": 1, "start": 1.5, "text": "Et si, dans seulement deux ans, votre entreprise n'avait plus besoin de vous…"},
     {"id": "s1b", "scene": 1, "start": 6.45, "text": "de la même manière ?"},
-
     {"id": "s2a", "scene": 2, "start": 8.3, "text": "L'intelligence artificielle ne se contente plus de répondre à des questions.", "tts": "L'intelligence artificielle ne se contente plus de répondre à des questions."},
     {"id": "s2b", "scene": 2, "start": 12.6, "text": "Elle analyse."},
     {"id": "s2c", "scene": 2, "start": 13.7, "text": "Elle rédige."},
     {"id": "s2d", "scene": 2, "start": 14.8, "text": "Elle développe."},
     {"id": "s2e", "scene": 2, "start": 16.0, "text": "Elle automatise."},
-
     {"id": "s3a", "scene": 3, "start": 18.6, "text": "Ce qui prenait des heures peut désormais prendre quelques minutes."},
-
     {"id": "s4a", "scene": 4, "start": 26.4, "text": "Alors, quand une entreprise peut produire davantage avec les mêmes ressources…"},
     {"id": "s4b", "scene": 4, "start": 31.0, "text": "elle finit par repenser son organisation."},
-
     {"id": "s5a", "scene": 5, "start": 35.4, "text": "La vraie question n'est plus seulement : est-ce que l'IA va remplacer mon métier ?", "tts": "La vraie question n'est plus seulement : est-ce que [[ lˈi ˈa ]] va remplacer mon métier ?"},
     {"id": "s5b", "scene": 5, "start": 41.2, "text": "Mais quelle valeur vais-je encore apporter ?"},
-
     {"id": "s6a", "scene": 6, "start": 44.6, "text": "L'expérience seule ne garantit plus votre avenir."},
     {"id": "s6b", "scene": 6, "start": 48.0, "text": "Et ce que vous maîtrisez aujourd'hui pourrait ne plus suffire demain."},
-
     {"id": "s7a", "scene": 7, "start": 53.4, "text": "Mais l'IA n'est pas seulement une menace.", "tts": "Mais [[ lˈi ˈa ]] n'est pas seulement une menace."},
     {"id": "s7b", "scene": 7, "start": 56.6, "text": "C'est aussi une opportunité extraordinaire pour ceux qui décident d'évoluer."},
-
     {"id": "s8a", "scene": 8, "start": 62.8, "text": "Apprenez à travailler avec l'IA.", "tts": "Apprenez à travailler avec [[ lˈi ˈa ]]"},
     {"id": "s8b", "scene": 8, "start": 65.0, "text": "Développez votre jugement."},
     {"id": "s8c", "scene": 8, "start": 67.0, "text": "Renforcez vos compétences."},
     {"id": "s8d", "scene": 8, "start": 69.0, "text": "Et devenez celui ou celle qui pilote la transformation."},
-
     {"id": "s9a", "scene": 9, "start": 74.0, "text": "Dans deux ans, le monde du travail aura peut-être changé plus vite que vous ne l'imaginez."},
     {"id": "s9b", "scene": 9, "start": 80.2, "text": "La question est simple : aurez-vous changé avec lui ?"}
   ]

@@ -1,6 +1,6 @@
 # « ET SI C'ÉTAIT DANS DEUX ANS ? » — vidéo motion design (9:16)
 
-Vidéo verticale de 89 s (1080 × 1920, 30 fps, H.264) sur la transformation du travail par l'IA, produite entièrement en code : **Remotion (React + TypeScript)** pour l'image, **Piper TTS** (local) pour la voix-off, **Python/NumPy/SciPy** pour la musique et le sound design, **FFmpeg** pour le traitement audio.
+Vidéo verticale de 89 s (1080 × 1920, 30 fps, H.264) sur la transformation du travail par l'IA, produite entièrement en code : **Remotion (React + TypeScript)** pour l'image, une voix-off **ElevenLabs** (voix « Brian », fournie par le client ; Piper TTS en solution locale de repli), **Python/NumPy/SciPy** pour la musique et le sound design, **FFmpeg** pour le traitement audio.
 
 Storyboard détaillé et minuté : [`STORYBOARD.md`](./STORYBOARD.md).
 
@@ -49,13 +49,14 @@ tar xjf vits-piper-fr_FR-upmc-medium.tar.bz2 --strip-components=1 \
 
 ## Modifier et régénérer
 
-1. **Texte ou minutage de la voix-off** → `scripts/script.json` (`text` = sous-titre affiché, `tts` = graphie envoyée au moteur, `start` = seconde de départ). Le script signale tout chevauchement.
-2. **Durée ou découpage des scènes** → `src/data/timeline.json` (scènes + repères des animations/sons).
-3. **Animations** → `src/scenes/*.tsx`. Aperçu interactif : `npm run dev` (Remotion Studio).
-4. Régénérer :
+1. **Nouvelle voix enregistrée** → placer le fichier dans `voix-source/`, mettre son chemin dans `recording.file` de `scripts/script.json` et ajuster `recording.segments` (début/fin de chaque réplique dans le fichier, repérables avec `ffmpeg -i fichier.mp3 -af silencedetect=n=-38dB:d=0.28 -f null -`). Supprimer le bloc `recording` pour revenir à la synthèse Piper.
+2. **Texte ou minutage de la voix-off** → `scripts/script.json` (`text` = sous-titre affiché, `tts` = graphie envoyée au moteur, `start` = seconde de départ). Le script signale tout chevauchement.
+3. **Durée ou découpage des scènes** → `src/data/timeline.json` (scènes + repères des animations/sons).
+4. **Animations** → `src/scenes/*.tsx`. Aperçu interactif : `npm run dev` (Remotion Studio).
+5. Régénérer :
 
 ```bash
-python3 scripts/build_voiceover.py   # si le texte a changé (la synthèse varie légèrement à chaque passage)
+python3 scripts/build_voiceover.py   # si la voix, le texte ou le minutage ont changé
 python3 scripts/build_audio.py       # musique, SFX, mix
 python3 scripts/build_srt.py
 npx remotion render EtSiCetaitDansDeuxAns-SousTitres out/et-si-cetait-dans-deux-ans_sous-titres.mp4
@@ -67,11 +68,11 @@ ffmpeg -i out/X.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" -c:v l
 
 Pour utiliser un Chromium déjà installé plutôt que celui que télécharge Remotion : `export REMOTION_BROWSER=/chemin/vers/chrome-headless-shell`.
 
-**Remplacer la voix par une voix de studio** (ElevenLabs ou comédien) : enregistrer chaque réplique, puis remplacer `public/audio/voiceover.wav` en conservant les `start` de `script.json` — ou adapter `synth()` dans `build_voiceover.py` pour lire des fichiers enregistrés. Le reste de la chaîne (sous-titres, ducking, mix) suit automatiquement.
+Le reste de la chaîne (sous-titres, ducking de la musique sous la voix, mix, SRT) suit automatiquement le changement de voix.
 
 ## Droits
 
-- **Voix** : modèle Piper `fr_FR-upmc-medium` (locuteur « pierre »), entraîné sur le corpus UPMC — CC-BY-SA 4.0. Créditer : *« Voix de synthèse : Piper, corpus UPMC (CC-BY-SA 4.0) »*.
+- **Voix** : ElevenLabs, voix « Brian » (eleven_multilingual_v2), générée par le client sur son compte — vérifier que l'offre ElevenLabs utilisée autorise l'usage commercial (offres payantes). Repli local : Piper `fr_FR-upmc-medium`, corpus UPMC, CC-BY-SA 4.0.
 - **Musique et effets sonores** : intégralement synthétisés par `scripts/build_audio.py`, aucun sample tiers.
 - **Polices** : Space Grotesk, Inter, JetBrains Mono — SIL Open Font License.
 - **Remotion** : gratuit pour les particuliers et les entreprises de 3 personnes maximum ; au-delà, une licence entreprise est requise (https://remotion.pro/license).

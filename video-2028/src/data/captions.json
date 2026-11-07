@@ -4,72 +4,72 @@
   "scene": 1,
   "text": "Et si, dans seulement deux ans, votre entreprise n'avait plus besoin de vous…",
   "startMs": 1500,
-  "endMs": 5886,
+  "endMs": 5420,
   "words": [
    {
     "text": "Et",
     "startMs": 1520,
-    "endMs": 1689
+    "endMs": 1671
    },
    {
     "text": "si,",
-    "startMs": 1689,
-    "endMs": 2002
+    "startMs": 1671,
+    "endMs": 1950
    },
    {
     "text": "dans",
-    "startMs": 2002,
-    "endMs": 2267
+    "startMs": 1950,
+    "endMs": 2187
    },
    {
     "text": "seulement",
-    "startMs": 2267,
-    "endMs": 2774
+    "startMs": 2187,
+    "endMs": 2638
    },
    {
     "text": "deux",
-    "startMs": 2774,
-    "endMs": 3039
+    "startMs": 2638,
+    "endMs": 2875
    },
    {
     "text": "ans,",
-    "startMs": 3039,
-    "endMs": 3401
+    "startMs": 2875,
+    "endMs": 3198
    },
    {
     "text": "votre",
-    "startMs": 3401,
-    "endMs": 3714
+    "startMs": 3198,
+    "endMs": 3477
    },
    {
     "text": "entreprise",
-    "startMs": 3714,
-    "endMs": 4269
+    "startMs": 3477,
+    "endMs": 3972
    },
    {
     "text": "n'avait",
-    "startMs": 4269,
-    "endMs": 4679
+    "startMs": 3972,
+    "endMs": 4338
    },
    {
     "text": "plus",
-    "startMs": 4679,
-    "endMs": 4944
+    "startMs": 4338,
+    "endMs": 4574
    },
    {
     "text": "besoin",
-    "startMs": 4944,
-    "endMs": 5306
+    "startMs": 4574,
+    "endMs": 4897
    },
    {
     "text": "de",
-    "startMs": 5306,
-    "endMs": 5474
+    "startMs": 4897,
+    "endMs": 5047
    },
    {
     "text": "vous…",
-    "startMs": 5474,
-    "endMs": 5836
+    "startMs": 5047,
+    "endMs": 5370
    }
   ]
  },
@@ -78,32 +78,32 @@
   "scene": 1,
   "text": "de la même manière ?",
   "startMs": 6450,
-  "endMs": 7623,
+  "endMs": 7330,
   "words": [
    {
     "text": "de",
     "startMs": 6470,
-    "endMs": 6628
+    "endMs": 6586
    },
    {
     "text": "la",
-    "startMs": 6628,
-    "endMs": 6785
+    "startMs": 6586,
+    "endMs": 6701
    },
    {
     "text": "même",
-    "startMs": 6785,
-    "endMs": 7033
+    "startMs": 6701,
+    "endMs": 6883
    },
    {
     "text": "manière",
-    "startMs": 7033,
-    "endMs": 7415
+    "startMs": 6883,
+    "endMs": 7164
    },
    {
     "text": "?",
-    "startMs": 7415,
-    "endMs": 7573
+    "startMs": 7164,
+    "endMs": 7280
    }
   ]
  },
@@ -112,62 +112,62 @@
   "scene": 2,
   "text": "L'intelligence artificielle ne se contente plus de répondre à des questions.",
   "startMs": 8300,
-  "endMs": 12496,
+  "endMs": 11930,
   "words": [
    {
     "text": "L'intelligence",
     "startMs": 8320,
-    "endMs": 9086
+    "endMs": 8981
    },
    {
     "text": "artificielle",
-    "startMs": 9086,
-    "endMs": 9753
+    "startMs": 8981,
+    "endMs": 9556
    },
    {
     "text": "ne",
-    "startMs": 9753,
-    "endMs": 9926
+    "startMs": 9556,
+    "endMs": 9706
    },
    {
     "text": "se",
-    "startMs": 9926,
-    "endMs": 10099
+    "startMs": 9706,
+    "endMs": 9855
    },
    {
     "text": "contente",
-    "startMs": 10099,
-    "endMs": 10568
+    "startMs": 9855,
+    "endMs": 10260
    },
    {
     "text": "plus",
-    "startMs": 10568,
-    "endMs": 10840
+    "startMs": 10260,
+    "endMs": 10494
    },
    {
     "text": "de",
-    "startMs": 10840,
-    "endMs": 11013
+    "startMs": 10494,
+    "endMs": 10644
    },
    {
     "text": "répondre",
-    "startMs": 11013,
-    "endMs": 11483
+    "startMs": 10644,
+    "endMs": 11049
    },
    {
     "text": "à",
-    "startMs": 11483,
-    "endMs": 11606
+    "startMs": 11049,
+    "endMs": 11155
    },
    {
     "text": "des",
-    "startMs": 11606,
-    "endMs": 11829
+    "startMs": 11155,
+    "endMs": 11347
    },
    {
     "text": "questions.",
-    "startMs": 11829,
-    "endMs": 12446
+    "startMs": 11347,
+    "endMs": 11880
    }
   ]
  },
@@ -176,17 +176,17 @@
   "scene": 2,
   "text": "Elle analyse.",
   "startMs": 12600,
-  "endMs": 13317,
+  "endMs": 13430,
   "words": [
    {
     "text": "Elle",
     "startMs": 12620,
-    "endMs": 12842
+    "endMs": 12881
    },
    {
     "text": "analyse.",
-    "startMs": 12842,
-    "endMs": 13267
+    "startMs": 12881,
+    "endMs": 13380
    }
   ]
  },
@@ -195,17 +195,17 @@
   "scene": 2,
   "text": "Elle rédige.",
   "startMs": 13700,
-  "endMs": 14430,
+  "endMs": 14600,
   "words": [
    {
     "text": "Elle",
     "startMs": 13720,
-    "endMs": 13962
+    "endMs": 14024
    },
    {
     "text": "rédige.",
-    "startMs": 13962,
-    "endMs": 14380
+    "startMs": 14024,
+    "endMs": 14550
    }
   ]
  },
@@ -214,17 +214,17 @@
   "scene": 2,
   "text": "Elle développe.",
   "startMs": 14800,
-  "endMs": 15456,
+  "endMs": 15550,
   "words": [
    {
     "text": "Elle",
     "startMs": 14820,
-    "endMs": 14999
+    "endMs": 15028
    },
    {
     "text": "développe.",
-    "startMs": 14999,
-    "endMs": 15406
+    "startMs": 15028,
+    "endMs": 15500
    }
   ]
  },
@@ -233,17 +233,17 @@
   "scene": 2,
   "text": "Elle automatise.",
   "startMs": 16000,
-  "endMs": 16946,
+  "endMs": 17000,
   "words": [
    {
     "text": "Elle",
     "startMs": 16020,
-    "endMs": 16273
+    "endMs": 16289
    },
    {
     "text": "automatise.",
-    "startMs": 16273,
-    "endMs": 16896
+    "startMs": 16289,
+    "endMs": 16950
    }
   ]
  },
@@ -252,57 +252,57 @@
   "scene": 3,
   "text": "Ce qui prenait des heures peut désormais prendre quelques minutes.",
   "startMs": 18600,
-  "endMs": 21496,
+  "endMs": 21650,
   "words": [
    {
     "text": "Ce",
     "startMs": 18620,
-    "endMs": 18756
+    "endMs": 18763
    },
    {
     "text": "qui",
-    "startMs": 18756,
-    "endMs": 18930
+    "startMs": 18763,
+    "endMs": 18947
    },
    {
     "text": "prenait",
-    "startMs": 18930,
-    "endMs": 19259
+    "startMs": 18947,
+    "endMs": 19294
    },
    {
     "text": "des",
-    "startMs": 19259,
-    "endMs": 19433
+    "startMs": 19294,
+    "endMs": 19477
    },
    {
     "text": "heures",
-    "startMs": 19433,
-    "endMs": 19723
+    "startMs": 19477,
+    "endMs": 19783
    },
    {
     "text": "peut",
-    "startMs": 19723,
-    "endMs": 19936
+    "startMs": 19783,
+    "endMs": 20008
    },
    {
     "text": "désormais",
-    "startMs": 19936,
-    "endMs": 20343
+    "startMs": 20008,
+    "endMs": 20437
    },
    {
     "text": "prendre",
-    "startMs": 20343,
-    "endMs": 20672
+    "startMs": 20437,
+    "endMs": 20784
    },
    {
     "text": "quelques",
-    "startMs": 20672,
-    "endMs": 21040
+    "startMs": 20784,
+    "endMs": 21171
    },
    {
     "text": "minutes.",
-    "startMs": 21040,
-    "endMs": 21446
+    "startMs": 21171,
+    "endMs": 21600
    }
   ]
  },
@@ -311,62 +311,62 @@
   "scene": 4,
   "text": "Alors, quand une entreprise peut produire davantage avec les mêmes ressources…",
   "startMs": 26400,
-  "endMs": 30437,
+  "endMs": 30640,
   "words": [
    {
     "text": "Alors,",
     "startMs": 26420,
-    "endMs": 26851
+    "endMs": 26873
    },
    {
     "text": "quand",
-    "startMs": 26851,
-    "endMs": 27145
+    "startMs": 26873,
+    "endMs": 27183
    },
    {
     "text": "une",
-    "startMs": 27145,
-    "endMs": 27349
+    "startMs": 27183,
+    "endMs": 27397
    },
    {
     "text": "entreprise",
-    "startMs": 27349,
-    "endMs": 27871
+    "startMs": 27397,
+    "endMs": 27945
    },
    {
     "text": "peut",
-    "startMs": 27871,
-    "endMs": 28120
+    "startMs": 27945,
+    "endMs": 28207
    },
    {
     "text": "produire",
-    "startMs": 28120,
-    "endMs": 28551
+    "startMs": 28207,
+    "endMs": 28660
    },
    {
     "text": "davantage",
-    "startMs": 28551,
-    "endMs": 29027
+    "startMs": 28660,
+    "endMs": 29160
    },
    {
     "text": "avec",
-    "startMs": 29027,
-    "endMs": 29276
+    "startMs": 29160,
+    "endMs": 29422
    },
    {
     "text": "les",
-    "startMs": 29276,
-    "endMs": 29480
+    "startMs": 29422,
+    "endMs": 29637
    },
    {
     "text": "mêmes",
-    "startMs": 29480,
-    "endMs": 29775
+    "startMs": 29637,
+    "endMs": 29947
    },
    {
     "text": "ressources…",
-    "startMs": 29775,
-    "endMs": 30387
+    "startMs": 29947,
+    "endMs": 30590
    }
   ]
  },
@@ -375,37 +375,37 @@
   "scene": 4,
   "text": "elle finit par repenser son organisation.",
   "startMs": 31000,
-  "endMs": 33566,
+  "endMs": 33320,
   "words": [
    {
     "text": "elle",
     "startMs": 31020,
-    "endMs": 31318
+    "endMs": 31289
    },
    {
     "text": "finit",
-    "startMs": 31318,
-    "endMs": 31671
+    "startMs": 31289,
+    "endMs": 31607
    },
    {
     "text": "par",
-    "startMs": 31671,
-    "endMs": 31915
+    "startMs": 31607,
+    "endMs": 31827
    },
    {
     "text": "repenser",
-    "startMs": 31915,
-    "endMs": 32431
+    "startMs": 31827,
+    "endMs": 32292
    },
    {
     "text": "son",
-    "startMs": 32431,
-    "endMs": 32675
+    "startMs": 32292,
+    "endMs": 32512
    },
    {
     "text": "organisation.",
-    "startMs": 32675,
-    "endMs": 33516
+    "startMs": 32512,
+    "endMs": 33270
    }
   ]
  },
@@ -414,82 +414,82 @@
   "scene": 5,
   "text": "La vraie question n'est plus seulement : est-ce que l'IA va remplacer mon métier ?",
   "startMs": 35400,
-  "endMs": 39495,
+  "endMs": 40060,
   "words": [
    {
     "text": "La",
     "startMs": 35420,
-    "endMs": 35571
+    "endMs": 35592
    },
    {
     "text": "vraie",
-    "startMs": 35571,
-    "endMs": 35850
+    "startMs": 35592,
+    "endMs": 35911
    },
    {
     "text": "question",
-    "startMs": 35850,
-    "endMs": 36259
+    "startMs": 35911,
+    "endMs": 36377
    },
    {
     "text": "n'est",
-    "startMs": 36259,
-    "endMs": 36539
+    "startMs": 36377,
+    "endMs": 36696
    },
    {
     "text": "plus",
-    "startMs": 36539,
-    "endMs": 36776
+    "startMs": 36696,
+    "endMs": 36966
    },
    {
     "text": "seulement",
-    "startMs": 36776,
-    "endMs": 37228
+    "startMs": 36966,
+    "endMs": 37482
    },
    {
     "text": ":",
-    "startMs": 37228,
-    "endMs": 37422
+    "startMs": 37482,
+    "endMs": 37703
    },
    {
     "text": "est-ce",
-    "startMs": 37422,
-    "endMs": 37744
+    "startMs": 37703,
+    "endMs": 38071
    },
    {
     "text": "que",
-    "startMs": 37744,
-    "endMs": 37938
+    "startMs": 38071,
+    "endMs": 38292
    },
    {
     "text": "l'IA",
-    "startMs": 37938,
-    "endMs": 38175
+    "startMs": 38292,
+    "endMs": 38562
    },
    {
     "text": "va",
-    "startMs": 38175,
-    "endMs": 38326
+    "startMs": 38562,
+    "endMs": 38734
    },
    {
     "text": "remplacer",
-    "startMs": 38326,
-    "endMs": 38777
+    "startMs": 38734,
+    "endMs": 39249
    },
    {
     "text": "mon",
-    "startMs": 38777,
-    "endMs": 38971
+    "startMs": 39249,
+    "endMs": 39470
    },
    {
     "text": "métier",
-    "startMs": 38971,
-    "endMs": 39294
+    "startMs": 39470,
+    "endMs": 39838
    },
    {
     "text": "?",
-    "startMs": 39294,
-    "endMs": 39445
+    "startMs": 39838,
+    "endMs": 40010
    }
   ]
  },
@@ -498,42 +498,42 @@
   "scene": 5,
   "text": "Mais quelle valeur vais-je encore apporter ?",
   "startMs": 41200,
-  "endMs": 43060,
+  "endMs": 43020,
   "words": [
    {
     "text": "Mais",
     "startMs": 41220,
-    "endMs": 41419
+    "endMs": 41414
    },
    {
     "text": "quelle",
-    "startMs": 41419,
-    "endMs": 41690
+    "startMs": 41414,
+    "endMs": 41680
    },
    {
     "text": "valeur",
-    "startMs": 41690,
-    "endMs": 41961
+    "startMs": 41680,
+    "endMs": 41945
    },
    {
     "text": "vais-je",
-    "startMs": 41961,
-    "endMs": 42269
+    "startMs": 41945,
+    "endMs": 42245
    },
    {
     "text": "encore",
-    "startMs": 42269,
-    "endMs": 42540
+    "startMs": 42245,
+    "endMs": 42510
    },
    {
     "text": "apporter",
-    "startMs": 42540,
-    "endMs": 42883
+    "startMs": 42510,
+    "endMs": 42846
    },
    {
     "text": "?",
-    "startMs": 42883,
-    "endMs": 43010
+    "startMs": 42846,
+    "endMs": 42970
    }
   ]
  },
@@ -542,42 +542,42 @@
   "scene": 6,
   "text": "L'expérience seule ne garantit plus votre avenir.",
   "startMs": 44600,
-  "endMs": 47364,
+  "endMs": 47520,
   "words": [
    {
     "text": "L'expérience",
     "startMs": 44620,
-    "endMs": 45287
+    "endMs": 45326
    },
    {
     "text": "seule",
-    "startMs": 45287,
-    "endMs": 45609
+    "startMs": 45326,
+    "endMs": 45666
    },
    {
     "text": "ne",
-    "startMs": 45609,
-    "endMs": 45782
+    "startMs": 45666,
+    "endMs": 45849
    },
    {
     "text": "garantit",
-    "startMs": 45782,
-    "endMs": 46251
+    "startMs": 45849,
+    "endMs": 46346
    },
    {
     "text": "plus",
-    "startMs": 46251,
-    "endMs": 46523
+    "startMs": 46346,
+    "endMs": 46633
    },
    {
     "text": "votre",
-    "startMs": 46523,
-    "endMs": 46844
+    "startMs": 46633,
+    "endMs": 46973
    },
    {
     "text": "avenir.",
-    "startMs": 46844,
-    "endMs": 47314
+    "startMs": 46973,
+    "endMs": 47470
    }
   ]
  },
@@ -586,62 +586,62 @@
   "scene": 6,
   "text": "Et ce que vous maîtrisez aujourd'hui pourrait ne plus suffire demain.",
   "startMs": 48000,
-  "endMs": 51491,
+  "endMs": 51640,
   "words": [
    {
     "text": "Et",
     "startMs": 48020,
-    "endMs": 48177
+    "endMs": 48183
    },
    {
     "text": "ce",
-    "startMs": 48177,
-    "endMs": 48333
+    "startMs": 48183,
+    "endMs": 48347
    },
    {
     "text": "que",
-    "startMs": 48333,
-    "endMs": 48534
+    "startMs": 48347,
+    "endMs": 48557
    },
    {
     "text": "vous",
-    "startMs": 48534,
-    "endMs": 48780
+    "startMs": 48557,
+    "endMs": 48813
    },
    {
     "text": "maîtrisez",
-    "startMs": 48780,
-    "endMs": 49250
+    "startMs": 48813,
+    "endMs": 49303
    },
    {
     "text": "aujourd'hui",
-    "startMs": 49250,
-    "endMs": 49809
+    "startMs": 49303,
+    "endMs": 49887
    },
    {
     "text": "pourrait",
-    "startMs": 49809,
-    "endMs": 50234
+    "startMs": 49887,
+    "endMs": 50330
    },
    {
     "text": "ne",
-    "startMs": 50234,
-    "endMs": 50390
+    "startMs": 50330,
+    "endMs": 50493
    },
    {
     "text": "plus",
-    "startMs": 50390,
-    "endMs": 50636
+    "startMs": 50493,
+    "endMs": 50750
    },
    {
     "text": "suffire",
-    "startMs": 50636,
-    "endMs": 51017
+    "startMs": 50750,
+    "endMs": 51147
    },
    {
     "text": "demain.",
-    "startMs": 51017,
-    "endMs": 51441
+    "startMs": 51147,
+    "endMs": 51590
    }
   ]
  },
@@ -650,42 +650,42 @@
   "scene": 7,
   "text": "Mais l'IA n'est pas seulement une menace.",
   "startMs": 53400,
-  "endMs": 55713,
+  "endMs": 55640,
   "words": [
    {
     "text": "Mais",
     "startMs": 53420,
-    "endMs": 53685
+    "endMs": 53677
    },
    {
     "text": "l'IA",
-    "startMs": 53685,
-    "endMs": 53951
+    "startMs": 53677,
+    "endMs": 53933
    },
    {
     "text": "n'est",
-    "startMs": 53951,
-    "endMs": 54264
+    "startMs": 53933,
+    "endMs": 54237
    },
    {
     "text": "pas",
-    "startMs": 54264,
-    "endMs": 54481
+    "startMs": 54237,
+    "endMs": 54447
    },
    {
     "text": "seulement",
-    "startMs": 54481,
-    "endMs": 54988
+    "startMs": 54447,
+    "endMs": 54937
    },
    {
     "text": "une",
-    "startMs": 54988,
-    "endMs": 55205
+    "startMs": 54937,
+    "endMs": 55147
    },
    {
     "text": "menace.",
-    "startMs": 55205,
-    "endMs": 55663
+    "startMs": 55147,
+    "endMs": 55590
    }
   ]
  },
@@ -694,57 +694,57 @@
   "scene": 7,
   "text": "C'est aussi une opportunité extraordinaire pour ceux qui décident d'évoluer.",
   "startMs": 56600,
-  "endMs": 61137,
+  "endMs": 60420,
   "words": [
    {
     "text": "C'est",
     "startMs": 56620,
-    "endMs": 56970
+    "endMs": 56914
    },
    {
     "text": "aussi",
-    "startMs": 56970,
-    "endMs": 57320
+    "startMs": 56914,
+    "endMs": 57207
    },
    {
     "text": "une",
-    "startMs": 57320,
-    "endMs": 57562
+    "startMs": 57207,
+    "endMs": 57411
    },
    {
     "text": "opportunité",
-    "startMs": 57562,
-    "endMs": 58235
+    "startMs": 57411,
+    "endMs": 57975
    },
    {
     "text": "extraordinaire",
-    "startMs": 58235,
-    "endMs": 59069
+    "startMs": 57975,
+    "endMs": 58676
    },
    {
     "text": "pour",
-    "startMs": 59069,
-    "endMs": 59365
+    "startMs": 58676,
+    "endMs": 58924
    },
    {
     "text": "ceux",
-    "startMs": 59365,
-    "endMs": 59661
+    "startMs": 58924,
+    "endMs": 59173
    },
    {
     "text": "qui",
-    "startMs": 59661,
-    "endMs": 59903
+    "startMs": 59173,
+    "endMs": 59376
    },
    {
     "text": "décident",
-    "startMs": 59903,
-    "endMs": 60414
+    "startMs": 59376,
+    "endMs": 59805
    },
    {
     "text": "d'évoluer.",
-    "startMs": 60414,
-    "endMs": 61087
+    "startMs": 59805,
+    "endMs": 60370
    }
   ]
  },
@@ -753,32 +753,32 @@
   "scene": 8,
   "text": "Apprenez à travailler avec l'IA.",
   "startMs": 62800,
-  "endMs": 64797,
+  "endMs": 64690,
   "words": [
    {
     "text": "Apprenez",
     "startMs": 62820,
-    "endMs": 63322
+    "endMs": 63294
    },
    {
     "text": "à",
-    "startMs": 63322,
-    "endMs": 63454
+    "startMs": 63294,
+    "endMs": 63418
    },
    {
     "text": "travailler",
-    "startMs": 63454,
-    "endMs": 64061
+    "startMs": 63418,
+    "endMs": 63992
    },
    {
     "text": "avec",
-    "startMs": 64061,
-    "endMs": 64351
+    "startMs": 63992,
+    "endMs": 64266
    },
    {
     "text": "l'IA.",
-    "startMs": 64351,
-    "endMs": 64747
+    "startMs": 64266,
+    "endMs": 64640
    }
   ]
  },
@@ -787,22 +787,22 @@
   "scene": 8,
   "text": "Développez votre jugement.",
   "startMs": 65000,
-  "endMs": 66546,
+  "endMs": 66620,
   "words": [
    {
     "text": "Développez",
     "startMs": 65020,
-    "endMs": 65595
+    "endMs": 65624
    },
    {
     "text": "votre",
-    "startMs": 65595,
-    "endMs": 65921
+    "startMs": 65624,
+    "endMs": 65966
    },
    {
     "text": "jugement.",
-    "startMs": 65921,
-    "endMs": 66496
+    "startMs": 65966,
+    "endMs": 66570
    }
   ]
  },
@@ -811,22 +811,22 @@
   "scene": 8,
   "text": "Renforcez vos compétences.",
   "startMs": 67000,
-  "endMs": 68353,
+  "endMs": 68530,
   "words": [
    {
     "text": "Renforcez",
     "startMs": 67020,
-    "endMs": 67477
+    "endMs": 67540
    },
    {
     "text": "vos",
-    "startMs": 67477,
-    "endMs": 67672
+    "startMs": 67540,
+    "endMs": 67762
    },
    {
     "text": "compétences.",
-    "startMs": 67672,
-    "endMs": 68303
+    "startMs": 67762,
+    "endMs": 68480
    }
   ]
  },
@@ -835,52 +835,52 @@
   "scene": 8,
   "text": "Et devenez celui ou celle qui pilote la transformation.",
   "startMs": 69000,
-  "endMs": 73057,
+  "endMs": 71780,
   "words": [
    {
     "text": "Et",
     "startMs": 69020,
-    "endMs": 69247
+    "endMs": 69174
    },
    {
     "text": "devenez",
-    "startMs": 69247,
-    "endMs": 69798
+    "startMs": 69174,
+    "endMs": 69549
    },
    {
     "text": "celui",
-    "startMs": 69798,
-    "endMs": 70219
+    "startMs": 69549,
+    "endMs": 69835
    },
    {
     "text": "ou",
-    "startMs": 70219,
-    "endMs": 70446
+    "startMs": 69835,
+    "endMs": 69989
    },
    {
     "text": "celle",
-    "startMs": 70446,
-    "endMs": 70868
+    "startMs": 69989,
+    "endMs": 70276
    },
    {
     "text": "qui",
-    "startMs": 70868,
-    "endMs": 71159
+    "startMs": 70276,
+    "endMs": 70474
    },
    {
     "text": "pilote",
-    "startMs": 71159,
-    "endMs": 71645
+    "startMs": 70474,
+    "endMs": 70805
    },
    {
     "text": "la",
-    "startMs": 71645,
-    "endMs": 71872
+    "startMs": 70805,
+    "endMs": 70959
    },
    {
     "text": "transformation.",
-    "startMs": 71872,
-    "endMs": 73007
+    "startMs": 70959,
+    "endMs": 71730
    }
   ]
  },
@@ -889,87 +889,87 @@
   "scene": 9,
   "text": "Dans deux ans, le monde du travail aura peut-être changé plus vite que vous ne l'imaginez.",
   "startMs": 74000,
-  "endMs": 79133,
+  "endMs": 78330,
   "words": [
    {
     "text": "Dans",
     "startMs": 74020,
-    "endMs": 74293
+    "endMs": 74250
    },
    {
     "text": "deux",
-    "startMs": 74293,
-    "endMs": 74566
+    "startMs": 74250,
+    "endMs": 74479
    },
    {
     "text": "ans,",
-    "startMs": 74566,
-    "endMs": 74938
+    "startMs": 74479,
+    "endMs": 74793
    },
    {
     "text": "le",
-    "startMs": 74938,
-    "endMs": 75112
+    "startMs": 74793,
+    "endMs": 74939
    },
    {
     "text": "monde",
-    "startMs": 75112,
-    "endMs": 75435
+    "startMs": 74939,
+    "endMs": 75210
    },
    {
     "text": "du",
-    "startMs": 75435,
-    "endMs": 75608
+    "startMs": 75210,
+    "endMs": 75356
    },
    {
     "text": "travail",
-    "startMs": 75608,
-    "endMs": 76030
+    "startMs": 75356,
+    "endMs": 75711
    },
    {
     "text": "aura",
-    "startMs": 76030,
-    "endMs": 76303
+    "startMs": 75711,
+    "endMs": 75941
    },
    {
     "text": "peut-être",
-    "startMs": 76303,
-    "endMs": 76825
+    "startMs": 75941,
+    "endMs": 76380
    },
    {
     "text": "changé",
-    "startMs": 76825,
-    "endMs": 77197
+    "startMs": 76380,
+    "endMs": 76693
    },
    {
     "text": "plus",
-    "startMs": 77197,
-    "endMs": 77470
+    "startMs": 76693,
+    "endMs": 76923
    },
    {
     "text": "vite",
-    "startMs": 77470,
-    "endMs": 77743
+    "startMs": 76923,
+    "endMs": 77152
    },
    {
     "text": "que",
-    "startMs": 77743,
-    "endMs": 77966
+    "startMs": 77152,
+    "endMs": 77340
    },
    {
     "text": "vous",
-    "startMs": 77966,
-    "endMs": 78239
+    "startMs": 77340,
+    "endMs": 77570
    },
    {
     "text": "ne",
-    "startMs": 78239,
-    "endMs": 78413
+    "startMs": 77570,
+    "endMs": 77716
    },
    {
     "text": "l'imaginez.",
-    "startMs": 78413,
-    "endMs": 79083
+    "startMs": 77716,
+    "endMs": 78280
    }
   ]
  },
@@ -978,7 +978,7 @@
   "scene": 9,
   "text": "La question est simple : aurez-vous changé avec lui ?",
   "startMs": 80200,
-  "endMs": 83031,
+  "endMs": 83030,
   "words": [
    {
     "text": "La",
@@ -1003,32 +1003,32 @@
    {
     "text": ":",
     "startMs": 81333,
-    "endMs": 81534
+    "endMs": 81533
    },
    {
     "text": "aurez-vous",
-    "startMs": 81534,
-    "endMs": 82046
+    "startMs": 81533,
+    "endMs": 82045
    },
    {
     "text": "changé",
-    "startMs": 82046,
-    "endMs": 82380
+    "startMs": 82045,
+    "endMs": 82379
    },
    {
     "text": "avec",
-    "startMs": 82380,
-    "endMs": 82625
+    "startMs": 82379,
+    "endMs": 82624
    },
    {
     "text": "lui",
-    "startMs": 82625,
-    "endMs": 82826
+    "startMs": 82624,
+    "endMs": 82824
    },
    {
     "text": "?",
-    "startMs": 82826,
-    "endMs": 82981
+    "startMs": 82824,
+    "endMs": 82980
    }
   ]
  }
