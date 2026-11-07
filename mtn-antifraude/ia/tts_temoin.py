@@ -8,7 +8,7 @@ name = M.rstrip('/').split('/')[-1].replace('vits-piper-', '')
 voice = PiperVoice.load(f"{M}/{name}.onnx", config_path=f"{M}/{name}.onnx.json")
 SPEED = float(sys.argv[2]) if len(sys.argv) > 2 else 1.0
 OUT = sys.argv[3] if len(sys.argv) > 3 else 'ia/vo_temoin'
-SEGS = json.load(open('ia/script_segments.json', encoding='utf-8'))
+SEGS = json.load(open(sys.argv[4] if len(sys.argv) > 4 else 'ia/script_segments.json', encoding='utf-8'))
 SR = voice.config.sample_rate; out = []; timing = []; t = 0.0
 for s in SEGS:
     cfg = SynthesisConfig(length_scale=1.0 / SPEED, noise_scale=0.6, noise_w_scale=0.7)

@@ -1,0 +1,92 @@
+[
+ {
+  "id": "intro1",
+  "text": "L'intelligence artificielle transforme notre quotidien.",
+  "pause": 0.35
+ },
+ {
+  "id": "intro2",
+  "text": "Elle transforme aussi la fraude.",
+  "pause": 0.8
+ },
+ {
+  "id": "voix",
+  "text": "Aujourd'hui, une voix peut être clonée en quelques secondes.",
+  "pause": 0.35
+ },
+ {
+  "id": "visage",
+  "text": "Un visage, imité en vidéo.",
+  "pause": 0.3
+ },
+ {
+  "id": "piece",
+  "text": "Une pièce d'identité, fabriquée en un clic.",
+  "pause": 0.3
+ },
+ {
+  "id": "message",
+  "text": "Un message, rédigé sans la moindre faute.",
+  "pause": 0.7
+ },
+ {
+  "id": "canaux",
+  "text": "Au téléphone, sur WhatsApp ou par e-mail,",
+  "pause": 0.15,
+  "say": "Au téléphone, sur ouatsape ou par imèle,"
+ },
+ {
+  "id": "imposteur",
+  "text": "un fraudeur peut se faire passer pour un formateur, un conseiller… ou même pour Arosoft.",
+  "pause": 0.6,
+  "say": "un fraudeur peut se faire passer pour un formateur, un conseiller… ou même pour Aro-softe."
+ },
+ {
+  "id": "objectif",
+  "text": "Son objectif ne change pas : obtenir un paiement, un code Mobile Money, ou l'accès à vos comptes.",
+  "pause": 0.7,
+  "say": "Son objectif ne change pas : obtenir un paiement, un code mobaïle moné, ou l'accès à vos comptes."
+ },
+ {
+  "id": "sens",
+  "text": "Face à l'IA, nos yeux et nos oreilles peuvent être trompés.",
+  "pause": 0.3,
+  "say": "Face à l'i-a, nos yeux et nos oreilles peuvent être trompés."
+ },
+ {
+  "id": "procedures",
+  "text": "Nos réflexes, eux, ne le sont pas.",
+  "pause": 0.8
+ },
+ {
+  "id": "r1",
+  "text": "Alors, vérifiez toujours l'identité de votre interlocuteur par nos canaux officiels, jamais sur la seule base d'une voix, d'une image ou d'un document.",
+  "pause": 0.5
+ },
+ {
+  "id": "r2",
+  "text": "Méfiez-vous de l'urgence et de la pression, même venant d'une voix familière.",
+  "pause": 0.5
+ },
+ {
+  "id": "r3",
+  "text": "Ne communiquez jamais vos codes, mots de passe ou codes de validation.",
+  "pause": 0.5
+ },
+ {
+  "id": "r4",
+  "text": "Et au moindre doute, arrêtez tout et signalez-le.",
+  "pause": 0.8
+ },
+ {
+  "id": "evolue",
+  "text": "La technologie évolue. Votre vigilance aussi.",
+  "pause": 0.8
+ },
+ {
+  "id": "final",
+  "text": "Arosoft : apprendre, créer, réussir… en toute sécurité. Face à la fraude, même augmentée par l'IA, soyons tous la première ligne de défense.",
+  "pause": 0.0,
+  "say": "Aro-softe : apprendre, créer, réussir… en toute sécurité. Face à la fraude, même augmentée par l'i-a, soyons tous la première ligne de défense."
+ }
+]

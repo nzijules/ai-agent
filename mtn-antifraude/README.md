@@ -31,3 +31,9 @@ Fabrication : voir la section 8 de `PREPRODUCTION.md`.
 - `out/carre/fraude-ia-arosoft-carre_fond-bleu.mp4` : variante sur fond dégradé bleu Arosoft.
 - `carre/rebrand_arosoft.py` : recoloration image par image de la vidéo source (`carre/source_fraude-ia-mtn-carre.mp4`). Chaque pixel est décomposé en noir / jaune / blanc, puis recomposé aux couleurs Arosoft ; le logo MTN est remplacé par le logo Arosoft. Le son d'origine est conservé (il ne cite pas MTN).
 - Logos Arosoft détourés : `public/arosoft-logo-*.png`.
+
+## Vidéo 16:9 « La fraude à l'ère de l'IA » : version Arosoft
+
+- `out/ia_arosoft/Arosoft_La-fraude-a-l-ere-de-l-IA_1080p_sans-sous-titres.mp4` et `…_sous-titres.mp4` (1920 × 1080, environ 72 s).
+- `ia_arosoft/NOTE_AROSOFT.md` : identité visuelle, texte adapté, autres messages possibles.
+- Composition Remotion `FraudeIAArosoft` (`src/ia/arosoft/`). Voix témoin provisoire, à remplacer par la voix ElevenLabs définitive.

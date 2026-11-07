@@ -1,0 +1,33 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Inter,46,&H00FFFFFF,&H00FFFFFF,&H00000000,&H9A000000,-1,0,0,0,100,100,0,0,3,14,0,2,200,200,46,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.20,0:00:04.09,Default,,0,0,0,,{\fad(120,120)}L'intelligence artificielle\Ntransforme notre quotidien.
+Dialogue: 0,0:00:04.13,0:00:06.19,Default,,0,0,0,,{\fad(120,120)}Elle transforme aussi la fraude.
+Dialogue: 0,0:00:06.65,0:00:09.62,Default,,0,0,0,,{\fad(120,120)}Aujourd'hui, une voix peut être\Nclonée en quelques secondes.
+Dialogue: 0,0:00:09.66,0:00:11.66,Default,,0,0,0,,{\fad(120,120)}Un visage, imité en vidéo.
+Dialogue: 0,0:00:11.70,0:00:14.34,Default,,0,0,0,,{\fad(120,120)}Une pièce d'identité, fabriquée en un clic.
+Dialogue: 0,0:00:14.38,0:00:17.12,Default,,0,0,0,,{\fad(120,120)}Un message, rédigé sans la moindre faute.
+Dialogue: 0,0:00:17.47,0:00:19.95,Default,,0,0,0,,{\fad(120,120)}Au téléphone, sur WhatsApp ou par e-mail,
+Dialogue: 0,0:00:19.99,0:00:23.10,Default,,0,0,0,,{\fad(120,120)}un fraudeur peut se faire passer\Npour un formateur, un conseiller…
+Dialogue: 0,0:00:23.14,0:00:24.49,Default,,0,0,0,,{\fad(120,120)}ou même pour Arosoft.
+Dialogue: 0,0:00:24.74,0:00:28.64,Default,,0,0,0,,{\fad(120,120)}Son objectif ne change pas : obtenir\Nun paiement, un code Mobile Money,
+Dialogue: 0,0:00:28.68,0:00:30.41,Default,,0,0,0,,{\fad(120,120)}ou l'accès à vos comptes.
+Dialogue: 0,0:00:30.76,0:00:34.35,Default,,0,0,0,,{\fad(120,120)}Face à l'IA, nos yeux et nos\Noreilles peuvent être trompés.
+Dialogue: 0,0:00:34.39,0:00:36.99,Default,,0,0,0,,{\fad(120,120)}Nos réflexes, eux, ne le sont pas.
+Dialogue: 0,0:00:37.44,0:00:41.52,Default,,0,0,0,,{\fad(120,120)}Alors, vérifiez toujours l'identité de votre\Ninterlocuteur par nos canaux officiels,
+Dialogue: 0,0:00:41.56,0:00:45.15,Default,,0,0,0,,{\fad(120,120)}jamais sur la seule base d'une\Nvoix, d'une image ou d'un document.
+Dialogue: 0,0:00:45.30,0:00:49.74,Default,,0,0,0,,{\fad(120,120)}Méfiez-vous de l'urgence et de la\Npression, même venant d'une voix familière.
+Dialogue: 0,0:00:49.89,0:00:53.33,Default,,0,0,0,,{\fad(120,120)}Ne communiquez jamais vos codes,\Nmots de passe ou codes de validation.
+Dialogue: 0,0:00:53.48,0:00:55.99,Default,,0,0,0,,{\fad(120,120)}Et au moindre doute,\Narrêtez tout et signalez-le.
+Dialogue: 0,0:00:56.44,0:00:59.14,Default,,0,0,0,,{\fad(120,120)}La technologie évolue.\NVotre vigilance aussi.
+Dialogue: 0,0:00:59.59,0:01:04.12,Default,,0,0,0,,{\fad(120,120)}Arosoft : apprendre, créer, réussir…\Nen toute sécurité. Face à la fraude,
+Dialogue: 0,0:01:04.16,0:01:08.90,Default,,0,0,0,,{\fad(120,120)}même augmentée par l'IA, soyons\Ntous la première ligne de défense.

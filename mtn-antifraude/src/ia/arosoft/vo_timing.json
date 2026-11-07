@@ -1,0 +1,104 @@
+[
+ {
+  "id": "intro1",
+  "s": 0.0,
+  "e": 2.579,
+  "text": "L'intelligence artificielle transforme notre quotidien."
+ },
+ {
+  "id": "intro2",
+  "s": 2.929,
+  "e": 4.645,
+  "text": "Elle transforme aussi la fraude."
+ },
+ {
+  "id": "voix",
+  "s": 5.445,
+  "e": 8.109,
+  "text": "Aujourd'hui, une voix peut être clonée en quelques secondes."
+ },
+ {
+  "id": "visage",
+  "s": 8.459,
+  "e": 10.203,
+  "text": "Un visage, imité en vidéo."
+ },
+ {
+  "id": "piece",
+  "s": 10.503,
+  "e": 12.882,
+  "text": "Une pièce d'identité, fabriquée en un clic."
+ },
+ {
+  "id": "message",
+  "s": 13.182,
+  "e": 15.569,
+  "text": "Un message, rédigé sans la moindre faute."
+ },
+ {
+  "id": "canaux",
+  "s": 16.269,
+  "e": 18.644,
+  "text": "Au téléphone, sur WhatsApp ou par e-mail,"
+ },
+ {
+  "id": "imposteur",
+  "s": 18.794,
+  "e": 22.941,
+  "text": "un fraudeur peut se faire passer pour un formateur, un conseiller… ou même pour Arosoft."
+ },
+ {
+  "id": "objectif",
+  "s": 23.541,
+  "e": 28.862,
+  "text": "Son objectif ne change pas : obtenir un paiement, un code Mobile Money, ou l'accès à vos comptes."
+ },
+ {
+  "id": "sens",
+  "s": 29.562,
+  "e": 32.886,
+  "text": "Face à l'IA, nos yeux et nos oreilles peuvent être trompés."
+ },
+ {
+  "id": "procedures",
+  "s": 33.186,
+  "e": 35.438,
+  "text": "Nos réflexes, eux, ne le sont pas."
+ },
+ {
+  "id": "r1",
+  "s": 36.238,
+  "e": 43.603,
+  "text": "Alors, vérifiez toujours l'identité de votre interlocuteur par nos canaux officiels, jamais sur la seule base d'une voix, d'une image ou d'un document."
+ },
+ {
+  "id": "r2",
+  "s": 44.103,
+  "e": 48.186,
+  "text": "Méfiez-vous de l'urgence et de la pression, même venant d'une voix familière."
+ },
+ {
+  "id": "r3",
+  "s": 48.686,
+  "e": 51.777,
+  "text": "Ne communiquez jamais vos codes, mots de passe ou codes de validation."
+ },
+ {
+  "id": "r4",
+  "s": 52.277,
+  "e": 54.44,
+  "text": "Et au moindre doute, arrêtez tout et signalez-le."
+ },
+ {
+  "id": "evolue",
+  "s": 55.24,
+  "e": 57.591,
+  "text": "La technologie évolue. Votre vigilance aussi."
+ },
+ {
+  "id": "final",
+  "s": 58.391,
+  "e": 67.097,
+  "text": "Arosoft : apprendre, créer, réussir… en toute sécurité. Face à la fraude, même augmentée par l'IA, soyons tous la première ligne de défense."
+ }
+]
