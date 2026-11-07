@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, random, staticFile, useCurrentFrame } from "remotion";
 import {
   beatPulse,
   CheckChip,
@@ -716,72 +716,56 @@ export const CTA: React.FC = () => {
           <br />
           <span style={{ color: C.gold }}>guide pratique pas à pas</span>
         </div>
-        {/* livre 3D */}
-        <div style={{ perspective: 1400, marginTop: 10 }}>
+        {/* couverture du guide */}
+        <div style={{ perspective: 1400, marginTop: 6 }}>
           <div
             style={{
               position: "relative",
-              width: 440,
-              height: 580,
-              transformStyle: "preserve-3d",
-              transform: `scale(${book}) rotateY(${-22 + Math.sin(frame * 0.05) * 14 + (1 - book) * -120}deg) rotateX(${6 + Math.sin(frame * 0.04) * 4}deg) translateY(${Math.sin(frame * 0.07) * 14}px)`,
+              width: 462,
+              height: 703,
+              transform: `scale(${book}) rotateY(${Math.sin(frame * 0.05) * 8 + (1 - book) * -90}deg) rotateZ(${Math.sin(frame * 0.04) * 1.5}deg) translateY(${Math.sin(frame * 0.07) * 12}px)`,
             }}
           >
-            {/* tranche */}
             <div
               style={{
                 position: "absolute",
-                left: 0,
-                top: 0,
-                width: 60,
-                height: 580,
-                background: "linear-gradient(90deg, #3b1f7a, #5b2fb3)",
-                transform: "rotateY(-90deg) translateZ(0px)",
-                transformOrigin: "0 50%",
+                inset: "8% -6%",
+                borderRadius: "50%",
+                background: `radial-gradient(ellipse, ${C.violet}aa 0%, transparent 70%)`,
+                filter: "blur(30px)",
+                opacity: 0.7 + pulse * 0.3,
               }}
             />
-            {/* couverture */}
+            <Img
+              src={staticFile("guide-book.png")}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.7))",
+              }}
+            />
+            {/* reflet lumineux limité à la forme du livre */}
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                borderRadius: "8px 24px 24px 8px",
-                background: `linear-gradient(150deg, #1b1240 0%, #3a1c6e 45%, ${C.coral} 120%)`,
-                boxShadow: `0 40px 90px rgba(0,0,0,0.7), 0 0 ${80 + pulse * 40}px ${C.violet}`,
-                border: "2px solid rgba(255,255,255,0.18)",
-                padding: "50px 40px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                gap: 18,
+                WebkitMaskImage: `url(${staticFile("guide-book.png")})`,
+                maskImage: `url(${staticFile("guide-book.png")})`,
+                WebkitMaskSize: "100% 100%",
+                maskSize: "100% 100%",
                 overflow: "hidden",
               }}
             >
-              <div style={{ position: "absolute", right: -80, bottom: -80 }}>
-                <Spark size={260} color={C.orange} rotate={frame} glow />
-              </div>
-              <div style={{ padding: "8px 20px", borderRadius: 999, background: C.gold, color: C.bg, fontFamily: F.body, fontWeight: 800, fontSize: 24 }}>
-                GUIDE PAS À PAS
-              </div>
-              <div style={{ marginTop: 140, fontFamily: F.display, fontWeight: 900, fontSize: 64, color: "#fff", lineHeight: 1, letterSpacing: -2 }}>
-                VIBE
-                <br />
-                MOTION
-                <br />
-                <span style={{ color: C.orange }}>DESIGN</span>
-              </div>
-              <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 26, color: C.dim, lineHeight: 1.3 }}>
-                Crée tes vidéos animées avec Claude Code — sans compétence
-              </div>
-              {/* reflet */}
               <div
                 style={{
                   position: "absolute",
-                  top: 0,
-                  bottom: 0,
-                  width: 140,
-                  left: `${((frame * 6) % 1400) - 300}px`,
-                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)",
+                  top: -100,
+                  bottom: -100,
+                  width: 120,
+                  left: `${((frame * 6) % 1200) - 300}px`,
+                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
                   transform: "skewX(-20deg)",
                 }}
               />
