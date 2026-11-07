@@ -24,3 +24,10 @@ Fabrication : voir la section 8 de `PREPRODUCTION.md`.
 - `mobile/DA_V2_MTN_Corporate_Cyber.md` : storyboard V2, proposition par scène, palette et règles, animations, éléments réutilisés, liste des modifications.
 - `mobile/storyboard_v2/` : vignettes V2 et planche de comparaison V1 / V2.
 - Code : compositions Remotion `FraudeIAMobile` (V1) et `FraudeIAMobileV2` (`src/mobile/`).
+
+## Vidéo carrée « La fraude à l'ère de l'IA » : rebranding Arosoft
+
+- `out/carre/fraude-ia-arosoft-carre_fond-blanc.mp4` : 1080 × 1080, 49 s, fond blanc, typographie bleu Arosoft, logo Arosoft en couleur (version retenue).
+- `out/carre/fraude-ia-arosoft-carre_fond-bleu.mp4` : variante sur fond dégradé bleu Arosoft.
+- `carre/rebrand_arosoft.py` : recoloration image par image de la vidéo source (`carre/source_fraude-ia-mtn-carre.mp4`). Chaque pixel est décomposé en noir / jaune / blanc, puis recomposé aux couleurs Arosoft ; le logo MTN est remplacé par le logo Arosoft. Le son d'origine est conservé (il ne cite pas MTN).
+- Logos Arosoft détourés : `public/arosoft-logo-*.png`.

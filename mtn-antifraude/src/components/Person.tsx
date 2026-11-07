@@ -29,12 +29,13 @@ export type PersonProps = {
   tilt?: number;
   style?: React.CSSProperties;
   width?: number;
+  brand?: string; // couleur de marque (accent du micro-casque, motif du foulard)
 };
 
 export const Person: React.FC<PersonProps> = ({
   t, skin = SKINS[0], hair = 'short', hairColor = '#121010', outfit = '#FFCB05', accent = '#111',
   wrapColor = '#D9480F', headset = false, mood = 'neutral', look = 0, lookY = 0, beard = false, glasses = false,
-  earrings = false, talking = 0, seed = 0, tilt = 0, style, width = 400,
+  earrings = false, talking = 0, seed = 0, tilt = 0, style, width = 400, brand = '#FFCB05',
 }) => {
   const sk = skin, skD = shade(skin, 0.78), skDD = shade(skin, 0.6), skL = shade(skin, 1.12);
   // clignement des yeux
@@ -115,7 +116,7 @@ export const Person: React.FC<PersonProps> = ({
               <ellipse cx={232} cy={70} rx={46} ry={28} fill={wrapColor} transform="rotate(-18 232 70)" />
               <ellipse cx={176} cy={66} rx={36} ry={22} fill={shade(wrapColor, 0.8)} transform="rotate(16 176 66)" />
               {[0, 1, 2, 3].map((i) => (
-                <path key={i} d={`M${130 + i * 6} ${170 - i * 26} C${170} ${120 - i * 22} ${235} ${118 - i * 22} ${272 - i * 6} ${168 - i * 26}`} stroke="#FFCB05" strokeWidth={5} fill="none" opacity={0.75} />
+                <path key={i} d={`M${130 + i * 6} ${170 - i * 26} C${170} ${120 - i * 22} ${235} ${118 - i * 22} ${272 - i * 6} ${168 - i * 26}`} stroke={brand} strokeWidth={5} fill="none" opacity={0.75} />
               ))}
             </g>
           )}
@@ -159,7 +160,7 @@ export const Person: React.FC<PersonProps> = ({
               <path d="M118 200 C112 70 288 70 282 200" stroke="#1d1d1f" strokeWidth={11} fill="none" strokeLinecap="round" />
               <rect x={108} y={186} width={30} height={50} rx={12} fill="#1d1d1f" />
               <rect x={262} y={186} width={30} height={50} rx={12} fill="#1d1d1f" />
-              <rect x={113} y={200} width={6} height={22} rx={3} fill="#FFCB05" />
+              <rect x={113} y={200} width={6} height={22} rx={3} fill={brand} />
               <path d="M124 232 C130 276 156 284 176 276" stroke="#1d1d1f" strokeWidth={6} fill="none" strokeLinecap="round" />
               <circle cx={180} cy={274} r={8} fill="#2b2b2e" />
             </g>

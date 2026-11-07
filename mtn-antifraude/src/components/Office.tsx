@@ -2,7 +2,7 @@ import React from 'react';
 import {Person, SKINS} from './Person';
 
 /** Décor : plateau de centre de relation client avec vue sur Abidjan (Plateau, lagune Ébrié). */
-export const Office: React.FC<{t: number; mood?: 'day' | 'dim' | 'bright'; blurBg?: number}> = ({t, mood = 'day', blurBg = 3}) => {
+export const Office: React.FC<{t: number; mood?: 'day' | 'dim' | 'bright'; blurBg?: number; brand?: string}> = ({t, mood = 'day', blurBg = 3, brand = '#FFCB05'}) => {
   const sky = mood === 'dim' ? ['#2b3448', '#5b4a52'] : mood === 'bright' ? ['#bfe6ff', '#fff4cf'] : ['#9fd0ee', '#fde6b3'];
   const towers = [
     [70, 330, 90], [170, 250, 70], [250, 380, 60], [320, 210, 110], [440, 300, 80], [530, 170, 95], [640, 260, 70],
@@ -68,7 +68,7 @@ export const Office: React.FC<{t: number; mood?: 'day' | 'dim' | 'bright'; blurB
       <g filter="url(#bgblur)">
         {[180, 560, 1000, 1400, 1760].map((x, i) => (
           <g key={x} transform={`translate(${x - 90} 520)`}>
-            <Person t={t} width={180} skin={SKINS[(i + 2) % SKINS.length]} hair={(['short', 'bun', 'wrap', 'fade', 'braids'] as const)[i]} outfit={i % 2 ? '#1c1c1f' : '#FFCB05'} accent={i % 2 ? '#FFCB05' : '#1c1c1f'} headset seed={i * 3} look={Math.sin(t * 0.4 + i)} talking={i % 2 ? 0.6 : 0} wrapColor={['#C2410C', '#7C3AED', '#0F766E'][i % 3]} />
+            <Person t={t} width={180} skin={SKINS[(i + 2) % SKINS.length]} hair={(['short', 'bun', 'wrap', 'fade', 'braids'] as const)[i]} outfit={i % 2 ? '#1c1c1f' : brand} accent={i % 2 ? brand : '#1c1c1f'} brand={brand} headset seed={i * 3} look={Math.sin(t * 0.4 + i)} talking={i % 2 ? 0.6 : 0} wrapColor={['#C2410C', '#7C3AED', '#0F766E'][i % 3]} />
           </g>
         ))}
         {[0, 1].map((r) => (
