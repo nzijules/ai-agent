@@ -37,3 +37,8 @@ Fabrication : voir la section 8 de `PREPRODUCTION.md`.
 - `out/ia_arosoft/Arosoft_La-fraude-a-l-ere-de-l-IA_1080p_sans-sous-titres.mp4` et `…_sous-titres.mp4` (1920 × 1080, environ 72 s).
 - `ia_arosoft/NOTE_AROSOFT.md` : identité visuelle, texte adapté, autres messages possibles.
 - Composition Remotion `FraudeIAArosoft` (`src/ia/arosoft/`). Voix témoin provisoire, à remplacer par la voix ElevenLabs définitive.
+
+## Version TikTok Arosoft (9:16, 43 s)
+
+- `out/tiktok/Arosoft_La-fraude-a-l-ere-de-l-IA_TikTok.mp4` : 1080 × 1920, sans légende, hacker encapuchonné en visuel central, accroche « STOP. », 3 réflexes, appel au partage.
+- Texte : `tiktok/script_vo.txt` (voix témoin provisoire). Composition Remotion `FraudeIATikTok` (`src/tiktok/`).

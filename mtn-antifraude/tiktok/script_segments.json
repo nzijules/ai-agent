@@ -1,0 +1,66 @@
+[
+ {
+  "id": "hook",
+  "text": "Stop. Cet appel ne vient peut-être pas de qui tu crois.",
+  "pause": 0.5
+ },
+ {
+  "id": "voix",
+  "text": "Avec l'intelligence artificielle, un hacker peut cloner une voix en quelques secondes.",
+  "pause": 0.35
+ },
+ {
+  "id": "visage",
+  "text": "Imiter un visage en vidéo.",
+  "pause": 0.25
+ },
+ {
+  "id": "message",
+  "text": "Et écrire un message parfait, sans aucune faute.",
+  "pause": 0.5
+ },
+ {
+  "id": "imposteur",
+  "text": "Il peut se faire passer pour un formateur, un conseiller… ou même pour Arosoft.",
+  "pause": 0.5,
+  "say": "Il peut se faire passer pour un formateur, un conseiller… ou même pour Aro-softe."
+ },
+ {
+  "id": "but",
+  "text": "Son but : ton argent, ton code Mobile Money, ou l'accès à tes comptes.",
+  "pause": 0.6,
+  "say": "Son but : ton argent, ton code mobaïle moné, ou l'accès à tes comptes."
+ },
+ {
+  "id": "trois",
+  "text": "Alors, retiens trois réflexes.",
+  "pause": 0.4
+ },
+ {
+  "id": "r1",
+  "text": "Un : vérifie toujours par nos canaux officiels.",
+  "pause": 0.35
+ },
+ {
+  "id": "r2",
+  "text": "Deux : ne partage jamais tes codes ni tes mots de passe.",
+  "pause": 0.35
+ },
+ {
+  "id": "r3",
+  "text": "Trois : au moindre doute, arrête tout et signale.",
+  "pause": 0.6
+ },
+ {
+  "id": "imite",
+  "text": "L'IA imite tout. Sauf ta vigilance.",
+  "pause": 0.6,
+  "say": "L'i-a imite tout. Sauf ta vigilance."
+ },
+ {
+  "id": "outro",
+  "text": "Arosoft : apprendre, créer, réussir… en toute sécurité. Partage cette vidéo pour protéger tes proches.",
+  "pause": 0.0,
+  "say": "Aro-softe : apprendre, créer, réussir… en toute sécurité. Partage cette vidéo pour protéger tes proches."
+ }
+]

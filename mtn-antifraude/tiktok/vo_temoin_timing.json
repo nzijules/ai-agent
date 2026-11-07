@@ -1,0 +1,74 @@
+[
+ {
+  "id": "hook",
+  "s": 0.0,
+  "e": 2.716,
+  "text": "Stop. Cet appel ne vient peut-être pas de qui tu crois."
+ },
+ {
+  "id": "voix",
+  "s": 3.216,
+  "e": 7.096,
+  "text": "Avec l'intelligence artificielle, un hacker peut cloner une voix en quelques secondes."
+ },
+ {
+  "id": "visage",
+  "s": 7.446,
+  "e": 8.761,
+  "text": "Imiter un visage en vidéo."
+ },
+ {
+  "id": "message",
+  "s": 9.011,
+  "e": 11.777,
+  "text": "Et écrire un message parfait, sans aucune faute."
+ },
+ {
+  "id": "imposteur",
+  "s": 12.277,
+  "e": 15.815,
+  "text": "Il peut se faire passer pour un formateur, un conseiller… ou même pour Arosoft."
+ },
+ {
+  "id": "but",
+  "s": 16.315,
+  "e": 20.134,
+  "text": "Son but : ton argent, ton code Mobile Money, ou l'accès à tes comptes."
+ },
+ {
+  "id": "trois",
+  "s": 20.734,
+  "e": 22.618,
+  "text": "Alors, retiens trois réflexes."
+ },
+ {
+  "id": "r1",
+  "s": 23.018,
+  "e": 25.31,
+  "text": "Un : vérifie toujours par nos canaux officiels."
+ },
+ {
+  "id": "r2",
+  "s": 25.66,
+  "e": 28.387,
+  "text": "Deux : ne partage jamais tes codes ni tes mots de passe."
+ },
+ {
+  "id": "r3",
+  "s": 28.737,
+  "e": 31.301,
+  "text": "Trois : au moindre doute, arrête tout et signale."
+ },
+ {
+  "id": "imite",
+  "s": 31.901,
+  "e": 33.873,
+  "text": "L'IA imite tout. Sauf ta vigilance."
+ },
+ {
+  "id": "outro",
+  "s": 34.473,
+  "e": 40.258,
+  "text": "Arosoft : apprendre, créer, réussir… en toute sécurité. Partage cette vidéo pour protéger tes proches."
+ }
+]

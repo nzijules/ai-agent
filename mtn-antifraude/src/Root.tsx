@@ -9,6 +9,7 @@ import {DURATION_M} from './mobile/timing';
 import {FraudeMobileV2} from './mobile/v2/FraudeMobileV2';
 import {FraudeIAArosoft} from './ia/arosoft/FraudeIAArosoft';
 import {DURATION_IA as DURATION_AROSOFT} from './ia/arosoft/timing';
+import {FraudeTikTok, DURATION_TT} from './tiktok/FraudeTikTok';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/montserrat/900.css';
@@ -30,6 +31,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="FraudeIAMobile" component={FraudeMobile} durationInFrames={Math.round(DURATION_M * FPS)} fps={FPS} width={1080} height={1920} />
   <Composition id="FraudeIAMobileV2" component={FraudeMobileV2} durationInFrames={Math.round(DURATION_M * FPS)} fps={FPS} width={1080} height={1920} />
   <Composition id="FraudeIAArosoft" component={FraudeIAArosoft} durationInFrames={Math.round(DURATION_AROSOFT * FPS)} fps={FPS} width={1920} height={1080} />
+  <Composition id="FraudeIATikTok" component={FraudeTikTok} durationInFrames={Math.round(DURATION_TT * FPS)} fps={FPS} width={1080} height={1920} />
   </>
 );
 
