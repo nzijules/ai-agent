@@ -678,8 +678,8 @@ export const CTA: React.FC = () => {
   const frame = useCurrentFrame();
   const pulse = beatPulse(frame + 1563);
   const book = useSpr(10, 10);
-  const priceLabel = useSpr(179, 11);
-  const price = useSpr(202, 8, 0.6, 140);
+  const priceLabel = useSpr(117, 11); // 56 s
+  const price = useSpr(147, 8, 0.6, 140); // 57 s
   const btn = useSpr(100, 10);
   const last = useSpr(248, 12);
   const intro = useSpr(0, 12);
