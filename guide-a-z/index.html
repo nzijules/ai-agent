@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vibe Motion Design de A à Z</title>
+<meta name="description" content="Guide pratique AroSoft : de l'installation de Claude Code à votre première publicité vidéo de 30 secondes, étape par étape." />
+<style>
+  :root {
+    --bg: #ffffff; --fg: #121933; --muted: #545b77;
+    --blue: #0b2a8a; --blue-2: #1f4fe0; --yellow: #ffd21f; --red: #e3262f; --green: #138a5e;
+    --soft: #f1f4ff; --soft-ok: #ebf8f1; --soft-warn: #fff4e8; --warn: #b4540a;
+    --code-bg: #0f1530; --code-fg: #eef1ff; --border: #dfe4f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1024; --fg: #e9ecf8; --muted: #a3a9c4; --soft: #151c3a; --soft-ok: #10241b;
+      --soft-warn: #2a1c10; --border: #263056; --blue: #8fb0ff; --blue-2: #8fb0ff; --green: #4fd1a0; --warn: #f0a160;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1024; --fg: #e9ecf8; --muted: #a3a9c4; --soft: #151c3a; --soft-ok: #10241b;
+    --soft-warn: #2a1c10; --border: #263056; --blue: #8fb0ff; --blue-2: #8fb0ff; --green: #4fd1a0; --warn: #f0a160;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Inter", -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; font-size: 17px; }
+  .book { max-width: 800px; margin: 0 auto; padding: 0 16px 80px; }
+  h2 { font-size: 1.9rem; line-height: 1.15; margin: 0 0 .3rem; letter-spacing: -.01em; }
+  h2 .step { display: inline-flex; align-items: center; justify-content: center; width: 1.6em; height: 1.6em; border-radius: 10px; background: var(--yellow); color: #0b2a8a; font-weight: 900; margin-right: .4em; font-size: .9em; }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 .4rem; color: var(--blue); }
+  .lead { font-size: 1.08rem; color: var(--muted); margin: .2rem 0 1rem; }
+  section.page { padding-top: 56px; margin-top: 56px; border-top: 1px solid var(--border); }
+  a { color: var(--blue-2); }
+  code { font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace; font-size: .86em; }
+  :not(pre) > code { background: var(--soft); padding: .1em .35em; border-radius: 4px; }
+  pre { background: var(--code-bg); color: var(--code-fg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-size: .8rem; line-height: 1.5; white-space: pre-wrap; }
+  kbd { font: inherit; font-size: .85em; border: 1px solid var(--border); border-bottom-width: 3px; border-radius: 6px; padding: 0 .4em; background: var(--soft); }
+  .prompt { border-left: 4px solid var(--blue-2); background: var(--soft); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: .9rem 0; }
+  .prompt::before { content: "À écrire à Claude"; display: block; font-weight: 800; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-2); margin-bottom: 3px; }
+  .ok, .ko, .note { border-radius: 10px; padding: 12px 16px; margin: .9rem 0; }
+  .ok { background: var(--soft-ok); }
+  .ok > b:first-child { color: var(--green); }
+  .ko { background: var(--soft-warn); }
+  .ko > b:first-child { color: var(--warn); }
+  .note { border: 1px solid var(--border); }
+  .ok ul, .ko ul { margin: .3rem 0 0; padding-left: 1.2rem; }
+  .ok p, .ko p { margin: .2rem 0 0; }
+  ol.steps { counter-reset: s; list-style: none; padding-left: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding-left: 2.4rem; margin: .8rem 0; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 1.65rem; height: 1.65rem; border-radius: 50%; background: var(--blue-2); color: #fff; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center; }
+  figure { margin: 1rem 0; }
+  figure img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--border); }
+  figcaption { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size: .9rem; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--soft); }
+  .table-wrap { overflow-x: auto; }
+  .road { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 1rem 0; }
+  .road div { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; font-size: .9rem; }
+  .road b { display: block; color: var(--blue); }
+  .swatches { display: flex; flex-wrap: wrap; gap: 10px; margin: .6rem 0; }
+  .swatch { display: flex; align-items: center; gap: 8px; font-size: .85rem; }
+  .swatch i { width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--border); display: inline-block; }
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { margin: .35rem 0; }
+  ul.check li::before { content: "☐  "; color: var(--blue-2); font-weight: 700; }
+  .cover { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 0; }
+  .cover img { display: block; width: 100%; max-width: 620px; height: auto; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+
+  @page { size: A4; margin: 13mm 15mm 15mm; }
+  @media print {
+    body { font-size: 10pt; line-height: 1.48; }
+    h2 { font-size: 19pt; }
+    h3 { margin: 1rem 0 .3rem; }
+    .lead { margin: .1rem 0 .6rem; }
+    p, ul, ol { margin-top: .35rem; margin-bottom: .35rem; }
+    .prompt, .ok, .ko, .note { padding: 8px 13px; margin: .55rem 0; }
+    table { margin: .5rem 0; font-size: 9pt; }
+    th, td { padding: 4px 7px; }
+    ol.steps > li { margin: .45rem 0; }
+    figure { margin: .6rem 0; }
+    .road { gap: 7px; margin: .6rem 0; }
+    .road div { padding: 6px 10px; }
+    .book { max-width: none; padding: 0; }
+    @page couverture { margin: 0; }
+    .cover { page: couverture; width: 210mm; height: 297mm; min-height: 0; padding: 0; page-break-after: always; overflow: hidden; }
+    .cover img { width: 210mm; height: 297mm; max-width: none; object-fit: cover; border-radius: 0; box-shadow: none; }
+    section.page { page-break-before: always; border-top: none; margin-top: 0; padding-top: 0; }
+    section.cont { page-break-before: auto; padding-top: 6mm; }
+    pre, .prompt, .ok, .ko, .note, figure, tr, .road div { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<main class="book">
+
+<header class="cover">
+  <img src="img/couverture.png" alt="Couverture : Réaliser le vibe motion design pas à pas avec Claude Code – Guide pratique – AroSoft" />
+</header>
+
+<!-- ================= BIENVENUE ================= -->
+<section class="page" id="bienvenue">
+  <h2>Bienvenue : ce que vous allez faire</h2>
+  <p class="lead">Ce guide suit <strong>un seul chemin</strong>, du début à la fin. Pas d'options à choisir, pas de théorie inutile. Suivez les étapes dans l'ordre.</p>
+
+  <p><strong>Le « vibe motion design »</strong>, c'est créer des animations et des vidéos en <strong>décrivant</strong> ce que vous voulez à une intelligence artificielle, Claude Code, qui écrit le code à votre place. Vous regardez le résultat, vous dites ce qui ne va pas, et vous recommencez jusqu'à ce que ce soit parfait.</p>
+
+  <h3>Votre objectif : cette publicité de 30 secondes</h3>
+  <figure>
+    <img src="img/pub-scenes.png" alt="Cinq images de la publicité AroSoft : bulles de messages WhatsApp, compteur de messages non lus, logo AroSoft, trois bénéfices, bouton Écrivez-nous sur WhatsApp." />
+    <figcaption>Images extraites de la vraie vidéo réalisée en suivant ce guide (format vertical 1080×1920, 30 s, avec voix, musique et sous-titres). La vidéo complète est fournie avec le guide : <code>pub-arosoft.mp4</code>. AroSoft et son offre sont utilisés ici comme exemple.</figcaption>
+  </figure>
+
+  <h3>Le parcours de A à Z</h3>
+  <div class="road">
+    <div><b>A · Installer</b>Claude Code sur votre ordinateur</div>
+    <div><b>B · S'échauffer</b>Une première animation en 10 min</div>
+    <div><b>C · Les bons mots</b>Parler de mouvement</div>
+    <div><b>D · Préparer</b>Objectif, script, storyboard</div>
+    <div><b>E · Créer le projet</b>Remotion et son Studio</div>
+    <div><b>F · Animer</b>Les 5 scènes et les transitions</div>
+    <div><b>G · Le son</b>Voix, musique, sous-titres</div>
+    <div><b>H · Exporter</b>Vérifier et publier le MP4</div>
+  </div>
+
+  <h3>Ce qu'il vous faut</h3>
+  <ul>
+    <li>Un <strong>ordinateur</strong> Mac ou Windows (pas une tablette).</li>
+    <li>Un <strong>abonnement Claude payant</strong> (Pro au minimum) : le plan gratuit n'inclut pas Claude Code.</li>
+    <li>Une connexion internet et <strong>environ 3 heures</strong>, en une ou plusieurs fois.</li>
+    <li>Votre téléphone, pour enregistrer la voix-off.</li>
+  </ul>
+  <div class="note"><b>La seule règle :</b> vous n'avez pas besoin de comprendre le code. Votre travail, c'est de <strong>décrire</strong>, <strong>regarder</strong> et <strong>corriger</strong>. Claude fait le reste.</div>
+</section>
+
+<!-- ================= A. INSTALLER ================= -->
+<section class="page" id="a">
+  <h2><span class="step">A</span>Installer Claude Code</h2>
+  <p class="lead">20 minutes, une seule fois. On utilise l'application de bureau Claude : pas de terminal, tout se fait avec la souris.</p>
+
+  <ol class="steps">
+    <li><strong>Télécharger l'application.</strong> Allez sur <strong>claude.com/download</strong> et téléchargez Claude pour Mac ou pour Windows. Installez-la comme n'importe quel logiciel.</li>
+    <li><strong>Vous connecter.</strong> Ouvrez l'application et connectez-vous avec votre compte Claude.</li>
+    <li><strong>Ouvrir l'onglet Code.</strong> Cliquez sur l'onglet <strong>Code</strong>, en haut de la barre latérale. C'est là que se trouve Claude Code.</li>
+    <li><strong>Créer votre dossier de travail.</strong> Sur votre Bureau, créez un dossier nommé <code>mon-studio-motion</code>. Tous vos projets iront dedans.</li>
+    <li><strong>Choisir ce dossier.</strong> Sous la zone de texte, cliquez sur le sélecteur d'environnement et choisissez la première entrée du groupe <strong>Local</strong>. Juste à côté, cliquez sur <strong>Open folder…</strong> et sélectionnez <code>mon-studio-motion</code>.</li>
+  </ol>
+
+  <div class="ok"><b>Ce que vous devriez voir</b><p>Une zone de texte où écrire à Claude, avec le nom de votre dossier affiché en dessous. C'est prêt.</p></div>
+
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>On vous propose de passer à une offre payante</strong> en cliquant sur Code : votre plan ne comprend pas Claude Code, il faut au moins l'abonnement Pro.</li>
+    <li><strong>On vous demande de vous connecter en ligne</strong> : terminez la connexion, puis redémarrez l'application.</li>
+    <li><strong>Les onglets n'affichent que des icônes</strong> : survolez-les avec la souris pour voir leur nom.</li>
+  </ul></div>
+
+  <h3>Comprendre les demandes de permission</h3>
+  <p>Sous la zone de texte, un réglage indique le <strong>mode de permission</strong>. Au début, choisissez <strong>Manual</strong> : Claude vous montre chaque modification et attend votre accord avant de l'appliquer. Quand vous serez à l'aise, passez en <strong>Accept edits</strong> pour aller plus vite.</p>
+  <ul>
+    <li>Acceptez les créations et modifications de fichiers <strong>dans votre dossier</strong>.</li>
+    <li>Si Claude veut <strong>supprimer</strong> quelque chose ou agir <strong>hors de votre dossier</strong>, refusez et demandez : <em>« Explique-moi ce que tu veux faire et pourquoi. »</em></li>
+    <li>Pour arrêter Claude en cours de route, cliquez sur le bouton <strong>stop</strong>.</li>
+  </ul>
+  <div class="note"><b>Vous préférez le terminal ?</b> Claude Code existe aussi en ligne de commande. La commande d'installation se trouve sur <strong>code.claude.com/docs</strong>, rubrique « Quickstart ». Ce guide fonctionne de la même façon dans les deux cas.</div>
+</section>
+
+<!-- ================= B. PREMIÈRE ANIMATION ================= -->
+<section class="page" id="b">
+  <h2><span class="step">B</span>Votre première animation en 10 minutes</h2>
+  <p class="lead">Un échauffement pour comprendre comment on travaille avec Claude, avant de passer à la vidéo.</p>
+
+  <div class="prompt">Crée un fichier index.html tout simple, sans rien installer. Sur un fond violet foncé, le mot « Bonjour » apparaît lettre par lettre : chaque lettre tombe du haut et rebondit légèrement en arrivant. En dessous, quatre petites balles de couleur rebondissent en boucle, l'une après l'autre. Ouvre ensuite la page pour que je la voie.</div>
+
+  <p>Claude vous montre le fichier qu'il veut créer : acceptez. Il ouvre ensuite la page dans le panneau navigateur de l'application. Si ce n'est pas le cas, ouvrez le dossier <code>mon-studio-motion</code> et double-cliquez sur <code>index.html</code>.</p>
+
+  <figure>
+    <img src="img/01-premiere-animation.png" alt="Six images successives : les lettres de Bonjour tombent une à une, puis quatre balles colorées rebondissent." />
+    <figcaption>Un exemple de résultat, image par image. Le vôtre sera un peu différent : Claude ne produit jamais deux fois exactement la même chose.</figcaption>
+  </figure>
+
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>La page est blanche</strong> : écrivez « La page est blanche, trouve et corrige le problème. »</li>
+    <li><strong>Rien ne bouge</strong> : rechargez la page (<kbd>F5</kbd>, ou <kbd>Cmd</kbd>+<kbd>R</kbd> sur Mac).</li>
+  </ul></div>
+
+  <h3>Maintenant, corrigez-la (c'est ça, le « vibe »)</h3>
+  <p>Envoyez ces trois demandes l'une après l'autre, en regardant le résultat à chaque fois :</p>
+  <div class="prompt">Remplace « Bonjour » par mon prénom : [votre prénom].</div>
+  <div class="prompt">Les lettres arrivent trop lentement. Rends l'animation deux fois plus rapide.</div>
+  <div class="prompt">Ajoute un bouton « Rejouer » en bas à droite qui relance l'animation.</div>
+
+  <h3>La formule d'une bonne demande</h3>
+  <p>Une demande efficace répond à cinq questions. Pas besoin de mots techniques : soyez simplement précis.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Question</th><th>Exemple</th></tr>
+    <tr><td><strong>Quoi ?</strong> L'élément concerné</td><td>« le titre », « les trois cartes », « le logo »</td></tr>
+    <tr><td><strong>Où ?</strong> Sa place à l'écran</td><td>« au centre », « en haut », « depuis la droite »</td></tr>
+    <tr><td><strong>Comment ?</strong> Le mouvement</td><td>« apparaît en fondu », « rebondit », « glisse »</td></tr>
+    <tr><td><strong>Combien de temps ?</strong></td><td>« en 0,5 s », « pendant toute la scène »</td></tr>
+    <tr><td><strong>Quelle ambiance ?</strong></td><td>« calme et premium », « énergique et joyeux »</td></tr>
+  </table></div>
+  <p>Exemple : <em>« Le titre <strong>arrive depuis le bas</strong>, <strong>au centre</strong>, en <strong>0,5 s</strong>, avec un léger rebond. Ambiance <strong>joyeuse</strong>. »</em></p>
+  <div class="note"><b>Bravo :</b> vous venez de faire du vibe motion design. Décrire, regarder, corriger : c'est exactement ce que vous allez faire pour la vidéo, avec plus d'étapes.</div>
+</section>
+
+<!-- ================= C. LES BONS MOTS ================= -->
+<section class="page" id="c">
+  <h2><span class="step">C</span>Les bons mots et les bons réflexes</h2>
+  <p class="lead">Six mots suffisent pour décrire presque tous les mouvements. Une page, à garder sous la main.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Mot</th><th>Ce que ça veut dire</th><th>Exemple de demande</th></tr>
+    <tr><td><strong>Durée</strong></td><td>Le temps d'un mouvement. Une apparition dure 0,3 à 0,6 s, une scène 3 à 8 s.</td><td>« Le titre apparaît en 0,5 s. »</td></tr>
+    <tr><td><strong>Ease-out</strong></td><td>Arrive vite, freine en douceur. Le mouvement le plus naturel pour une entrée.</td><td>« Les cartes entrent en ease-out. »</td></tr>
+    <tr><td><strong>Ressort (spring)</strong></td><td>Arrive avec un petit rebond, vivant et joyeux.</td><td>« Le logo apparaît avec un effet ressort. »</td></tr>
+    <tr><td><strong>Overshoot</strong></td><td>Dépasse un peu sa place, puis revient. Donne du « pop ».</td><td>« Ajoute un léger overshoot. »</td></tr>
+    <tr><td><strong>Décalage (stagger)</strong></td><td>Plusieurs éléments partent l'un après l'autre.</td><td>« Les trois lignes arrivent avec 1 s d'écart. »</td></tr>
+    <tr><td><strong>Transition</strong></td><td>Le passage d'une scène à la suivante : fondu, glissement…</td><td>« Passe à la scène suivante en glissant vers la gauche. »</td></tr>
+  </table></div>
+
+  <h3>Les bons et les mauvais retours</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Retour flou</th><th>Retour efficace</th></tr>
+    <tr><td>« C'est bof. »</td><td>« Le titre arrive trop tard, il doit être lisible dès 0,5 s. »</td></tr>
+    <tr><td>« Plus dynamique. »</td><td>« Rends tout 1,5 fois plus rapide et ajoute un effet ressort aux entrées. »</td></tr>
+    <tr><td>« C'est bizarre. »</td><td>« Les trois cartes arrivent en même temps : décale-les. »</td></tr>
+  </table></div>
+
+  <h3>Quatre réflexes qui évitent 90 % des problèmes</h3>
+  <ol class="steps">
+    <li><strong>Une ou deux corrections à la fois</strong>, jamais dix. Sinon Claude en oublie ou casse autre chose.</li>
+    <li><strong>Sauvegardez ce qui marche.</strong> Écrivez : <em>« Mets en place Git dans ce dossier et sauvegarde cette version sous le nom “[description]”. »</em> Ensuite, dites simplement « sauvegarde » à chaque étape réussie.</li>
+    <li><strong>Revenez en arrière sans peur :</strong> <em>« Annule ta dernière modification »</em>, ou <em>« Reviens à la version “[nom]” »</em>.</li>
+    <li><strong>Si ça tourne en rond après trois essais</strong>, revenez à la dernière version qui marchait, ouvrez une <strong>nouvelle session</strong> et reformulez plus simplement.</li>
+  </ol>
+</section>
+
+<!-- ================= D. PRÉPARER ================= -->
+<section class="page" id="d">
+  <h2><span class="step">D</span>Préparer la vidéo : objectif, script, storyboard</h2>
+  <p class="lead">Les pros passent autant de temps à préparer qu'à animer. Ici, Claude vous aide à tout préparer en 20 minutes.</p>
+
+  <h3>1. L'objectif et le public</h3>
+  <p>Répondez à trois questions : <strong>à qui</strong> parle la vidéo, <strong>que doit-on retenir</strong>, et <strong>que doit-on faire</strong> après l'avoir vue. Pour notre exemple :</p>
+  <ul>
+    <li><strong>Public</strong> : commerçants et petites entreprises qui reçoivent beaucoup de messages WhatsApp.</li>
+    <li><strong>Message</strong> : AroSoft répond à vos clients automatiquement, 24 h/24.</li>
+    <li><strong>Action</strong> : écrire à AroSoft sur WhatsApp.</li>
+  </ul>
+
+  <h3>2. Le script</h3>
+  <p>Ouvrez une <strong>nouvelle session</strong> dans votre dossier, puis écrivez :</p>
+  <div class="prompt">Je veux créer une publicité vidéo verticale de 30 secondes pour [votre marque], qui [ce que fait votre offre]. Public : [votre public]. Action attendue : [ce que la personne doit faire]. Écris-moi un script en 5 scènes : accroche, problème, solution, 3 bénéfices, appel à l'action. Pour chaque scène, donne la phrase de voix-off (courte, à lire en 3 à 5 secondes) et ce qu'on voit à l'écran. Ne code rien pour l'instant.</div>
+  <p>Relisez, puis corrigez jusqu'à ce que le script vous plaise : <em>« La phrase 2 est trop longue », « Rends l'accroche plus percutante ».</em> Voici le script retenu pour l'exemple :</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Scène</th><th>Voix-off</th><th>À l'écran</th></tr>
+    <tr><td>1 · Accroche</td><td>« Vos clients vous écrivent sur WhatsApp, à toute heure. »</td><td>Des bulles de messages apparaissent une à une.</td></tr>
+    <tr><td>2 · Problème</td><td>« Et vous répondez trop tard ? Ils partent chez un concurrent. »</td><td>Un compteur de messages non lus grimpe et tremble.</td></tr>
+    <tr><td>3 · Solution</td><td>« Avec AroSoft, vous répondez 24 h/24, automatiquement. »</td><td>Le logo AroSoft surgit, souligné en jaune.</td></tr>
+    <tr><td>4 · Bénéfices</td><td>« Réponses instantanées. Commandes et rendez-vous. Zéro message oublié. »</td><td>Trois cartes avec icône montent l'une après l'autre.</td></tr>
+    <tr><td>5 · Appel</td><td>« Essayez AroSoft. Écrivez-nous sur WhatsApp dès aujourd'hui. »</td><td>« Essayez AroSoft » et un bouton vert qui pulse.</td></tr>
+  </table></div>
+</section>
+
+<section class="page" id="d2">
+  <h3>3. Le storyboard minuté</h3>
+  <p>Le storyboard fixe la durée de chaque scène. Demandez :</p>
+  <div class="prompt">Transforme ce script en storyboard minuté pour une vidéo de 30 secondes exactement : durée de chaque scène, type de transition entre les scènes (0,5 s chacune), et mouvement principal de chaque scène. Présente-le sous forme de tableau.</div>
+  <div class="table-wrap"><table>
+    <tr><th>Scène</th><th>Durée</th><th>Mouvement principal</th><th>Transition vers la suite</th></tr>
+    <tr><td>1 · Accroche</td><td>4,5 s</td><td>Bulles en effet ressort, avec un petit « pop » sonore</td><td>Glissement depuis la droite</td></tr>
+    <tr><td>2 · Problème</td><td>5,5 s</td><td>Compteur 3 → 47, puis tremblement</td><td>Fondu</td></tr>
+    <tr><td>3 · Solution</td><td>6,5 s</td><td>Logo en ressort, ligne jaune qui se trace</td><td>Glissement depuis le bas</td></tr>
+    <tr><td>4 · Bénéfices</td><td>9,5 s</td><td>3 cartes en ease-out, décalées</td><td>Fondu</td></tr>
+    <tr><td>5 · Appel</td><td>6 s</td><td>Titre qui monte, bouton qui pulse, fondu final</td><td>—</td></tr>
+  </table></div>
+  <p>Le total des scènes fait 32 s, mais les 4 transitions de 0,5 s font se chevaucher les scènes : la vidéo dure bien <strong>30 s</strong>.</p>
+
+  <h3>4. La direction artistique</h3>
+  <p>Choisissez 3 à 5 couleurs et une police, puis tenez-vous-y. Pour l'exemple, les couleurs de la couverture AroSoft :</p>
+  <div class="swatches">
+    <span class="swatch"><i style="background:#0b2a8a"></i>Bleu nuit #0B2A8A</span>
+    <span class="swatch"><i style="background:#1f4fe0"></i>Bleu vif #1F4FE0</span>
+    <span class="swatch"><i style="background:#ffd21f"></i>Jaune #FFD21F</span>
+    <span class="swatch"><i style="background:#e3262f"></i>Rouge #E3262F</span>
+    <span class="swatch"><i style="background:#25d366"></i>Vert WhatsApp #25D366</span>
+  </div>
+  <p>Police : <strong>Inter</strong>, en gras pour les titres. Vous n'avez pas de charte ? Demandez : <em>« Propose-moi 3 palettes de couleurs pour une marque [ambiance], avec leurs codes. »</em></p>
+
+  <h3>5. Les images et éléments graphiques</h3>
+  <p>Rassemblez dans votre dossier ce dont vous disposez : <strong>votre logo</strong> (idéalement en SVG ou en PNG transparent) et vos photos de produit. Dans l'exemple, <strong>tout est dessiné par le code</strong> (bulles, cartes, icônes emoji) : aucune image n'est nécessaire pour commencer.</p>
+  <div class="note"><b>Droits :</b> n'utilisez que des images, polices et musiques que vous avez le droit d'utiliser commercialement.</div>
+</section>
+
+<!-- ================= E. CRÉER LE PROJET ================= -->
+<section class="page" id="e">
+  <h2><span class="step">E</span>Créer le projet vidéo avec Remotion</h2>
+  <p class="lead">Remotion est un outil gratuit (pour les particuliers et les équipes de 3 personnes au plus) qui fabrique de vraies vidéos MP4 à partir de code.</p>
+
+  <h3>1. Installer Node.js</h3>
+  <p>Remotion a besoin d'un logiciel gratuit, <strong>Node.js</strong>. Demandez d'abord :</p>
+  <div class="prompt">Vérifie si Node.js est installé sur mon ordinateur, et si sa version convient pour Remotion.</div>
+  <p>S'il manque ou s'il est trop ancien : allez sur <strong>nodejs.org</strong>, téléchargez la version <strong>LTS</strong>, installez-la avec les options par défaut, puis <strong>redémarrez l'application Claude</strong>. Remotion demande au minimum Node.js 20.19 ou 22.13.</p>
+
+  <h3>2. Créer le projet</h3>
+  <div class="prompt">Crée un nouveau projet Remotion vide dans un dossier « projet-video », avec la commande officielle npx create-video@latest --yes --blank projet-video. Ensuite, installe les skills Remotion pour Claude Code avec npx skills add remotion-dev/skills, puis installe aussi le paquet @remotion/transitions.</div>
+  <p>Claude va lancer plusieurs commandes : acceptez-les, elles concernent votre dossier. L'installation prend quelques minutes.</p>
+  <div class="note"><b>Les « skills » Remotion</b> sont des fiches de bonnes pratiques publiées par l'équipe Remotion. Elles aident Claude à écrire un meilleur code vidéo. Après les avoir installées, ouvrez une nouvelle session pour qu'elles soient prises en compte.</div>
+
+  <div class="ok"><b>Ce que vous devriez voir</b><p>Un dossier <code>projet-video</code> avec, entre autres, un sous-dossier <code>src</code> (le code de la vidéo) et un sous-dossier <code>public</code> (vos sons et images). Claude confirme que le projet est créé.</p></div>
+
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>« npx n'est pas reconnu »</strong> ou <strong>« node: command not found »</strong> : Node.js n'est pas installé, ou l'application a été ouverte avant son installation. Redémarrez-la.</li>
+    <li><strong>L'installation semble bloquée</strong> depuis plus de 10 minutes : cliquez sur stop, puis écrivez « Où en est l'installation ? Recommence si besoin. »</li>
+  </ul></div>
+
+  <h3>3. Régler le format de la vidéo</h3>
+  <div class="prompt">Dans ce projet, crée une composition nommée « PubAroSoft » au format vertical 1080×1920, 30 images par seconde, durée 30 secondes. Mets le script de la pub dans un fichier séparé, src/script.ts, avec pour chaque scène son nom, sa durée, le fichier de voix et le texte, pour que je puisse le modifier facilement.</div>
+</section>
+
+<section class="page cont" id="e2">
+  <h3>4. Ouvrir le Studio Remotion</h3>
+  <div class="prompt">Lance le Studio Remotion (npm run dev dans projet-video) et ouvre-le pour que je voie l'aperçu.</div>
+  <figure>
+    <img src="img/studio-remotion.png" alt="Capture du Studio Remotion : liste des compositions à gauche, aperçu vertical de la scène AroSoft au centre, informations de format à droite, ligne du temps en bas avec la musique et les cinq scènes." />
+    <figcaption>Vraie capture du Studio Remotion, avec le projet terminé, à 10 secondes. À gauche, vos compositions. Au centre, l'aperçu. À droite, le format (1080×1920, 30 fps, 30 s). En bas, la ligne du temps : la piste verte est la musique, les blocs bleus sont les 5 scènes.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Lecture</strong> : le bouton ▶ sous l'aperçu, ou la barre <kbd>Espace</kbd>.</li>
+    <li><strong>Aller à un moment précis</strong> : cliquez sur la ligne du temps, en bas.</li>
+    <li>L'aperçu se met à jour <strong>tout seul</strong> chaque fois que Claude modifie le code. Laissez le Studio ouvert pendant tout le travail.</li>
+  </ul>
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>Le Studio ne s'ouvre pas</strong> : demandez « À quelle adresse est le Studio ? » et ouvrez-la dans votre navigateur (souvent <code>http://localhost:3000</code>).</li>
+    <li><strong>« Port already in use »</strong> : écrivez « Arrête l'ancien Studio et relance-le. »</li>
+  </ul></div>
+</section>
+
+<!-- ================= F. ANIMER ================= -->
+<section class="page" id="f">
+  <h2><span class="step">F</span>Animer les 5 scènes</h2>
+  <p class="lead">Une scène à la fois. Après chaque demande, regardez-la dans le Studio, corrigez si besoin, puis dites « sauvegarde ».</p>
+
+  <h3>Scène 1 · Accroche (4,5 s)</h3>
+  <div class="prompt">Scène 1 « accroche » : fond en dégradé bleu vif vers bleu nuit. Quatre bulles de messages blanches, comme dans WhatsApp, apparaissent l'une après l'autre en haut de l'écran avec un effet ressort : « Bonjour, vous êtes ouverts ? », « C'est combien la livraison ? », « Je peux réserver pour demain ? », « Allô ? 😕 ». Le texte des bulles tient sur une seule ligne.</div>
+
+  <h3>Scène 2 · Problème (5,5 s)</h3>
+  <div class="prompt">Scène 2 « probleme » : fond sombre rouge très foncé vers bleu nuit. Au centre, une grande icône de message verte avec une pastille rouge de messages non lus. Le chiffre monte de 3 à 47, puis l'icône tremble. En dessous, le titre « Messages sans réponse… » monte en ease-out.</div>
+
+  <h3>Scène 3 · Solution (6,5 s)</h3>
+  <div class="prompt">Scène 3 « solution » : fond blanc vers bleu très clair. Le mot « AROSOFT » apparaît en très grand avec un effet ressort, « ARO » en bleu nuit et « SOFT » en bleu vif. Une ligne jaune se trace dessous, puis « Vos réponses WhatsApp, 24 h/24. » monte en ease-out.</div>
+
+  <h3>Scène 4 · Bénéfices (9,5 s)</h3>
+  <div class="prompt">Scène 4 « benefices » : fond bleu nuit. Trois cartes semi-transparentes montent l'une après l'autre en ease-out, avec environ 1 seconde d'écart. Chaque carte a une icône dans un carré jaune : ⚡ « Réponses instantanées », 🛒 « Commandes et rendez-vous », ✅ « Zéro message oublié ».</div>
+
+  <h3>Scène 5 · Appel à l'action (6 s)</h3>
+  <div class="prompt">Scène 5 « appel » : fond jaune. « Essayez AroSoft » monte en grand, en bleu nuit. Puis un bouton vert « 💬 Écrivez-nous sur WhatsApp » apparaît avec un effet ressort et pulse doucement. Dans la dernière seconde, tout disparaît en fondu. Le bouton ne doit jamais toucher les bords de l'écran.</div>
+
+  <h3>Les transitions</h3>
+  <div class="prompt">Enchaîne les 5 scènes avec TransitionSeries de @remotion/transitions. Transitions de 0,5 s : glissement depuis la droite, puis fondu, puis glissement depuis le bas, puis fondu. Vérifie que la vidéo dure toujours 30 secondes au total.</div>
+
+  <div class="ok"><b>Ce que vous devriez voir</b><p>Dans le Studio, la ligne du temps montre 5 blocs qui se chevauchent légèrement. En lisant la vidéo, chaque scène s'enchaîne sans écran noir.</p></div>
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>Un texte sort de l'écran ou se coupe mal</strong> : « Dans la scène [n], le texte déborde : réduis sa taille et garde 80 px de marge sur les côtés. »</li>
+    <li><strong>Une scène paraît vide au début</strong> : « Dans la scène [n], fais apparaître le premier élément plus tôt. »</li>
+    <li><strong>Erreur rouge dans le Studio</strong> : copiez le message et collez-le à Claude : « Corrige cette erreur : [message]. »</li>
+  </ul></div>
+</section>
+
+<section class="page cont" id="f2">
+  <h3>Comprendre ce que Claude a écrit (sans coder)</h3>
+  <p>Vous n'avez pas besoin de lire le code. Mais il est utile de savoir <strong>où se trouvent vos textes</strong>. Ils sont tous dans le fichier <code>src/script.ts</code>, qui ressemble à ceci (extrait réel du projet d'exemple) :</p>
+<pre>export const scenes = [
+  { id: "accroche", duree: 135, voix: "voix/scene1.wav",
+    texte: "Vos clients vous écrivent sur WhatsApp, à toute heure." },
+  { id: "probleme", duree: 165, voix: "voix/scene2.wav",
+    texte: "Et vous répondez trop tard ? Ils partent chez un concurrent." },
+  ...
+];</pre>
+  <ul>
+    <li><strong>duree</strong> se compte en <strong>images</strong> : 30 images = 1 seconde. Ici, 135 images = 4,5 s.</li>
+    <li><strong>voix</strong> indique le fichier son de la scène, rangé dans <code>public/</code>.</li>
+    <li><strong>texte</strong> est la phrase affichée en sous-titre.</li>
+  </ul>
+  <p>Vous pouvez modifier un texte vous-même, entre les guillemets, puis enregistrer le fichier : le Studio se met à jour aussitôt. Ou demandez à Claude : <em>« Dans la scène 2, remplace la phrase par… »</em></p>
+  <div class="note"><b>Bon à savoir :</b> la durée totale se calcule ainsi : somme des scènes (960 images) moins le chevauchement des 4 transitions (4 × 15 images), soit 900 images, c'est-à-dire 30 s.</div>
+</section>
+
+<!-- ================= G. LE SON ================= -->
+<section class="page" id="g">
+  <h2><span class="step">G</span>Le son : voix-off, musique, effets et sous-titres</h2>
+  <p class="lead">Le son fait la moitié d'une vidéo réussie. Et beaucoup de gens regardent sans le son : les sous-titres sont indispensables.</p>
+
+  <h3>1. Enregistrer la voix-off</h3>
+  <ol class="steps">
+    <li>Avec l'application d'enregistrement de votre téléphone, dans une pièce calme, lisez <strong>une phrase par fichier</strong> : 5 fichiers pour les 5 scènes. Parlez lentement et souriez : ça s'entend.</li>
+    <li>Vérifiez que chaque phrase dure <strong>moins que sa scène</strong> (par exemple moins de 4 s pour la scène 1).</li>
+    <li>Envoyez-vous les fichiers et copiez-les dans <code>projet-video/public/voix/</code>, nommés <code>scene1</code> à <code>scene5</code>.</li>
+  </ol>
+  <div class="prompt">J'ai mis 5 enregistrements de voix dans public/voix (scene1 à scene5). Convertis-les si besoin en fichiers WAV, harmonise leur volume avec FFmpeg (filtre loudnorm, autour de -14 LUFS), puis place chaque voix dans sa scène, 0,3 seconde après le début de la scène.</div>
+  <div class="note"><b>Pour l'exemple fourni</b>, la voix a été générée par une voix de synthèse gratuite (espeak-ng), uniquement pour tester le montage : elle sonne robotique. Votre propre voix, ou une voix IA de qualité professionnelle, donnera un bien meilleur résultat. Si vous utilisez une voix IA, vérifiez que votre abonnement autorise l'usage commercial.</div>
+
+  <h3>2. La musique et les effets sonores</h3>
+  <p>Le plus simple et sans risque de droits : demandez à Claude de <strong>composer</strong> une musique de fond simple.</p>
+  <div class="prompt">Compose avec FFmpeg une musique de fond douce de 30 secondes (une suite d'accords calmes, avec un fondu au début et à la fin) et enregistre-la dans public/musique.wav. Crée aussi un petit son « pop » court dans public/pop.wav. Ajoute la musique sur toute la vidéo à un volume bas (25 %), et le « pop » à l'apparition de chaque bulle de la scène 1.</div>
+  <p>Vous préférez une vraie musique ? Prenez-la dans une bibliothèque libre de droits, en vérifiant que <strong>la licence de chaque morceau</strong> autorise l'usage commercial, puis déposez-la dans <code>public/</code>.</p>
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>« ffmpeg n'est pas reconnu »</strong> : demandez « Installe FFmpeg sur mon ordinateur et explique-moi ce que tu installes. »</li>
+    <li><strong>La musique couvre la voix</strong> : « Baisse la musique à 15 % pendant que la voix parle. »</li>
+    <li><strong>La voix est décalée</strong> : « Dans la scène [n], fais démarrer la voix 0,5 s plus tôt. »</li>
+  </ul></div>
+
+  <h3>3. Les sous-titres</h3>
+  <p>Comme vous avez déjà le script, inutile de faire transcrire la voix : on affiche directement le texte de chaque scène.</p>
+  <div class="prompt">Ajoute des sous-titres : dans chaque scène, affiche le texte de la scène (depuis src/script.ts) en blanc et en gras, sur un fond noir semi-transparent arrondi, centré en bas. Garde-les à au moins 300 px du bas de l'image pour qu'ils ne soient pas cachés par les boutons de TikTok ou d'Instagram. Ils apparaissent en fondu au début de chaque scène.</div>
+  <div class="note"><b>Astuce :</b> pour qu'une expression comme « 24 h/24 » ne soit jamais coupée en fin de ligne, demandez : « Utilise une espace insécable dans “24 h/24”. »</div>
+
+  <h3>Les bons niveaux sonores</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Élément</th><th>Volume conseillé</th><th>Pourquoi</th></tr>
+    <tr><td>Voix-off</td><td>100 % (harmonisée autour de −14 LUFS)</td><td>C'est elle qui porte le message.</td></tr>
+    <tr><td>Musique</td><td>15 à 25 %</td><td>Elle crée l'ambiance sans couvrir la voix.</td></tr>
+    <tr><td>Effets (« pop », « whoosh »)</td><td>30 à 40 %</td><td>Ils ponctuent, ils ne doivent pas surprendre.</td></tr>
+  </table></div>
+  <p>Le <strong>LUFS</strong> est l'unité qui mesure le volume perçu. Autour de −14 LUFS, une vidéo sonne au même niveau que les autres sur les réseaux sociaux. Vous n'avez rien à calculer : Claude le mesure pour vous à l'étape H.</p>
+  <p><strong>Le test du téléphone :</strong> écoutez toujours la vidéo finale sur le haut-parleur de votre téléphone, là où elle sera vue. Si la voix est difficile à comprendre, baissez la musique.</p>
+</section>
+
+<!-- ================= H. EXPORTER ================= -->
+<section class="page" id="h">
+  <h2><span class="step">H</span>Vérifier, exporter et publier</h2>
+  <p class="lead">Dernière ligne droite. Ne sautez pas la vérification : c'est elle qui fait la différence entre une vidéo amateur et une vidéo pro.</p>
+
+  <h3>1. Le contrôle qualité</h3>
+  <p>Regardez la vidéo entière dans le Studio, <strong>deux fois</strong> : une fois avec le son, une fois sans. Cochez :</p>
+  <ul class="check">
+    <li>Le message se comprend <strong>sans le son</strong>, grâce aux sous-titres.</li>
+    <li>Aucun texte ne déborde, ne se coupe mal, ni n'est caché en haut ou en bas.</li>
+    <li>Chaque phrase de voix se termine avant la fin de sa scène.</li>
+    <li>La musique ne couvre jamais la voix.</li>
+    <li>Pas de scène vide, pas d'écran noir entre les scènes.</li>
+    <li>Les fautes d'orthographe sont corrigées (relisez chaque texte à l'écran).</li>
+  </ul>
+
+  <h3>2. Exporter le MP4</h3>
+  <div class="prompt">Exporte la composition PubAroSoft en MP4 dans projet-video/out/pub-arosoft.mp4. Ensuite, vérifie avec ffprobe que la vidéo fait bien 30 secondes, en 1080×1920, à 30 images par seconde, avec une piste audio. Mesure aussi le volume sonore global (en LUFS) et dis-moi où trouver le fichier.</div>
+  <div class="ok"><b>Ce que vous devriez voir</b><p>Une progression « Rendered … / 900 », puis « Encoded 900/900 » et le chemin du fichier. Pour l'exemple, voici les mesures réellement obtenues :</p>
+  <div class="table-wrap"><table>
+    <tr><th>Durée</th><th>Format</th><th>Images/s</th><th>Image</th><th>Son</th><th>Volume</th><th>Poids</th></tr>
+    <tr><td>30,0 s</td><td>1080×1920</td><td>30</td><td>H.264</td><td>AAC</td><td>−16,4 LUFS</td><td>4,3 Mo</td></tr>
+  </table></div></div>
+  <div class="ko"><b>Ça ne marche pas ?</b><ul>
+    <li><strong>Le rendu échoue en téléchargeant un navigateur</strong> : vérifiez votre connexion internet et relancez. Remotion télécharge un navigateur la première fois.</li>
+    <li><strong>La vidéo exportée diffère de l'aperçu</strong> : « Rends l'animation entièrement basée sur le numéro d'image, sans hasard ni minuteur. »</li>
+    <li><strong>Le son est trop faible sur le téléphone</strong> : « Monte le volume global vers −14 LUFS sans saturer. »</li>
+  </ul></div>
+
+  <h3>3. Publier</h3>
+  <ol class="steps">
+    <li>Envoyez le fichier MP4 sur votre téléphone (câble, AirDrop, WhatsApp à vous-même en « document », Google Drive…).</li>
+    <li>Publiez-le en <strong>Reel</strong> (Instagram, Facebook), sur <strong>TikTok</strong>, en <strong>Short</strong> YouTube ou en <strong>Statut WhatsApp</strong>. Le format vertical 1080×1920 convient à tous.</li>
+    <li>Écrivez une légende courte qui reprend l'appel à l'action.</li>
+  </ol>
+  <div class="note"><b>Besoin d'un autre format ?</b> « Crée une deuxième composition au format carré 1080×1080 en réutilisant les mêmes scènes, et adapte les positions. » Vous obtenez une version pour les publications Instagram ou LinkedIn.</div>
+</section>
+
+<!-- ================= RÉUTILISER ================= -->
+<section class="page" id="reutiliser">
+  <h2>Réutiliser votre modèle pour d'autres vidéos</h2>
+  <p class="lead">Le plus dur est fait. Votre projet est maintenant un <strong>modèle</strong> : une nouvelle pub prend quelques minutes.</p>
+
+  <h3>Changer les textes</h3>
+  <p>Tous les textes sont dans <code>src/script.ts</code>. Demandez simplement :</p>
+  <div class="prompt">Crée une nouvelle version de la pub pour [nouvelle offre] : réécris les 5 phrases dans src/script.ts, adapte les textes à l'écran, et garde exactement les mêmes animations.</div>
+
+  <h3>Faire plusieurs vidéos d'un coup</h3>
+  <div class="prompt">J'ai un fichier produits.csv avec les colonnes nom, prix et couleur. Génère une vidéo par produit avec ce modèle, en exportant chaque MP4 dans out/.</div>
+
+  <h3>Mémoriser votre style : le fichier CLAUDE.md</h3>
+  <p><code>CLAUDE.md</code> est un fichier texte que Claude lit automatiquement au début de chaque session. Écrivez-y une fois pour toutes vos couleurs et vos règles :</p>
+  <div class="prompt">Crée un fichier CLAUDE.md dans projet-video qui résume : mes couleurs (avec leurs codes), ma police, le format vertical 1080×1920 à 30 images/s, les marges de sécurité des sous-titres (300 px en bas), le volume cible (−14 LUFS), et le fait que je débute : explique-moi simplement ce que tu fais.</div>
+  <p>Ensuite, une demande comme <em>« fais une pub de 20 secondes pour notre offre de rentrée »</em> respectera directement votre style.</p>
+
+  <h3>Les fichiers du projet d'exemple</h3>
+  <p>Le projet complet de la pub AroSoft est fourni avec ce guide, dans le dossier <code>projet-video</code>. Pour l'utiliser : copiez-le dans <code>mon-studio-motion</code>, ouvrez-le dans Claude Code et écrivez <em>« Installe les dépendances de ce projet Remotion et lance le Studio. »</em></p>
+  <div class="table-wrap"><table>
+    <tr><th>Fichier</th><th>Rôle</th></tr>
+    <tr><td><code>src/script.ts</code></td><td>Le script : textes, durées et voix de chaque scène, et les couleurs.</td></tr>
+    <tr><td><code>src/Pub.tsx</code></td><td>Les 5 scènes, les transitions, le son et les sous-titres.</td></tr>
+    <tr><td><code>src/Root.tsx</code></td><td>Le format : 1080×1920, 30 images/s, durée totale.</td></tr>
+    <tr><td><code>public/</code></td><td>La voix (<code>voix/</code>), la musique et le son « pop ».</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= DÉPANNAGE ================= -->
+<section class="page" id="depannage">
+  <h2>Dépannage express</h2>
+  <p class="lead">Le réflexe numéro 1 : <strong>copiez le message d'erreur et collez-le à Claude</strong>, en lui demandant de l'expliquer simplement et de corriger.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Problème</th><th>Quoi faire</th></tr>
+    <tr><td>L'onglet Code me propose de passer à une offre payante</td><td>Claude Code demande un abonnement Pro au minimum.</td></tr>
+    <tr><td>Je ne sais plus dans quel dossier travaille Claude</td><td>« Dans quel dossier travailles-tu ? Liste les fichiers. »</td></tr>
+    <tr><td>« npx » ou « node » n'est pas reconnu</td><td>Installez Node.js (version LTS sur nodejs.org), puis redémarrez l'application.</td></tr>
+    <tr><td>« ffmpeg » n'est pas reconnu</td><td>« Installe FFmpeg et explique-moi ce que tu installes. »</td></tr>
+    <tr><td>La page ou l'aperçu est blanc</td><td>« L'aperçu est blanc, trouve et corrige le problème. »</td></tr>
+    <tr><td>Je ne vois pas mes modifications</td><td>Rechargez la page. Vérifiez que le Studio est toujours lancé.</td></tr>
+    <tr><td>L'animation saccade</td><td>« Optimise l'animation pour qu'elle soit fluide. »</td></tr>
+    <tr><td>Tout bouge en même temps</td><td>« Définis un ordre : d'abord le titre, puis le reste, avec 0,3 s d'écart. »</td></tr>
+    <tr><td>Ça fait « généré par IA »</td><td>« Retire la moitié des effets. Garde un seul mouvement marquant par scène. »</td></tr>
+    <tr><td>Claude a tout cassé</td><td>« Reviens à la dernière version sauvegardée. »</td></tr>
+    <tr><td>Claude tourne en rond</td><td>Dernière version qui marchait, nouvelle session, demande plus simple.</td></tr>
+    <tr><td>« Port already in use »</td><td>« Arrête l'ancien Studio et relance-le. »</td></tr>
+    <tr><td>Message de limite d'utilisation atteinte</td><td>Votre quota est épuisé pour le moment : attendez l'heure indiquée.</td></tr>
+    <tr><td>Texte caché par les boutons de TikTok ou d'Instagram</td><td>« Garde tous les textes à au moins 300 px du bas et 150 px du haut. »</td></tr>
+  </table></div>
+
+  <h3>Coûts et droits, en bref</h3>
+  <ul>
+    <li><strong>Claude Code</strong> : inclus dans les abonnements payants (Pro, Max, Team, Enterprise). Chaque abonnement a un quota d'utilisation qui se renouvelle. Tarifs à jour : claude.com/pricing.</li>
+    <li><strong>Remotion</strong> : gratuit pour les particuliers et les équipes de 3 personnes au plus. Au-delà, une licence d'entreprise est nécessaire (conditions sur remotion.pro/license).</li>
+    <li><strong>Node.js, FFmpeg</strong> : gratuits.</li>
+    <li><strong>Musique, voix, images, polices</strong> : vérifiez toujours que vous avez le droit de les utiliser commercialement.</li>
+    <li><strong>Économiser votre quota</strong> : une nouvelle session par projet, des demandes précises, et un fichier CLAUDE.md.</li>
+  </ul>
+</section>
+
+<!-- ================= GLOSSAIRE + FAQ ================= -->
+<section class="page" id="glossaire">
+  <h2>Glossaire express</h2>
+  <p class="lead">Les mots que vous allez croiser, en une phrase chacun.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Mot</th><th>En clair</th></tr>
+    <tr><td>Claude Code</td><td>La version de Claude qui crée et modifie des fichiers sur votre ordinateur.</td></tr>
+    <tr><td>Session</td><td>Une conversation avec Claude sur un projet. Une nouvelle session repart de zéro.</td></tr>
+    <tr><td>Dossier de travail</td><td>Le dossier de votre ordinateur dans lequel Claude a le droit de travailler.</td></tr>
+    <tr><td>Prompt</td><td>Le texte que vous écrivez à Claude.</td></tr>
+    <tr><td>HTML / CSS</td><td>Les langages des pages web : le contenu (HTML) et l'apparence (CSS).</td></tr>
+    <tr><td>Node.js</td><td>Logiciel gratuit qui fait fonctionner Remotion sur votre ordinateur.</td></tr>
+    <tr><td>npx</td><td>Commande fournie avec Node.js pour lancer des outils, comme <code>create-video</code>.</td></tr>
+    <tr><td>Remotion</td><td>Outil qui fabrique des vidéos MP4 à partir de code.</td></tr>
+    <tr><td>Studio Remotion</td><td>La fenêtre d'aperçu de votre vidéo, avec sa ligne du temps.</td></tr>
+    <tr><td>Composition</td><td>Une vidéo dans Remotion : son nom, son format, sa durée.</td></tr>
+    <tr><td>Image (frame) / fps</td><td>Une vidéo est une suite d'images. 30 fps = 30 images par seconde.</td></tr>
+    <tr><td>Skill</td><td>Fiche de bonnes pratiques qui donne à Claude un savoir-faire précis.</td></tr>
+    <tr><td>FFmpeg</td><td>Logiciel gratuit pour convertir et mesurer le son et la vidéo.</td></tr>
+    <tr><td>Rendu (render)</td><td>Le calcul de toutes les images pour produire le fichier MP4 final.</td></tr>
+    <tr><td>MP4</td><td>Le format vidéo accepté partout.</td></tr>
+    <tr><td>LUFS</td><td>L'unité du volume sonore perçu. Cible conseillée : environ −14.</td></tr>
+    <tr><td>Git / sauvegarde</td><td>L'historique de vos versions. Claude s'en occupe quand vous dites « sauvegarde ».</td></tr>
+    <tr><td>Ease-out, ressort, stagger</td><td>Voir l'étape C.</td></tr>
+  </table></div>
+</section>
+
+<section class="page" id="faq">
+  <h2>Questions fréquentes</h2>
+  <p class="lead">Les questions que se posent presque tous les débutants.</p>
+  <h3>Faut-il savoir coder ?</h3>
+  <p>Non. Vous décrivez, Claude écrit le code. Savoir où se trouvent vos textes (<code>src/script.ts</code>) suffit largement.</p>
+  <h3>Puis-je tout faire sur mon téléphone ?</h3>
+  <p>Non : la création se fait sur un ordinateur Mac ou Windows. Le téléphone sert à enregistrer la voix et à publier la vidéo.</p>
+  <h3>Combien de temps faut-il ?</h3>
+  <p>Environ 3 heures pour la première vidéo, en suivant ce guide. Les suivantes, avec votre modèle, prennent souvent moins d'une heure.</p>
+  <h3>Mon résultat ne ressemble pas exactement aux images du guide. C'est grave ?</h3>
+  <p>Non, c'est normal. Claude ne produit jamais deux fois la même chose. Corrigez avec la boucle « décrire, regarder, corriger » jusqu'à obtenir ce que vous voulez.</p>
+  <h3>Puis-je vendre ou diffuser commercialement mes vidéos ?</h3>
+  <p>Oui, à condition d'avoir les droits sur tout ce que vous utilisez (musique, voix, images, polices) et de respecter la licence Remotion : gratuite pour les particuliers et les équipes de 3 personnes au plus, payante au-delà.</p>
+  <h3>Et si je veux un format horizontal pour YouTube ?</h3>
+  <p>Demandez une deuxième composition en 1920×1080 qui réutilise les mêmes scènes, en adaptant les positions.</p>
+  <h3>Claude a supprimé ou cassé quelque chose. Que faire ?</h3>
+  <p>« Reviens à la dernière version sauvegardée. » D'où l'importance de dire « sauvegarde » à chaque étape réussie.</p>
+  <h3>J'ai atteint la limite d'utilisation. Pourquoi ?</h3>
+  <p>Chaque abonnement a un quota qui se renouvelle. Les longues sessions consomment plus : ouvrez une nouvelle session par projet et faites des demandes précises.</p>
+  <h3>Puis-je utiliser une voix générée par IA ?</h3>
+  <p>Oui, si le service choisi autorise l'usage commercial avec votre abonnement. Déposez simplement les fichiers dans <code>public/voix/</code>, comme pour un enregistrement.</p>
+</section>
+
+<!-- ================= ANTISÈCHE ================= -->
+<section class="page" id="antiseche">
+  <h2>L'antisèche : tout le parcours en une page</h2>
+  <p class="lead">Une fois le guide terminé, cette page suffit pour refaire une vidéo.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Étape</th><th>Ce que vous écrivez à Claude (en résumé)</th></tr>
+    <tr><td>Préparer</td><td>« Écris un script de pub de 30 s en 5 scènes pour [marque], public [public], action [action]. Ne code rien. »</td></tr>
+    <tr><td>Storyboard</td><td>« Transforme ce script en storyboard minuté de 30 s, avec les transitions. »</td></tr>
+    <tr><td>Projet</td><td>« Crée un projet Remotion vide (npx create-video@latest --yes --blank projet-video), installe les skills Remotion et @remotion/transitions. »</td></tr>
+    <tr><td>Format</td><td>« Crée une composition verticale 1080×1920, 30 images/s, 30 s, avec le script dans src/script.ts. »</td></tr>
+    <tr><td>Studio</td><td>« Lance le Studio Remotion. »</td></tr>
+    <tr><td>Scènes</td><td>Une demande par scène : fond, éléments, mouvement, durée.</td></tr>
+    <tr><td>Transitions</td><td>« Enchaîne les scènes avec TransitionSeries, transitions de 0,5 s, durée totale 30 s. »</td></tr>
+    <tr><td>Voix</td><td>« Harmonise le volume des voix (loudnorm −14 LUFS) et place chaque voix dans sa scène. »</td></tr>
+    <tr><td>Musique</td><td>« Ajoute public/musique.wav à 25 % sur toute la vidéo, et un “pop” sur les apparitions. »</td></tr>
+    <tr><td>Sous-titres</td><td>« Affiche le texte de chaque scène en sous-titre, à 300 px du bas. »</td></tr>
+    <tr><td>Vérifier</td><td>Regarder deux fois (avec et sans le son), puis cocher la checklist de l'étape H.</td></tr>
+    <tr><td>Exporter</td><td>« Exporte en MP4 dans out/, vérifie durée, format, son et volume avec ffprobe. »</td></tr>
+    <tr><td>Sauvegarder</td><td>« Sauvegarde cette version sous le nom “pub terminée”. »</td></tr>
+  </table></div>
+
+  <h3>Checklist finale</h3>
+  <ul class="check">
+    <li>J'ai installé Claude Code et réussi l'animation « Bonjour ».</li>
+    <li>J'ai un script en 5 scènes et un storyboard minuté.</li>
+    <li>Mon projet Remotion s'ouvre dans le Studio.</li>
+    <li>Mes 5 scènes s'enchaînent avec des transitions.</li>
+    <li>Ma voix, ma musique et mes sous-titres sont en place.</li>
+    <li>J'ai vérifié la vidéo avec et sans le son.</li>
+    <li>J'ai exporté un MP4 de 30 s en 1080×1920, et je l'ai publié.</li>
+    <li>J'ai sauvegardé le projet et créé mon fichier CLAUDE.md.</li>
+  </ul>
+  <div class="note"><b>Et maintenant ?</b> Refaites une deuxième vidéo, seul, avec l'antisèche. C'est en répétant la boucle « décrire, regarder, corriger » que vos vidéos deviendront vraiment les vôtres.</div>
+</section>
+
+</main>
+</body>
+</html>
