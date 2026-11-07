@@ -64,7 +64,7 @@ par l'équipe : le fichier fourni est utilisé tel quel.
 | Voix-off | volume 1, phrases replacées individuellement |
 | Musique (provisoire) | 0,55 hors narration → **0,20 sous la narration** (ducking automatique, rampes de 8 à 12 frames) |
 | Transitions | 0,7 : souffles filtrés à chaque coupe, scintillements sur le ruban (S05), le retour de la lumière (S13) et l'end card (S15) |
-| Master | deux passes `loudnorm` : **-14 LUFS intégrés, -1,5 dBTP** (`scripts/master.sh`) |
+| Master | deux passes `loudnorm` + limiteur : **-14 LUFS intégrés, crête ≤ -1,4 dBFS** (`scripts/master.sh`) |
 
 Mesure sur la preview (avant mastering) : parole ≈ -23 dB RMS, musique seule entre les phrases ≈ -30 dB RMS.
 La voix reste nettement au-dessus de la musique.
@@ -98,9 +98,12 @@ La voix reste nettement au-dessus de la musique.
 | Fichier | Format | Contrôle |
 |---|---|---|
 | `out/preview-S01-S03-15s.mp4` | 1080x1920, H.264, 30 fps, AAC | 450 frames, 15,02 s ✔ |
-| `out/novembre-bleu-1080x1920.mp4` | 1080x1920, H.264 (CRF 18, yuv420p), 30 fps, AAC 192 kb/s, masterisé -14 LUFS | voir `npm run verify` |
-| `out/novembre-bleu-1920x1080.mp4` | 1920x1080, idem, mise en page recomposée | voir `npm run verify` |
+| `out/novembre-bleu-1080x1920.mp4` | 1080x1920, H.264 (CRF 18, yuv420p), 30 fps, AAC 192 kb/s | **2700 frames** ✔ · -14,2 LUFS · crête -1,4 dBFS · 136 Mo |
+| `out/novembre-bleu-1920x1080.mp4` | 1920x1080, idem, mise en page recomposée | **2700 frames** ✔ · -14,2 LUFS · crête -1,4 dBFS · 142 Mo |
 | `out/novembre-bleu.fr.srt` | SRT UTF-8, 37 repères | dérivé de la même timeline que la piste incrustée ✔ |
+
+La durée du conteneur indiquée par ffprobe est de 90,10 s : ce sont les ~0,1 s de remplissage de fin de trame AAC. La piste vidéo fait exactement 2700 frames, soit 90,000 s.
+Les fichiers sont lourds (CRF 18, grain) : pour un envoi mobile, une version allégée peut être réencodée avec `ffmpeg -i in.mp4 -c:v libx264 -crf 23 -preset slow -c:a copy out.mp4`.
 
 Contrôle visuel : 2 images de contrôle par scène et par format (`npm run stills`) ont été examinées.
 
