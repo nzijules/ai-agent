@@ -678,7 +678,8 @@ export const CTA: React.FC = () => {
   const frame = useCurrentFrame();
   const pulse = beatPulse(frame + 1563);
   const book = useSpr(10, 10);
-  const price = useSpr(193, 8, 0.6, 140);
+  const priceLabel = useSpr(179, 11);
+  const price = useSpr(202, 8, 0.6, 140);
   const btn = useSpr(100, 10);
   const last = useSpr(248, 12);
   const intro = useSpr(0, 12);
@@ -781,13 +782,24 @@ export const CTA: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             gap: 0,
-            transform: `scale(${price * (1 + pulse * 0.04)}) rotate(${(1 - price) * -25 - 3}deg)`,
-            opacity: Math.min(1, price * 2),
           }}
         >
-          <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 48, color: C.ink }}>seulement</div>
           <div
             style={{
+              fontFamily: F.body,
+              fontWeight: 700,
+              fontSize: 52,
+              color: C.ink,
+              opacity: priceLabel,
+              transform: `translateY(${(1 - priceLabel) * 40}px) scale(${0.7 + 0.3 * priceLabel})`,
+            }}
+          >
+            À seulement
+          </div>
+          <div
+            style={{
+              transform: `scale(${price * (1 + pulse * 0.04)}) rotate(${(1 - price) * -25 - 3}deg)`,
+              opacity: Math.min(1, price * 2),
               fontFamily: F.display,
               fontWeight: 900,
               fontSize: 134,
