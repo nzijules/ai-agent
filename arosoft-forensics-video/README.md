@@ -8,7 +8,7 @@ Vidéo de sensibilisation au **Mobile Digital Forensics**, entièrement animée 
 | Format | Vertical 1080 × 1920 |
 | Cadence | 30 i/s |
 | Durée | 100 s (3000 images) |
-| Export | MP4 H.264 + AAC, piste audio séparée (M4A, ou WAV via `render:audio`) |
+| Export | MP4 H.264 + AAC, et piste audio séparée en WAV |
 | Langue | Français (voix-off + sous-titres animés) |
 
 ---
@@ -39,9 +39,9 @@ Compositions disponibles :
 ## 3. Rendu
 
 ```bash
-npm run render         # out/arosoft-forensics.mp4 (H.264, CRF 18, AAC) + out/arosoft-forensics-audio.m4a (piste audio séparée)
+npm run render         # out/arosoft-forensics.mp4 (H.264 CRF 18 + AAC), puis out/arosoft-forensics-audio.wav (piste audio séparée)
 npm run render:draft   # brouillon rapide en demi-résolution
-npm run render:audio   # piste audio seule (WAV)
+npm run render:audio   # piste audio seule (WAV, rapide : aucune image n'est rendue)
 npm run still          # image d'aperçu (logo final) → out/poster.png
 ```
 
