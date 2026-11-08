@@ -1,7 +1,7 @@
 """Synthesise a 120 BPM afro-pop groove + whooshes synced to the video cuts.
 Mixed for phone speakers: most of the energy sits between 300 Hz and 5 kHz."""
 import numpy as np, wave, sys
-SR = 44100; DUR = 25.0; BEAT = 0.5
+SR = 44100; DUR = 26.0; BEAT = 0.5
 N = int(SR * DUR)
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(3)
