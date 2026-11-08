@@ -47,7 +47,7 @@ export const Captions: React.FC<{ chunks: string[]; duration: number; lead?: num
           maxWidth: 960,
           padding: "20px 30px",
           borderRadius: 18,
-          background: "rgba(0,0,0,0.72)",
+          background: "rgba(0,0,0,0.92)",
           borderLeft: `6px solid ${C.yellow}`,
           fontFamily: FONT,
           fontWeight: 700,
@@ -55,7 +55,7 @@ export const Captions: React.FC<{ chunks: string[]; duration: number; lead?: num
           lineHeight: 1.28,
           color: C.white,
           textAlign: "center",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
         }}
       >
         {words.map((w, i) => {

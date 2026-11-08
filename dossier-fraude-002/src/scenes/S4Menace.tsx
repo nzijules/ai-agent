@@ -22,7 +22,7 @@ export const S4Menace: React.FC = () => {
   const sk = shake(f, 70, 10, 12);
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
-      <Backdrop tint={f < compareAt ? "red" : "neutral"} intensity={f < compareAt ? 0.5 + 0.3 * Math.sin(f / 5) : 1} />
+      <Backdrop tint={f < compareAt ? "red" : "yellow"} intensity={f < compareAt ? 0.5 + 0.3 * Math.sin(f / 5) : 1} />
       <EvidenceTitle label="PIÈCE À CONVICTION N°2" title="LA MENACE" start={6} />
 
       {/* panneau « menace » : affirmation du fraudeur */}
@@ -37,7 +37,7 @@ export const S4Menace: React.FC = () => {
           filter: cmp > 0 ? `grayscale(${cmp})` : undefined,
         }}
       >
-        <div style={{ borderRadius: 26, border: `3px solid ${C.red}`, background: "rgba(40,0,0,0.6)", padding: "34px 40px", boxShadow: "0 0 60px rgba(229,37,42,0.35)" }}>
+        <div style={{ borderRadius: 26, border: `3px solid ${C.red}`, background: "#1a0606", padding: "34px 40px", boxShadow: "0 0 60px rgba(229,37,42,0.35)" }}>
           <div style={{ fontFamily: MONO, fontSize: 24, color: C.red, letterSpacing: 3 }}>« TRANSACTION SUSPECTE » — SELON L'APPELANT</div>
           <div style={{ marginTop: 18, fontFamily: FONT, color: C.white, fontWeight: 900, fontSize: 124, letterSpacing: -3, lineHeight: 1 }}>
             <Counter to={150000} start={40} dur={36} />
@@ -69,7 +69,7 @@ export const S4Menace: React.FC = () => {
             background: C.light,
             color: C.anthracite,
             padding: "28px 34px",
-            boxShadow: "0 40px 90px rgba(0,0,0,0.8)",
+            boxShadow: "0 30px 70px rgba(0,0,0,0.35)", border: "3px solid #000",
             fontFamily: FONT,
           }}
         >
@@ -100,7 +100,7 @@ export const S4Menace: React.FC = () => {
         </div>
       )}
       {/* flash d'urgence au rythme du compte à rebours */}
-      <AbsoluteFill style={{ boxShadow: `inset 0 0 ${120 + 60 * Math.sin(f / 3)}px rgba(229,37,42,${f < compareAt && f > 90 ? 0.5 : 0})`, pointerEvents: "none" }} />
+      <AbsoluteFill style={{ boxShadow: `inset 0 0 ${120 + 60 * Math.sin(f / 3)}px rgba(229,37,42,${f < compareAt && f > 90 ? 0.45 : 0})`, pointerEvents: "none" }} />
       {/* repère temporel */}
       <div style={{ display: "none" }}>{lin(f, [0, 1], [0, 1])}</div>
     </AbsoluteFill>

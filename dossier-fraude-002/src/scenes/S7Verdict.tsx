@@ -12,7 +12,7 @@ export const S7Verdict: React.FC = () => {
   const close = ip(f, [10, 40], [0, 1]);
   const stampAt = 52;
   const sk = shake(f, stampAt + 3, 34, 18);
-  const dark = ip(f, [0, 20], [0, 0.6]);
+  const dark = ip(f, [0, 20], [0, 0.9]);
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
       <Backdrop tint="red" intensity={f > stampAt ? 0.9 : 0.3} grid={false} />
@@ -40,7 +40,7 @@ export const S7Verdict: React.FC = () => {
             gap: 20,
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20, opacity: 1 - ip(f, [stampAt - 8, stampAt], [0, 0.85]) }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20, opacity: 1 - ip(f, [stampAt - 8, stampAt], [0, 1]) }}>
           <div style={{ fontFamily: MONO, fontSize: 30, color: C.dim, letterSpacing: 6 }}>DOSSIER CLASSÉ</div>
           <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 96, color: C.yellow }}>N°002</div>
           </div>
@@ -49,7 +49,7 @@ export const S7Verdict: React.FC = () => {
       <Stamp text="VERDICT :" sub="ESCROQUERIE" at={stampAt} size={110} subScale={0.62} rotate={-8} style={{ top: 900 }} />
       {f > stampAt + 30 && (
         <div style={{ position: "absolute", top: 1330, left: 60, right: 60 }}>
-          <KineticText text="USURPATION D'IDENTITÉ ET INGÉNIERIE SOCIALE" start={stampAt + 32} size={58} stagger={3} highlight={["USURPATION", "INGÉNIERIE", "SOCIALE"]} />
+          <KineticText text="USURPATION D'IDENTITÉ ET INGÉNIERIE SOCIALE" start={stampAt + 32} size={58} stagger={3} color={C.white} highlight={["USURPATION", "INGÉNIERIE", "SOCIALE"]} />
         </div>
       )}
       {/* onde de choc */}

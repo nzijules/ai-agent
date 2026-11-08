@@ -24,7 +24,7 @@ export const KineticText: React.FC<KProps> = ({
   start = 0,
   stagger = 4,
   size = 96,
-  color = C.white,
+  color = C.black,
   highlight = [],
   highlightColor = C.yellow,
   weight = 900,
@@ -73,7 +73,9 @@ export const KineticText: React.FC<KProps> = ({
                 transform: `translateY(${(1 - p) * 110 + oy}%)`,
                 filter: `blur(${blur}px)`,
                 opacity: o * p,
-                color: hl ? highlightColor : color,
+                color: hl ? (highlightColor === C.yellow ? C.yellow : C.white) : color,
+                background: hl ? (highlightColor === C.yellow ? C.black : highlightColor) : undefined,
+                padding: hl ? `0 ${size * 0.12}px` : undefined,
               }}
             >
               {w}
@@ -100,7 +102,7 @@ export const TypeText: React.FC<{
     <span style={{ fontFamily: MONO, ...style }}>
       {text.slice(0, n)}
       {cursor && (!done || Math.floor(f / 10) % 2 === 0) && f >= start ? (
-        <span style={{ opacity: 0.9, color: C.yellow }}>▌</span>
+        <span style={{ opacity: 0.9 }}>▌</span>
       ) : null}
     </span>
   );
@@ -124,8 +126,8 @@ export const EvidenceTitle: React.FC<{ label: string; title: string; start?: num
           alignItems: "center",
           gap: 14,
           padding: "10px 20px",
-          background: C.yellow,
-          color: C.black,
+          background: C.black,
+          color: C.yellow,
           fontFamily: FONT,
           fontWeight: 900,
           fontSize: 30,
@@ -134,11 +136,11 @@ export const EvidenceTitle: React.FC<{ label: string; title: string; start?: num
           transform: `translateX(${(1 - labO) * -40}px)`,
         }}
       >
-        <span style={{ width: 14, height: 14, background: C.black, borderRadius: 2 }} />
+        <span style={{ width: 14, height: 14, background: C.yellow, borderRadius: 2 }} />
         {label}
       </div>
       <KineticText text={title} start={start + 6} size={88} align="left" style={{ marginTop: 22 }} />
-      <div style={{ height: 8, width: `${lineW}%`, background: C.yellow, marginTop: 10, boxShadow: "0 0 24px rgba(255,203,5,0.6)" }} />
+      <div style={{ height: 8, width: `${lineW}%`, background: C.black, marginTop: 10 }} />
     </div>
   );
 };

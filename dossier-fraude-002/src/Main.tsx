@@ -54,7 +54,7 @@ const SceneBlock: React.FC<{ index: number; captions: boolean }> = ({ index, cap
       <Shell flash={index === 6 ? C.red : C.yellow}>
         <Comp />
       </Shell>
-      <Hud sceneLabel={s.title} />
+      <Hud sceneLabel={s.title} dark={index === 6} />
       {captions && <Captions chunks={s.vo} duration={sceneFrames(s)} />}
     </AbsoluteFill>
   );

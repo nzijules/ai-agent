@@ -24,12 +24,12 @@ export const S3Identite: React.FC = () => {
   const lensX = 640 + Math.sin(f / 14) * 60;
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
-      <Backdrop tint="yellow" intensity={0.6} />
+      <Backdrop tint="yellow" />
       <EvidenceTitle label="PIÈCE À CONVICTION N°1" title="L'IDENTITÉ DE L'APPELANT" start={6} />
       {/* dossier */}
       <div style={{ position: "absolute", left: 70, right: 70, top: 640, height: 820, perspective: 1800 }}>
-        <div style={{ position: "absolute", inset: 0, borderRadius: 24, background: "#1c1c1c", border: "2px solid #333", boxShadow: "0 40px 80px rgba(0,0,0,0.7)" }}>
-          <div style={{ position: "absolute", top: -46, left: 40, padding: "10px 26px", borderRadius: "14px 14px 0 0", background: C.yellow, fontFamily: FONT, fontWeight: 900, fontSize: 26, color: C.black, letterSpacing: 3 }}>
+        <div style={{ position: "absolute", inset: 0, borderRadius: 24, background: "#1c1c1c", border: "2px solid #000", boxShadow: "0 40px 80px rgba(0,0,0,0.35)" }}>
+          <div style={{ position: "absolute", top: -46, left: 40, padding: "10px 26px", borderRadius: "14px 14px 0 0", background: C.black, fontFamily: FONT, fontWeight: 900, fontSize: 26, color: C.yellow, letterSpacing: 3 }}>
             DOSSIER · APPELANT
           </div>
           <div style={{ padding: "60px 44px", opacity: ip(f, [60, 80], [0, 1]) }}>

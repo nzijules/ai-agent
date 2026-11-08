@@ -13,28 +13,21 @@ type Props = {
 /** Fond « documentaire d'investigation » : dégradé, grille forensic, poussière, vignette. */
 export const Backdrop: React.FC<Props> = ({ tint = "neutral", grid = true, dust = true, intensity = 1 }) => {
   const f = useCurrentFrame();
-  const glow =
-    tint === "red"
-      ? `rgba(229,37,42,${0.35 * intensity})`
-      : tint === "yellow"
-        ? `rgba(255,203,5,${0.22 * intensity})`
-        : tint === "night"
-          ? `rgba(40,70,140,${0.35 * intensity})`
-          : `rgba(255,203,5,${0.07 * intensity})`;
+  const isRed = tint === "red";
   const drift = (f * 0.6) % 90;
   return (
-    <AbsoluteFill style={{ backgroundColor: C.black, overflow: "hidden" }}>
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(120% 70% at 50% 40%, ${glow} 0%, rgba(21,21,21,0.9) 45%, #000 100%)`,
-        }}
-      />
+    <AbsoluteFill style={{ backgroundColor: C.yellow, overflow: "hidden" }}>
+      {/* lumière douce au centre, bords légèrement plus profonds (jaune MTN) */}
+      <AbsoluteFill style={{ background: "radial-gradient(110% 70% at 50% 40%, rgba(255,236,150,0.55) 0%, rgba(255,203,5,0) 55%, rgba(200,150,0,0.35) 100%)" }} />
+      {isRed && (
+        <AbsoluteFill style={{ boxShadow: `inset 0 0 ${260 * intensity}px rgba(229,37,42,${0.75 * intensity})`, background: `radial-gradient(90% 60% at 50% 45%, rgba(229,37,42,${0.10 * intensity}), transparent 70%)` }} />
+      )}
       {grid && (
         <AbsoluteFill
           style={{
             opacity: 0.16,
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.22) 1px, transparent 1px)",
+              "linear-gradient(rgba(0,0,0,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.35) 1px, transparent 1px)",
             backgroundSize: "90px 90px",
             backgroundPosition: `0px ${drift}px`,
             maskImage: "radial-gradient(70% 55% at 50% 45%, black 20%, transparent 80%)",
@@ -57,15 +50,15 @@ export const Backdrop: React.FC<Props> = ({ tint = "neutral", grid = true, dust 
                 width: s,
                 height: s,
                 borderRadius: s,
-                background: i % 5 === 0 ? C.yellow : "#fff",
-                opacity: 0.08 + rand(i + 7) * 0.22,
+                background: i % 5 === 0 ? "#fff" : "#000",
+                opacity: 0.05 + rand(i + 7) * 0.12,
                 filter: s > 5 ? "blur(2px)" : undefined,
               }}
             />
           );
         })}
       {/* vignette */}
-      <AbsoluteFill style={{ background: "radial-gradient(90% 75% at 50% 50%, transparent 55%, rgba(0,0,0,0.85) 100%)" }} />
+      <AbsoluteFill style={{ background: "radial-gradient(90% 75% at 50% 50%, transparent 60%, rgba(120,80,0,0.35) 100%)" }} />
     </AbsoluteFill>
   );
 };
@@ -75,7 +68,7 @@ export const FilmGrain: React.FC = () => {
   const f = useCurrentFrame();
   const seed = f % 8;
   return (
-    <AbsoluteFill style={{ pointerEvents: "none", mixBlendMode: "overlay", opacity: 0.22 }}>
+    <AbsoluteFill style={{ pointerEvents: "none", mixBlendMode: "overlay", opacity: 0.14 }}>
       <svg width="100%" height="100%">
         <filter id={`grain${seed}`}>
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed={seed} stitchTiles="stitch" />
@@ -86,7 +79,7 @@ export const FilmGrain: React.FC = () => {
       <AbsoluteFill
         style={{
           backgroundImage: "repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0px, rgba(0,0,0,0.35) 1px, transparent 2px, transparent 4px)",
-          opacity: 0.5,
+          opacity: 0.18,
         }}
       />
     </AbsoluteFill>

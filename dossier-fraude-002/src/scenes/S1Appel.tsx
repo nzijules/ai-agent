@@ -5,7 +5,6 @@ import { ip, lin, shake } from "../anim";
 import { Backdrop } from "../components/Backdrop";
 import { Phone, SimTag } from "../components/Phone";
 import { IncomingCall } from "../components/CallScreens";
-import { CityBokeh } from "../components/Characters";
 import { KineticText, TypeText } from "../components/Text";
 import { Waveform } from "../components/Widgets";
 
@@ -29,28 +28,13 @@ export const S1Appel: React.FC = () => {
 
   return (
     <AbsoluteFill>
-      <Backdrop tint={f > B_END ? "red" : "night"} intensity={f > B_END ? 0.6 + 0.4 * Math.sin(f / 5) : 1} />
+      <Backdrop tint={f > B_END ? "red" : "yellow"} intensity={f > B_END ? 0.6 + 0.4 * Math.sin(f / 5) : 1} />
 
       {/* PHASE A — le téléphone posé sur la table */}
       {f < A_END + 12 && (
         <AbsoluteFill style={{ transform: `translateX(${(1 - whipB) * -1100}px)`, filter: f > A_END ? `blur(${(1 - whipB) * 20}px)` : undefined }}>
-          <CityBokeh height={820} style={{ top: 120, opacity: 0.95 - pick * 0.4, transform: `scale(${1 + f / 900})` }} />
-          {/* fenêtre / encadrement */}
-          <div style={{ position: "absolute", top: 120, left: 0, right: 0, height: 820, boxShadow: "inset 0 -160px 140px #000, inset 0 120px 120px #000" }} />
-          <div style={{ position: "absolute", left: 540, top: 120, width: 14, height: 820, background: "#050505" }} />
-          {/* table */}
-          <div
-            style={{
-              position: "absolute",
-              top: 900,
-              left: -100,
-              right: -100,
-              bottom: 0,
-              background: "linear-gradient(180deg, #2a1d12 0%, #120c07 60%, #050302 100%)",
-              transform: "perspective(900px) rotateX(18deg)",
-              transformOrigin: "top",
-            }}
-          />
+          {/* ombre portée du téléphone posé sur la surface jaune */}
+          <div style={{ position: "absolute", left: 190, top: 1050 + 260 * (1 - pick), width: 700, height: 300, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(0,0,0,0.35), transparent)", filter: "blur(18px)", opacity: 1 - pick * 0.6 }} />
           {/* reflet lumineux de l'écran sur la table */}
           <div
             style={{
@@ -60,7 +44,7 @@ export const S1Appel: React.FC = () => {
               width: 500,
               height: 420,
               borderRadius: "50%",
-              background: "radial-gradient(closest-side, rgba(255,203,5,0.35), transparent)",
+              background: "radial-gradient(closest-side, rgba(255,255,255,0.6), transparent)",
               opacity: f > 40 ? 0.6 + buzz * 0.4 : 0,
               filter: "blur(20px)",
             }}
@@ -82,7 +66,7 @@ export const S1Appel: React.FC = () => {
             </div>
           </div>
           {/* intertitre d'ouverture */}
-          <div style={{ position: "absolute", top: 230, left: 70, color: C.white }}>
+          <div style={{ position: "absolute", top: 230, left: 70, color: C.black }}>
             <TypeText text="ABIDJAN · 19:02" start={6} cps={0.7} style={{ fontSize: 40, letterSpacing: 6, fontWeight: 700 }} />
           </div>
           {f > 40 && f < 140 && (
@@ -95,7 +79,7 @@ export const S1Appel: React.FC = () => {
                 fontWeight: 900,
                 fontSize: 34,
                 letterSpacing: 6,
-                color: C.yellow,
+                color: C.black,
                 opacity: buzz ? 1 : 0.35,
               }}
             >
@@ -110,7 +94,6 @@ export const S1Appel: React.FC = () => {
       {f >= A_END && (
         <AbsoluteFill style={{ transform: `translate(${whipB * 1100 + sk.x + sk2.x}px, ${sk.y + sk2.y}px)` }}>
           {/* gros plan : le téléphone en communication, ville floue derrière */}
-          <CityBokeh style={{ opacity: 0.55 * (1 - danger * 0.6), transform: `scale(${1.1 + lin(f, [A_END, 360], [0, 0.15])})` }} />
           <div
             style={{
               position: "absolute",
@@ -156,7 +139,7 @@ export const S1Appel: React.FC = () => {
             <>
               <AbsoluteFill
                 style={{
-                  background: `radial-gradient(80% 60% at 50% 45%, rgba(229,37,42,${0.25 + 0.15 * Math.sin(f / 4)}), transparent 70%)`,
+                  background: `radial-gradient(80% 60% at 50% 45%, rgba(255,203,5,0.85), rgba(255,203,5,0.6) 60%, rgba(229,37,42,${0.35 + 0.2 * Math.sin(f / 4)}) 100%)`,
                 }}
               />
               <div style={{ position: "absolute", top: 380, left: 60, right: 60 }}>
@@ -168,7 +151,7 @@ export const S1Appel: React.FC = () => {
                   highlight={["DANGER"]}
                   highlightColor={C.red}
                   lineHeight={0.95}
-                  style={{ textShadow: "0 10px 40px rgba(0,0,0,0.8)" }}
+                  
                 />
               </div>
               <div
@@ -180,7 +163,8 @@ export const S1Appel: React.FC = () => {
                   textAlign: "center",
                   fontFamily: MONO,
                   fontSize: 30,
-                  color: C.red,
+                  color: C.black,
+                  fontWeight: 700,
                   letterSpacing: 4,
                   opacity: ip(f, [B_END + 40, B_END + 50], [0, 1]),
                 }}

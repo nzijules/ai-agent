@@ -55,7 +55,7 @@ export const VoicePrint: React.FC<{ size?: number; talk?: number; color?: string
   const r0 = size * 0.28;
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ overflow: "visible" }}>
-      <circle cx={size / 2} cy={size / 2} r={r0 - 10} fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" strokeWidth={2} />
+      <circle cx={size / 2} cy={size / 2} r={r0 - 10} fill="rgba(0,0,0,0.04)" stroke={color} strokeOpacity={0.25} strokeWidth={2} />
       {new Array(n).fill(0).map((_, i) => {
         const a = (i / n) * Math.PI * 2;
         const v = noise(f / 3 + i * 0.4, i) * talk;
@@ -69,7 +69,7 @@ export const VoicePrint: React.FC<{ size?: number; talk?: number; color?: string
       <text x={size / 2} y={size / 2 + size * 0.07} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={size * 0.22} fill={color}>
         ?
       </text>
-      <text x={size / 2} y={size / 2 + size * 0.15} textAnchor="middle" fontFamily={MONO} fontSize={size * 0.035} fill="rgba(255,255,255,0.6)" letterSpacing={3}>
+      <text x={size / 2} y={size / 2 + size * 0.15} textAnchor="middle" fontFamily={MONO} fontSize={size * 0.035} fill={color} fillOpacity={0.7} letterSpacing={3}>
         APPELANT
       </text>
       <circle cx={size / 2} cy={size / 2} r={r0 + size * 0.2} fill="none" stroke={color} strokeOpacity={0.25} strokeWidth={2} strokeDasharray="4 12" transform={`rotate(${f * 0.6} ${size / 2} ${size / 2})`} />

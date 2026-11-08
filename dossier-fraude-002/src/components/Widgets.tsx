@@ -101,7 +101,7 @@ export const Countdown: React.FC<{ start: number; seconds?: number; size?: numbe
 };
 
 /** Bouclier numérique : tracé SVG + trame hexagonale + halo. */
-export const Shield: React.FC<{ start: number; size?: number }> = ({ start, size = 760 }) => {
+export const Shield: React.FC<{ start: number; size?: number; color?: string }> = ({ start, size = 760, color = C.black }) => {
   const f = useCurrentFrame();
   const draw = ip(f, [start, start + 40], [0, 1]);
   const fill = ip(f, [start + 25, start + 55], [0, 1]);
@@ -112,25 +112,25 @@ export const Shield: React.FC<{ start: number; size?: number }> = ({ start, size
     <svg width={size} height={size * 1.05} viewBox="0 0 400 420" style={{ overflow: "visible" }}>
       <defs>
         <pattern id="hex" width="24" height="41.6" patternUnits="userSpaceOnUse" patternTransform="scale(0.8)">
-          <path d="M12 0 L24 7 V21 L12 28 L0 21 V7 Z M12 41.6 V28" stroke="rgba(255,203,5,0.5)" strokeWidth="1" fill="none" />
+          <path d="M12 0 L24 7 V21 L12 28 L0 21 V7 Z M12 41.6 V28" stroke={color} strokeOpacity={0.35} strokeWidth="1" fill="none" />
         </pattern>
         <clipPath id="shclip">
           <path d={d} />
         </clipPath>
       </defs>
       <g clipPath="url(#shclip)" opacity={fill}>
-        <rect x="0" y={420 - 420 * fill} width="400" height="420" fill="rgba(255,203,5,0.10)" />
+        <rect x="0" y={420 - 420 * fill} width="400" height="420" fill="rgba(0,0,0,0.06)" />
         <rect x="0" y={420 - 420 * fill} width="400" height="420" fill="url(#hex)" />
       </g>
       <path
         d={d}
         fill="none"
-        stroke={C.yellow}
-        strokeWidth={6}
+        stroke={color}
+        strokeWidth={8}
         strokeDasharray={len}
         strokeDashoffset={len * (1 - draw)}
         strokeLinejoin="round"
-        style={{ filter: `drop-shadow(0 0 ${12 + pulse * 18}px rgba(255,203,5,0.9))` }}
+        style={{ filter: `drop-shadow(0 0 ${8 + pulse * 14}px rgba(255,255,255,0.9))` }}
       />
     </svg>
   );
@@ -146,7 +146,7 @@ export const FlowParticles: React.FC<{
   count?: number;
   color?: string;
   speed?: number;
-}> = ({ x1, y1, x2, y2, start, count = 8, color = C.yellow, speed = 40 }) => {
+}> = ({ x1, y1, x2, y2, start, count = 8, color = C.black, speed = 40 }) => {
   const f = useCurrentFrame();
   if (f < start) return null;
   const o = lin(f, [start, start + 10], [0, 1]);

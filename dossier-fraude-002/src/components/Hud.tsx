@@ -11,7 +11,8 @@ const tc = (f: number, fps: number) => {
 };
 
 /** Habillage permanent : identifiant du dossier, REC, timecode et logo MTN miniature en haut à droite. */
-export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
+export const Hud: React.FC<{ sceneLabel: string; dark?: boolean }> = ({ sceneLabel, dark = false }) => {
+  const ink = dark ? C.white : C.black;
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const inO = ip(f, [0, 20], [0, 1]);
@@ -19,7 +20,7 @@ export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
   return (
     <AbsoluteFill style={{ pointerEvents: "none", opacity: inO }}>
       {/* coin supérieur gauche */}
-      <div style={{ position: "absolute", left: 56, top: 64, fontFamily: MONO, color: C.white }}>
+      <div style={{ position: "absolute", left: 56, top: 64, fontFamily: MONO, color: ink }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 26, letterSpacing: 2 }}>
           <span
             style={{
@@ -33,7 +34,7 @@ export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
           />
           <span style={{ fontFamily: FONT, fontWeight: 800, letterSpacing: 3 }}>DOSSIER FRAUDE N°002</span>
         </div>
-        <div style={{ marginTop: 10, fontSize: 22, color: C.dim, letterSpacing: 2 }}>
+        <div style={{ marginTop: 10, fontSize: 22, color: ink, opacity: 0.6, letterSpacing: 2 }}>
           {tc(f, fps)} · {sceneLabel.toUpperCase()}
         </div>
       </div>
@@ -47,7 +48,7 @@ export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
           height: 96,
           borderRadius: 18,
           overflow: "hidden",
-          boxShadow: "0 8px 30px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,203,5,0.35)",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.25), 0 0 0 3px #000",
         }}
       >
         <Img src={staticFile("mtn-logo.png")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -66,8 +67,8 @@ export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
             ...p,
             width: 40,
             height: 40,
-            borderTop: "3px solid rgba(255,203,5,0.6)",
-            borderLeft: "3px solid rgba(255,203,5,0.6)",
+            borderTop: "3px solid rgba(0,0,0,0.6)",
+            borderLeft: "3px solid rgba(0,0,0,0.6)",
             transform: `rotate(${p.r}deg)`,
           }}
         />
@@ -83,7 +84,7 @@ export const Hud: React.FC<{ sceneLabel: string }> = ({ sceneLabel }) => {
           fontSize: 20,
           fontWeight: 600,
           letterSpacing: 4,
-          color: "rgba(255,255,255,0.4)",
+          color: ink, opacity: 0.55,
         }}
       >
         RECONSTITUTION FICTIVE · SIMULATION PÉDAGOGIQUE

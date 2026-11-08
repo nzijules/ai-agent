@@ -1,6 +1,6 @@
 # DOSSIER FRAUDE N°002 — Le faux agent MTN Mobile Money
 
-Motion design vertical de sensibilisation (1080 × 1920, 30 i/s, H.264), entièrement programmé avec **React + TypeScript + Remotion**.
+Motion design vertical de sensibilisation (1080 × 1920, 30 i/s, H.264), entièrement programmé avec **React + TypeScript + Remotion**, aux couleurs MTN : fond jaune #FFCB05, typographie noire, rouge réservé aux alertes.
 Aucun dessin de personnage : la narration passe par le téléphone, les interfaces fictives, l'empreinte vocale de l'appelant, les preuves numériques et des lumières de ville en bokeh.
 
 - Vidéo finale : `out/dossier-fraude-002.mp4` (≈ 1 min 51 s)
@@ -74,7 +74,7 @@ Pour intégrer une voix enregistrée :
 ## Modifier et réexporter
 
 - **Textes / durées** : `src/timeline.ts`.
-- **Couleurs** : `src/theme.ts` (jaune `#FFCB05`, rouge réservé aux alertes).
+- **Couleurs** : `src/theme.ts` + fond dans `src/components/Backdrop.tsx` (jaune MTN `#FFCB05`, rouge réservé aux alertes).
 - **Une scène** : `src/scenes/SX*.tsx`, puis `npm run studio` → `Scene-X`.
 - **Sons** : `scripts/generate-sfx.mjs` (synthèse) et `src/sfx.tsx` (placement des cues).
 - **Images photoréalistes** : déposez vos photos sous licence dans `public/` et utilisez `<Img src={staticFile("…")} />` de Remotion dans la scène voulue.

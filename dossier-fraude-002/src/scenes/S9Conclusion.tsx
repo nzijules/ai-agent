@@ -17,9 +17,9 @@ export const S9Conclusion: React.FC = () => {
   const msg = ip(f, [MSG - 6, MSG + 6], [0, 1]);
   return (
     <AbsoluteFill>
-      <Backdrop tint="yellow" intensity={0.4 + 0.4 * ip(f, [100, 160], [0, 1])} />
+      <Backdrop tint="yellow" />
       {f < 70 && (
-        <div style={{ position: "absolute", top: 300, left: 0, right: 0, textAlign: "center", fontFamily: MONO, fontSize: 34, letterSpacing: 6, color: C.yellow, opacity: ip(f, [6, 16], [0, 1]) * (1 - toPhone) }}>
+        <div style={{ position: "absolute", top: 300, left: 0, right: 0, textAlign: "center", fontFamily: MONO, fontSize: 34, letterSpacing: 6, color: C.black, fontWeight: 700, opacity: ip(f, [6, 16], [0, 1]) * (1 - toPhone) }}>
           ✕ APPEL SUSPECT TERMINÉ
         </div>
       )}
@@ -59,15 +59,15 @@ export const S9Conclusion: React.FC = () => {
           <div style={{ marginTop: -120 }}>
             <KineticText text="FACE À LA FRAUDE," start={MSG + 2} size={104} stagger={4} />
             <KineticText text="VÉRIFIEZ AVANT D'AGIR." start={MSG + 16} size={128} stagger={5} highlight={["VÉRIFIEZ"]} style={{ marginTop: 20 }} />
-            <div style={{ width: ip(f, [MSG + 36, MSG + 60], [0, 600]), height: 10, background: C.yellow, margin: "50px auto 0", boxShadow: "0 0 40px rgba(255,203,5,0.7)" }} />
+            <div style={{ width: ip(f, [MSG + 36, MSG + 60], [0, 600]), height: 10, background: C.black, margin: "50px auto 0" }} />
           </div>
         </AbsoluteFill>
       )}
       {/* carton de fin */}
       {f >= END && (
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-          <div style={{ fontFamily: MONO, fontSize: 30, letterSpacing: 8, color: C.dim, opacity: ip(f, [END + 4, END + 14], [0, 1]), marginTop: -160 }}>DOSSIER FRAUDE</div>
-          <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 260, color: C.yellow, lineHeight: 1, transform: `scale(${sp(f, fps, END + 4, 12)})`, textShadow: "0 0 60px rgba(255,203,5,0.4)" }}>N°002</div>
+          <div style={{ fontFamily: MONO, fontSize: 30, letterSpacing: 8, color: C.black, fontWeight: 700, opacity: ip(f, [END + 4, END + 14], [0, 1]), marginTop: -160 }}>DOSSIER FRAUDE</div>
+          <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 260, color: C.black, lineHeight: 1, transform: `scale(${sp(f, fps, END + 4, 12)})`, textShadow: "0 18px 40px rgba(0,0,0,0.2)" }}>N°002</div>
           <div
             style={{
               marginTop: 60,
@@ -83,13 +83,13 @@ export const S9Conclusion: React.FC = () => {
               fontSize: 40,
               letterSpacing: 1,
               transform: `scale(${sp(f, fps, END + 18, 10) * (1 + 0.03 * Math.sin(f / 4))})`,
-              boxShadow: "0 0 50px rgba(229,37,42,0.5)",
+              boxShadow: "0 16px 40px rgba(0,0,0,0.3)",
             }}
           >
             <span style={{ display: "inline-block", transform: `rotate(${Math.sin(f / 2) * 18 * ip(f, [END + 30, END + 40], [0, 1])}deg)` }}>🔔</span>
             ABONNEZ-VOUS
           </div>
-          <div style={{ marginTop: 30, fontFamily: FONT, fontWeight: 700, fontSize: 34, color: C.white, opacity: ip(f, [END + 28, END + 40], [0, 1]) }}>pour le prochain dossier</div>
+          <div style={{ marginTop: 30, fontFamily: FONT, fontWeight: 700, fontSize: 34, color: C.black, opacity: ip(f, [END + 28, END + 40], [0, 1]) }}>pour le prochain dossier</div>
         </AbsoluteFill>
       )}
       <div style={{ display: "none" }}>{lin(f, [0, 1], [0, 1])}</div>

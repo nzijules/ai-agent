@@ -21,8 +21,8 @@ const RuleHeader: React.FC<{ n: number; text: string; at: number; hl: string[] }
           width: 130,
           height: 130,
           borderRadius: 26,
-          background: C.yellow,
-          color: C.black,
+          background: C.black,
+          color: C.yellow,
           fontFamily: FONT,
           fontWeight: 900,
           fontSize: 92,
@@ -55,10 +55,10 @@ const Demo1: React.FC = () => {
       </div>
       {/* cadenas qui se referme */}
       <svg width="220" height="240" viewBox="0 0 100 110" style={{ position: "absolute", left: 430, top: 60, opacity: lock, transform: `scale(${0.7 + 0.3 * lock})` }}>
-        <path d={`M28 50 V${32 - lock * 4} a22 22 0 0 1 44 0 V50`} stroke={C.yellow} strokeWidth="9" fill="none" transform={`translate(0 ${(1 - lock) * -14})`} />
-        <rect x="16" y="48" width="68" height="56" rx="10" fill={C.yellow} />
-        <circle cx="50" cy="72" r="7" fill={C.black} />
-        <rect x="47" y="74" width="6" height="16" fill={C.black} />
+        <path d={`M28 50 V${32 - lock * 4} a22 22 0 0 1 44 0 V50`} stroke={C.black} strokeWidth="9" fill="none" transform={`translate(0 ${(1 - lock) * -14})`} />
+        <rect x="16" y="48" width="68" height="56" rx="10" fill={C.black} />
+        <circle cx="50" cy="72" r="7" fill={C.yellow} />
+        <rect x="47" y="74" width="6" height="16" fill={C.yellow} />
       </svg>
       {/* flèche de partage bloquée */}
       <div style={{ position: "absolute", left: 160, top: 360, width: 760, height: 120 }}>
@@ -66,10 +66,10 @@ const Demo1: React.FC = () => {
         <div style={{ position: "absolute", left: "62%", top: 0, width: 120, height: 120, borderRadius: 60, border: `10px solid ${C.red}`, opacity: arrow, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ width: 130, height: 10, background: C.red, transform: "rotate(-45deg)" }} />
         </div>
-        <div style={{ position: "absolute", left: "80%", top: 30, fontFamily: FONT, fontWeight: 800, fontSize: 34, color: C.dim, opacity: arrow }}>Appelant</div>
+        <div style={{ position: "absolute", left: "80%", top: 30, fontFamily: FONT, fontWeight: 800, fontSize: 34, color: C.black, opacity: arrow }}>Appelant</div>
       </div>
-      <div style={{ position: "absolute", left: 110, top: 520, fontFamily: FONT, fontSize: 34, color: C.white, fontWeight: 600, opacity: ip(t, [100, 115], [0, 1]) }}>
-        Code secret · Code reçu par SMS → <span style={{ color: C.yellow, fontWeight: 900 }}>pour vous seul</span>
+      <div style={{ position: "absolute", left: 110, top: 520, fontFamily: FONT, fontSize: 34, color: C.black, fontWeight: 600, opacity: ip(t, [100, 115], [0, 1]) }}>
+        Code secret · Code reçu par SMS → <span style={{ background: C.black, color: C.yellow, fontWeight: 900, padding: "0 10px" }}>pour vous seul</span>
       </div>
     </div>
   );
@@ -86,7 +86,7 @@ const Demo2: React.FC = () => {
       <div style={{ position: "absolute", left: 110, top: 40, width: 220, height: 220, borderRadius: 110, background: hang > 0.5 ? "#333" : C.red, transform: `scale(${press})`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: hang > 0.5 ? "none" : "0 0 60px rgba(229,37,42,0.7)" }}>
         <PhoneIcon rot={135} size={110} />
       </div>
-      <div style={{ position: "absolute", left: 110, top: 280, width: 220, textAlign: "center", fontFamily: MONO, fontSize: 26, color: hang > 0.5 ? C.dim : C.white }}>
+      <div style={{ position: "absolute", left: 110, top: 280, width: 220, textAlign: "center", fontFamily: MONO, fontSize: 26, fontWeight: 700, color: C.black }}>
         {hang > 0.5 ? "APPEL TERMINÉ" : "RACCROCHER"}
       </div>
       <div style={{ position: "absolute", left: 400, top: 30, right: 70 }}>
@@ -96,15 +96,15 @@ const Demo2: React.FC = () => {
           return (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 34, opacity: p, transform: `translateX(${(1 - p) * 40}px)` }}>
               <svg width="64" height="64" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
-                <circle cx="12" cy="12" r="11" fill={C.yellow} />
-                <path d="M6.5 12.5 l3.5 3.5 l7.5 -8" stroke={C.black} strokeWidth="2.6" fill="none" strokeDasharray="20" strokeDashoffset={20 * (1 - ip(t, [at + 6, at + 16], [0, 1]))} strokeLinecap="round" />
+                <circle cx="12" cy="12" r="11" fill={C.black} />
+                <path d="M6.5 12.5 l3.5 3.5 l7.5 -8" stroke={C.yellow} strokeWidth="2.6" fill="none" strokeDasharray="20" strokeDashoffset={20 * (1 - ip(t, [at + 6, at + 16], [0, 1]))} strokeLinecap="round" />
               </svg>
-              <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 36, color: C.white, lineHeight: 1.2 }}>{it}</span>
+              <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 36, color: C.black, lineHeight: 1.2 }}>{it}</span>
             </div>
           );
         })}
       </div>
-      <div style={{ position: "absolute", left: 110, right: 70, top: 420, fontFamily: FONT, fontSize: 32, color: C.dim, fontWeight: 600, opacity: ip(t, [90, 104], [0, 1]) }}>
+      <div style={{ position: "absolute", left: 110, right: 70, top: 420, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [90, 104], [0, 1]) }}>
         Ne rappelez jamais le numéro qui vous a contacté.
       </div>
     </div>
@@ -121,7 +121,7 @@ const Demo3: React.FC = () => {
   const refused = t > 90;
   return (
     <>
-      <div style={{ position: "absolute", top: 780, left: 110, right: 110, borderRadius: 30, background: C.light, padding: "34px 36px", fontFamily: FONT, color: C.anthracite, boxShadow: "0 40px 80px rgba(0,0,0,0.7)", opacity: ip(t, [0, 10], [0, 1]), transform: `translateY(${ip(t, [0, 12], [60, 0])}px)` }}>
+      <div style={{ position: "absolute", top: 780, left: 110, right: 110, borderRadius: 30, background: C.light, padding: "34px 36px", fontFamily: FONT, color: C.anthracite, boxShadow: "0 30px 60px rgba(0,0,0,0.3)", border: "3px solid #000", opacity: ip(t, [0, 10], [0, 1]), transform: `translateY(${ip(t, [0, 12], [60, 0])}px)` }}>
         <div style={{ fontFamily: MONO, fontSize: 20, color: "#a07a00", letterSpacing: 2 }}>DEMANDE DE CONFIRMATION (SIMULATION)</div>
         <div style={{ fontWeight: 900, fontSize: 40, marginTop: 12 }}>Opération non initiée par vous</div>
         <div style={{ fontSize: 30, marginTop: 8, color: "#555" }}>Montant : 150 000 FCFA</div>
@@ -132,10 +132,10 @@ const Demo3: React.FC = () => {
       </div>
       {/* doigt / curseur */}
       {t < 120 && (
-        <div style={{ position: "absolute", left: fx, top: fy, width: 70, height: 70, borderRadius: 35, background: "rgba(255,203,5,0.35)", border: `4px solid ${C.yellow}`, transform: `scale(${tap ? 0.8 : 1})`, boxShadow: "0 0 30px rgba(255,203,5,0.6)" }} />
+        <div style={{ position: "absolute", left: fx, top: fy, width: 70, height: 70, borderRadius: 35, background: "rgba(0,0,0,0.25)", border: "5px solid #000", transform: `scale(${tap ? 0.8 : 1})` }} />
       )}
       {refused && (
-        <div style={{ position: "absolute", top: 1330, left: 0, right: 0, textAlign: "center", fontFamily: FONT, fontWeight: 900, fontSize: 44, color: C.yellow, opacity: ip(t, [92, 102], [0, 1]) }}>
+        <div style={{ position: "absolute", top: 1330, left: 0, right: 0, textAlign: "center", fontFamily: FONT, fontWeight: 900, fontSize: 44, color: C.black, opacity: ip(t, [92, 102], [0, 1]) }}>
           ✓ OPÉRATION BLOQUÉE
         </div>
       )}
@@ -150,13 +150,13 @@ export const S8Reflexes: React.FC = () => {
   const wipe = (at: number) => ip(f, [at - 8, at], [0, 1]);
   return (
     <AbsoluteFill>
-      <Backdrop tint="yellow" intensity={0.5} />
+      <Backdrop tint="yellow" />
       {/* titre + progression */}
       <div style={{ position: "absolute", top: 250, left: 70, right: 70, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: f < R1 ? 0 : 44, color: C.white, letterSpacing: 2 }}>LES 3 RÉFLEXES</div>
+        <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: f < R1 ? 0 : 44, color: C.black, letterSpacing: 2 }}>LES 3 RÉFLEXES</div>
         <div style={{ display: "flex", gap: 14 }}>
           {[1, 2, 3].map((n) => (
-            <div key={n} style={{ width: n === phase ? 80 : 26, height: 26, borderRadius: 13, background: n <= phase && f >= R1 ? C.yellow : "#333" }} />
+            <div key={n} style={{ width: n === phase ? 80 : 26, height: 26, borderRadius: 13, background: n <= phase && f >= R1 ? C.black : "rgba(0,0,0,0.2)" }} />
           ))}
         </div>
       </div>

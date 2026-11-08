@@ -22,7 +22,7 @@ export const S5Code: React.FC = () => {
   const sk = shake(f, maskAt, 16, 14);
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
-      <Backdrop tint={f > maskAt ? "red" : "yellow"} intensity={f > maskAt ? 0.7 : 0.5} />
+      <Backdrop tint={f > maskAt ? "red" : "yellow"} intensity={f > maskAt ? 0.7 : 1} />
       <div style={{ opacity: 1 - push }}>
         <EvidenceTitle label="PIÈCE À CONVICTION N°3" title="LE CODE CONFIDENTIEL" start={6} />
       </div>
@@ -60,7 +60,7 @@ export const S5Code: React.FC = () => {
             transform: `scale(${ip(f, [askAt, askAt + 12], [0.6, 1])})`,
             transformOrigin: "0% 100%",
             opacity: ip(f, [askAt, askAt + 8], [0, 1]) * (1 - ip(f, [maskAt + 30, maskAt + 40], [0, 1])),
-            boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.3)", border: "3px solid #000",
           }}
         >
           <div style={{ fontFamily: MONO, fontSize: 20, color: C.red, letterSpacing: 2, marginBottom: 8 }}>LE FAUX CONSEILLER</div>
@@ -69,8 +69,8 @@ export const S5Code: React.FC = () => {
       )}
       {/* réticule de mise au point pendant la poussée caméra */}
       {push > 0 && f < maskAt + 10 && (
-        <div style={{ position: "absolute", left: 120, right: 120, top: 560, height: 360, border: `3px solid ${C.yellow}`, borderRadius: 20, opacity: (0.4 + 0.6 * (Math.floor(f / 6) % 2)) * push, boxShadow: "0 0 30px rgba(255,203,5,0.4)" }}>
-          <div style={{ position: "absolute", top: -44, left: 0, fontFamily: MONO, fontSize: 24, color: C.yellow, letterSpacing: 3 }}>ZOOM · DONNÉE SENSIBLE</div>
+        <div style={{ position: "absolute", left: 120, right: 120, top: 560, height: 360, border: `4px solid ${C.yellow}`, outline: "3px solid #000", borderRadius: 20, opacity: (0.4 + 0.6 * (Math.floor(f / 6) % 2)) * push }}>
+          <div style={{ position: "absolute", top: -44, left: 0, fontFamily: MONO, fontSize: 24, color: C.yellow, background: "#000", padding: "4px 10px", letterSpacing: 3 }}>ZOOM · DONNÉE SENSIBLE</div>
         </div>
       )}
       <AlertBanner text="NE COMMUNIQUEZ JAMAIS CE CODE" at={maskAt + 18} style={{ top: 1100 }} size={50} />
