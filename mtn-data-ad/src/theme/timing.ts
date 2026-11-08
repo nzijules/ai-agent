@@ -1,4 +1,4 @@
-import { Easing } from "remotion";
+import { Easing, interpolate } from "remotion";
 
 export const FPS = 30;
 export const WIDTH = 1080;
@@ -24,5 +24,13 @@ export const SCENE_SECONDS = {
   s4: 6,
   s5: 6,
   s6: 6,
-  s7: 7,
+  s7: 9,
 } as const;
+
+/** Raccourci : interpolation bornée avec courbe optionnelle. */
+export const ip = (
+  frame: number,
+  input: number[],
+  output: number[],
+  easing?: ((t: number) => number) | ((t: number) => number)[],
+) => interpolate(frame, input, output, { ...clamp, easing });

@@ -29,8 +29,8 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "render:tiktok": "remotion render Scene2-Prototype out/scene2-render.mp4 --codec=h264 --crf=16 --audio-codec=aac --audio-bitrate=320k && ffmpeg -y -v error -i out/scene2-render.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -vf scale=out_range=tv -color_range tv -profile:v high -level 4.1 -movflags +faststart -c:a copy out/scene2-tiktok.mp4",
-    "still:safezones": "remotion still Scene2-TikTok-SafeZones out/safezones.png --frame=130"
+    "render:tiktok": "remotion render MTN-Data-Ad out/mtn-data-ad-render.mp4 --codec=h264 --crf=16 --audio-codec=aac --audio-bitrate=320k && ffmpeg -y -v error -i out/mtn-data-ad-render.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -vf scale=out_range=tv -color_range tv -profile:v high -level 4.1 -movflags +faststart -c:a copy out/mtn-data-ad-tiktok.mp4",
+    "still:safezones": "remotion still MTN-Data-Ad-SafeZones out/safezones.png --frame=470"
   },
   "allowScripts": {
     "esbuild": false

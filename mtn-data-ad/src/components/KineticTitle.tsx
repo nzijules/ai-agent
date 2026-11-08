@@ -101,6 +101,7 @@ export const KineticTitle: React.FC<Props> = ({
                         borderRadius: fontSize * 0.16,
                         transformOrigin: "left center",
                         scale: `${hl} 1`,
+                        opacity: 1 - outP,
                         transform: "skewX(-8deg)",
                         boxShadow: "0 14px 30px rgba(0,0,0,0.25)",
                       }}

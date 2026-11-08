@@ -267,6 +267,88 @@ function music(seconds) {
   return [lp(L, 9000), lp(R, 9000)];
 }
 
+
+function vibrate() {
+  // vibreur de téléphone : bourdonnement 160 Hz haché (2 impulsions)
+  const o = buf(0.75);
+  for (let i = 0; i < o.length; i++) {
+    const t = i / SR;
+    const gate = (t < 0.28 || (t > 0.4 && t < 0.68)) ? 1 : 0;
+    const e = gate * Math.min(1, (t % 0.4) / 0.01);
+    o[i] = (Math.sign(Math.sin(2 * Math.PI * 160 * t)) * 0.25 + Math.sin(2 * Math.PI * 320 * t) * 0.2) * e * 0.6;
+  }
+  return lp(o, 1800);
+}
+
+function alert() {
+  // alerte numérique : deux notes descendantes
+  const o = buf(0.7);
+  [[1046.5, 0], [784, 0.14]].forEach(([f, st]) => {
+    for (let i = Math.round(st * SR); i < o.length; i++) {
+      const t = i / SR - st;
+      const e = env(t, 0.004, 0.12);
+      o[i] += (Math.sin(2 * Math.PI * f * t) + 0.35 * Math.sign(Math.sin(2 * Math.PI * f * t))) * e * 0.3;
+    }
+  });
+  return lp(o, 6000);
+}
+
+function impact() {
+  // impact léger : grave + transitoire bruité
+  const o = buf(0.8);
+  let ph = 0;
+  for (let i = 0; i < o.length; i++) {
+    const t = i / SR;
+    const f = 45 + 120 * Math.exp(-t / 0.05);
+    ph += (2 * Math.PI * f) / SR;
+    o[i] = Math.sin(ph) * env(t, 0.002, 0.18) * 0.9 + noise() * env(t, 0.001, 0.03) * 0.4;
+  }
+  return o;
+}
+
+function riser(len = 1.2) {
+  // montée finale (signature sonore)
+  const o = buf(len);
+  let ph = 0;
+  const n = buf(len).map(() => noise());
+  const nf = lp(n, 3000);
+  for (let i = 0; i < o.length; i++) {
+    const t = i / SR;
+    const f = 300 + 900 * Math.pow(t / len, 2);
+    ph += (2 * Math.PI * f) / SR;
+    o[i] = (Math.sin(ph) * 0.2 + nf[i] * 0.5) * Math.pow(t / len, 1.5) * 0.8;
+  }
+  return o;
+}
+
+function signature() {
+  // signature finale : accord majeur lumineux (La majeur)
+  const o = buf(2.2);
+  [440, 554.37, 659.25, 880, 1108.73].forEach((f, k) => {
+    const st = k * 0.04;
+    for (let i = Math.round(st * SR); i < o.length; i++) {
+      const t = i / SR - st;
+      const e = env(t, 0.01, 0.7);
+      o[i] += (Math.sin(2 * Math.PI * f * t) * 0.6 + Math.sin(2 * Math.PI * f * 2 * t) * 0.15) * e * 0.16;
+    }
+  });
+  return o;
+}
+
+function transfer() {
+  // transfert de données : gazouillis numériques rapides
+  const o = buf(1.0);
+  for (let k = 0; k < 14; k++) {
+    const st = k * 0.065;
+    const f = 1200 + ((k * 7919) % 1600);
+    for (let i = Math.round(st * SR); i < Math.min(o.length, Math.round((st + 0.05) * SR)); i++) {
+      const t = i / SR - st;
+      o[i] += Math.sin(2 * Math.PI * f * t) * env(t, 0.002, 0.015) * 0.22;
+    }
+  }
+  return o;
+}
+
 const out = (p) => path.join(root, "public", p);
 writeWav(out("sfx/click.wav"), click());
 writeWav(out("sfx/toggle.wav"), toggleSlide());
@@ -276,5 +358,11 @@ writeWav(out("sfx/whoosh.wav"), hp(whoosh(), 120));
 writeWav(out("sfx/pop.wav"), pop());
 writeWav(out("sfx/power-down.wav"), powerDown());
 writeWav(out("sfx/sparkle.wav"), sparkle());
+writeWav(out("sfx/vibrate.wav"), vibrate());
+writeWav(out("sfx/alert.wav"), alert());
+writeWav(out("sfx/impact.wav"), impact());
+writeWav(out("sfx/riser.wav"), riser());
+writeWav(out("sfx/signature.wav"), signature());
+writeWav(out("sfx/transfer.wav"), transfer());
 const [mL, mR] = music(Number(process.env.MUSIC_SECONDS ?? 46));
 writeWav(out("music/afro-pop-bed.wav"), mL, mR);

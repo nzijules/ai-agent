@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, interpolate, interpolateColors, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { Audio } from "@remotion/media";
-import { MTNBackground } from "../components/MTNBackground";
+import { LAYOUT, StepChip } from "../components/common";
 import { KineticTitle } from "../components/KineticTitle";
 import { Toggle3D } from "../components/Toggle3D";
 import { TouchHand, TouchRipple } from "../components/TouchHand";
@@ -53,7 +53,7 @@ const T = {
 
 // Géométrie (repère 1080×1920)
 // Panneau dans la zone sûre TikTok : bord droit ≤ SAFE.right (colonne d'actions).
-const PANEL = { left: SAFE.left + 10, top: 620, width: SAFE.right - SAFE.left - 20 };
+const PANEL = { left: SAFE.left + 10, top: 700, width: SAFE.right - SAFE.left - 20 };
 const TOGGLE_W = 178;
 
 export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
@@ -114,8 +114,8 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
   );
 
   return (
-    <AbsoluteFill style={{ overflow: "hidden", backgroundColor: COLORS.yellow }}>
-      <MTNBackground seed={22} lightUpFrom={0} lightUpDuration={1} parallax={-frame * 0.15} />
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <StepChip step={1} exitAt={T.exit} />
 
       {/* ===== Scène (tout ce qui subit la plongée caméra de sortie) ===== */}
       <AbsoluteFill
@@ -129,7 +129,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
         <div
           style={{
             position: "absolute",
-            top: SAFE.top,
+            top: LAYOUT.titleTop,
             left: 0,
             right: 0,
             display: "flex",
@@ -137,7 +137,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
             opacity: 1 - exit * 1.6,
           }}
         >
-          <KineticTitle words={SCENE2_TEXT.title} from={T.titleIn} stagger={4} fontSize={102} />
+          <KineticTitle words={SCENE2_TEXT.title} from={T.titleIn} stagger={4} fontSize={94} />
         </div>
 
         {/* Personnage (révélation par masque) */}
@@ -146,7 +146,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
           width={1180}
           ratio={1152 / 1328}
           left={-150}
-          top={1110}
+          top={1200}
           reveal={interpolate(frame, [T.characterIn, T.characterIn + 26], [0, 1], { ...clamp, easing: EASE_OUT })}
           parallax={Math.sin(frame / 50) * 6 - frame * 0.08}
           style={{ opacity: 1 - exit * 1.4 }}
@@ -164,7 +164,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
               <stop offset="100%" stopColor={COLORS.white} stopOpacity={0} />
             </linearGradient>
           </defs>
-          <polygon points={`905,1670 985,1648 ${PANEL.left + PANEL.width - 70},1210 ${PANEL.left + 480},1210`} fill="url(#beam)" />
+          <polygon points={`905,1670 985,1648 ${PANEL.left + PANEL.width - 70},1290 ${PANEL.left + 480},1290`} fill="url(#beam)" />
           {[0, 1, 2, 3, 4].map((i) => {
             const t = ((frame / 26 + i / 5) % 1) as number;
             return (

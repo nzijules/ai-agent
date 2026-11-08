@@ -2,22 +2,18 @@ import React from "react";
 import { AbsoluteFill, Composition, staticFile } from "remotion";
 import { Audio } from "@remotion/media";
 import "./theme/fonts";
-import { Scene2AutoUpdates } from "./scenes/Scene2AutoUpdates";
+import { Stage } from "./components/common";
 import { TikTokSafeZone } from "./components/TikTokSafeZone";
-import { FPS, HEIGHT, SCENE_SECONDS, WIDTH } from "./theme/timing";
+import { MainAd } from "./MainAd";
+import { SCENES } from "./scenes";
+import { FPS, HEIGHT, WIDTH } from "./theme/timing";
 
-/** Prototype de la scène 2 avec le lit musical, pour validation. */
-const Scene2Prototype: React.FC = () => (
-  <AbsoluteFill>
-    <Scene2AutoUpdates />
-    <Audio src={staticFile("music/afro-pop-bed.wav")} volume={0.32} />
-  </AbsoluteFill>
-);
+const TOTAL = SCENES.reduce((a, s) => a + s.seconds * FPS, 0);
 
-/** Contrôle des zones de sécurité TikTok (aperçu uniquement, ne pas publier). */
-const Scene2SafeZones: React.FC = () => (
+/** Pub complète avec contrôle des zones TikTok (aperçu uniquement). */
+const MainSafeZones: React.FC = () => (
   <AbsoluteFill>
-    <Scene2Prototype />
+    <MainAd />
     <TikTokSafeZone />
   </AbsoluteFill>
 );
@@ -25,22 +21,33 @@ const Scene2SafeZones: React.FC = () => (
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Vidéo finale : 9:16 TikTok, version sans voix-off */}
+      <Composition id="MTN-Data-Ad" component={MainAd} durationInFrames={TOTAL} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition
-        id="Scene2-Prototype"
-        component={Scene2Prototype}
-        durationInFrames={SCENE_SECONDS.s2 * FPS}
+        id="MTN-Data-Ad-SafeZones"
+        component={MainSafeZones}
+        durationInFrames={TOTAL}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
       />
-      <Composition
-        id="Scene2-TikTok-SafeZones"
-        component={Scene2SafeZones}
-        durationInFrames={SCENE_SECONDS.s2 * FPS}
-        fps={FPS}
-        width={WIDTH}
-        height={HEIGHT}
-      />
+      {/* Chaque scène seule (fond + logo + musique) pour l'édition */}
+      {SCENES.map(({ id, seconds, Component }) => (
+        <Composition
+          key={id}
+          id={id}
+          component={() => (
+            <Stage>
+              <Component />
+              <Audio src={staticFile("music/afro-pop-bed.wav")} volume={0.3} />
+            </Stage>
+          )}
+          durationInFrames={seconds * FPS}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+      ))}
     </>
   );
 };

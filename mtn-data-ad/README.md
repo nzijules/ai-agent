@@ -1,54 +1,74 @@
 # MTN Côte d'Ivoire — « Économise tes données mobiles »
 
-Pub motion design verticale (1080×1920, 30 fps, H.264) construite avec **Remotion + React + TypeScript + SVG**.
+Publicité motion design **TikTok** (9:16, 1080×1920, 30 fps, 45 s) construite avec **Remotion + React + TypeScript + SVG**.
 
-> **État : phase 3 — prototype de la scène 2** (« Coupe les mises à jour auto »), à valider avant la production des 7 scènes.
-> Vidéo : [`deliverables/scene2-tiktok.mp4`](deliverables/scene2-tiktok.mp4) · contrôle des zones TikTok : [`deliverables/scene2-tiktok-safezones.jpg`](deliverables/scene2-tiktok-safezones.jpg)
+| Livrable | Fichier |
+|---|---|
+| Vidéo finale **sans voix-off** (musique + effets sonores) | [`deliverables/mtn-data-ad-tiktok.mp4`](deliverables/mtn-data-ad-tiktok.mp4) |
+| Script de la voix-off (minuté) | [`VOIX-OFF.md`](VOIX-OFF.md) |
+| Contrôle des zones de sécurité TikTok | [`deliverables/mtn-data-ad-safezones.jpg`](deliverables/mtn-data-ad-safezones.jpg) |
+| Planche de contact (1 image par scène) | [`deliverables/mtn-data-ad-storyboard.jpg`](deliverables/mtn-data-ad-storyboard.jpg) |
 
-## Lancer le projet
+## Storyboard
+
+| # | Durée | Scène | Raccord vers la suivante |
+|---|---|---|---|
+| 1 | 0–6 s | Le problème : « Ta connexion finit trop vite ? » — personnage surpris, jauge qui s'effondre, croix rouge, « ? » | Les flèches de données filent au centre et deviennent l'icône de synchro |
+| 2 | 6–12 s | Astuce 1 : couper les mises à jour auto (Wi-Fi conservé) | Plongée dans l'interrupteur OFF |
+| 3 | 12–18 s | Astuce 2 : limiter l'arrière-plan (la messagerie reste active) | L'interrupteur OFF se pose sur une ligne ; la tuile vidéo grandit |
+| 4 | 18–24 s | Astuce 3 : baisser la qualité vidéo (480p) — mains réelles | Un nuage se forme au centre |
+| 5 | 24–30 s | Astuce 4 : sauvegardes en Wi-Fi uniquement (rien n'est supprimé) | La coche devient l'anneau de la jauge |
+| 6 | 30–36 s | Astuce 5 : analyser la consommation (12,8 Go / 20 Go, loupe sur Vidéos) | Une ligne lumineuse traverse l'écran |
+| 7 | 36–45 s | Partage : publication « 5 astuces », bouton Partager, réseau d'amis, message final | — (tenue finale 3 s) |
+
+## Lancer / rendre
 
 ```bash
 npm i
-npm run dev                       # Remotion Studio (aperçu interactif)
-node scripts/generate-audio.mjs   # régénère SFX + musique (public/sfx, public/music)
-npx remotion render Scene2-Prototype out/scene2-prototype.mp4 --codec=h264 --crf=18
+npm run dev                       # Remotion Studio (aperçu, chaque scène est aussi une composition)
+node scripts/generate-audio.mjs   # régénère SFX + musique
+npm run render:tiktok             # → out/mtn-data-ad-tiktok.mp4 (H.264 High yuv420p, AAC 320k, faststart)
+npm run still:safezones           # image de contrôle des zones TikTok
 ```
 
-Sans accès à `remotion.media` (téléchargement du navigateur), pointer vers un Chrome Headless Shell local :
-`REMOTION_BROWSER=/chemin/chrome-headless-shell npx remotion render …`
+Sans accès à `remotion.media`, pointer vers un Chrome Headless Shell local :
+`REMOTION_BROWSER=/chemin/chrome-headless-shell npm run render:tiktok`
 
 ## Format TikTok
 
-- 9:16, 1080×1920, 30 fps, H.264 High (yuv420p, plage TV, faststart) + AAC 320 kb/s : `npm run render:tiktok` (Remotion puis réencodage ffmpeg) → `out/scene2-tiktok.mp4`.
-- **Zones de sécurité** définies dans `src/theme/safeZones.ts` (haut 210 px, bas 430 px, colonne d'actions à droite 150 px). Titres, panneaux, boutons et messages restent dans ce cadre ; seuls le décor et le personnage débordent.
-- Contrôle visuel : composition **`Scene2-TikTok-SafeZones`** (maquette de l'interface TikTok + zones hachurées, à ne pas publier) ou `npm run still:safezones`.
+- Zones de sécurité dans `src/theme/safeZones.ts` (haut 210 px, bas 430 px, colonne d'actions à droite 150 px).
+- Logo MTN en haut à droite, juste sous la barre d'onglets TikTok ; pastille « ASTUCE n/5 » à gauche sur la même ligne ; titres dessous.
+- Composition **`MTN-Data-Ad-SafeZones`** : maquette de l'interface TikTok par-dessus la pub (à ne pas publier).
 
 ## Architecture
 
-| Dossier / fichier | Rôle |
+| Fichier | Rôle |
 |---|---|
-| `src/theme/colors.ts` | Palette centralisée (jaune MTN, noir, blanc, + propositions créatives) |
-| `src/theme/fonts.ts` | Montserrat variable embarquée (`public/fonts`, licence OFL) |
-| `src/theme/timing.ts` | FPS, format, courbes d'animation, **durées des scènes** |
-| `src/components/MTNBackground.tsx` | Fond jaune animé réutilisable (halos, lignes lumineuses, points, particules, barres, arcs) |
-| `src/components/KineticTitle.tsx` | Typographie cinétique mot par mot + mot-clé surligné |
-| `src/components/Toggle3D.tsx` | Interrupteur ON/OFF 3D (squash & stretch, couleur, libellés) |
-| `src/components/TouchHand.tsx` | Main photoréaliste qui appuie + onde tactile |
-| `src/components/Character.tsx` | Personnage détouré : révélation par masque, respiration, parallaxe |
-| `src/components/ui.tsx` | Panneau 3D, ligne de réglage, barre de progression |
-| `src/icons/index.tsx` | Icônes SVG « 3D » (synchro, Wi-Fi, réseau, coche, pause…) |
-| `src/scenes/Scene2AutoUpdates.tsx` | Scène 2 (prototype) |
-| `scripts/generate-audio.mjs` | Synthé procédural : SFX + lit musical afro-pop 112 BPM (libre de droits) |
-| `public/characters/` | Assets générés par IA puis détourés (personnage, main) |
+| `src/MainAd.tsx` | Composition principale : fond et logo continus, 7 scènes en série, musique |
+| `src/scenes/index.ts` | Ordre des scènes ; `src/theme/timing.ts` → `SCENE_SECONDS` pour les durées |
+| `src/scenes/Scene1…7*.tsx` | Une scène par fichier : textes (`SCENEn_TEXT`) et temps clés (`T`) en tête de fichier |
+| `src/components/MTNBackground.tsx` | Fond jaune animé (halos, lignes lumineuses, trame de points, particules, barres, arcs) |
+| `src/components/KineticTitle.tsx` | Typographie cinétique + mot-clé surligné |
+| `src/components/common.tsx` | Logo, pastille d'astuce, zone de titre, flash, habillage des scènes seules |
+| `src/components/Phone.tsx` | Smartphone 3D réutilisable (écran = vraie interface animée) |
+| `src/components/Toggle3D.tsx`, `ui.tsx` | Interrupteur ON/OFF, panneaux, lignes de réglage, barres |
+| `src/components/Character.tsx`, `TouchHand.tsx` | Personnage détouré, main qui appuie, ondes tactiles |
+| `src/icons/` | Icônes SVG « 3D » : synchro, Wi-Fi, réseau, applis génériques, nuage, partage, loupe… |
+| `scripts/generate-audio.mjs` | Synthé procédural : 14 effets sonores + musique afro-pop 112 BPM (libres de droits) |
+| `public/characters/` | Assets photoréalistes générés par IA puis détourés |
+| `public/brand/mtn-logo.png` | Logo officiel fourni par le client (fond extérieur rendu transparent) |
+| `public/fonts/` | Montserrat variable (licence SIL OFL) |
 
 ## Modifier
 
-- **Textes** : objet `SCENE2_TEXT` en haut de `src/scenes/Scene2AutoUpdates.tsx`.
-- **Rythme** : objet `T` (frames clés : entrée du panneau, appui, glissement, confirmation, sortie) dans le même fichier ; durées globales dans `SCENE_SECONDS`.
-- **Couleurs** : `src/theme/colors.ts`.
-- **Sons** : paramètres dans `scripts/generate-audio.mjs` ; placement/volume via les `<Sequence>` en bas de chaque scène ; volume musique dans `src/Root.tsx`.
-- **Logo MTN** : aucun logo n'est fabriqué. Déposer le fichier officiel autorisé dans `public/brand/` ; l'emplacement sera intégré à la scène 7.
+- **Textes** : objets `SCENEn_TEXT` en tête de chaque scène.
+- **Rythme** : objets `T` (frames) dans chaque scène, `SCENE_SECONDS` pour la durée des scènes.
+- **Couleurs** : `src/theme/colors.ts`. **Logo** : remplacer `public/brand/mtn-logo.png` (ratio 2:1).
+- **Sons** : `scripts/generate-audio.mjs` ; placement/volume via les `<Sequence>` en bas de chaque scène ; musique dans `src/MainAd.tsx`.
+- **Voix-off** : enregistrer d'après `VOIX-OFF.md`, déposer `public/voiceover.wav` et ajouter `<Audio src={staticFile("voiceover.wav")} />` dans `MainAd.tsx` (baisser la musique à ~0.18).
 
 ## Limites connues
 
-- Le personnage est une photo générée et détourée : il vit par masque, respiration, parallaxe et lumière, mais ne bouge pas réellement. Pour des expressions/gestes animés, il faudra des séquences vidéo détourées (génération image→vidéo).
+- Les personnages sont des photos générées et détourées : ils vivent par masque, respiration, parallaxe, vibration et lumière, mais ne bougent pas réellement. Des gestes/expressions animés nécessiteraient des séquences vidéo détourées.
+- Les consommations vidéo (≈ 2,5 / 1,2 / 0,6 Go/h) sont des ordres de grandeur moyens, signalés comme estimations à l'écran.
+- La musique et les sons sont synthétisés par code : fonctionnels et libres de droits, mais une musique produite donnerait un rendu plus riche.
