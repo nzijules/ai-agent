@@ -3,7 +3,7 @@
 Pub motion design verticale (1080×1920, 30 fps, H.264) construite avec **Remotion + React + TypeScript + SVG**.
 
 > **État : phase 3 — prototype de la scène 2** (« Coupe les mises à jour auto »), à valider avant la production des 7 scènes.
-> Vidéo : [`deliverables/scene2-prototype.mp4`](deliverables/scene2-prototype.mp4)
+> Vidéo : [`deliverables/scene2-tiktok.mp4`](deliverables/scene2-tiktok.mp4) · contrôle des zones TikTok : [`deliverables/scene2-tiktok-safezones.jpg`](deliverables/scene2-tiktok-safezones.jpg)
 
 ## Lancer le projet
 
@@ -16,6 +16,12 @@ npx remotion render Scene2-Prototype out/scene2-prototype.mp4 --codec=h264 --crf
 
 Sans accès à `remotion.media` (téléchargement du navigateur), pointer vers un Chrome Headless Shell local :
 `REMOTION_BROWSER=/chemin/chrome-headless-shell npx remotion render …`
+
+## Format TikTok
+
+- 9:16, 1080×1920, 30 fps, H.264 High (yuv420p, plage TV, faststart) + AAC 320 kb/s : `npm run render:tiktok` (Remotion puis réencodage ffmpeg) → `out/scene2-tiktok.mp4`.
+- **Zones de sécurité** définies dans `src/theme/safeZones.ts` (haut 210 px, bas 430 px, colonne d'actions à droite 150 px). Titres, panneaux, boutons et messages restent dans ce cadre ; seuls le décor et le personnage débordent.
+- Contrôle visuel : composition **`Scene2-TikTok-SafeZones`** (maquette de l'interface TikTok + zones hachurées, à ne pas publier) ou `npm run still:safezones`.
 
 ## Architecture
 

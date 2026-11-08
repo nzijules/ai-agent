@@ -10,6 +10,7 @@ import { Label, Panel3D, ProgressBar, SettingRow } from "../components/ui";
 import { Badge3D, CellularIcon, CheckMark, DownloadArrow, PauseIcon, SyncArrows, WifiIcon } from "../icons";
 import { COLORS } from "../theme/colors";
 import { FONT } from "../theme/fonts";
+import { SAFE } from "../theme/safeZones";
 import { clamp, EASE_IN, EASE_IN_OUT, EASE_OUT, SPRING_POP, SPRING_SOFT } from "../theme/timing";
 
 // ---------------------------------------------------------------------------
@@ -28,10 +29,10 @@ export const SCENE2_TEXT = {
   panelTitle: "Mises à jour automatiques",
   panelSubtitle: "Applications & système",
   rowMobile: "Via données mobiles",
-  rowWifi: "Via Wi-Fi uniquement",
+  rowWifi: "Wi-Fi uniquement",
   downloading: "Mise à jour en cours…",
   paused: "En pause · reprise en Wi-Fi",
-  tip: "Tes applis se mettront à jour en Wi-Fi",
+  tip: "Mises à jour en Wi-Fi seulement",
 };
 
 const T = {
@@ -51,7 +52,8 @@ const T = {
 };
 
 // Géométrie (repère 1080×1920)
-const PANEL = { left: 80, top: 600, width: 920 };
+// Panneau dans la zone sûre TikTok : bord droit ≤ SAFE.right (colonne d'actions).
+const PANEL = { left: SAFE.left + 10, top: 620, width: SAFE.right - SAFE.left - 20 };
 const TOGGLE_W = 178;
 
 export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
@@ -89,7 +91,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
   const exit = interpolate(frame, [T.exit, T.end], [0, 1], { ...clamp, easing: EASE_IN_OUT });
 
   // position écran approximative du centre de l'interrupteur (origine du zoom)
-  const toggleCenter = { x: 868, y: 860 };
+  const toggleCenter = { x: PANEL.left + PANEL.width - 132, y: PANEL.top + 260 };
 
   // ---- morph d'ouverture : flèches de données → icône de synchro ----
   const morph = interpolate(frame, [0, T.morphEnd], [0, 1], { ...clamp, easing: EASE_IN_OUT });
@@ -127,7 +129,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
         <div
           style={{
             position: "absolute",
-            top: 150,
+            top: SAFE.top,
             left: 0,
             right: 0,
             display: "flex",
@@ -135,7 +137,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
             opacity: 1 - exit * 1.6,
           }}
         >
-          <KineticTitle words={SCENE2_TEXT.title} from={T.titleIn} stagger={4} fontSize={112} />
+          <KineticTitle words={SCENE2_TEXT.title} from={T.titleIn} stagger={4} fontSize={102} />
         </div>
 
         {/* Personnage (révélation par masque) */}
@@ -144,7 +146,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
           width={1180}
           ratio={1152 / 1328}
           left={-150}
-          top={1060}
+          top={1110}
           reveal={interpolate(frame, [T.characterIn, T.characterIn + 26], [0, 1], { ...clamp, easing: EASE_OUT })}
           parallax={Math.sin(frame / 50) * 6 - frame * 0.08}
           style={{ opacity: 1 - exit * 1.4 }}
@@ -162,7 +164,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
               <stop offset="100%" stopColor={COLORS.white} stopOpacity={0} />
             </linearGradient>
           </defs>
-          <polygon points={`905,1670 985,1648 ${PANEL.left + PANEL.width - 70},1190 ${PANEL.left + 480},1190`} fill="url(#beam)" />
+          <polygon points={`905,1670 985,1648 ${PANEL.left + PANEL.width - 70},1210 ${PANEL.left + 480},1210`} fill="url(#beam)" />
           {[0, 1, 2, 3, 4].map((i) => {
             const t = ((frame / 26 + i / 5) % 1) as number;
             return (
@@ -354,7 +356,7 @@ export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio
             }}
           >
             <WifiIcon size={50} color={COLORS.yellow} />
-            <span style={{ fontFamily: FONT, fontStyle: "italic", fontWeight: 800, fontSize: 40, color: COLORS.white }}>
+            <span style={{ fontFamily: FONT, fontStyle: "italic", fontWeight: 800, fontSize: 38, color: COLORS.white }}>
               {SCENE2_TEXT.tip}
             </span>
           </div>
