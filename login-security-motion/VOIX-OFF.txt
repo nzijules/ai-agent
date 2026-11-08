@@ -1,0 +1,48 @@
+VOIX OFF — 5 façons de forcer ta page de connexion
+Durée vidéo : 70 secondes. Repères de temps entre crochets (à ne pas lire).
+
+[0:00 — Accroche]
+Développeur ou vibe codeur ?
+Ta page de connexion a été codée par une IA en cinq minutes ?
+Vérifie qu’un intrus ne peut pas l’ouvrir de ces cinq façons.
+
+[0:04 — Intro]
+Ta page de connexion, c’est la porte d’entrée de ton appli.
+Cinq failles. Cinq parades.
+
+[0:07 — Façon 1]
+Un : il insiste. Encore et encore.
+Un robot teste des milliers de mots de passe pendant la nuit, et rien ne l’arrête.
+La parade : après cinq échecs, le compte se bloque quinze minutes. Le robot perd sa nuit.
+
+[0:16 — Façon 2]
+Deux : il écoute ce que ta page répond.
+« Cet email n’existe pas » lui apprend qui a un compte chez toi… et qui n’en a pas.
+La parade : une seule phrase pour toutes les erreurs. « Email ou mot de passe incorrect. » Même chose sur la page « mot de passe oublié ».
+
+[0:25 — Façon 3]
+Trois : il contourne le contrôle.
+Si la vérification se fait seulement dans le navigateur, il tape l’adresse des pages réservées… et il entre.
+La parade : c’est le serveur qui vérifie qui tu es. À chaque demande.
+
+[0:34 — Façon 4]
+Quatre : il vole ta base de données.
+Si les mots de passe sont écrits en clair, il les lit tous. Et comme beaucoup de gens utilisent le même partout, il ouvre aussi leurs emails et leurs réseaux sociaux.
+La parade : des mots de passe hachés, avec bcrypt ou Argon2. Un code que personne ne peut relire. Même pas toi.
+
+[0:43 — Façon 5]
+Cinq : il garde la porte ouverte.
+Une connexion sans date de fin reste valable pour toujours. Même après la suppression du compte.
+La parade : chaque session expire au bout d’un moment, et elle est annulée à la déconnexion ou à la suppression du compte.
+
+[0:52 — Bonus]
+Bonus : active la double authentification.
+Même s’il trouve ton mot de passe, l’intrus reste dehors.
+
+[0:57 — Claude Code]
+Pas besoin d’être développeur pour corriger tout ça.
+Demande simplement à Claude Code : « Vérifie ma page de connexion sur ces cinq points, et corrige ce qui manque. »
+
+[1:05 — Outro]
+Abonne-toi : je te partage une astuce IA chaque jour.
+Et envoie cette vidéo à ton pote qui vibe code.

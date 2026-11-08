@@ -5,7 +5,7 @@ export const WIDTH = 1080;
 export const HEIGHT = 1920;
 
 export const C = {
-  bg: "#F4F6FB",
+  bg: "#FFFFFF",
   card: "#FFFFFF",
   navy: "#14203D",
   muted: "#5B6478",
