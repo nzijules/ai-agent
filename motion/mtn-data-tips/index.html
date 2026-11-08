@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>MTN Data Motion</title>
+<style>
+  @font-face { font-family: 'Mont'; src: url(assets/montserrat.woff2) format('woff2'); font-weight: 100 900; font-style: normal; }
+  @font-face { font-family: 'Mont'; src: url(assets/montserrat-italic.woff2) format('woff2'); font-weight: 100 900; font-style: italic; }
+  :root { --y: #FFCB05; --y2: #FFD93D; --k: #0B0B0B; }
+  html, body { margin: 0; padding: 0; background: #111; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--y); transform-origin: 0 0; font-family: 'Mont', sans-serif; }
+  .abs { position: absolute; }
+  .layer { display: block; will-change: transform; }
+  /* background */
+  #bg { inset: 0; background:
+        radial-gradient(70% 45% at 50% 40%, rgba(255,240,150,.55), transparent 70%),
+        radial-gradient(130% 80% at 50% 45%, #FFD52A 0%, #FFCB05 50%, #F4B400 100%); }
+  .dots { width: 300px; height: 520px; background-image: radial-gradient(rgba(255,255,255,.6) 1.7px, transparent 2.2px); background-size: 22px 22px; opacity: .45; }
+  .spark { width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 16px 6px rgba(255,255,255,.85); }
+  .bgbar { width: 10px; bottom: auto; background: linear-gradient(rgba(255,255,255,.28), rgba(255,255,255,0)); transform-origin: 50% 100%; border-radius: 3px; }
+  .glowsweep { top: -300px; left: 0; width: 260px; height: 2600px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); }
+  /* scenes */
+  .scene { overflow: visible; }
+  .group { position: absolute; left: 0; top: 0; width: 1080px; height: 1400px; pointer-events: none; }
+  .ktext { font-family: 'Mont'; font-style: italic; white-space: nowrap; letter-spacing: -.5px; }
+  .kw { display: inline-block; padding: .16em .08em; margin: -.16em -.08em; transform-origin: 50% 70%; }
+  .kwi { display: inline-block; }
+  .screen { left: 0; top: 0; width: 300px; height: 600px; transform-origin: 0 0; background-size: 300px 600px; border-radius: 16px; overflow: hidden; }
+  .scrop { background-repeat: no-repeat; }
+  .ui { font-family: 'Inter', sans-serif; color: #fff; white-space: nowrap; }
+  .stroke3d { background: linear-gradient(90deg, #FFE45A, #F5B400); border: 3px solid #1a1a1a; box-sizing: border-box; transform-origin: 50% 50%; }
+  .strokeK { background: #111; transform-origin: 50% 50%; }
+  .ring { border-radius: 50%; box-sizing: border-box; }
+  /* header / footer */
+  #top { position: absolute; inset: 0; pointer-events: none; }
+  #logo { right: 58px; top: 58px; width: 250px; transform-origin: 70% 30%; }
+  #chip { left: 60px; top: 82px; height: 92px; display: flex; align-items: center; gap: 18px; transform-origin: 0 50%; }
+  #chipBox { background: var(--k); color: var(--y); border-radius: 46px; padding: 0 34px; height: 92px; display: flex; align-items: center; overflow: hidden; }
+  #chipText { font-weight: 900; font-style: italic; font-size: 38px; white-space: nowrap; display: inline-block; }
+  #chipSub { font-weight: 800; font-style: italic; font-size: 30px; color: var(--k); white-space: nowrap; }
+  #tracker { left: 140px; top: 1738px; width: 800px; height: 80px; }
+  #trackLine { left: 40px; top: 37px; width: 720px; height: 6px; background: rgba(11,11,11,.18); border-radius: 3px; }
+  #trackFill { left: 40px; top: 37px; height: 6px; width: 0; background: var(--k); border-radius: 3px; }
+  .step { top: 0; width: 80px; height: 80px; border-radius: 50%; background: var(--y2); border: 5px solid var(--k); box-sizing: border-box;
+          display: flex; align-items: center; justify-content: center; font-weight: 900; font-style: italic; font-size: 36px; color: var(--k); }
+  .step.on { background: var(--k); color: var(--y); }
+  #tag { left: 0; width: 1080px; top: 1735px; text-align: center; font-weight: 900; font-style: italic; font-size: 64px; color: var(--k); letter-spacing: -1px; }
+  /* transitions */
+  .transring { border-style: solid; border-radius: 50%; box-sizing: content-box; pointer-events: none; }
+  .lightbar { top: -200px; width: 120px; height: 2400px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.95) 45%, #fff 50%, rgba(255,255,255,.95) 55%, transparent); filter: blur(2px); transform-origin: 50% 50%; }
+  .growrect { background: radial-gradient(130% 80% at 50% 45%, #FFD52A 0%, #FFCB05 55%, #F4B400 100%); box-shadow: 0 0 0 6px rgba(255,255,255,.6); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg" class="abs">
+    <div class="abs dots" style="left:0;top:560px"></div>
+    <div class="abs dots" style="right:0;top:700px"></div>
+  </div>
+  <div id="scenes" class="abs" style="inset:0"></div>
+  <div id="top">
+    <div id="chip" class="abs"><div id="chipBox"><span id="chipText"></span></div><span id="chipSub"></span></div>
+    <img id="logo" class="abs" src="assets/mtn-logo.png" alt="MTN">
+    <div id="tracker" class="abs"><div id="trackLine" class="abs"></div><div id="trackFill" class="abs"></div></div>
+    <div id="tag" class="abs">#DemainCestMaintenant</div>
+  </div>
+</div>
+<script src="assets/scenes/manifest.js"></script>
+<script src="js/core.js"></script>
+<script>window.SCENE_DEFS = [];</script>
+<script src="js/scenes/s1.js"></script>
+<script src="js/scenes/s2.js"></script>
+<script src="js/scenes/s3.js"></script>
+<script src="js/scenes/s4.js"></script>
+<script src="js/scenes/s5.js"></script>
+<script src="js/scenes/s6.js"></script>
+<script src="js/scenes/s7.js"></script>
+<script src="js/main.js"></script>
+<script>
+  Promise.all([
+    document.fonts.load('italic 800 100px Mont'), document.fonts.load('italic 900 40px Mont'),
+    document.fonts.load('600 16px Inter'), document.fonts.load('800 16px Inter'),
+  ]).then(() => window.__boot());
+</script>
+</body>
+</html>
