@@ -1,4 +1,4 @@
-import { AttackLayout, FIX_AT, Hl } from "../components/AttackLayout";
+import { AttackLayout, Hl } from "../components/AttackLayout";
 import { Card } from "../components/Card";
 import { C, MONO, pop, prog } from "../theme";
 
@@ -32,6 +32,7 @@ const Field: React.FC<{
 export const A5Session: React.FC = () => (
   <AttackLayout
     index={5}
+    fixAt={224}
     title={
       <>
         Il garde la
@@ -48,23 +49,23 @@ export const A5Session: React.FC = () => (
     fix={
       <>
         Chaque session <Hl color={C.green}>expire</Hl> au bout d’un moment, et
-        elle est <Hl color={C.green}>révoquée</Hl> à la déconnexion ou à la
+        elle est <Hl color={C.green}>annulée</Hl> à la déconnexion ou à la
         suppression du compte.
       </>
     }
   >
-    {({ frame, fixP }) => {
+    {({ frame, fixP, fixAt }) => {
       const enter = pop(frame, 12, 22);
-      const before = frame < FIX_AT;
-      const deletedP = pop(frame, 60, 16);
+      const before = frame < fixAt;
+      const deletedP = pop(frame, 176, 16);
       const blink = Math.floor(frame / 12) % 2 === 0;
       const left = Math.max(
         0,
-        30 * 60 - 1 - Math.floor(Math.max(0, frame - FIX_AT) * 8),
+        30 * 60 - 1 - Math.floor(Math.max(0, frame - fixAt) * 8),
       ); // fast countdown
       const mm = String(Math.floor(left / 60)).padStart(2, "0");
       const ss = String(left % 60).padStart(2, "0");
-      const stampP = pop(frame, FIX_AT + 50, 16);
+      const stampP = pop(frame, fixAt + 90, 16);
       return (
         <div style={{ width: "100%", position: "relative", scale: enter }}>
           <Card>
@@ -89,7 +90,7 @@ export const A5Session: React.FC = () => (
                   color: "white",
                   background: before
                     ? C.red
-                    : frame > FIX_AT + 50
+                    : frame > fixAt + 90
                       ? C.muted
                       : C.green,
                   opacity: before ? (blink ? 1 : 0.55) : 1,
@@ -97,8 +98,8 @@ export const A5Session: React.FC = () => (
               >
                 {before
                   ? "● ACTIVE"
-                  : frame > FIX_AT + 50
-                    ? "RÉVOQUÉE"
+                  : frame > fixAt + 90
+                    ? "ANNULÉE"
                     : "● ACTIVE"}
               </div>
             </div>
@@ -159,7 +160,7 @@ export const A5Session: React.FC = () => (
               letterSpacing: 6,
               background: "rgba(255,255,255,0.85)",
               scale: stampP ? 1.6 - stampP * 0.6 : 0,
-              opacity: prog(frame, FIX_AT + 50, 8),
+              opacity: prog(frame, fixAt + 90, 8),
             }}
           >
             EXPIRÉE

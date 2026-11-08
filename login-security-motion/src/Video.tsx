@@ -1,34 +1,33 @@
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, staticFile } from "remotion";
+import { Audio } from "@remotion/media";
+import { D, TRANSITION } from "./timing";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
 import { Logo } from "./components/Logo";
-import { ATTACK_DURATION } from "./components/AttackLayout";
-import { Hook, HOOK_DURATION } from "./scenes/Hook";
-import { Intro, INTRO_DURATION } from "./scenes/Intro";
+import { Hook } from "./scenes/Hook";
+import { Intro } from "./scenes/Intro";
 import { A1BruteForce } from "./scenes/A1BruteForce";
 import { A2Enumeration } from "./scenes/A2Enumeration";
 import { A3Bypass } from "./scenes/A3Bypass";
 import { A4Database } from "./scenes/A4Database";
 import { A5Session } from "./scenes/A5Session";
-import { Bonus2FA, BONUS_DURATION } from "./scenes/Bonus2FA";
-import { ClaudeCode, CLAUDE_DURATION } from "./scenes/ClaudeCode";
-import { Outro, OUTRO_DURATION } from "./scenes/Outro";
+import { Bonus2FA } from "./scenes/Bonus2FA";
+import { ClaudeCode } from "./scenes/ClaudeCode";
+import { Outro } from "./scenes/Outro";
 import { easeInOut } from "./theme";
 
-export const TRANSITION = 16;
-
 const SCENES = [
-  { name: "Hook", C: Hook, d: HOOK_DURATION },
-  { name: "Intro", C: Intro, d: INTRO_DURATION },
-  { name: "1 · Force brute", C: A1BruteForce, d: ATTACK_DURATION },
-  { name: "2 · Messages d'erreur", C: A2Enumeration, d: ATTACK_DURATION },
-  { name: "3 · Contrôle navigateur", C: A3Bypass, d: ATTACK_DURATION },
-  { name: "4 · Base de données", C: A4Database, d: ATTACK_DURATION },
-  { name: "5 · Sessions", C: A5Session, d: ATTACK_DURATION },
-  { name: "Bonus 2FA", C: Bonus2FA, d: BONUS_DURATION },
-  { name: "Claude Code", C: ClaudeCode, d: CLAUDE_DURATION },
-  { name: "Outro", C: Outro, d: OUTRO_DURATION },
+  { name: "Hook", C: Hook, d: D.hook },
+  { name: "Intro", C: Intro, d: D.intro },
+  { name: "1 · Force brute", C: A1BruteForce, d: D.a1 },
+  { name: "2 · Messages d'erreur", C: A2Enumeration, d: D.a2 },
+  { name: "3 · Contrôle navigateur", C: A3Bypass, d: D.a3 },
+  { name: "4 · Base de données", C: A4Database, d: D.a4 },
+  { name: "5 · Sessions", C: A5Session, d: D.a5 },
+  { name: "Bonus 2FA", C: Bonus2FA, d: D.bonus },
+  { name: "Claude Code", C: ClaudeCode, d: D.claude },
+  { name: "Outro", C: Outro, d: D.outro },
 ];
 
 export const VIDEO_DURATION =
@@ -66,5 +65,6 @@ export const LoginSecurityVideo: React.FC = () => (
       })}
     </TransitionSeries>
     <Logo />
+    <Audio src={staticFile("voiceover.mp3")} />
   </AbsoluteFill>
 );

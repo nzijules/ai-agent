@@ -1,5 +1,5 @@
 import { random } from "remotion";
-import { AttackLayout, FIX_AT, Hl } from "../components/AttackLayout";
+import { AttackLayout, Hl } from "../components/AttackLayout";
 import { Card } from "../components/Card";
 import { CardIcon, ChatIcon, LockIcon, MailIcon } from "../components/Icons";
 import { C, MONO, pop, prog } from "../theme";
@@ -36,6 +36,7 @@ const scramble = (
 export const A4Database: React.FC = () => (
   <AttackLayout
     index={4}
+    fixAt={306}
     title={
       <>
         Il vole ta
@@ -56,9 +57,9 @@ export const A4Database: React.FC = () => (
       </>
     }
   >
-    {({ frame, fixP }) => {
+    {({ frame, fixP, fixAt }) => {
       const enter = pop(frame, 12, 22);
-      const leak = frame < FIX_AT;
+      const leak = frame < fixAt;
       return (
         <div style={{ width: "100%", scale: enter }}>
           <Card style={{ padding: 0, overflow: "hidden" }}>
@@ -96,7 +97,7 @@ export const A4Database: React.FC = () => (
             </div>
             {ROWS.map((r, i) => {
               const rowP = prog(frame, 22 + i * 8, 14);
-              const hl = leak && frame > 50 + i * 8;
+              const hl = leak && frame > 132 + i * 8;
               return (
                 <div
                   key={r.email}
@@ -117,7 +118,7 @@ export const A4Database: React.FC = () => (
                   >
                     {leak
                       ? r.pwd
-                      : scramble(r.hash, frame, FIX_AT + 24 + i * 6, r.email)}
+                      : scramble(r.hash, frame, fixAt + 24 + i * 6, r.email)}
                   </span>
                 </div>
               );
@@ -135,7 +136,7 @@ export const A4Database: React.FC = () => (
             }}
           >
             {[MailIcon, ChatIcon, CardIcon].map((Icon, i) => {
-              const p = pop(frame, 78 + i * 10, 16);
+              const p = pop(frame, 235 + i * 10, 16);
               return (
                 <div
                   key={i}
@@ -163,7 +164,7 @@ export const A4Database: React.FC = () => (
               fontSize: 34,
               fontWeight: 700,
               color: C.red,
-              opacity: prog(frame, 110, 14) * (1 - fixP),
+              opacity: prog(frame, 262, 14) * (1 - fixP),
             }}
           >
             Même mot de passe = mêmes portes ouvertes

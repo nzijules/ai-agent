@@ -101,7 +101,7 @@ export const Intro: React.FC = () => {
           </div>
         </Card>
         {MARKERS.map((m, i) => {
-          const p = pop(frame, 46 + i * 7, 16);
+          const p = pop(frame, 60 + i * 7, 16);
           return (
             <div
               key={i}
@@ -139,7 +139,7 @@ export const Intro: React.FC = () => {
           textAlign: "center",
           fontSize: 54,
           fontWeight: 750,
-          opacity: prog(frame, 82, 18),
+          opacity: prog(frame, 94, 18),
         }}
       >
         <span style={{ color: C.red }}>5 failles</span> ·{" "}

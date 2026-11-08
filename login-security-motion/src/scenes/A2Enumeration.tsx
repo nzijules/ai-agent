@@ -1,4 +1,4 @@
-import { AttackLayout, FIX_AT, Hl } from "../components/AttackLayout";
+import { AttackLayout, Hl } from "../components/AttackLayout";
 import { Card } from "../components/Card";
 import { AlertIcon, CheckIcon } from "../components/Icons";
 import { C, MONO, pop, prog } from "../theme";
@@ -10,11 +10,12 @@ const Row: React.FC<{
   frame: number;
   fixP: number;
   delay: number;
-}> = ({ email, before, leak, frame, fixP, delay }) => {
+  fixAt: number;
+}> = ({ email, before, leak, frame, fixP, delay, fixAt }) => {
   const p = pop(frame, delay, 20);
   const msgP = prog(frame, delay + 14, 16);
   const leakP = pop(frame, delay + 34, 18) * (1 - fixP);
-  const swap = frame >= FIX_AT + 6;
+  const swap = frame >= fixAt + 6;
   return (
     <div style={{ scale: p, marginBottom: 36 }}>
       <Card style={{ padding: 36 }}>
@@ -61,6 +62,7 @@ const Row: React.FC<{
 export const A2Enumeration: React.FC = () => (
   <AttackLayout
     index={2}
+    fixAt={214}
     title={
       <>
         Il écoute ce que
@@ -82,7 +84,7 @@ export const A2Enumeration: React.FC = () => (
       </>
     }
   >
-    {({ frame, fixP }) => (
+    {({ frame, fixP, fixAt }) => (
       <div style={{ width: "100%", position: "relative" }}>
         <Row
           email="inconnu@mail.com"
@@ -90,7 +92,8 @@ export const A2Enumeration: React.FC = () => (
           leak="Pas de compte ici"
           frame={frame}
           fixP={fixP}
-          delay={14}
+          fixAt={fixAt}
+          delay={60}
         />
         <Row
           email="sarah@mail.com"
@@ -98,7 +101,8 @@ export const A2Enumeration: React.FC = () => (
           leak="Sarah a un compte → cible !"
           frame={frame}
           fixP={fixP}
-          delay={40}
+          fixAt={fixAt}
+          delay={110}
         />
         <div
           style={{
@@ -113,7 +117,7 @@ export const A2Enumeration: React.FC = () => (
             fontSize: 40,
             fontWeight: 800,
             color: C.green,
-            opacity: prog(frame, FIX_AT + 20, 16),
+            opacity: prog(frame, fixAt + 20, 16),
           }}
         >
           <CheckIcon size={46} color={C.green} /> Il n’apprend plus rien.

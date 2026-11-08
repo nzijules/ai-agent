@@ -18,9 +18,9 @@ const CHECKS = [
 export const ClaudeCode: React.FC = () => {
   const frame = useCurrentFrame();
   const t = prog(frame, 4, 22);
-  const sub = prog(frame, 18, 20);
-  const term = pop(frame, 26, 24);
-  const typed = PROMPT.slice(0, Math.max(0, Math.floor((frame - 44) * 1.1)));
+  const sub = prog(frame, 74, 20);
+  const term = pop(frame, 84, 24);
+  const typed = PROMPT.slice(0, Math.max(0, Math.floor((frame - 128) * 0.75)));
   const done = typed.length >= PROMPT.length;
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: C.navy }}>
@@ -110,7 +110,7 @@ export const ClaudeCode: React.FC = () => {
 
       <div style={{ position: "absolute", top: 1150, left: 80, right: 80 }}>
         {CHECKS.map((c, i) => {
-          const at = 128 + i * 14;
+          const at = 150 + i * 16;
           const p = prog(frame, at, 14);
           const tick = pop(frame, at + 4, 14);
           return (

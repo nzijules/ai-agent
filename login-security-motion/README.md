@@ -1,6 +1,6 @@
 # Motion design — Sécurité de la page de connexion (Arosoft)
 
-Vidéo verticale (1080×1920, 30 fps, ≈ 70 s) réalisée avec [Remotion](https://www.remotion.dev).
+Vidéo verticale (1080×1920, 30 fps, ≈ 1 min 42 s, avec voix off) réalisée avec [Remotion](https://www.remotion.dev).
 Le script voix off complet est dans [`SCRIPT.md`](./SCRIPT.md).
 
 ## Structure
@@ -9,6 +9,7 @@ Le script voix off complet est dans [`SCRIPT.md`](./SCRIPT.md).
 - `src/scenes/` : une scène par fichier (accroche, intro, 5 failles, bonus 2FA, Claude Code, outro)
 - `src/components/AttackLayout.tsx` : gabarit commun « danger → parade » des 5 failles (`FIX_AT` = moment de la parade)
 - `src/theme.ts` : couleurs de la marque, polices, courbes d’animation
+- `src/timing.ts` : durée de chaque scène, calée sur la voix off (`public/voiceover.mp3`)
 - `public/arosoft-logo.png` : logo détouré (sans fond, sans slogan)
 
 ## Commandes

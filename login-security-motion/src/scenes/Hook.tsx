@@ -33,8 +33,8 @@ const Line: React.FC<{
 export const Hook: React.FC = () => {
   const frame = useCurrentFrame();
   const tag = pop(frame, 2, 18);
-  const underline = prog(frame, 40, 20);
-  const bottom = prog(frame, 72, 20);
+  const underline = prog(frame, 130, 20);
+  const bottom = prog(frame, 170, 20);
   return (
     <AbsoluteFill style={{ fontFamily: FONT }}>
       <Background />
@@ -55,9 +55,9 @@ export const Hook: React.FC = () => {
         >
           Développeur ou vibe codeur ?
         </div>
-        <Line at={10}>Ta page de</Line>
-        <Line at={16}>connexion a été</Line>
-        <Line at={22}>
+        <Line at={72}>Ta page de</Line>
+        <Line at={80}>connexion a été</Line>
+        <Line at={106}>
           codée par une{" "}
           <span style={{ position: "relative", color: C.blue }}>
             IA
@@ -75,7 +75,7 @@ export const Hook: React.FC = () => {
             />
           </span>
         </Line>
-        <Line at={28}>en 5 minutes ?</Line>
+        <Line at={140}>en 5 minutes ?</Line>
 
         <div
           style={{

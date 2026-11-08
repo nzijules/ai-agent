@@ -1,4 +1,4 @@
-import { AttackLayout, FIX_AT, Hl } from "../components/AttackLayout";
+import { AttackLayout, Hl } from "../components/AttackLayout";
 import { Card } from "../components/Card";
 import {
   BrowserIcon,
@@ -13,6 +13,7 @@ const URL = "monapp.com/admin";
 export const A3Bypass: React.FC = () => (
   <AttackLayout
     index={3}
+    fixAt={241}
     title={
       <>
         Il contourne
@@ -33,12 +34,12 @@ export const A3Bypass: React.FC = () => (
       </>
     }
   >
-    {({ frame, fixP }) => {
+    {({ frame, fixP, fixAt }) => {
       const enter = pop(frame, 12, 22);
-      const typed = URL.slice(0, Math.max(0, Math.floor((frame - 24) / 2)));
-      const opened = prog(frame, 64, 18);
-      const reqP = prog(frame, FIX_AT + 14, 30);
-      const denyP = pop(frame, FIX_AT + 44, 18);
+      const typed = URL.slice(0, Math.max(0, Math.floor((frame - 150) / 2)));
+      const opened = prog(frame, 196, 16);
+      const reqP = prog(frame, fixAt + 14, 30);
+      const denyP = pop(frame, fixAt + 44, 18);
       return (
         <div style={{ width: "100%", position: "relative", height: 700 }}>
           {/* Browser — threat */}
@@ -107,7 +108,7 @@ export const A3Bypass: React.FC = () => (
                         borderRadius: 16,
                         background: "#F2F4F9",
                         fontSize: 36,
-                        opacity: prog(frame, 72 + i * 6, 12),
+                        opacity: prog(frame, 202 + i * 5, 10),
                       }}
                     >
                       {t}
@@ -125,7 +126,7 @@ export const A3Bypass: React.FC = () => (
                     color: "white",
                     fontSize: 30,
                     fontWeight: 800,
-                    scale: pop(frame, 92, 16),
+                    scale: pop(frame, 212, 14),
                   }}
                 >
                   SANS CONNEXION

@@ -1,5 +1,5 @@
 import { interpolate } from "remotion";
-import { AttackLayout, FIX_AT, Hl } from "../components/AttackLayout";
+import { AttackLayout, Hl } from "../components/AttackLayout";
 import { Card } from "../components/Card";
 import { BotIcon, LockIcon } from "../components/Icons";
 import { C, FONT, MONO, easeInOut, pop, prog } from "../theme";
@@ -30,6 +30,7 @@ const GUESSES = [
 export const A1BruteForce: React.FC = () => (
   <AttackLayout
     index={1}
+    fixAt={222}
     title={
       <>
         Il insiste.
@@ -50,12 +51,12 @@ export const A1BruteForce: React.FC = () => (
       </>
     }
   >
-    {({ frame, fixP }) => {
+    {({ frame, fixP, fixAt }) => {
       const enter = pop(frame, 14, 22);
-      const running = frame < FIX_AT;
+      const running = frame < fixAt;
       const guess = GUESSES[Math.floor(frame / 3) % GUESSES.length];
       const tries = Math.round(
-        interpolate(frame, [20, FIX_AT], [0, 48213], {
+        interpolate(frame, [20, fixAt], [0, 48213], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
           easing: easeInOut,
@@ -63,16 +64,16 @@ export const A1BruteForce: React.FC = () => (
       );
       const remaining = Math.max(
         0,
-        15 * 60 - 1 - Math.floor(Math.max(0, frame - FIX_AT) / 30),
+        15 * 60 - 1 - Math.floor(Math.max(0, frame - fixAt) / 30),
       );
       const mm = String(Math.floor(remaining / 60)).padStart(2, "0");
       const ss = String(remaining % 60).padStart(2, "0");
       const shake = running && frame > 20 ? Math.sin(frame * 2.3) * 3 : 0;
-      const lockP = pop(frame, FIX_AT + 2, 20);
+      const lockP = pop(frame, fixAt + 2, 20);
       const minutes =
         12 +
         Math.floor(
-          interpolate(frame, [20, FIX_AT], [0, 180], {
+          interpolate(frame, [20, fixAt], [0, 180], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
           }),
@@ -158,7 +159,7 @@ export const A1BruteForce: React.FC = () => (
             <div
               style={{
                 marginTop: 28,
-                height: prog(frame, FIX_AT + 6, 18) * 120,
+                height: prog(frame, fixAt + 6, 18) * 120,
                 overflow: "hidden",
                 borderRadius: 22,
                 background: C.navy,

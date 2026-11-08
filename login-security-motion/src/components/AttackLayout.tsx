@@ -3,7 +3,7 @@ import { Background } from "./Background";
 import { AlertIcon, ShieldIcon } from "./Icons";
 import { C, FONT, easeInOut, pop, prog } from "../theme";
 
-/** Frame (inside the scene) at which the "parade" (fix) kicks in. */
+/** Default frame (inside the scene) at which the "parade" (fix) kicks in. */
 export const FIX_AT = 140;
 export const ATTACK_DURATION = 285;
 
@@ -12,7 +12,13 @@ type Props = {
   title: React.ReactNode;
   threat: React.ReactNode;
   fix: React.ReactNode;
-  children: (s: { frame: number; fixP: number }) => React.ReactNode;
+  /** Frame at which "La parade" starts — synced to the voiceover. */
+  fixAt?: number;
+  children: (s: {
+    frame: number;
+    fixP: number;
+    fixAt: number;
+  }) => React.ReactNode;
 };
 
 export const AttackLayout: React.FC<Props> = ({
@@ -20,30 +26,27 @@ export const AttackLayout: React.FC<Props> = ({
   title,
   threat,
   fix,
+  fixAt = FIX_AT,
   children,
 }) => {
+  const FIX = fixAt;
   const frame = useCurrentFrame();
-  const fixP = prog(frame, FIX_AT, 22, easeInOut);
+  const fixP = prog(frame, FIX, 22, easeInOut);
   const pill = pop(frame, 2);
   const titleP = prog(frame, 8, 24);
   const threatP = prog(frame, 30, 22);
-  const fixLabelP = pop(frame, FIX_AT + 4, 20);
-  const fixTextP = prog(frame, FIX_AT + 12, 22);
+  const fixLabelP = pop(frame, FIX + 4, 20);
+  const fixTextP = prog(frame, FIX + 12, 22);
 
   // Flash when the parade lands
-  const flash = interpolate(
-    frame,
-    [FIX_AT, FIX_AT + 6, FIX_AT + 26],
-    [0, 0.55, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const flash = interpolate(frame, [FIX, FIX + 6, FIX + 26], [0, 0.55, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: C.navy }}>
-      <Background tint={frame < FIX_AT ? C.red : C.green} />
+      <Background tint={frame < FIX ? C.red : C.green} />
 
       {/* Step pill + progress */}
       <div
@@ -118,7 +121,7 @@ export const AttackLayout: React.FC<Props> = ({
           justifyContent: "center",
         }}
       >
-        {children({ frame, fixP })}
+        {children({ frame, fixP, fixAt: FIX })}
       </div>
 
       {/* Bottom: threat → parade */}

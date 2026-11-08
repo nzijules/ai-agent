@@ -7,16 +7,16 @@ export const OUTRO_DURATION = 150;
 
 export const Outro: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = prog(frame, 4, 22);
-  const btn = pop(frame, 18, 24);
-  const CLICK = 60;
+  const t = prog(frame, 30, 22);
+  const btn = pop(frame, 0, 14);
+  const CLICK = 30;
   const press = interpolate(frame, [CLICK - 4, CLICK, CLICK + 8], [1, 0.9, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const subscribed = frame >= CLICK;
-  const cursorP = prog(frame, 30, 26);
-  const sub = prog(frame, 76, 22);
+  const cursorP = prog(frame, 2, 24);
+  const sub = prog(frame, 96, 22);
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: C.navy }}>
       <Background />
@@ -72,7 +72,7 @@ export const Outro: React.FC = () => {
               position: "absolute",
               right: interpolate(cursorP, [0, 1], [-260, 40]),
               bottom: interpolate(cursorP, [0, 1], [-260, -50]),
-              opacity: frame < 100 ? 1 : 1 - prog(frame, 100, 10),
+              opacity: frame < 70 ? 1 : 1 - prog(frame, 70, 10),
             }}
           >
             <path
