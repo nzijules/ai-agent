@@ -2,307 +2,85 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>MTN Data Tips Motion</title>
+<title>MTN Data Motion</title>
 <style>
   @font-face { font-family: 'Mont'; src: url(assets/montserrat.woff2) format('woff2'); font-weight: 100 900; font-style: normal; }
   @font-face { font-family: 'Mont'; src: url(assets/montserrat-italic.woff2) format('woff2'); font-weight: 100 900; font-style: italic; }
-  :root { --y: #FFCB05; --y2: #FFD93D; --y3: #F2B300; --k: #0B0B0B; }
-  html, body { margin: 0; padding: 0; background: #111; }
-  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--y); font-family: 'Mont', sans-serif; transform-origin: 0 0; }
+  :root { --y: #FFCB05; --y2: #FFD93D; --k: #0B0B0B; }
+  html, body { margin: 0; padding: 0; background: #111; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--y); transform-origin: 0 0; font-family: 'Mont', sans-serif; }
   .abs { position: absolute; }
-  #bg { inset: 0; background: radial-gradient(120% 70% at 50% 42%, #FFE061 0%, var(--y) 45%, var(--y3) 100%); }
-  #dots { inset: 0; background-image: radial-gradient(rgba(255,255,255,.55) 1.6px, transparent 2px); background-size: 26px 26px; opacity: .35;
-          -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 22%, transparent 78%, #000 100%); mask-image: linear-gradient(90deg, #000 0%, transparent 22%, transparent 78%, #000 100%); }
-  .streak { height: 3px; width: 900px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent); border-radius: 3px; filter: blur(.4px); }
-  .spark { width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,.8); }
-  .ring { left: 540px; top: 920px; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; border: 6px solid rgba(255,255,255,.75); }
-  /* header */
-  #logo { right: 58px; top: 64px; width: 250px; transform-origin: 70% 30%; }
-  #chip { left: 60px; top: 86px; height: 92px; display: flex; align-items: center; gap: 18px; }
+  .layer { display: block; will-change: transform; }
+  /* background */
+  #bg { inset: 0; background:
+        radial-gradient(70% 45% at 50% 40%, rgba(255,240,150,.55), transparent 70%),
+        radial-gradient(130% 80% at 50% 45%, #FFD52A 0%, #FFCB05 50%, #F4B400 100%); }
+  .dots { width: 300px; height: 520px; background-image: radial-gradient(rgba(255,255,255,.6) 1.7px, transparent 2.2px); background-size: 22px 22px; opacity: .45; }
+  .spark { width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 16px 6px rgba(255,255,255,.85); }
+  .bgbar { width: 10px; bottom: auto; background: linear-gradient(rgba(255,255,255,.28), rgba(255,255,255,0)); transform-origin: 50% 100%; border-radius: 3px; }
+  .glowsweep { top: -300px; left: 0; width: 260px; height: 2600px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); }
+  /* scenes */
+  .scene { overflow: visible; }
+  .group { position: absolute; left: 0; top: 0; width: 1080px; height: 1400px; pointer-events: none; }
+  .ktext { font-family: 'Mont'; font-style: italic; white-space: nowrap; letter-spacing: -.5px; }
+  .kw { display: inline-block; padding: .16em .08em; margin: -.16em -.08em; transform-origin: 50% 70%; }
+  .kwi { display: inline-block; }
+  .screen { left: 0; top: 0; width: 300px; height: 600px; transform-origin: 0 0; background-size: 300px 600px; border-radius: 16px; overflow: hidden; }
+  .scrop { background-repeat: no-repeat; }
+  .ui { font-family: 'Inter', sans-serif; color: #fff; white-space: nowrap; }
+  .stroke3d { background: linear-gradient(90deg, #FFE45A, #F5B400); border: 3px solid #1a1a1a; box-sizing: border-box; transform-origin: 50% 50%; }
+  .strokeK { background: #111; transform-origin: 50% 50%; }
+  .ring { border-radius: 50%; box-sizing: border-box; }
+  /* header / footer */
+  #top { position: absolute; inset: 0; pointer-events: none; }
+  #logo { right: 58px; top: 58px; width: 250px; transform-origin: 70% 30%; }
+  #chip { left: 60px; top: 82px; height: 92px; display: flex; align-items: center; gap: 18px; transform-origin: 0 50%; }
   #chipBox { background: var(--k); color: var(--y); border-radius: 46px; padding: 0 34px; height: 92px; display: flex; align-items: center; overflow: hidden; }
-  #chipText { font-weight: 900; font-style: italic; font-size: 38px; letter-spacing: .5px; white-space: nowrap; }
+  #chipText { font-weight: 900; font-style: italic; font-size: 38px; white-space: nowrap; display: inline-block; }
   #chipSub { font-weight: 800; font-style: italic; font-size: 30px; color: var(--k); white-space: nowrap; }
-  /* cards */
-  .card { left: 60px; top: 312px; width: 960px; height: 1190px; border-radius: 52px; overflow: hidden; background: var(--y);
-          box-shadow: 0 40px 80px -20px rgba(120,70,0,.55), 0 0 0 5px rgba(255,255,255,.55); transform-origin: 50% 50%; will-change: transform; }
-  .card img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform-origin: 50% 40%; }
-  .shine { position: absolute; top: -20%; left: 0; width: 260px; height: 140%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform: rotate(18deg); }
-  .burst { width: 16px; height: 70px; border-radius: 10px; background: var(--k); transform-origin: 50% 100%; }
-  /* marquee */
-  #band { left: -100px; top: 1560px; width: 1280px; height: 96px; background: var(--k); transform: rotate(-4deg); overflow: hidden; box-shadow: 0 20px 40px -18px rgba(0,0,0,.5); }
-  #bandTrack { position: absolute; top: 0; left: 0; height: 96px; display: flex; align-items: center; white-space: nowrap;
-               font-weight: 900; font-style: italic; font-size: 50px; color: var(--y); }
-  #bandTrack span { padding: 0 26px; }
-  #bandTrack i { font-style: normal; color: #fff; }
-  /* tracker */
-  #tracker { left: 140px; top: 1712px; width: 800px; height: 80px; }
+  #tracker { left: 140px; top: 1738px; width: 800px; height: 80px; }
   #trackLine { left: 40px; top: 37px; width: 720px; height: 6px; background: rgba(11,11,11,.18); border-radius: 3px; }
   #trackFill { left: 40px; top: 37px; height: 6px; width: 0; background: var(--k); border-radius: 3px; }
   .step { top: 0; width: 80px; height: 80px; border-radius: 50%; background: var(--y2); border: 5px solid var(--k); box-sizing: border-box;
           display: flex; align-items: center; justify-content: center; font-weight: 900; font-style: italic; font-size: 36px; color: var(--k); }
-  #tag { left: 0; width: 1080px; top: 1822px; text-align: center; font-weight: 900; font-style: italic; font-size: 42px; color: var(--k); letter-spacing: .3px; }
-  /* transitions & outro */
-  #flash { inset: 0; background: #fff; opacity: 0; pointer-events: none; }
-  .speed { height: 5px; background: linear-gradient(90deg, transparent, rgba(11,11,11,.55), transparent); border-radius: 4px; }
-  #outro { left: 0; top: 0; width: 1080px; height: 1920px; }
-  .ow { position: absolute; left: 0; width: 1080px; text-align: center; font-weight: 900; font-style: italic; color: var(--k); }
-  #o1 { top: 640px; font-size: 128px; letter-spacing: -2px; }
-  #o2 { top: 790px; font-size: 128px; letter-spacing: -2px; }
-  #oLine { left: 250px; top: 975px; width: 580px; height: 16px; background: #fff; border-radius: 10px; transform-origin: 0 50%; }
-  #o3 { top: 1080px; font-size: 50px; font-weight: 800; }
-  #o3 b { background: var(--k); color: var(--y); padding: 6px 26px; border-radius: 40px; }
+  .step.on { background: var(--k); color: var(--y); }
+  #tag { left: 0; width: 1080px; top: 1735px; text-align: center; font-weight: 900; font-style: italic; font-size: 64px; color: var(--k); letter-spacing: -1px; }
+  /* transitions */
+  .transring { border-style: solid; border-radius: 50%; box-sizing: content-box; pointer-events: none; }
+  .lightbar { top: -200px; width: 120px; height: 2400px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.95) 45%, #fff 50%, rgba(255,255,255,.95) 55%, transparent); filter: blur(2px); transform-origin: 50% 50%; }
+  .growrect { background: radial-gradient(130% 80% at 50% 45%, #FFD52A 0%, #FFCB05 55%, #F4B400 100%); box-shadow: 0 0 0 6px rgba(255,255,255,.6); }
 </style>
 </head>
 <body>
 <div id="stage">
-  <div id="bg" class="abs"></div>
-  <div id="dots" class="abs"></div>
-  <div id="fx" class="abs" style="inset:0"></div>
-  <div id="rings" class="abs" style="inset:0"></div>
-
-  <div id="cards"></div>
-  <div id="bursts" class="abs" style="inset:0"></div>
-  <div id="speeds" class="abs" style="inset:0"></div>
-
-  <div id="band" class="abs"><div id="bandTrack"></div></div>
-
-  <div id="tracker" class="abs">
-    <div id="trackLine" class="abs"></div>
-    <div id="trackFill" class="abs"></div>
+  <div id="bg" class="abs">
+    <div class="abs dots" style="left:0;top:560px"></div>
+    <div class="abs dots" style="right:0;top:700px"></div>
   </div>
-  <div id="tag" class="abs">#DemainCestMaintenant</div>
-
-  <div id="outro" class="abs">
-    <div id="o1" class="ow">#DemainCest</div>
-    <div id="o2" class="ow">Maintenant</div>
-    <div id="oLine" class="abs"></div>
-    <div id="o3" class="ow"><b>Partage à un ami</b></div>
+  <div id="scenes" class="abs" style="inset:0"></div>
+  <div id="top">
+    <div id="chip" class="abs"><div id="chipBox"><span id="chipText"></span></div><span id="chipSub"></span></div>
+    <img id="logo" class="abs" src="assets/mtn-logo.png" alt="MTN">
+    <div id="tracker" class="abs"><div id="trackLine" class="abs"></div><div id="trackFill" class="abs"></div></div>
+    <div id="tag" class="abs">#DemainCestMaintenant</div>
   </div>
-
-  <div id="chip" class="abs"><div id="chipBox"><span id="chipText"></span></div><span id="chipSub"></span></div>
-  <img id="logo" class="abs" src="assets/mtn-logo.png" alt="MTN">
-  <div id="flash" class="abs"></div>
 </div>
-
+<script src="assets/scenes/manifest.js"></script>
+<script src="js/core.js"></script>
+<script>window.SCENE_DEFS = [];</script>
+<script src="js/scenes/s1.js"></script>
+<script src="js/scenes/s2.js"></script>
+<script src="js/scenes/s3.js"></script>
+<script src="js/scenes/s4.js"></script>
+<script src="js/scenes/s5.js"></script>
+<script src="js/scenes/s6.js"></script>
+<script src="js/scenes/s7.js"></script>
+<script src="js/main.js"></script>
 <script>
-// ---------- timeline ----------
-const FPS = 30, BEAT = 0.5;            // 120 BPM
-const SLIDE = 3.0, FIRST = 1.0, N = 7;
-const DURATION = FIRST + N * SLIDE + 4.0;   // 26 s
-const S = k => FIRST + k * SLIDE;           // slide k start (0-based)
-const LABELS = [
-  ['TA DATA', 'finit trop vite ?'],
-  ['ASTUCE 01', 'mises à jour'],
-  ['ASTUCE 02', 'arrière-plan'],
-  ['ASTUCE 03', 'qualité vidéo'],
-  ['ASTUCE 04', 'sauvegardes'],
-  ['ASTUCE 05', 'conso par appli'],
-  ['PARTAGE', 'à un ami'],
-];
-// entry styles per slide: 0 = from right, 1 = from bottom, 2 = zoom punch
-const ENTRY = [2, 0, 1, 0, 1, 0, 2];
-
-// ---------- helpers ----------
-const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-const lerp = (a, b, t) => a + (b - a) * t;
-const prog = (t, a, b) => clamp((t - a) / (b - a));
-const eOutCubic = t => 1 - Math.pow(1 - t, 3);
-const eInCubic = t => t * t * t;
-const eInOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-const eOutBack = (t, s = 1.7) => 1 + (s + 1) * Math.pow(t - 1, 3) + s * Math.pow(t - 1, 2);
-const eOutElastic = t => t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - .75) * (2 * Math.PI / 3)) + 1;
-let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-const $ = id => document.getElementById(id);
-const el = (cls, parent, tag = 'div') => { const d = document.createElement(tag); d.className = cls; parent.appendChild(d); return d; };
-
-// ---------- build ----------
-const cards = [];
-for (let k = 0; k < N; k++) {
-  const c = el('card abs', $('cards'));
-  const img = el('', c, 'img'); img.src = `assets/slide${k + 1}.jpg`;
-  const sh = el('shine', c);
-  cards.push({ c, img, sh });
-}
-const streaks = [];
-for (let i = 0; i < 7; i++) {
-  const s = el('streak abs', $('fx'));
-  streaks.push({ s, y: 200 + rnd() * 1600, sp: 260 + rnd() * 420, off: rnd() * 3000, rot: -22 + rnd() * 10, w: .4 + rnd() * .6 });
-}
-const sparks = [];
-for (let i = 0; i < 26; i++) {
-  const s = el('spark abs', $('fx'));
-  sparks.push({ s, x: rnd() * 1080, y: rnd() * 1920, sp: 20 + rnd() * 60, ph: rnd() * 6.28, sz: .3 + rnd() * .9 });
-}
-const rings = [];
-for (let i = 0; i < 3; i++) rings.push(el('ring abs', $('rings')));
-const bursts = [];
-for (let i = 0; i < 8; i++) bursts.push(el('burst abs', $('bursts')));
-const speeds = [];
-for (let i = 0; i < 9; i++) speeds.push({ d: el('speed abs', $('speeds')), y: 330 + rnd() * 1150, w: 300 + rnd() * 500, o: rnd() });
-// marquee
-const phrase = '<span>ÉCONOMISE TA DATA</span><i>✦</i><span>5 ASTUCES</span><i>✦</i><span>#DemainCestMaintenant</span><i>✦</i>';
-$('bandTrack').innerHTML = phrase.repeat(6);
-// tracker steps
-const steps = [];
-for (let i = 0; i < 5; i++) {
-  const s = el('step abs', $('tracker')); s.style.left = (i * 180) + 'px'; s.textContent = i + 1; steps.push(s);
-}
-
-// ---------- render ----------
-function setT(node, tf, op) { node.style.transform = tf; if (op !== undefined) node.style.opacity = op; }
-
-window.DURATION = DURATION; window.FPS = FPS;
-window.render = function (t) {
-  const beatPh = (t % BEAT) / BEAT;
-  const kick = Math.pow(1 - beatPh, 4);                 // decays after each beat
-  
-  // background life
-  $('bg').style.transform = `scale(${1.02 + 0.012 * kick})`;
-  $('dots').style.backgroundPosition = `${t * 18}px ${-t * 30}px`;
-  streaks.forEach(o => {
-    const x = ((t * o.sp + o.off) % 2600) - 1300;
-    setT(o.s, `translate(${x}px, ${o.y}px) rotate(${o.rot}deg) scaleX(${o.w})`, .35 + .4 * o.w);
-  });
-  sparks.forEach(o => {
-    const y = ((o.y - t * o.sp) % 1920 + 1920) % 1920;
-    const tw = .25 + .75 * Math.pow(Math.max(0, Math.sin(t * 2.4 + o.ph)), 3);
-    setT(o.s, `translate(${o.x}px, ${y}px) scale(${o.sz})`, tw);
-  });
-  // rings every 2 beats
-  rings.forEach((r, i) => {
-    const per = BEAT * 2, lt = ((t - i * per) % (per * 3) + per * 3) % (per * 3);
-    const p = lt / (per * 3);
-    const show = t > FIRST && t < DURATION - 3 ? 1 : 0;
-    setT(r, `scale(${0.6 + p * 0.9})`, show * (1 - p) * 0.55);
-  });
-
-  // intro: logo drop + chip
-  const lp = prog(t, 0.15, 0.95);
-  const logoBump = 1 + 0.04 * kick * (t > FIRST ? 1 : 0);
-  setT($('logo'), `translateY(${lerp(-260, 0, eOutBack(lp, 2.2))}px) rotate(${lerp(-14, 0, eOutElastic(lp))}deg) scale(${logoBump})`, clamp(lp * 3));
-
-  // active slide index
-  let k = Math.floor((t - FIRST + 0.25) / SLIDE); k = clamp(k, 0, N - 1);
-  const outroStart = S(N) - 0.25;
-
-  // chip label swap
-  const chipIn = prog(t, S(k) - 0.25, S(k) + 0.2);
-  const chipOutRaw = k < N - 1 ? prog(t, S(k + 1) - 0.45, S(k + 1) - 0.25) : prog(t, outroStart - 0.2, outroStart);
-  $('chipText').textContent = LABELS[k][0];
-  $('chipSub').textContent = LABELS[k][1];
-  const ci = eOutBack(chipIn), co = eInCubic(chipOutRaw);
-  setT($('chipText'), `translateY(${lerp(70, 0, ci) - 70 * co}px)`, 1);
-  setT($('chipSub'), `translateX(${lerp(-30, 0, eOutCubic(chipIn))}px)`, chipIn * (1 - co));
-  const chipBoxIn = eOutBack(prog(t, 0.75, 1.2));
-  const chipGone = eInCubic(prog(t, outroStart - 0.15, outroStart + 0.2));
-  setT($('chipBox'), `scale(${Math.max(0, chipBoxIn * (1 - chipGone)) * (1 + 0.03 * kick)})`, t < 0.75 ? 0 : 1);
-
-  // cards
-  cards.forEach((o, i) => {
-    const st = S(i), inA = st - 0.25, inB = st + 0.35, outA = st + SLIDE - 0.25, outB = st + SLIDE + 0.2;
-    if (t < inA || t > outB) { o.c.style.opacity = 0; o.c.style.visibility = 'hidden'; return; }
-    o.c.style.visibility = 'visible';
-    const pi = prog(t, inA, inB), po = prog(t, outA, outB);
-    let x = 0, y = 0, r = 0, s = 1, op = 1, blur = 0;
-    const e = eOutBack(pi, 1.4);
-    if (ENTRY[i] === 0) { x = lerp(1150, 0, e); r = lerp(10, 0, e); s = lerp(.92, 1, e); }
-    else if (ENTRY[i] === 1) { y = lerp(1500, 0, e); r = lerp(-8, 0, e); s = lerp(.9, 1, e); }
-    else { s = lerp(1.5, 1, eOutCubic(pi)); op = clamp(pi * 2.2); blur = lerp(18, 0, eOutCubic(pi)); }
-    // exit
-    if (po > 0) {
-      const q = eInCubic(po);
-      if (i === N - 1) { s *= lerp(1, .55, q); y += lerp(0, -80, q); op *= 1 - q; blur += q * 10; }
-      else { x += lerp(0, -1100, q); r += lerp(0, -12, q); s *= lerp(1, .88, q); blur += q * 6; }
-    }
-    // beat bounce + float while resting
-    const rest = pi >= 1 && po <= 0 ? 1 : 0;
-    s *= 1 + 0.012 * kick * rest;
-    y += Math.sin((t - st) * 2.2) * 7 * rest;
-    r += Math.sin((t - st) * 1.6) * 0.5 * rest;
-    // slide 1: confused shake
-    if (i === 0) { const sp = prog(t, st + 0.55, st + 1.05); if (sp > 0 && sp < 1) { x += Math.sin(sp * 40) * 16 * (1 - sp); r += Math.sin(sp * 40) * 1.4 * (1 - sp); } }
-    o.c.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg) scale(${s})`;
-    o.c.style.opacity = op;
-    o.c.style.filter = blur > .3 ? `blur(${blur}px)` : 'none';
-    // ken burns
-    const kb = prog(t, st, st + SLIDE);
-    o.img.style.transform = `scale(${1.0 + 0.06 * kb}) translateY(${-10 * kb}px)`;
-    // shine sweep
-    const sp = prog(t, st + 0.45, st + 1.1);
-    o.sh.style.transform = `translateX(${lerp(-400, 1300, eInOut(sp))}px) rotate(18deg)`;
-    o.sh.style.opacity = sp > 0 && sp < 1 ? 1 : 0;
-  });
-
-  // bursts at card corners on each entry
-  {
-    const st = S(k), bp = prog(t, st + 0.1, st + 0.75);
-    const corners = [[1000, 340, -40], [80, 1480, 140]];
-    bursts.forEach((b, j) => {
-      const c = corners[j < 4 ? 0 : 1], idx = j % 4;
-      const ang = c[2] + idx * 28 - 42;
-      const dist = 40 + 70 * eOutCubic(bp);
-      const len = Math.sin(Math.PI * bp);
-      const show = bp > 0 && bp < 1 && t < outroStart ? 1 : 0;
-      const rad = (ang - 90) * Math.PI / 180;
-      setT(b, `translate(${c[0] + Math.cos(rad) * dist - 8}px, ${c[1] + Math.sin(rad) * dist - 70}px) rotate(${ang}deg) scaleY(${len})`, show);
-    });
-  }
-
-  // speed lines + flash around cuts
-  let nearest = 1e9; for (let i = 1; i <= N; i++) nearest = Math.min(nearest, Math.abs(t - (S(i) - 0.05)));
-  const cutP = clamp(1 - nearest / 0.28);
-  speeds.forEach((o, j) => {
-    const x = lerp(1200, -900, ((t * 3.2 + o.o) % 1));
-    setT(o.d, `translate(${x}px, ${o.y}px) scaleX(${o.w / 300})`, cutP * .9);
-    o.d.style.width = '300px';
-  });
-  $('flash').style.opacity = 0.32 * Math.pow(clamp(1 - Math.abs(t - (S(Math.round((t - FIRST) / SLIDE)) - 0.02)) / 0.12), 2) * (t > FIRST + 1 ? 1 : 0)
-                            + 0.5 * Math.pow(clamp(1 - Math.abs(t - outroStart - 0.3) / 0.15), 2);
-
-  // marquee band
-  const bandIn = eOutCubic(prog(t, 0.4, 1.1));
-  const bandOut = eInCubic(prog(t, outroStart, outroStart + 0.4));
-  $('band').style.transform = `rotate(-4deg) translateX(${lerp(-1400, 0, bandIn) + 1400 * bandOut}px)`;
-  $('bandTrack').style.transform = `translateX(${-(t * 160) % 1180}px)`;
-
-  // tracker: tips are slides 2..6 (index 1..5)
-  const trIn = eOutBack(prog(t, 0.6, 1.2));
-  const trOut = eInCubic(prog(t, outroStart, outroStart + 0.35));
-  $('tracker').style.transform = `translateY(${lerp(260, 0, trIn) + 300 * trOut}px)`;
-  $('tag').style.transform = `translateY(${lerp(200, 0, eOutCubic(prog(t, 0.8, 1.4))) + 260 * trOut}px)`;
-  steps.forEach((s, j) => {
-    const on = prog(t, S(j + 1) + 0.05, S(j + 1) + 0.45);
-    const pop = on > 0 && on < 1 ? 1 + 0.35 * Math.sin(Math.PI * on) : 1;
-    const active = t >= S(j + 1) && t < S(j + 2) - 0.25;
-    s.style.background = on > 0.5 ? '#0B0B0B' : '#FFD93D';
-    s.style.color = on > 0.5 ? '#FFCB05' : '#0B0B0B';
-    s.style.transform = `scale(${pop * (active ? 1 + 0.08 * kick : 1)})`;
-    s.textContent = (on > 0.5 && !active) ? '✓' : (j + 1);
-  });
-  $('trackFill').style.width = (720 * eInOut(clamp(prog(t, S(1), S(5) + 0.4)))) + 'px';
-
-  // outro
-  const o = t - outroStart;
-  const w1 = eOutBack(prog(o, 0.25, 0.75), 2), w2 = eOutBack(prog(o, 0.45, 0.95), 2);
-  setT($('o1'), `translateY(${lerp(120, 0, w1)}px) scale(${lerp(.6, 1, w1) * (1 + 0.025 * kick * (o > 1 ? 1 : 0))})`, clamp(prog(o, 0.25, 0.45)));
-  setT($('o2'), `translateY(${lerp(120, 0, w2)}px) scale(${lerp(.6, 1, w2) * (1 + 0.025 * kick * (o > 1 ? 1 : 0))})`, clamp(prog(o, 0.45, 0.65)));
-  setT($('oLine'), `scaleX(${eOutCubic(prog(o, 0.85, 1.25))}) rotate(-2deg)`, o > 0.8 ? 1 : 0);
-  const p3 = eOutBack(prog(o, 1.15, 1.6));
-  setT($('o3'), `translateY(${lerp(60, 0, p3)}px) scale(${lerp(.7, 1, p3)})`, clamp(prog(o, 1.15, 1.3)));
-  // logo gets a little spotlight bounce at outro
-  if (o > 0) { const lb = Math.sin(Math.PI * prog(o, 1.6, 2.1)); $('logo').style.transform += ` scale(${1 + 0.12 * lb})`; }
-};
-
-// live preview mode (open the file in a browser)
-window.addEventListener('load', () => {
-  const fit = () => { const s = Math.min(innerWidth / 1080, innerHeight / 1920); $('stage').style.transform = `scale(${s})`; };
-  if (!window.__CAPTURE__) {
-    fit(); addEventListener('resize', fit);
-    const t0 = performance.now();
-    const loop = () => { window.render(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); };
-    loop();
-  } else window.render(0);
-});
+  Promise.all([
+    document.fonts.load('italic 800 100px Mont'), document.fonts.load('italic 900 40px Mont'),
+    document.fonts.load('600 16px Inter'), document.fonts.load('800 16px Inter'),
+  ]).then(() => window.__boot());
 </script>
 </body>
 </html>

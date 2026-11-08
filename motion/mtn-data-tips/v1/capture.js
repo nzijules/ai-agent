@@ -8,7 +8,7 @@ const path = require('path');
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   await page.addInitScript(() => { window.__CAPTURE__ = true; });
-  await page.goto('file://' + path.resolve(__dirname, '../index.html'));
+  await page.goto('file://' + path.resolve(__dirname, 'index.html'));
   await page.evaluate(() => document.fonts.ready);
   await page.waitForFunction(() => [...document.images].every(i => i.complete));
   const stage = await page.$('#stage');
