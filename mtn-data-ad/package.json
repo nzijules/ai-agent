@@ -32,7 +32,10 @@
     "render:tiktok": "npm run render:raw && npm run encode:tiktok",
     "still:safezones": "remotion still MTN-Data-Ad-SafeZones out/safezones.png --frame=470",
     "render:raw": "remotion render MTN-Data-Ad out/mtn-data-ad-render.mp4 --codec=h264 --crf=16 --audio-codec=aac --audio-bitrate=320k",
-    "encode:tiktok": "ffmpeg -y -v error -i out/mtn-data-ad-render.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -vf scale=out_range=tv -color_range tv -profile:v high -level 4.1 -movflags +faststart -c:a copy out/mtn-data-ad-tiktok.mp4"
+    "encode:tiktok": "ffmpeg -y -v error -i out/mtn-data-ad-render.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -vf scale=out_range=tv -color_range tv -profile:v high -level 4.1 -movflags +faststart -c:a copy out/mtn-data-ad-tiktok.mp4",
+    "render:raw:sansvoix": "remotion render MTN-Data-Ad-SansVoix out/mtn-data-ad-sansvoix-render.mp4 --codec=h264 --crf=16 --audio-codec=aac --audio-bitrate=320k",
+    "encode:tiktok:sansvoix": "ffmpeg -y -v error -i out/mtn-data-ad-sansvoix-render.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -vf scale=out_range=tv -color_range tv -profile:v high -level 4.1 -movflags +faststart -c:a copy out/mtn-data-ad-tiktok-sansvoix.mp4",
+    "render:tiktok:sansvoix": "npm run render:raw:sansvoix && npm run encode:tiktok:sansvoix"
   },
   "allowScripts": {
     "esbuild": false

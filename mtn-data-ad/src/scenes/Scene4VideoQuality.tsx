@@ -36,7 +36,8 @@ export const SCENE4_TEXT = {
   note: "*estimations moyennes",
 };
 
-const T = { title: 8, hands: 0, gear: 36, menu: 42, select: 86, gauge: 92, exit: 148, end: 180 };
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = { title: 8, hands: 0, gear: 36, menu: 42, select: 86, gauge: 92, exit: 148, end: 180 };
 
 // Asset mains + téléphone (public/characters/hands-phone.png, 1305×1033) : écran transparent.
 const HANDS = { w: 1305, h: 1033, sx: 470, sy: 22, sw: 372, sh: 816 };
@@ -88,7 +89,9 @@ const FootballClip: React.FC<{ frame: number; blur: number }> = ({ frame, blur }
   );
 };
 
-export const Scene4VideoQuality: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene4VideoQuality: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 255 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, gauge: 150, exit: dur - 30, end: dur };
   const frame = useCurrentFrame();
   const fade = 1 - ip(frame, [T.exit, T.exit + 14], [0, 1]);
 

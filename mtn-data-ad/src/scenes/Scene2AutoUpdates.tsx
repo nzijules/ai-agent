@@ -35,7 +35,8 @@ export const SCENE2_TEXT = {
   tip: "Mises à jour en Wi-Fi seulement",
 };
 
-const T = {
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = {
   morphEnd: 22, // les flèches de données (scène 1) deviennent l'icône de mise à jour
   panelIn: 6, // le panneau surgit en profondeur
   titleIn: 14,
@@ -56,7 +57,9 @@ const T = {
 const PANEL = { left: SAFE.left + 10, top: 700, width: SAFE.right - SAFE.left - 20 };
 const TOGGLE_W = 178;
 
-export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene2AutoUpdates: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 219 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, tipIn: 150, exit: dur - 26, end: dur };
   const frame = useCurrentFrame();
 
   // ---- états de l'interface ----

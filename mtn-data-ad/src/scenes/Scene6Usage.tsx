@@ -34,7 +34,8 @@ export const SCENE6_TEXT = {
   ],
 };
 
-const T = { title: 6, gauge: 12, gaugeEnd: 52, rows: 44, highlight: 92, lens: 86, exit: 150, end: 180 };
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = { title: 6, gauge: 12, gaugeEnd: 52, rows: 44, highlight: 92, lens: 86, exit: 150, end: 180 };
 
 const PH = { w: 600, x: 240, y: 655 };
 const BEZEL = PH.w * 0.035;
@@ -43,7 +44,9 @@ const G = { x: S6_GAUGE.x - PH.x - BEZEL, y: S6_GAUGE.y - PH.y - BEZEL, r: S6_GA
 const ROWS_TOP = G.y + G.r + 46;
 const ROW_H = 92;
 
-export const Scene6Usage: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene6Usage: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 150 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, rows: 40, lens: 78, highlight: 92, exit: dur - 30, end: dur };
   const frame = useCurrentFrame();
   const fade = 1 - ip(frame, [T.exit, T.exit + 12], [0, 1]);
   const gaugeP = ip(frame, [T.gauge, T.gaugeEnd], [0, 1], EASE_IN_OUT);

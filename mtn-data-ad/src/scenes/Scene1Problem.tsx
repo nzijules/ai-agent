@@ -27,7 +27,8 @@ export const SCENE1_TEXT = {
   toast: "Forfait presque épuisé !",
 };
 
-const T = {
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = {
   character: 4,
   title: 14,
   card: 22,
@@ -44,7 +45,9 @@ const T = {
 
 const BADGE = { x: 720, y: 870, size: 250 }; // centre du badge « données »
 
-export const Scene1Problem: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene1Problem: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 180 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, end: dur };
   const frame = useCurrentFrame();
 
   const exit = ip(frame, [T.exit, T.end - 8], [0, 1], EASE_IN_OUT);

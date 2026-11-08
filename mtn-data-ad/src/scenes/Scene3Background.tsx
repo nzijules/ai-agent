@@ -42,7 +42,8 @@ const ROWS: Row[] = [
   { kind: "chat", name: "Messagerie", offAt: null, mb: 4 },
 ];
 
-const T = { intro: 22, title: 8, icons: 14, highlight: 30, gauge: 40, exit: 148, end: 180 };
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = { intro: 22, title: 8, icons: 14, highlight: 30, gauge: 40, exit: 148, end: 180 };
 
 // Géométrie du téléphone (repère 1080×1920)
 const PH = { x: 290, y: 715, w: 500 };
@@ -63,7 +64,9 @@ const ORBIT: { x: number; y: number; size: number }[] = [
 ];
 const TOWER = { x: 540, y: 668 };
 
-export const Scene3Background: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene3Background: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 189 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, exit: dur - 28, end: dur };
   const frame = useCurrentFrame();
   const exit = ip(frame, [T.exit, T.end], [0, 1], EASE_IN_OUT);
   const fade = 1 - ip(frame, [T.exit, T.exit + 12], [0, 1]);
@@ -74,6 +77,8 @@ export const Scene3Background: React.FC<{ withAudio?: boolean }> = ({ withAudio 
   const maxPerHour = ROWS.reduce((a, r) => a + r.mb, 0);
 
   const phoneIn = ip(frame, [0, 22], [0, 1], SPRING_POP);
+  // « Garde seulement l'essentiel » : la messagerie s'illumine en vert
+  const essential = ip(frame, [126, 136], [0, 1], EASE_OUT);
   const intro = ip(frame, [0, T.intro], [0, 1], EASE_IN_OUT);
   const t0 = toggleCenter(0);
 
@@ -155,7 +160,10 @@ export const Scene3Background: React.FC<{ withAudio?: boolean }> = ({ withAudio 
                   height: ROW_H - 10,
                   borderRadius: 24,
                   background: hot ? `rgba(239,51,64,${0.06 + pulse * 0.06})` : COLORS.white,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                  boxShadow:
+                    r.offAt === null
+                      ? `0 4px 12px rgba(0,0,0,0.06), 0 0 0 ${5 * essential}px rgba(34,197,94,${0.5 + 0.4 * Math.sin(frame / 5)})`
+                      : "0 4px 12px rgba(0,0,0,0.06)",
                   display: "flex",
                   alignItems: "center",
                   gap: 16,

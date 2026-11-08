@@ -32,7 +32,8 @@ export const SCENE5_TEXT = {
   waitingSub: "Tes fichiers restent protégés",
 };
 
-const T = { intro: 22, title: 8, files: 24, press: 84, wifi: 96, confirm: 104, exit: 146, end: 180 };
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = { intro: 22, title: 8, files: 24, press: 84, wifi: 96, confirm: 104, exit: 146, end: 180 };
 
 const PH = { x: 50, y: 690, w: 510 };
 const CLOUD = { cx: 768, cy: 800, w: 330 };
@@ -40,7 +41,9 @@ export const S6_GAUGE = { x: 540, y: 965, r: 150 }; // centre de la jauge de la 
 
 const FILES: AppKind[] = ["photo", "video", "contact", "doc"];
 
-export const Scene5Backups: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene5Backups: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 207 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, press: 120, wifi: 160, confirm: 168, exit: dur - 28, end: dur };
   const frame = useCurrentFrame();
   const fade = 1 - ip(frame, [T.exit, T.exit + 12], [0, 1]);
   const off = ip(frame, [T.press + 2, T.press + 12], [0, 1], EASE_IN_OUT);

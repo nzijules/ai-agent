@@ -36,7 +36,8 @@ export const SCENE7_TEXT = {
   cta: "Envoie-la à un ami",
 };
 
-const T = { glyph: 0, glyphPlaced: 34, phone: 10, cards: 30, hand: 92, press: 112, spread: 118, finalOut: 160, finalTitle: 176, end: 270 };
+// Temps clés de base (frames) ; ajustés à la durée réelle de la scène dans le composant.
+const T0 = { glyph: 0, glyphPlaced: 34, phone: 10, cards: 30, hand: 92, press: 112, spread: 118, finalOut: 160, finalTitle: 176, end: 270 };
 
 const PH = { x: 130, y: 560, w: 480 };
 const SCR = { x: PH.x + PH.w * 0.035, y: PH.y + PH.w * 0.035, w: PH.w * 0.93 };
@@ -80,7 +81,9 @@ const MiniPhone: React.FC<{ glow: number }> = ({ glow }) => (
   </div>
 );
 
-export const Scene7Share: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
+export const Scene7Share: React.FC<{ withAudio?: boolean; dur?: number }> = ({ withAudio = true, dur = 270 }) => {
+  // Calé sur la voix-off (voir VOIX-OFF.md)
+  const T = { ...T0, hand: 110, press: 132, spread: 138, finalOut: 172, finalTitle: 186, end: dur };
   const frame = useCurrentFrame();
 
   // la ligne de la scène 6 se replie en symbole de partage, puis le symbole rejoint sa place
@@ -281,7 +284,7 @@ export const Scene7Share: React.FC<{ withAudio?: boolean }> = ({ withAudio = tru
 
       {/* ===== Composition finale ===== */}
       <TitleArea top={560}>
-        <KineticTitle words={SCENE7_TEXT.final} from={T.finalTitle} stagger={4} fontSize={100} />
+        <KineticTitle words={SCENE7_TEXT.final} from={T.finalTitle} stagger={3} fontSize={100} />
       </TitleArea>
       <div
         style={{
@@ -291,8 +294,8 @@ export const Scene7Share: React.FC<{ withAudio?: boolean }> = ({ withAudio = tru
           top: 1210,
           display: "flex",
           justifyContent: "center",
-          opacity: ip(frame, [T.finalTitle + 50, T.finalTitle + 60], [0, 1]),
-          translate: `0px ${ip(frame, [T.finalTitle + 50, T.finalTitle + 66], [30, 0], EASE_OUT)}px`,
+          opacity: ip(frame, [T.finalTitle + 40, T.finalTitle + 50], [0, 1]),
+          translate: `0px ${ip(frame, [T.finalTitle + 40, T.finalTitle + 56], [30, 0], EASE_OUT)}px`,
         }}
       >
         <div
@@ -304,7 +307,7 @@ export const Scene7Share: React.FC<{ withAudio?: boolean }> = ({ withAudio = tru
             borderRadius: 60,
             background: COLORS.black,
             boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-            scale: `${ip(frame, [T.finalTitle + 50, T.finalTitle + 64], [0.7, 1], SPRING_POP) * (1 + Math.sin(frame / 10) * 0.015)}`,
+            scale: `${ip(frame, [T.finalTitle + 40, T.finalTitle + 54], [0.7, 1], SPRING_POP) * (1 + Math.sin(frame / 10) * 0.015)}`,
           }}
         >
           <div style={{ width: 72, height: 72, borderRadius: 36, background: COLORS.yellow, display: "flex", alignItems: "center", justifyContent: "center" }}>

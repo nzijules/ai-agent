@@ -16,15 +16,19 @@ export const clamp = {
   extrapolateRight: "clamp",
 } as const;
 
-/** Durées de chaque scène en secondes (storyboard). Modifier ici pour retimer la pub. */
-export const SCENE_SECONDS = {
-  s1: 6,
-  s2: 6,
-  s3: 6,
-  s4: 6,
-  s5: 6,
-  s6: 6,
-  s7: 9,
+/**
+ * Durée de chaque scène en frames (30 fps), calée sur la voix-off :
+ * chaque scène démarre juste avant l'annonce « Astuce n » de la voix.
+ * Total : 1470 frames = 49 s.
+ */
+export const SCENE_FRAMES = {
+  s1: 180, // 0,0 – 6,0 s
+  s2: 219, // 6,0 – 13,3 s
+  s3: 189, // 13,3 – 19,6 s
+  s4: 255, // 19,6 – 28,1 s
+  s5: 207, // 28,1 – 35,0 s
+  s6: 150, // 35,0 – 40,0 s
+  s7: 270, // 40,0 – 49,0 s
 } as const;
 
 /** Raccourci : interpolation bornée avec courbe optionnelle. */
