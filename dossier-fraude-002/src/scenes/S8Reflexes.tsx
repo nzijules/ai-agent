@@ -80,7 +80,7 @@ const Demo2: React.FC = () => {
   const t = f - R2;
   const hang = ip(t, [14, 24], [0, 1]);
   const press = t > 14 && t < 26 ? 0.85 : 1;
-  const items = ["Raccrocher l'appel suspect", "Rappeler vous-même", "Composer le 222"];
+  const items = ["Raccrocher l'appel suspect", "Rappeler vous-même", "Signaler au 222 (gratuit)"];
   return (
     <div style={{ position: "absolute", top: 760, left: 0, right: 0, height: 700 }}>
       <div style={{ position: "absolute", left: 110, top: 40, width: 220, height: 220, borderRadius: 110, background: hang > 0.5 ? "#333" : C.red, transform: `scale(${press})`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: hang > 0.5 ? "none" : "0 0 60px rgba(229,37,42,0.7)" }}>
@@ -124,7 +124,7 @@ const Demo2: React.FC = () => {
         }}
       >
         <div>
-          <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: 3, color: "rgba(255,255,255,0.7)" }}>CANAL OFFICIEL MTN</div>
+          <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: 3, color: "rgba(255,255,255,0.7)" }}>NUMÉRO VERT MTN · GRATUIT</div>
           <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 120, lineHeight: 1, color: C.yellow, letterSpacing: 8 }}>
             {"222".split("").map((d, i) => (
               <span key={i} style={{ opacity: ip(t, [72 + i * 6, 76 + i * 6], [0, 1]) }}>{d}</span>
@@ -148,6 +148,8 @@ const Demo2: React.FC = () => {
         </div>
       </div>
       <div style={{ position: "absolute", left: 110, right: 70, top: 610, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [96, 106], [0, 1]) }}>
+        Numéro vert pour signaler toute tentative de fraude.
+        <br />
         Ne rappelez jamais le numéro qui vous a contacté.
       </div>
     </div>
