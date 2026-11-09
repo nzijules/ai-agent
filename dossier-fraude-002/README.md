@@ -3,7 +3,7 @@
 Motion design vertical de sensibilisation (1080 × 1920, 30 i/s, H.264), entièrement programmé avec **React + TypeScript + Remotion**, aux couleurs MTN : fond jaune #FFCB05, typographie noire, rouge réservé aux alertes.
 Aucun dessin de personnage : la narration passe par le téléphone, les interfaces fictives, l'empreinte vocale de l'appelant, les preuves numériques et des lumières de ville en bokeh.
 
-- Vidéo finale : `out/dossier-fraude-002.mp4` (1 min 57 s, voix-off synchronisée)
+- Vidéo finale : `out/dossier-fraude-002.mp4` (2 min, voix-off synchronisée)
 - Le logo MTN (fourni par le client) apparaît en miniature en haut à droite, sur toute la durée.
 - Toutes les interfaces sont marquées « INTERFACE FICTIVE · SIMULATION ». Aucune procédure officielle MTN n'est inventée.
 
@@ -59,7 +59,7 @@ scripts/
 
 ## Voix-off
 
-La voix-off (`public/voiceover.mp3`, ElevenLabs, 1 min 47 s, version avec le numéro vert 222) est intégrée et synchronisée mot à mot :
+La voix-off (`public/voiceover.mp3`, ElevenLabs, voix « Hugo / Oscar Doré – News Narrator », modèle eleven_multilingual_v2, 1 min 49 s ; pauses raccourcies à 0,3 s, débit +4 %, volume calé à −21 LUFS) est intégrée et synchronisée mot à mot :
 une transcription horodatée a fourni l'instant exact de chaque phrase (`cues` dans `src/timeline.ts`).
 
 - Chaque scène joue son extrait `[voFrom, voTo]` de la voix-off. Cela laisse des respirations visuelles sans couper la narration : carton « DOSSIER FRAUDE N°002 », dossier qui se referme avant le verdict, carton final.

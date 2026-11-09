@@ -11,8 +11,8 @@ import { Shield } from "../components/Widgets";
 export const S9Conclusion: React.FC = () => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const MSG = 150;
-  const END = 219;
+  const MSG = 152;
+  const END = 224;
   const toPhone = ip(f, [40, 60], [0, 1]);
   const msg = ip(f, [MSG - 6, MSG + 6], [0, 1]);
   return (
@@ -82,14 +82,14 @@ export const S9Conclusion: React.FC = () => {
               fontWeight: 900,
               fontSize: 40,
               letterSpacing: 1,
-              transform: `scale(${sp(f, fps, 282, 10) * (1 + 0.03 * Math.sin(f / 4))})`,
+              transform: `scale(${sp(f, fps, 280, 10) * (1 + 0.03 * Math.sin(f / 4))})`,
               boxShadow: "0 16px 40px rgba(0,0,0,0.3)",
             }}
           >
-            <span style={{ display: "inline-block", transform: `rotate(${Math.sin(f / 2) * 18 * ip(f, [292, 302], [0, 1])}deg)` }}>🔔</span>
+            <span style={{ display: "inline-block", transform: `rotate(${Math.sin(f / 2) * 18 * ip(f, [290, 300], [0, 1])}deg)` }}>🔔</span>
             ABONNEZ-VOUS
           </div>
-          <div style={{ marginTop: 30, fontFamily: FONT, fontWeight: 700, fontSize: 34, color: C.black, opacity: ip(f, [289, 301], [0, 1]) }}>pour le prochain dossier</div>
+          <div style={{ marginTop: 30, fontFamily: FONT, fontWeight: 700, fontSize: 34, color: C.black, opacity: ip(f, [287, 299], [0, 1]) }}>pour le prochain dossier</div>
         </AbsoluteFill>
       )}
       <div style={{ display: "none" }}>{lin(f, [0, 1], [0, 1])}</div>

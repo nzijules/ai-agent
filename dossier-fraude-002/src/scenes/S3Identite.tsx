@@ -17,10 +17,10 @@ const ROWS = [
 export const S3Identite: React.FC = () => {
   const f = useCurrentFrame();
   const open = ip(f, [40, 70], [0, 1]);
-  const stampAt = 330;
+  const stampAt = 314;
   const sk = shake(f, stampAt + 4, 20, 14);
   // trajectoire de la loupe
-  const lensY = lin(f, [165, 195, 225, 255, 285, 310], [820, 820, 940, 1060, 1180, 1180]);
+  const lensY = lin(f, [160, 190, 220, 250, 280, 300], [820, 820, 940, 1060, 1180, 1180]);
   const lensX = 640 + Math.sin(f / 14) * 60;
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
@@ -34,7 +34,7 @@ export const S3Identite: React.FC = () => {
           </div>
           <div style={{ padding: "60px 44px", opacity: ip(f, [60, 80], [0, 1]) }}>
             {ROWS.map((r, i) => {
-              const at = 119 + i * 18;
+              const at = 114 + i * 18;
               const near = Math.abs(lensY - (820 + i * 120)) < 60 && f > 165;
               const flagged = i === 3 && f > 285;
               return (
@@ -72,7 +72,7 @@ export const S3Identite: React.FC = () => {
                 </div>
               );
             })}
-            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [230, 246], [0, 1]) }}>
+            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [228, 244], [0, 1]) }}>
               Connaître vos informations <span style={{ color: C.yellow, fontWeight: 900 }}>≠</span> être un agent.
             </div>
           </div>

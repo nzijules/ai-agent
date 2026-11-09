@@ -9,7 +9,7 @@ import { KineticText } from "../components/Text";
 const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: number }> = ({ text, at, x, y, rot }) => {
   const f = useCurrentFrame();
   const p = ip(f, [at, at + 14], [0, 1]);
-  const doubt = ip(f, [243, 263], [0, 1]);
+  const doubt = ip(f, [248, 268], [0, 1]);
   const float = Math.sin((f + at) / 18) * 8;
   return (
     <div
@@ -40,8 +40,8 @@ const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: 
 /** SÉQUENCE 2 — LA FAUSSE CONFIANCE */
 export const S2Confiance: React.FC = () => {
   const f = useCurrentFrame();
-  const badgeIn = ip(f, [200, 218], [0, 1]);
-  const shatter = ip(f, [243, 277], [0, 1]);
+  const badgeIn = ip(f, [204, 222], [0, 1]);
+  const shatter = ip(f, [248, 282], [0, 1]);
   const titleAt = 305;
   return (
     <AbsoluteFill>
@@ -55,9 +55,9 @@ export const S2Confiance: React.FC = () => {
         <span style={{ color: C.black }}>DÉBIT : <b>RÉGULIER</b></span>
         <span style={{ color: C.black }}>IDENTITÉ : <b style={{ color: C.red }}>???</b></span>
       </div>
-      <Fragment text="Service client" at={83} x={330} y={330} rot={-6} />
-      <Fragment text="Sécurisation du compte" at={115} x={620} y={450} rot={5} />
-      <Fragment text="Intervention urgente" at={157} x={400} y={1150} rot={-4} />
+      <Fragment text="Service client" at={87} x={330} y={330} rot={-6} />
+      <Fragment text="Sécurisation du compte" at={119} x={620} y={450} rot={5} />
+      <Fragment text="Intervention urgente" at={165} x={400} y={1150} rot={-4} />
 
       {/* badge fictif qui se fragmente */}
       {f < 305 && (
@@ -116,7 +116,7 @@ export const S2Confiance: React.FC = () => {
       )}
       {/* « Tout semble officiel. Pourtant… » */}
       <div style={{ position: "absolute", top: 1330, left: 60, right: 60, opacity: f < titleAt ? 1 : 0 }}>
-        {f > 257 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={267} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
+        {f > 256 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={266} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
       </div>
       {/* transition vers le titre du dossier */}
       {f >= titleAt && (
