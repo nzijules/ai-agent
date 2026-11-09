@@ -40,8 +40,8 @@ export const Hud: React.FC<{ sceneLabel: string; dark?: boolean }> = ({ sceneLab
       </div>
       {/* logo MTN miniature (fourni par le client) */}
       <Img
-        src={staticFile(dark ? "mtn-logo-fond-jaune.png" : "mtn-logo.png")}
-        style={{ position: "absolute", right: 56, top: 58, width: 150, height: "auto" }}
+        src={staticFile("mtn-logo.png")}
+        style={{ position: "absolute", right: 56, top: 58, width: 150, height: "auto", filter: dark ? "brightness(0) invert(1)" : undefined }}
       />
       {/* coins de cadrage */}
       {[
