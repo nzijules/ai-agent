@@ -26,7 +26,7 @@ export const IncomingCall: React.FC<{ start: number; acceptAt: number }> = ({ st
           {accepted > 0.5 ? `EN COMMUNICATION · 00:${String(callSec).padStart(2, "0")}` : "APPEL ENTRANT"}
         </div>
         <div style={{ fontSize: 58, fontWeight: 800, marginTop: 18 }}>Numéro inconnu</div>
-        <div style={{ fontFamily: MONO, fontSize: 30, color: C.dim, marginTop: 12 }}>+225 07 •• •• •• 41</div>
+        <div style={{ fontFamily: MONO, fontSize: 30, color: C.dim, marginTop: 12 }}>+225 05 •• •• •• 41</div>
       </div>
       {/* avatar et anneaux */}
       <div style={{ position: "absolute", top: 440, left: "50%", width: 0, height: 0 }}>

@@ -8,7 +8,7 @@ import { Stamp } from "../components/Stamp";
 
 const ROWS = [
   { k: "NOM", v: "K. Koffi", src: "réseaux sociaux" },
-  { k: "NUMÉRO", v: "+225 07 •• •• •• 12", src: "annuaire / fuite" },
+  { k: "NUMÉRO", v: "+225 05 •• •• •• 12", src: "annuaire / fuite" },
   { k: "QUARTIER", v: "Yopougon", src: "publication publique" },
   { k: "APPELANT", v: "« Agent service client »", src: "AUCUNE PREUVE" },
 ];
