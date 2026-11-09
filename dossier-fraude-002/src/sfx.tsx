@@ -6,15 +6,15 @@ type Cue = [scene: number, frame: number, sound: string, vol?: number];
 
 /** Habillage sonore synchronisé (frames relatives à chaque scène). Fichiers : npm run sfx */
 const CUES: Cue[] = [
-  [0, 0, "whoosh", 0.5], [0, 40, "buzz"], [0, 70, "buzz"], [0, 100, "buzz"], [0, 150, "whoosh"], [0, 287, "hit"],
-  [1, 86, "tick"], [1, 117, "tick"], [1, 158, "tick"], [1, 190, "alert", 0.3], [1, 246, "whoosh"], [1, 300, "hit", 0.8],
-  [2, 0, "whoosh"], [2, 111, "tick"], [2, 129, "tick"], [2, 147, "tick"], [2, 165, "tick"], [2, 311, "stamp"],
-  [3, 0, "whoosh"], [3, 88, "tick"], ...Array.from({ length: 8 }, (_, i): Cue => [3, 150 + i * 10, "pulse", 0.9]), [3, 231, "whoosh"], [3, 337, "stamp", 0.4],
-  [4, 0, "whoosh"], [4, 104, "notif"], ...Array.from({ length: 6 }, (_, i): Cue => [4, 122 + i * 7, "tick"]), [4, 215, "whoosh", 0.6], [4, 330, "alert"], [4, 368, "hit", 0.6],
-  [5, 0, "whoosh"], [5, 41, "tick"], [5, 152, "tick"], [5, 274, "tick"], [5, 330, "pulse"],
+  [0, 0, "whoosh", 0.5], [0, 40, "buzz"], [0, 70, "buzz"], [0, 100, "buzz"], [0, 150, "whoosh"], [0, 283, "hit"],
+  [1, 78, "tick"], [1, 109, "tick"], [1, 148, "tick"], [1, 190, "alert", 0.3], [1, 235, "whoosh"], [1, 300, "hit", 0.8],
+  [2, 0, "whoosh"], [2, 102, "tick"], [2, 120, "tick"], [2, 138, "tick"], [2, 156, "tick"], [2, 315, "stamp"],
+  [3, 0, "whoosh"], [3, 82, "tick"], ...Array.from({ length: 8 }, (_, i): Cue => [3, 150 + i * 10, "pulse", 0.9]), [3, 231, "whoosh"], [3, 343, "stamp", 0.4],
+  [4, 0, "whoosh"], [4, 93, "notif"], ...Array.from({ length: 6 }, (_, i): Cue => [4, 111 + i * 7, "tick"]), [4, 205, "whoosh", 0.6], [4, 322, "alert"], [4, 372, "hit", 0.6],
+  [5, 0, "whoosh"], [5, 41, "tick"], [5, 152, "tick"], [5, 276, "tick"], [5, 330, "pulse"],
   [6, 0, "whoosh", 0.4], [6, 46, "hit"], [6, 46, "stamp"],
-  [7, 0, "whoosh"], [7, 42, "whoosh"], [7, 112, "tick"], [7, 209, "whoosh"], [7, 232, "tick"], [7, 330, "whoosh"], [7, 417, "tick"], [7, 420, "notif"],
-  [8, 0, "whoosh"], [8, 95, "notif"], [8, 153, "whoosh"], [8, 235, "hit", 0.6],
+  [7, 0, "whoosh"], [7, 37, "whoosh"], [7, 107, "tick"], [7, 195, "whoosh"], [7, 267, "tick"], [7, 285, "notif", 0.6], [7, 373, "whoosh"], [7, 460, "tick"], [7, 463, "notif"],
+  [8, 0, "whoosh"], [8, 95, "notif"], [8, 165, "whoosh"], [8, 237, "hit", 0.6],
 ];
 
 export const SFX: React.FC<{ volume: number }> = ({ volume }) => (

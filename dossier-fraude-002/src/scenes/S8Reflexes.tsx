@@ -6,9 +6,9 @@ import { Backdrop } from "../components/Backdrop";
 import { KineticText } from "../components/Text";
 import { PhoneIcon } from "../components/CallScreens";
 
-const R1 = 42;
-const R2 = 209;
-const R3 = 330;
+const R1 = 37;
+const R2 = 195;
+const R3 = 373;
 
 const RuleHeader: React.FC<{ n: number; text: string; at: number; hl: string[] }> = ({ n, text, at, hl }) => {
   const f = useCurrentFrame();
@@ -118,8 +118,8 @@ const Demo2: React.FC = () => {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 40px",
-          opacity: ip(t, [62, 72], [0, 1]),
-          transform: `translateY(${ip(t, [62, 74], [40, 0])}px)`,
+          opacity: ip(t, [72, 82], [0, 1]),
+          transform: `translateY(${ip(t, [72, 84], [40, 0])}px)`,
           boxShadow: "0 24px 50px rgba(0,0,0,0.3)",
         }}
       >
@@ -127,7 +127,7 @@ const Demo2: React.FC = () => {
           <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: 3, color: "rgba(255,255,255,0.7)" }}>NUMÉRO VERT MTN · GRATUIT</div>
           <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 120, lineHeight: 1, color: C.yellow, letterSpacing: 8 }}>
             {"222".split("").map((d, i) => (
-              <span key={i} style={{ opacity: ip(t, [72 + i * 6, 76 + i * 6], [0, 1]) }}>{d}</span>
+              <span key={i} style={{ opacity: ip(t, [82 + i * 5, 86 + i * 5], [0, 1]) }}>{d}</span>
             ))}
           </div>
         </div>
@@ -140,14 +140,14 @@ const Demo2: React.FC = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            transform: `scale(${t > 92 ? 1 + 0.07 * Math.sin((t - 92) / 3) : ip(t, [86, 92], [0, 1])})`,
+            transform: `scale(${t > 104 ? 1 + 0.07 * Math.sin((t - 104) / 3) : ip(t, [98, 104], [0, 1])})`,
             boxShadow: "0 0 30px rgba(43,182,115,0.6)",
           }}
         >
           <PhoneIcon rot={0} size={64} />
         </div>
       </div>
-      <div style={{ position: "absolute", left: 110, right: 70, top: 610, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [96, 106], [0, 1]) }}>
+      <div style={{ position: "absolute", left: 110, right: 70, top: 610, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [100, 112], [0, 1]) }}>
         Numéro vert pour signaler toute tentative de fraude.
         <br />
         Ne rappelez jamais le numéro qui vous a contacté.

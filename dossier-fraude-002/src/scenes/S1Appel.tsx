@@ -12,7 +12,7 @@ import { Waveform } from "../components/Widgets";
 export const S1Appel: React.FC = () => {
   const f = useCurrentFrame();
   const A_END = 150;
-  const B_END = 285;
+  const B_END = 281;
 
   // vibration par salves : 18 frames de buzz, 12 de pause
   const buzz = f >= 40 && f < 140 && (f - 40) % 30 < 18 ? 1 : 0;

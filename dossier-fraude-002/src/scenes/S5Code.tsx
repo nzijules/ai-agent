@@ -12,10 +12,10 @@ import { Waveform } from "../components/Widgets";
 /** SÉQUENCE 5 — PIÈCE À CONVICTION N°3 : LE CODE CONFIDENTIEL */
 export const S5Code: React.FC = () => {
   const f = useCurrentFrame();
-  const smsAt = 104;
-  const askAt = 157;
-  const pushAt = 215;
-  const maskAt = 330;
+  const smsAt = 93;
+  const askAt = 140;
+  const pushAt = 205;
+  const maskAt = 322;
   const push = ip(f, [pushAt, pushAt + 50], [0, 1]);
   const scale = 0.74 + push * 0.62;
   const ty = push * 330;
@@ -73,7 +73,7 @@ export const S5Code: React.FC = () => {
           <div style={{ position: "absolute", top: -44, left: 0, fontFamily: MONO, fontSize: 24, color: C.yellow, background: "#000", padding: "4px 10px", letterSpacing: 3 }}>ZOOM · DONNÉE SENSIBLE</div>
         </div>
       )}
-      <AlertBanner text="NE COMMUNIQUEZ JAMAIS CE CODE" at={368} style={{ top: 1100 }} size={50} />
+      <AlertBanner text="NE COMMUNIQUEZ JAMAIS CE CODE" at={372} style={{ top: 1100 }} size={50} />
     </AbsoluteFill>
   );
 };

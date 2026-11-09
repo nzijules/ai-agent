@@ -40,7 +40,7 @@ export const S4Menace: React.FC = () => {
         <div style={{ borderRadius: 26, border: `3px solid ${C.red}`, background: "#1a0606", padding: "34px 40px", boxShadow: "0 0 60px rgba(229,37,42,0.35)" }}>
           <div style={{ fontFamily: MONO, fontSize: 24, color: C.red, letterSpacing: 3 }}>« TRANSACTION SUSPECTE » — SELON L'APPELANT</div>
           <div style={{ marginTop: 18, fontFamily: FONT, color: C.white, fontWeight: 900, fontSize: 124, letterSpacing: -3, lineHeight: 1 }}>
-            <Counter to={150000} start={88} dur={36} />
+            <Counter to={150000} start={82} dur={36} />
             <span style={{ fontSize: 50, color: C.dim, marginLeft: 14 }}>FCFA</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 20 }}>
@@ -94,9 +94,9 @@ export const S4Menace: React.FC = () => {
           </div>
         </div>
       )}
-      {f > 330 && (
+      {f > 336 && (
         <div style={{ position: "absolute", top: 1440, left: 60, right: 60 }}>
-          <KineticText text="UNE AFFIRMATION N'EST PAS UNE PREUVE" start={337} size={64} stagger={3} highlight={["AFFIRMATION", "PREUVE"]} />
+          <KineticText text="UNE AFFIRMATION N'EST PAS UNE PREUVE" start={343} size={64} stagger={3} highlight={["AFFIRMATION", "PREUVE"]} />
         </div>
       )}
       {/* flash d'urgence au rythme du compte à rebours */}

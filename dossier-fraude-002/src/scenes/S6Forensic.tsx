@@ -15,7 +15,7 @@ export const S6Forensic: React.FC = () => {
   const nodes: NodeDef[] = [
     { x: 260, y: 640, n: "1", title: "INFORMATIONS", desc: "Nom, numéro, quartier : déjà en sa possession", icon: "👤", at: 41, color: C.black },
     { x: 820, y: 940, n: "2", title: "OPÉRATION", desc: "Il déclenche une action qui exige une vérification", icon: "⟳", at: 152, color: C.black },
-    { x: 260, y: 1240, n: "3", title: "MANIPULATION", desc: "Il pousse la victime à donner le code manquant", icon: "🗝", at: 274, color: C.red },
+    { x: 260, y: 1240, n: "3", title: "MANIPULATION", desc: "Il pousse la victime à donner le code manquant", icon: "🗝", at: 276, color: C.red },
   ];
   const link = (a: NodeDef, b: NodeDef, at: number, color: string) => {
     const p = ip(f, [at, at + 30], [0, 1]);
@@ -50,7 +50,7 @@ export const S6Forensic: React.FC = () => {
         })()}
       </svg>
       <FlowParticles x1={nodes[0].x} y1={nodes[0].y} x2={nodes[1].x} y2={nodes[1].y} start={152} color={C.black} />
-      <FlowParticles x1={nodes[1].x} y1={nodes[1].y} x2={nodes[2].x} y2={nodes[2].y} start={274} color={C.red} />
+      <FlowParticles x1={nodes[1].x} y1={nodes[1].y} x2={nodes[2].x} y2={nodes[2].y} start={276} color={C.red} />
       <FlowParticles x1={260} y1={1330} x2={500} y2={1440} start={330} color={C.red} speed={24} />
       {nodes.map((nd) => {
         const s = sp(f, fps, nd.at, 12);

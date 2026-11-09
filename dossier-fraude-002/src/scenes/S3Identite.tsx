@@ -17,7 +17,7 @@ const ROWS = [
 export const S3Identite: React.FC = () => {
   const f = useCurrentFrame();
   const open = ip(f, [40, 70], [0, 1]);
-  const stampAt = 311;
+  const stampAt = 315;
   const sk = shake(f, stampAt + 4, 20, 14);
   // trajectoire de la loupe
   const lensY = lin(f, [150, 180, 210, 240, 270, 295], [820, 820, 940, 1060, 1180, 1180]);
@@ -34,7 +34,7 @@ export const S3Identite: React.FC = () => {
           </div>
           <div style={{ padding: "60px 44px", opacity: ip(f, [60, 80], [0, 1]) }}>
             {ROWS.map((r, i) => {
-              const at = 111 + i * 18;
+              const at = 102 + i * 18;
               const near = Math.abs(lensY - (820 + i * 120)) < 60 && f > 150;
               const flagged = i === 3 && f > 270;
               return (
@@ -72,7 +72,7 @@ export const S3Identite: React.FC = () => {
                 </div>
               );
             })}
-            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [221, 238], [0, 1]) }}>
+            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [211, 228], [0, 1]) }}>
               Connaître vos informations <span style={{ color: C.yellow, fontWeight: 900 }}>≠</span> être un agent.
             </div>
           </div>
