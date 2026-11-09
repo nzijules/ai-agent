@@ -60,7 +60,21 @@ export const AroSoftVideo: React.FC = () => {
           }
         />
       )}
-      {AUDIO.voiceover && <Audio name="Voix-off" src={staticFile(AUDIO.voiceover)} volume={AUDIO.voiceoverVolume} />}
+      {/* Voix-off : un extrait du fichier par scène, posé selon SCENES[x].voice */}
+      {AUDIO.voiceover &&
+        ids.map((id) => {
+          const v = SCENES[id].voice;
+          return (
+            <Sequence key={`vo-${id}`} name={`Voix-off ${id}`} from={Math.round(v.at * fps)} layout="none">
+              <Audio
+                src={staticFile(AUDIO.voiceover as string)}
+                trimBefore={Math.round(v.from * fps)}
+                trimAfter={Math.round(v.to * fps)}
+                volume={AUDIO.voiceoverVolume}
+              />
+            </Sequence>
+          );
+        })}
     </AbsoluteFill>
   );
 };

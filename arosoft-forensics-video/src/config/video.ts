@@ -8,18 +8,18 @@ export const VIDEO = {
   width: 1080,
   height: 1920,
   fps: 30,
-  /** Durée cible en secondes. */
-  durationInSeconds: 100,
+  /** Durée en secondes (doit couvrir la fin de la dernière scène, voir SCENES). */
+  durationInSeconds: 71,
   /** Recouvrement entre deux scènes (fondu/zoom), en images. */
   transitionFrames: 18,
 } as const;
 
 export const AUDIO = {
   /**
-   * Voix-off finale (chemin relatif à /public). Laisser `null` tant qu'elle n'est pas livrée.
-   * Exemple : "audio/voiceover.wav"
+   * Voix-off (chemin relatif à /public), `null` pour la désactiver.
+   * Elle est découpée par scène selon SCENES[x].voice dans src/data/script.ts.
    */
-  voiceover: null as string | null,
+  voiceover: "audio/voiceover.mp3" as string | null,
   voiceoverVolume: 1,
   /** Lit musicale / ambiance. Placeholder généré, remplaçable. */
   music: "audio/ambient-placeholder.m4a" as string | null,

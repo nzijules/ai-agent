@@ -140,13 +140,13 @@ const ChatScreen: React.FC<{ t: number; burstAt: number }> = ({ t, burstAt }) =>
 };
 
 export const Scene1Deletion: React.FC = () => {
-  const { t } = useSceneClock();
+  const { t, D } = useSceneClock();
   const burstAt = cue("s1.b", S) + 0.1;
   const titleAt = cue("s1.c", S);
 
   const pushOut = tw(t, [titleAt - 0.6, titleAt + 0.6], [0, 1], EASE_IN_OUT);
-  const rotY = tw(t, [0, 12], [-24, -6], EASE_IN_OUT) + Math.sin(t * 0.9) * 1.5;
-  const rotX = tw(t, [0, 12], [12, 4], EASE_IN_OUT);
+  const rotY = tw(t, [0, D], [-24, -6], EASE_IN_OUT) + Math.sin(t * 0.9) * 1.5;
+  const rotX = tw(t, [0, D], [12, 4], EASE_IN_OUT);
   const phoneScale = tw(t, [0, titleAt], [0.9, 1.02], EASE_IN_OUT) * (1 - 0.3 * pushOut);
   const phoneY = 840 + pushOut * 330 + Math.sin(t * 1.2) * 6;
   const burst = tw(t, [burstAt, burstAt + 3.2], [0, 1], (x) => x);
@@ -180,7 +180,7 @@ export const Scene1Deletion: React.FC = () => {
             transformStyle: "preserve-3d",
           }}
         >
-          <Smartphone width={500} glare={tw(t, [0, 12], [0.1, 1.1])} screenGlow={1 - pushOut * 0.5}>
+          <Smartphone width={500} glare={tw(t, [0, D], [0.1, 1.1])} screenGlow={1 - pushOut * 0.5}>
             <ChatScreen t={t} burstAt={burstAt} />
           </Smartphone>
         </div>
@@ -202,13 +202,13 @@ export const Scene1Deletion: React.FC = () => {
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 230 }}>
         <WordReveal text="SUPPRIMÉ" at={titleAt + 0.1} size={118} weight={800} letterSpacing={4} />
         <div style={{ height: 6 }} />
-        <WordReveal text="≠" at={titleAt + 0.9} size={150} weight={700} color={C.orange} colors={{ "≠": C.orange }} />
+        <WordReveal text="≠" at={titleAt + 0.6} size={150} weight={700} color={C.orange} colors={{ "≠": C.orange }} />
         <div style={{ height: 6 }} />
-        <WordReveal text="DISPARU" at={titleAt + 1.6} size={118} weight={800} letterSpacing={4} color={C.cyan} />
+        <WordReveal text="DISPARU" at={titleAt + 1.15} size={118} weight={800} letterSpacing={4} color={C.cyan} />
         <div
           style={{
             marginTop: 30,
-            width: tw(t, [titleAt + 2.0, titleAt + 2.8], [0, 520], EASE_OUT),
+            width: tw(t, [titleAt + 1.6, titleAt + 2.4], [0, 520], EASE_OUT),
             height: 3,
             background: `linear-gradient(90deg, transparent, ${C.blue}, transparent)`,
           }}

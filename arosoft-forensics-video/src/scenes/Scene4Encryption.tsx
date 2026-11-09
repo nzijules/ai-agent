@@ -26,21 +26,21 @@ const scramble = (txt: string, p: number, seed: string, frame: number) =>
     .join("");
 
 export const Scene4Encryption: React.FC = () => {
-  const { t, frame, sp } = useSceneClock();
+  const { t, frame, sp, D } = useSceneClock();
   const cA = cue("s4.a", S);
   const cB = cue("s4.b", S);
   const cC = cue("s4.c", S);
   const cD = cue("s4.d", S);
 
   const lockIn = sp(cB - 0.6, { damping: 15, stiffness: 80 });
-  const closed = sp(cB + 1.4, { damping: 9, stiffness: 160 });
-  const wave = tw(t, [cB + 0.6, cB + 2.6], [0, 1], EASE_IN_OUT);
+  const closed = sp(cB + 1.1, { damping: 9, stiffness: 160 });
+  const wave = tw(t, [cB + 0.3, cB + 1.9], [0, 1], EASE_IN_OUT);
   const keyIn = tw(t, [cC - 0.2, cC + 0.5], [0, 1]);
   const keyBreak = tw(t, [cC + 1.4, cC + 2.6], [0, 1], (x) => x);
   const dead = tw(t, [cC + 1.8, cC + 3.0], [0, 1]);
   const alert = tw(t, [cC + 2.0, cC + 2.3], [0, 1]);
-  const flash = tw(t, [cB + 1.4, cB + 1.55], [0, 1]) * tw(t, [cB + 1.55, cB + 2.1], [1, 0]);
-  const tilt = tw(t, [-0.6, 18], [18, 6], EASE_IN_OUT);
+  const flash = tw(t, [cB + 1.1, cB + 1.25], [0, 1]) * tw(t, [cB + 1.25, cB + 1.8], [1, 0]);
+  const tilt = tw(t, [-0.6, D], [18, 6], EASE_IN_OUT);
 
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
@@ -124,7 +124,7 @@ export const Scene4Encryption: React.FC = () => {
             fontSize: 30,
             letterSpacing: 4,
             color: alert > 0.5 ? C.orange : C.cyan,
-            opacity: tw(t, [cB + 1.6, cB + 2.1], [0, 1]),
+            opacity: tw(t, [cB + 1.3, cB + 1.8], [0, 1]),
             padding: "10px 22px",
             borderRadius: 10,
             background: "rgba(5,10,18,0.8)",

@@ -65,10 +65,10 @@ const PANELS: PanelDef[] = [
 ];
 
 export const Scene2DataUniverse: React.FC = () => {
-  const { t, sp } = useSceneClock();
+  const { t, sp, D } = useSceneClock();
   const cA = cue("s2.a", S);
   const cB = cue("s2.b", S);
-  const cB2 = cB + 2.1;
+  const cB2 = cB + 1.2; // « cloud » dans la réplique s2.b
   const cC = cue("s2.c", S);
   const cD = cue("s2.d", S);
 
@@ -86,7 +86,7 @@ export const Scene2DataUniverse: React.FC = () => {
   const activeAt = [cB, cB2, cC, cD];
 
   // caméra : léger travelling et roulis
-  const camY = tw(t, [0, 18], [40, -30], EASE_IN_OUT);
+  const camY = tw(t, [0, D], [40, -30], EASE_IN_OUT);
   const camRot = Math.sin(t * 0.35) * 1.5;
 
   return (

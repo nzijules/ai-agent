@@ -35,7 +35,7 @@
     "render": "remotion render AroSoftForensics out/arosoft-forensics.mp4 --codec=h264 --crf=18 --audio-codec=aac && npm run render:audio",
     "render:draft": "remotion render AroSoftForensics out/arosoft-forensics-draft.mp4 --codec=h264 --scale=0.5 --crf=26",
     "render:audio": "remotion render AroSoftForensics out/arosoft-forensics-audio.wav --codec=wav",
-    "still": "remotion still AroSoftForensics out/poster.png --frame=2880",
+    "still": "remotion still AroSoftForensics out/poster.png --frame=2040",
     "logo": "python3 scripts/make-dark-logo.py public/brand/arosoft-logo.jpg public/brand/arosoft-logo-dark.png"
   },
   "allowScripts": {

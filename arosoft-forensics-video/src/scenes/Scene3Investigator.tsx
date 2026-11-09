@@ -84,18 +84,18 @@ const Flip: React.FC<{ t: number; from: number; to: number; children: React.Reac
 };
 
 export const Scene3Investigator: React.FC = () => {
-  const { t } = useSceneClock();
+  const { t, D } = useSceneClock();
   const cA = cue("s3.a", S);
   const cB = cue("s3.b", S);
   const cC = cue("s3.c", S);
   const cD = cue("s3.d", S);
 
-  const push = tw(t, [-0.6, 21], [1, 1.07], EASE_IN_OUT);
-  const parallax = tw(t, [0, 21], [0, 1], EASE_IN_OUT);
+  const push = tw(t, [-0.6, D], [1, 1.07], EASE_IN_OUT);
+  const parallax = tw(t, [0, D], [0, 1], EASE_IN_OUT);
   const look = Math.sin(t * 0.7) * 0.5;
 
   const acq = tw(t, [cB + 0.8, cB + 3.6], [0, 100], EASE_IN_OUT);
-  const hashChars = Math.floor(tw(t, [cC + 0.4, cC + 2.2], [0, HASH.length], (x) => x));
+  const hashChars = Math.floor(tw(t, [cC + 0.3, cC + 1.4], [0, HASH.length], (x) => x));
   const custody: Array<[string, string]> = [
     ["09:14", "Saisie — agent habilité"],
     ["09:52", "Scellé n° 0427 apposé"],
@@ -198,12 +198,12 @@ export const Scene3Investigator: React.FC = () => {
                 {HASH.slice(0, hashChars)}
                 <span style={{ opacity: Math.floor(t * 3) % 2 }}>▌</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6, fontFamily: FONT.ui, fontWeight: 600, fontSize: 24, color: C.green, opacity: tw(t, [cC + 2.3, cC + 2.7], [0, 1]) }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 6, fontFamily: FONT.ui, fontWeight: 600, fontSize: 24, color: C.green, opacity: tw(t, [cC + 1.4, cC + 1.7], [0, 1]) }}>
                 <IconCheck size={30} color={C.green} /> Empreinte vérifiée — intégrité garantie
               </div>
               <div style={{ marginTop: 14, fontFamily: FONT.display, fontWeight: 700, fontSize: 24, color: C.dim, letterSpacing: 2 }}>CHAÎNE DE CONSERVATION</div>
               {custody.map(([h, l], k) => (
-                <MonoRow key={k} k={h} v={l} color={C.white} p={tw(t, [cC + 2.6 + k * 0.3, cC + 3.0 + k * 0.3], [0, 1])} />
+                <MonoRow key={k} k={h} v={l} color={C.white} p={tw(t, [cC + 1.6 + k * 0.22, cC + 1.95 + k * 0.22], [0, 1])} />
               ))}
             </HoloPanel>
           </Flip>

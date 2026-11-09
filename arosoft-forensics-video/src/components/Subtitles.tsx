@@ -1,14 +1,40 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
-import { LINES } from "../data/script";
+import { LINES, sourceToTimeline } from "../data/script";
+import { VOICE_WORDS } from "../data/voiceWords";
 import { EASE_OUT, tw } from "../lib/anim";
 import { C } from "../theme";
 import { FONT } from "../fonts";
 
 /**
  * Sous-titres animés synchronisés sur LINES (timeline globale).
- * Chaque mot s'allume au rythme estimé de la diction (pondéré par sa longueur).
+ * Chaque mot s'allume au moment exact où il est prononcé (horodatage de la
+ * transcription), ou à défaut au rythme estimé de la diction.
  */
+
+/** Découpe en mots en rattachant la ponctuation isolée (« : », « ? ») au mot précédent. */
+const tokenize = (text: string) =>
+  text.split(" ").reduce<string[]>((acc, w) => {
+    if (/^[:?!;]$/.test(w) && acc.length) acc[acc.length - 1] += ` ${w}`;
+    else acc.push(w);
+    return acc;
+  }, []);
+
+const TIMELINE_WORDS = VOICE_WORDS.map(([w, a]) => ({ w, start: sourceToTimeline(a) }));
+
+const wordStarts = (line: (typeof LINES)[number], words: string[]): number[] => {
+  const spoken = TIMELINE_WORDS.filter((x) => x.start >= line.start - 0.05 && x.start <= line.end + 0.05);
+  if (spoken.length === words.length) return spoken.map((x) => x.start);
+  const weights = words.map((w) => w.length + 2);
+  const total = weights.reduce((a, b) => a + b, 0);
+  const dur = (line.end - line.start) * 0.92;
+  let acc = 0;
+  return weights.map((w) => {
+    const st = line.start + (acc / total) * dur;
+    acc += w;
+    return st;
+  });
+};
 export const Subtitles: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -16,16 +42,8 @@ export const Subtitles: React.FC = () => {
   const current = LINES.find((l) => t >= l.start - 0.15 && t <= l.end + 0.25);
   if (!current) return null;
 
-  const words = current.text.split(" ");
-  const weights = words.map((w) => w.length + 2);
-  const total = weights.reduce((a, b) => a + b, 0);
-  const speakDur = (current.end - current.start) * 0.92;
-  let acc = 0;
-  const starts = weights.map((w) => {
-    const s = current.start + (acc / total) * speakDur;
-    acc += w;
-    return s;
-  });
+  const words = tokenize(current.text);
+  const starts = wordStarts(current, words);
 
   const enter = tw(t, [current.start - 0.15, current.start + 0.2], [0, 1]);
   const exit = tw(t, [current.end, current.end + 0.25], [0, 1]);

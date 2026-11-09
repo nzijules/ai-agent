@@ -7,7 +7,7 @@ Vidéo de sensibilisation au **Mobile Digital Forensics**, entièrement animée 
 |---|---|
 | Format | Vertical 1080 × 1920 |
 | Cadence | 30 i/s |
-| Durée | 100 s (3000 images) |
+| Durée | 71 s (2130 images), calée sur la voix-off |
 | Export | MP4 H.264 + AAC, et piste audio séparée en WAV |
 | Langue | Français (voix-off + sous-titres animés) |
 
@@ -47,34 +47,30 @@ npm run still          # image d'aperçu (logo final) → out/poster.png
 
 Résolution, cadence et durée : `src/config/video.ts` (`VIDEO`).
 
-## 4. Remplacer la voix-off
+## 4. Voix-off
 
-La voix-off finale n'est pas encore livrée. La vidéo contient pour l'instant une **nappe
-d'ambiance de remplacement** (`public/audio/ambient-placeholder.m4a`), avec les sous-titres
-synchronisés sur le script prévu.
+La voix-off est intégrée : `public/audio/voiceover.mp3` (62,8 s), déclarée dans
+`src/config/video.ts` (`AUDIO.voiceover`). La musique d'ambiance baisse automatiquement
+pendant chaque réplique (`musicVolumeUnderVoice`).
 
-1. Déposez le fichier dans `public/audio/`, par ex. `public/audio/voiceover.wav`
-   (WAV 48 kHz ou MP3 / M4A, commençant à t = 0 de la vidéo).
-2. Dans `src/config/video.ts` :
-   ```ts
-   voiceover: "audio/voiceover.wav",
-   ```
-   La musique baisse alors automatiquement pendant chaque réplique (`musicVolumeUnderVoice`).
-3. **Recalez le minutage** dans `src/data/script.ts` : ajustez `start` / `end` de chaque
-   réplique (en secondes, sur la timeline globale) d'après la voix enregistrée.
-   Les sous-titres **et** les animations des scènes suivent automatiquement : chaque scène
-   déclenche ses animations sur `cue("<id de réplique>")`.
-4. Si une scène doit s'allonger ou se raccourcir, modifiez ses bornes dans `SCENES`
-   (même fichier) et, si besoin, `VIDEO.durationInSeconds`.
-5. Contrôlez dans le Studio (composition *SubtitlesOnly* ou vidéo complète), puis relancez
-   `npm run render`.
+**Synchronisation.** `src/data/script.ts` découpe le fichier en un bloc par scène
+(`SCENES[x].voice = { from, to, at }`) : l'extrait `[from, to]` du fichier est posé à
+`at` sur la timeline, ce qui laisse respirer les visuels entre deux scènes sans modifier
+le débit de la voix. Les répliques (`RAW_LINES`) sont exprimées en temps du fichier audio,
+issus de la transcription ; les sous-titres s'allument mot à mot grâce à
+`src/data/voiceWords.ts`, et chaque scène déclenche ses animations sur `cue("<id>")`.
 
-Pour remplacer la musique : déposez votre fichier dans `public/audio/` et renseignez
-`AUDIO.music` (ou `null` pour la retirer).
+**Remplacer la voix par une nouvelle prise :**
+1. Remplacez `public/audio/voiceover.mp3` (ou changez `AUDIO.voiceover`).
+2. Transcrivez-la avec horodatage par mot (ElevenLabs Speech-to-Text, Whisper…) et
+   mettez à jour `RAW_LINES` (début/fin de chaque phrase) et `voiceWords.ts`.
+   Sans horodatage par mot, les sous-titres se rabattent sur une estimation du débit.
+3. Ajustez `SCENES` : `voice.from` / `voice.to` = silences entre paragraphes dans le fichier,
+   `voice.at` = position sur la timeline, `start` / `end` = bornes de scène.
+   Mettez `VIDEO.durationInSeconds` à la fin de la dernière scène.
+4. Contrôlez dans le Studio, puis `npm run render`.
 
-> Astuce : pour obtenir les temps exacts, ouvrez la voix-off dans un éditeur audio
-> (Audacity…) et notez le début et la fin de chaque phrase. Vous pouvez aussi la transcrire
-> avec `@remotion/install-whisper-cpp` (horodatage par mot) et reporter les valeurs.
+Le texte et les minutages actuels sont dans `VOIX-OFF.md`.
 
 ## 5. Logo AroSoft
 
@@ -113,11 +109,11 @@ src/
     HoloPanel.tsx        panneaux holographiques d'interface forensic
     Padlock.tsx, Icons.tsx, Logo.tsx
   scenes/
-    Scene1Deletion.tsx       0–12 s   suppression, désintégration, SUPPRIMÉ ≠ DISPARU
-    Scene2DataUniverse.tsx   12–30 s  sauvegarde, cloud, métadonnées, artefacts (anneau 3D)
-    Scene3Investigator.tsx   30–51 s  cadre légal, acquérir / préserver / analyser
-    Scene4Encryption.tsx     51–69 s  chiffrement, clé effacée, limites de récupération
-    Scene5Protection.tsx     69–100 s réflexes de protection, message clé, signature
+    Scene1Deletion.tsx       0–10 s   suppression, désintégration, SUPPRIMÉ ≠ DISPARU
+    Scene2DataUniverse.tsx   10–22 s  sauvegarde, cloud, métadonnées, artefacts (anneau 3D)
+    Scene3Investigator.tsx   22–38 s  cadre légal, acquérir / préserver / analyser
+    Scene4Encryption.tsx     38–50 s  chiffrement, clé effacée, limites de récupération
+    Scene5Protection.tsx     50–71 s  réflexes de protection, message clé, signature
   Video.tsx              assemblage : scènes, sous-titres, audio (musique + voix-off)
   Root.tsx               compositions (vidéo, scènes isolées, sous-titres)
 ```

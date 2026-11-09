@@ -19,7 +19,7 @@ export const SceneShell: React.FC<{
   const scale = (0.86 + 0.14 * pIn) * (1 + 0.28 * pOut);
   const blur = (1 - pIn) * 14 + pOut * 16;
   return (
-    <SceneOffsetContext.Provider value={inFrames}>
+    <SceneOffsetContext.Provider value={{ offset: inFrames, duration: durationInFrames - inFrames }}>
       <AbsoluteFill
         style={{
           opacity: pIn * (1 - pOut),

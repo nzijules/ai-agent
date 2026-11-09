@@ -67,19 +67,19 @@ const TipCard: React.FC<{ t: number; at: number; depth: number; tip: (typeof TIP
 };
 
 export const Scene5Protection: React.FC = () => {
-  const { t, sp } = useSceneClock();
+  const { t, sp, D } = useSceneClock();
   const cA = cue("s5.a", S);
   const cE = cue("s5.e", S);
   const cF = cue("s5.f", S);
   const ats = TIPS.map((x) => cue(x.id, S));
 
   const tipsOut = tw(t, [cE - 0.5, cE + 0.2], [0, 1], EASE_IN_OUT);
-  const statementOut = tw(t, [cF - 1.0, cF - 0.3], [0, 1], EASE_IN_OUT);
+  const statementOut = tw(t, [cF - 0.5, cF + 0.1], [0, 1], EASE_IN_OUT);
   const shield = sp(cA + 0.3, { damping: 14, stiffness: 70 });
   const assemble = tw(t, [cF - 1.4, cF + 0.5], [0, 1], EASE_IN_OUT);
   const logoIn = tw(t, [cF + 0.3, cF + 1.2], [0, 1], EASE_OUT);
   const sweep = tw(t, [cF + 1.0, cF + 2.2], [-0.3, 1.3], EASE_IN_OUT);
-  const end = tw(t, [30.2, 31], [0, 1]);
+  const end = tw(t, [D - 0.8, D], [0, 1]);
 
   const depthOf = (i: number) => {
     let d = 0;
@@ -129,9 +129,9 @@ export const Scene5Protection: React.FC = () => {
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", paddingBottom: 220, opacity: 1 - statementOut, scale: String(1 + statementOut * 0.15) }}>
         <WordReveal text="Effacé de votre téléphone" at={cE + 0.1} size={80} weight={700} stagger={0.14} />
         <div style={{ height: 10 }} />
-        <WordReveal text="≠" at={cE + 1.1} size={140} color={C.orange} colors={{ "≠": C.orange }} />
+        <WordReveal text="≠" at={cE + 0.9} size={140} color={C.orange} colors={{ "≠": C.orange }} />
         <div style={{ height: 10 }} />
-        <WordReveal text="effacé partout." at={cE + 1.7} size={92} weight={800} color={C.cyan} stagger={0.14} />
+        <WordReveal text="effacé partout." at={cE + 1.4} size={92} weight={800} color={C.cyan} stagger={0.14} />
       </AbsoluteFill>
 
       {/* Partie 3 : signature AroSoft */}
