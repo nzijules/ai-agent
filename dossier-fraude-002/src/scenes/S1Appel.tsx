@@ -12,7 +12,7 @@ import { Waveform } from "../components/Widgets";
 export const S1Appel: React.FC = () => {
   const f = useCurrentFrame();
   const A_END = 150;
-  const B_END = 250;
+  const B_END = 285;
 
   // vibration par salves : 18 frames de buzz, 12 de pause
   const buzz = f >= 40 && f < 140 && (f - 40) % 30 < 18 ? 1 : 0;
@@ -105,7 +105,7 @@ export const S1Appel: React.FC = () => {
               filter: danger > 0 ? `brightness(${1 - danger * 0.6}) blur(${danger * 4}px)` : undefined,
             }}
           >
-            <div style={{ transform: `scale(${0.78 + lin(f, [A_END, 360], [0, 0.1])}) rotateY(${-14 + lin(f, [A_END, 360], [0, 10])}deg) rotateZ(${-4 + lin(f, [A_END, 360], [0, 3])}deg)` }}>
+            <div style={{ transform: `scale(${0.78 + lin(f, [A_END, 400], [0, 0.1])}) rotateY(${-14 + lin(f, [A_END, 360], [0, 10])}deg) rotateZ(${-4 + lin(f, [A_END, 360], [0, 3])}deg)` }}>
               <Phone style={{ left: -280, top: -570 }}>
                 <IncomingCall start={A_END - 60} acceptAt={A_END - 20} />
               </Phone>

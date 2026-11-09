@@ -17,9 +17,9 @@ const HISTORY = [
 /** SÉQUENCE 4 — PIÈCE À CONVICTION N°2 : LA MENACE */
 export const S4Menace: React.FC = () => {
   const f = useCurrentFrame();
-  const compareAt = 215;
+  const compareAt = 231;
   const cmp = ip(f, [compareAt, compareAt + 22], [0, 1]);
-  const sk = shake(f, 70, 10, 12);
+  const sk = shake(f, 124, 10, 12);
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
       <Backdrop tint={f < compareAt ? "red" : "yellow"} intensity={f < compareAt ? 0.5 + 0.3 * Math.sin(f / 5) : 1} />
@@ -40,7 +40,7 @@ export const S4Menace: React.FC = () => {
         <div style={{ borderRadius: 26, border: `3px solid ${C.red}`, background: "#1a0606", padding: "34px 40px", boxShadow: "0 0 60px rgba(229,37,42,0.35)" }}>
           <div style={{ fontFamily: MONO, fontSize: 24, color: C.red, letterSpacing: 3 }}>« TRANSACTION SUSPECTE » — SELON L'APPELANT</div>
           <div style={{ marginTop: 18, fontFamily: FONT, color: C.white, fontWeight: 900, fontSize: 124, letterSpacing: -3, lineHeight: 1 }}>
-            <Counter to={150000} start={40} dur={36} />
+            <Counter to={150000} start={88} dur={36} />
             <span style={{ fontSize: 50, color: C.dim, marginLeft: 14 }}>FCFA</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 20 }}>
@@ -49,10 +49,10 @@ export const S4Menace: React.FC = () => {
               <br />
               <span style={{ color: C.red }}>Agissez maintenant !</span>
             </div>
-            <Countdown start={90} size={250} speed={6} />
+            <Countdown start={150} size={250} speed={6} />
           </div>
         </div>
-        <FlowParticles x1={60} y1={360} x2={900} y2={360} start={50} color={C.red} count={10} speed={30} />
+        <FlowParticles x1={60} y1={360} x2={900} y2={360} start={95} color={C.red} count={10} speed={30} />
       </div>
 
       {/* comparaison : historique simulé */}
@@ -94,13 +94,13 @@ export const S4Menace: React.FC = () => {
           </div>
         </div>
       )}
-      {f > 300 && (
+      {f > 330 && (
         <div style={{ position: "absolute", top: 1440, left: 60, right: 60 }}>
-          <KineticText text="UNE AFFIRMATION N'EST PAS UNE PREUVE" start={305} size={64} stagger={3} highlight={["AFFIRMATION", "PREUVE"]} />
+          <KineticText text="UNE AFFIRMATION N'EST PAS UNE PREUVE" start={337} size={64} stagger={3} highlight={["AFFIRMATION", "PREUVE"]} />
         </div>
       )}
       {/* flash d'urgence au rythme du compte à rebours */}
-      <AbsoluteFill style={{ boxShadow: `inset 0 0 ${120 + 60 * Math.sin(f / 3)}px rgba(229,37,42,${f < compareAt && f > 90 ? 0.45 : 0})`, pointerEvents: "none" }} />
+      <AbsoluteFill style={{ boxShadow: `inset 0 0 ${120 + 60 * Math.sin(f / 3)}px rgba(229,37,42,${f < compareAt && f > 150 ? 0.45 : 0})`, pointerEvents: "none" }} />
       {/* repère temporel */}
       <div style={{ display: "none" }}>{lin(f, [0, 1], [0, 1])}</div>
     </AbsoluteFill>

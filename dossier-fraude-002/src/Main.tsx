@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AbsoluteFill, Audio, Sequence, continueRender, delayRender, staticFile } from "remotion";
-import { SCENES, SCENE_STARTS, sceneFrames } from "./timeline";
+import { FPS, SCENES, SCENE_STARTS, cueFrame, sceneFrames } from "./timeline";
 import { fontFaceCss } from "./fonts.css";
 import { FilmGrain } from "./components/Backdrop";
 import { Hud } from "./components/Hud";
@@ -30,10 +30,10 @@ export type MainProps = {
 };
 
 export const mainSchemaDefaults: MainProps = {
-  voiceover: "",
+  voiceover: "voiceover.mp3",
   voiceoverVolume: 1,
   sfx: true,
-  sfxVolume: 0.8,
+  sfxVolume: 0.45,
   captions: true,
 };
 
@@ -46,8 +46,15 @@ const useFonts = () => {
   }, [handle]);
 };
 
-const SceneBlock: React.FC<{ index: number; captions: boolean }> = ({ index, captions }) => {
+const SceneBlock: React.FC<{ index: number; captions: boolean; voiceover?: string; voiceoverVolume?: number }> = ({
+  index,
+  captions,
+  voiceover,
+  voiceoverVolume = 1,
+}) => {
   const s = SCENES[index];
+  const starts = s.vo.map((_, i) => cueFrame(s, i));
+  const capEnd = Math.round((s.speechEnd - s.voFrom + s.voOffset) * FPS) + 12;
   const Comp = SCENE_COMPONENTS[index];
   return (
     <AbsoluteFill>
@@ -55,7 +62,17 @@ const SceneBlock: React.FC<{ index: number; captions: boolean }> = ({ index, cap
         <Comp />
       </Shell>
       <Hud sceneLabel={s.title} dark={index === 6} />
-      {captions && <Captions chunks={s.vo} duration={sceneFrames(s)} />}
+      {captions && <Captions chunks={s.vo} starts={starts} end={capEnd} />}
+      {voiceover ? (
+        <Sequence from={Math.round(s.voOffset * FPS)} layout="none" name="voix-off">
+          <Audio
+            src={staticFile(voiceover)}
+            trimBefore={Math.round(s.voFrom * FPS)}
+            trimAfter={Math.round(s.voTo * FPS)}
+            volume={voiceoverVolume}
+          />
+        </Sequence>
+      ) : null}
     </AbsoluteFill>
   );
 };
@@ -67,12 +84,11 @@ export const Main: React.FC<MainProps> = ({ voiceover, voiceoverVolume, sfx, sfx
       <style>{fontFaceCss}</style>
       {SCENES.map((s, i) => (
         <Sequence key={s.id} from={SCENE_STARTS[i]} durationInFrames={sceneFrames(s)} name={`${i + 1}. ${s.title}`}>
-          <SceneBlock index={i} captions={captions} />
+          <SceneBlock index={i} captions={captions} voiceover={voiceover} voiceoverVolume={voiceoverVolume} />
         </Sequence>
       ))}
       <FilmGrain />
       {sfx && <SFX volume={sfxVolume} />}
-      {voiceover ? <Audio src={staticFile(voiceover)} volume={voiceoverVolume} /> : null}
     </AbsoluteFill>
   );
 };
@@ -82,7 +98,7 @@ export const SceneStandalone: React.FC<{ index: number }> = ({ index }) => {
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <style>{fontFaceCss}</style>
-      <SceneBlock index={index} captions />
+      <SceneBlock index={index} captions voiceover="voiceover.mp3" />
       <FilmGrain />
     </AbsoluteFill>
   );

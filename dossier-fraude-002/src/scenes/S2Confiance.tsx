@@ -9,7 +9,7 @@ import { KineticText } from "../components/Text";
 const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: number }> = ({ text, at, x, y, rot }) => {
   const f = useCurrentFrame();
   const p = ip(f, [at, at + 14], [0, 1]);
-  const doubt = ip(f, [215, 235], [0, 1]);
+  const doubt = ip(f, [246, 266], [0, 1]);
   const float = Math.sin((f + at) / 18) * 8;
   return (
     <div
@@ -40,27 +40,27 @@ const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: 
 /** SÉQUENCE 2 — LA FAUSSE CONFIANCE */
 export const S2Confiance: React.FC = () => {
   const f = useCurrentFrame();
-  const badgeIn = ip(f, [100, 120], [0, 1]);
-  const shatter = ip(f, [215, 250], [0, 1]);
-  const titleAt = 240;
+  const badgeIn = ip(f, [190, 208], [0, 1]);
+  const shatter = ip(f, [246, 280], [0, 1]);
+  const titleAt = 300;
   return (
     <AbsoluteFill>
       <Backdrop tint="yellow" />
       {/* l'appelant n'a pas de visage : seulement une voix */}
-      <div style={{ position: "absolute", left: 540 - 300, top: 560, opacity: 1 - shatter * 0.6, transform: `scale(${1 + lin(f, [0, 300], [0, 0.08])})` }}>
-        <VoicePrint size={600} talk={f < 220 ? 1 : 0.2} color={C.black} />
+      <div style={{ position: "absolute", left: 540 - 300, top: 560, opacity: 1 - shatter * 0.6, transform: `scale(${1 + lin(f, [0, 366], [0, 0.08])})` }}>
+        <VoicePrint size={600} talk={f < 290 ? 1 : 0.2} color={C.black} />
       </div>
       <div style={{ position: "absolute", left: 70, right: 70, top: 1250, display: "flex", justifyContent: "space-between", fontFamily: MONO, fontSize: 24, letterSpacing: 2, opacity: ip(f, [20, 34], [0, 1]) * (1 - shatter) }}>
         <span style={{ color: C.black }}>TON : <b>ASSURÉ</b></span>
         <span style={{ color: C.black }}>DÉBIT : <b>RÉGULIER</b></span>
         <span style={{ color: C.black }}>IDENTITÉ : <b style={{ color: C.red }}>???</b></span>
       </div>
-      <Fragment text="Service client" at={34} x={330} y={330} rot={-6} />
-      <Fragment text="Sécurisation du compte" at={62} x={620} y={450} rot={5} />
-      <Fragment text="Intervention urgente" at={88} x={400} y={1150} rot={-4} />
+      <Fragment text="Service client" at={86} x={330} y={330} rot={-6} />
+      <Fragment text="Sécurisation du compte" at={117} x={620} y={450} rot={5} />
+      <Fragment text="Intervention urgente" at={158} x={400} y={1150} rot={-4} />
 
       {/* badge fictif qui se fragmente */}
-      {f < 260 && (
+      {f < 300 && (
         <div style={{ position: "absolute", left: 600, top: 760, width: 360, height: 220 }}>
           {new Array(16).fill(0).map((_, i) => {
             const cx = i % 4;
@@ -116,12 +116,12 @@ export const S2Confiance: React.FC = () => {
       )}
       {/* « Tout semble officiel. Pourtant… » */}
       <div style={{ position: "absolute", top: 1330, left: 60, right: 60, opacity: f < titleAt ? 1 : 0 }}>
-        {f > 150 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={170} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
+        {f > 255 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={266} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
       </div>
       {/* transition vers le titre du dossier */}
       {f >= titleAt && (
         <AbsoluteFill style={{ background: `rgba(0,0,0,${ip(f, [titleAt, titleAt + 10], [0, 0.94])})`, alignItems: "center", justifyContent: "center" }}>
-          <div style={{ transform: `scale(${lin(f, [titleAt, 300], [1.15, 1])})`, textAlign: "center" }}>
+          <div style={{ transform: `scale(${lin(f, [titleAt, titleAt + 66], [1.15, 1])})`, textAlign: "center" }}>
             <div style={{ width: ip(f, [titleAt, titleAt + 14], [0, 760]), height: 6, background: C.yellow, margin: "0 auto 30px" }} />
             <KineticText text="DOSSIER FRAUDE" start={titleAt + 4} size={100} color={C.white} />
             <KineticText text="N°002" start={titleAt + 12} size={220} color={C.yellow} />

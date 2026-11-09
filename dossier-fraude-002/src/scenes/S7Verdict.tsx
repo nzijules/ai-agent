@@ -9,8 +9,8 @@ import { KineticText } from "../components/Text";
 /** SÉQUENCE 7 — LE VERDICT */
 export const S7Verdict: React.FC = () => {
   const f = useCurrentFrame();
-  const close = ip(f, [10, 40], [0, 1]);
-  const stampAt = 52;
+  const close = ip(f, [4, 30], [0, 1]);
+  const stampAt = 46;
   const sk = shake(f, stampAt + 3, 34, 18);
   const dark = ip(f, [0, 20], [0, 0.9]);
   return (

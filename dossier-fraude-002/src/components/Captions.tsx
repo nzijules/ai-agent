@@ -5,25 +5,11 @@ import { ip } from "../anim";
 
 /**
  * Sous-titres de la voix-off (texte intégral, mot pour mot).
- * Les blocs sont répartis sur la durée de la scène au prorata du nombre de caractères,
- * ce qui reproduit le débit d'une narration régulière.
+ * Chaque bloc apparaît exactement quand la voix le prononce (horodatage de la transcription).
  */
-export const Captions: React.FC<{ chunks: string[]; duration: number; lead?: number; tail?: number }> = ({
-  chunks,
-  duration,
-  lead = 6,
-  tail = 10,
-}) => {
+export const Captions: React.FC<{ chunks: string[]; starts: number[]; end: number }> = ({ chunks, starts, end }) => {
   const f = useCurrentFrame();
-  const usable = duration - lead - tail;
-  const total = chunks.reduce((a, c) => a + c.length + 12, 0);
-  let acc = lead;
-  const timed = chunks.map((c) => {
-    const d = ((c.length + 12) / total) * usable;
-    const t = { text: c, start: acc, end: acc + d };
-    acc += d;
-    return t;
-  });
+  const timed = chunks.map((c, i) => ({ text: c, start: starts[i], end: i < chunks.length - 1 ? starts[i + 1] : end }));
   const cur = timed.find((t) => f >= t.start && f < t.end);
   if (!cur) return null;
   const local = f - cur.start;
