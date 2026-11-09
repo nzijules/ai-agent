@@ -80,8 +80,7 @@ export const S6Forensic: React.FC = () => {
                 boxShadow: "0 16px 40px rgba(0,0,0,0.35)",
               }}
             >
-              <div style={{ fontSize: 60 }}>{nd.icon}</div>
-              <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 30, color: nd.color === C.red ? C.red : C.yellow }}>{nd.n}</div>
+              <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 118, lineHeight: 1, marginTop: -6, color: nd.color === C.red ? C.red : C.yellow }}>{nd.n}</div>
             </div>
             <div
               style={{
