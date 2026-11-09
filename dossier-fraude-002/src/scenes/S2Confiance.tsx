@@ -9,7 +9,7 @@ import { KineticText } from "../components/Text";
 const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: number }> = ({ text, at, x, y, rot }) => {
   const f = useCurrentFrame();
   const p = ip(f, [at, at + 14], [0, 1]);
-  const doubt = ip(f, [235, 255], [0, 1]);
+  const doubt = ip(f, [243, 263], [0, 1]);
   const float = Math.sin((f + at) / 18) * 8;
   return (
     <div
@@ -40,9 +40,9 @@ const Fragment: React.FC<{ text: string; at: number; x: number; y: number; rot: 
 /** SÉQUENCE 2 — LA FAUSSE CONFIANCE */
 export const S2Confiance: React.FC = () => {
   const f = useCurrentFrame();
-  const badgeIn = ip(f, [190, 208], [0, 1]);
-  const shatter = ip(f, [235, 269], [0, 1]);
-  const titleAt = 300;
+  const badgeIn = ip(f, [200, 218], [0, 1]);
+  const shatter = ip(f, [243, 277], [0, 1]);
+  const titleAt = 305;
   return (
     <AbsoluteFill>
       <Backdrop tint="yellow" />
@@ -55,12 +55,12 @@ export const S2Confiance: React.FC = () => {
         <span style={{ color: C.black }}>DÉBIT : <b>RÉGULIER</b></span>
         <span style={{ color: C.black }}>IDENTITÉ : <b style={{ color: C.red }}>???</b></span>
       </div>
-      <Fragment text="Service client" at={78} x={330} y={330} rot={-6} />
-      <Fragment text="Sécurisation du compte" at={109} x={620} y={450} rot={5} />
-      <Fragment text="Intervention urgente" at={148} x={400} y={1150} rot={-4} />
+      <Fragment text="Service client" at={83} x={330} y={330} rot={-6} />
+      <Fragment text="Sécurisation du compte" at={115} x={620} y={450} rot={5} />
+      <Fragment text="Intervention urgente" at={157} x={400} y={1150} rot={-4} />
 
       {/* badge fictif qui se fragmente */}
-      {f < 300 && (
+      {f < 305 && (
         <div style={{ position: "absolute", left: 600, top: 760, width: 360, height: 220 }}>
           {new Array(16).fill(0).map((_, i) => {
             const cx = i % 4;
@@ -116,7 +116,7 @@ export const S2Confiance: React.FC = () => {
       )}
       {/* « Tout semble officiel. Pourtant… » */}
       <div style={{ position: "absolute", top: 1330, left: 60, right: 60, opacity: f < titleAt ? 1 : 0 }}>
-        {f > 248 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={258} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
+        {f > 257 && <KineticText text="RIEN N'A ÉTÉ VÉRIFIÉ" start={267} size={78} highlight={["RIEN"]} highlightColor={C.red} />}
       </div>
       {/* transition vers le titre du dossier */}
       {f >= titleAt && (

@@ -59,7 +59,7 @@ scripts/
 
 ## Voix-off
 
-La voix-off (`public/voiceover.mp3`, ElevenLabs, 1 min 48 s, version avec le numéro vert 222) est intégrée et synchronisée mot à mot :
+La voix-off (`public/voiceover.mp3`, ElevenLabs, 1 min 47 s, version avec le numéro vert 222) est intégrée et synchronisée mot à mot :
 une transcription horodatée a fourni l'instant exact de chaque phrase (`cues` dans `src/timeline.ts`).
 
 - Chaque scène joue son extrait `[voFrom, voTo]` de la voix-off. Cela laisse des respirations visuelles sans couper la narration : carton « DOSSIER FRAUDE N°002 », dossier qui se referme avant le verdict, carton final.

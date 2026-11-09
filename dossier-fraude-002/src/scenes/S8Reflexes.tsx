@@ -6,9 +6,9 @@ import { Backdrop } from "../components/Backdrop";
 import { KineticText } from "../components/Text";
 import { PhoneIcon } from "../components/CallScreens";
 
-const R1 = 37;
-const R2 = 195;
-const R3 = 373;
+const R1 = 38;
+const R2 = 219;
+const R3 = 394;
 
 const RuleHeader: React.FC<{ n: number; text: string; at: number; hl: string[] }> = ({ n, text, at, hl }) => {
   const f = useCurrentFrame();

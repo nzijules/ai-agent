@@ -17,10 +17,10 @@ const ROWS = [
 export const S3Identite: React.FC = () => {
   const f = useCurrentFrame();
   const open = ip(f, [40, 70], [0, 1]);
-  const stampAt = 315;
+  const stampAt = 330;
   const sk = shake(f, stampAt + 4, 20, 14);
   // trajectoire de la loupe
-  const lensY = lin(f, [150, 180, 210, 240, 270, 295], [820, 820, 940, 1060, 1180, 1180]);
+  const lensY = lin(f, [165, 195, 225, 255, 285, 310], [820, 820, 940, 1060, 1180, 1180]);
   const lensX = 640 + Math.sin(f / 14) * 60;
   return (
     <AbsoluteFill style={{ transform: `translate(${sk.x}px, ${sk.y}px)` }}>
@@ -34,9 +34,9 @@ export const S3Identite: React.FC = () => {
           </div>
           <div style={{ padding: "60px 44px", opacity: ip(f, [60, 80], [0, 1]) }}>
             {ROWS.map((r, i) => {
-              const at = 102 + i * 18;
-              const near = Math.abs(lensY - (820 + i * 120)) < 60 && f > 150;
-              const flagged = i === 3 && f > 270;
+              const at = 119 + i * 18;
+              const near = Math.abs(lensY - (820 + i * 120)) < 60 && f > 165;
+              const flagged = i === 3 && f > 285;
               return (
                 <div
                   key={r.k}
@@ -72,7 +72,7 @@ export const S3Identite: React.FC = () => {
                 </div>
               );
             })}
-            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [211, 228], [0, 1]) }}>
+            <div style={{ marginTop: 40, fontFamily: FONT, fontSize: 32, color: C.white, fontWeight: 600, lineHeight: 1.35, opacity: ip(f, [230, 246], [0, 1]) }}>
               Connaître vos informations <span style={{ color: C.yellow, fontWeight: 900 }}>≠</span> être un agent.
             </div>
           </div>
@@ -103,8 +103,8 @@ export const S3Identite: React.FC = () => {
         </div>
       </div>
       {/* loupe numérique */}
-      {f > 140 && f < stampAt && (
-        <div style={{ position: "absolute", left: lensX - 110, top: lensY - 110 + 0, width: 220, height: 220, opacity: ip(f, [140, 152], [0, 1]) }}>
+      {f > 155 && f < stampAt && (
+        <div style={{ position: "absolute", left: lensX - 110, top: lensY - 110 + 0, width: 220, height: 220, opacity: ip(f, [155, 167], [0, 1]) }}>
           <div style={{ position: "absolute", inset: 0, borderRadius: 110, border: `10px solid ${C.yellow}`, background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), rgba(255,203,5,0.05) 60%)", boxShadow: "0 0 40px rgba(255,203,5,0.5)" }} />
           <div style={{ position: "absolute", width: 26, height: 120, background: C.yellow, borderRadius: 12, left: 190, top: 180, transform: "rotate(-45deg)" }} />
           <div style={{ position: "absolute", left: 0, right: 0, top: `${50 + 40 * Math.sin(f / 5)}%`, height: 3, background: C.yellow, opacity: 0.8 }} />
