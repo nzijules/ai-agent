@@ -80,7 +80,7 @@ const Demo2: React.FC = () => {
   const t = f - R2;
   const hang = ip(t, [14, 24], [0, 1]);
   const press = t > 14 && t < 26 ? 0.85 : 1;
-  const items = ["Raccrocher l'appel suspect", "Rappeler vous-même", "Utiliser un canal officiel MTN"];
+  const items = ["Raccrocher l'appel suspect", "Rappeler vous-même", "Composer le 222"];
   return (
     <div style={{ position: "absolute", top: 760, left: 0, right: 0, height: 700 }}>
       <div style={{ position: "absolute", left: 110, top: 40, width: 220, height: 220, borderRadius: 110, background: hang > 0.5 ? "#333" : C.red, transform: `scale(${press})`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: hang > 0.5 ? "none" : "0 0 60px rgba(229,37,42,0.7)" }}>
@@ -91,7 +91,7 @@ const Demo2: React.FC = () => {
       </div>
       <div style={{ position: "absolute", left: 400, top: 30, right: 70 }}>
         {items.map((it, i) => {
-          const at = 30 + i * 22;
+          const at = 24 + i * 16;
           const p = ip(t, [at, at + 12], [0, 1]);
           return (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 34, opacity: p, transform: `translateX(${(1 - p) * 40}px)` }}>
@@ -104,7 +104,50 @@ const Demo2: React.FC = () => {
           );
         })}
       </div>
-      <div style={{ position: "absolute", left: 110, right: 70, top: 420, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [90, 104], [0, 1]) }}>
+      {/* composition du 222 : le canal officiel */}
+      <div
+        style={{
+          position: "absolute",
+          left: 110,
+          right: 110,
+          top: 390,
+          height: 190,
+          borderRadius: 34,
+          background: C.black,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 40px",
+          opacity: ip(t, [62, 72], [0, 1]),
+          transform: `translateY(${ip(t, [62, 74], [40, 0])}px)`,
+          boxShadow: "0 24px 50px rgba(0,0,0,0.3)",
+        }}
+      >
+        <div>
+          <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: 3, color: "rgba(255,255,255,0.7)" }}>CANAL OFFICIEL MTN</div>
+          <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 120, lineHeight: 1, color: C.yellow, letterSpacing: 8 }}>
+            {"222".split("").map((d, i) => (
+              <span key={i} style={{ opacity: ip(t, [72 + i * 6, 76 + i * 6], [0, 1]) }}>{d}</span>
+            ))}
+          </div>
+        </div>
+        <div
+          style={{
+            width: 120,
+            height: 120,
+            borderRadius: 60,
+            background: C.green,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transform: `scale(${t > 92 ? 1 + 0.07 * Math.sin((t - 92) / 3) : ip(t, [86, 92], [0, 1])})`,
+            boxShadow: "0 0 30px rgba(43,182,115,0.6)",
+          }}
+        >
+          <PhoneIcon rot={0} size={64} />
+        </div>
+      </div>
+      <div style={{ position: "absolute", left: 110, right: 70, top: 610, fontFamily: FONT, fontSize: 32, color: "rgba(0,0,0,0.75)", fontWeight: 600, opacity: ip(t, [96, 106], [0, 1]) }}>
         Ne rappelez jamais le numéro qui vous a contacté.
       </div>
     </div>
@@ -173,7 +216,7 @@ export const S8Reflexes: React.FC = () => {
       )}
       {f >= R2 && f < R3 && (
         <AbsoluteFill style={{ opacity: 1 - wipe(R3) }}>
-          <RuleHeader n={2} text="CONTACTEZ MTN PAR UN CANAL OFFICIEL" at={R2} hl={["OFFICIEL"]} />
+          <RuleHeader n={2} text={"CONTACTEZ MTN VIA LE CANAL OFFICIEL : LE\u00A0222"} at={R2} hl={["LE\u00A0222"]} />
           <Demo2 />
         </AbsoluteFill>
       )}

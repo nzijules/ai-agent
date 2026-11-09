@@ -38,7 +38,7 @@ export const S9Conclusion: React.FC = () => {
                   <div style={{ fontFamily: MONO, fontSize: 34, color: C.red, marginTop: 16 }}>01:12</div>
                 </div>
                 <div style={{ fontSize: 30, color: C.dim, letterSpacing: 3, fontWeight: 700, opacity: toPhone }}>VÉRIFICATION</div>
-                {["Appel terminé", "Contact via canal officiel", "Aucune opération en cours", "Compte : RAS"].map((t, i) => {
+                {["Appel terminé", "Contact MTN via le 222", "Aucune opération en cours", "Compte : RAS"].map((t, i) => {
                   const at = 60 + i * 12;
                   return (
                     <div key={i} style={{ display: "flex", gap: 18, alignItems: "center", marginTop: 40, opacity: ip(f, [at, at + 10], [0, 1]), transform: `translateX(${ip(f, [at, at + 10], [30, 0])}px)` }}>
