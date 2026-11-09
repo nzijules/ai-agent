@@ -75,10 +75,14 @@ Le texte et les minutages actuels sont dans `VOIX-OFF.md`.
 ## 5. Logo AroSoft
 
 - Logo fourni : `public/brand/arosoft-logo.jpg` (fond blanc).
-- Version utilisée : `public/brand/arosoft-logo-dark.png`, générée par `npm run logo`
+- Versions utilisées : `public/brand/arosoft-logo-dark.png` (signature finale) et
+  `arosoft-logo-dark-cropped.png` (logo d'angle en haut à droite), générées par `npm run logo`
   (détourage du blanc, marine éclairci pour rester lisible sur le fond graphite).
 - Si vous avez un PNG transparent officiel pour fond sombre, remplacez ce fichier ou
   changez `BRAND.logo` dans `src/config/video.ts` (`logoMode: "as-is"`).
+
+- Logo d'angle : `BRAND.cornerLogo` / `BRAND.cornerLogoWidth` (mettre `null` pour le retirer).
+  Il apparaît dès la 1re seconde et s'efface avant la signature finale.
 
 ## 6. Personnages
 

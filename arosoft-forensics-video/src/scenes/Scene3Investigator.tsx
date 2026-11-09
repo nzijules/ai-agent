@@ -151,7 +151,7 @@ export const Scene3Investigator: React.FC = () => {
       {/* Interface holographique au premier plan (parallaxe inverse) */}
       <AbsoluteFill style={{ translate: `0px ${parallax * 20}px` }}>
         {/* Cadre légal */}
-        <div style={{ position: "absolute", top: 120, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
+        <div style={{ position: "absolute", top: 210, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
           <div
             style={{
               display: "flex",
@@ -175,12 +175,12 @@ export const Scene3Investigator: React.FC = () => {
         </div>
 
         {/* Étapes */}
-        <div style={{ position: "absolute", top: 330, left: 90, opacity: tw(t, [cA + 1.4, cA + 2.0], [0, 1]) }}>
+        <div style={{ position: "absolute", top: 400, left: 90, opacity: tw(t, [cA + 1.4, cA + 2.0], [0, 1]) }}>
           <Stepper t={t} at={[cB, cC, cD]} />
         </div>
 
         {/* Panneau de l'étape active */}
-        <div style={{ position: "absolute", top: 490, left: 0, right: 0, height: 420 }}>
+        <div style={{ position: "absolute", top: 550, left: 0, right: 0, height: 420 }}>
           <Flip t={t} from={cB} to={cC}>
             <HoloPanel width={860} title="Acquisition" tag="PIÈCE 0427" icon={<IconPhone size={54} color={C.cyan} />}>
               <MonoRow k="isolement réseau" v="✓ activé" color={C.green} />

@@ -45,7 +45,7 @@ export const Scene4Encryption: React.FC = () => {
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       {/* Titre */}
-      <AbsoluteFill style={{ alignItems: "center", paddingTop: 170 }}>
+      <AbsoluteFill style={{ alignItems: "center", paddingTop: 235 }}>
         <WordReveal text="RÉCUPÉRATION" at={cA + 0.1} size={96} weight={800} letterSpacing={3} out={cB - 0.3} />
         <WordReveal text="jamais garantie" at={cA + 0.7} size={82} weight={600} color={C.orange} out={cB - 0.3} />
       </AbsoluteFill>

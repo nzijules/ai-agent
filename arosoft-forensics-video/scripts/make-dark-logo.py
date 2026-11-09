@@ -27,3 +27,11 @@ color = np.where(blue, np.clip(color * 1.12 + 0.03, 0, 1), color)
 out = np.dstack([color, alpha]) * 255
 Image.fromarray(out.astype(np.uint8), "RGBA").save(dst, optimize=True)
 print("ok", dst)
+
+# Version recadrée (sans marges) pour le logo d'angle
+img = Image.open(dst)
+bbox = img.getchannel("A").point(lambda v: 255 if v > 12 else 0).getbbox()
+cropped = img.crop(bbox)
+cropped_path = dst.replace(".png", "-cropped.png")
+cropped.save(cropped_path, optimize=True)
+print("ok", cropped_path, cropped.size)

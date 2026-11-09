@@ -42,6 +42,9 @@ export const BRAND = {
    */
   logoMode: "as-is" as "invert-on-dark" | "as-is",
   tagline: ["APPRENDRE", "CRÉER", "RÉUSSIR"],
+  /** Logo d'angle (haut droite), affiché pendant toute la vidéo sauf la signature finale. */
+  cornerLogo: "brand/arosoft-logo-dark-cropped.png" as string | null,
+  cornerLogoWidth: 170,
 } as const;
 
 /**

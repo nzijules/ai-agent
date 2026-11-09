@@ -93,7 +93,7 @@ export const Scene2DataUniverse: React.FC = () => {
     <AbsoluteFill style={{ perspective: 1500, overflow: "hidden" }}>
       <AbsoluteFill style={{ translate: `0px ${camY}px`, rotate: `${camRot}deg` }}>
         {/* label haut */}
-        <AbsoluteFill style={{ alignItems: "center", paddingTop: 130 }}>
+        <AbsoluteFill style={{ alignItems: "center", paddingTop: 225 }}>
           <div
             style={{
               fontFamily: FONT.mono,

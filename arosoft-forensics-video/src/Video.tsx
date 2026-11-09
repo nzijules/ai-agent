@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Sequence, interpolate, staticFile, useVideoConfig } from "remotion";
 import { Audio } from "@remotion/media";
 import { Background, FilmFinish } from "./components/Background";
+import { CornerLogo } from "./components/CornerLogo";
 import { Particles } from "./components/Particles";
 import { SceneShell } from "./components/SceneShell";
 import { Subtitles } from "./components/Subtitles";
@@ -45,6 +46,7 @@ export const AroSoftVideo: React.FC = () => {
       })}
 
       <Subtitles />
+      <CornerLogo />
       <FilmFinish />
 
       {AUDIO.music && (

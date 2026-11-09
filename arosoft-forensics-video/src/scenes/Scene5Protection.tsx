@@ -91,7 +91,7 @@ export const Scene5Protection: React.FC = () => {
     <AbsoluteFill style={{ overflow: "hidden" }}>
       {/* Partie 1 : citoyenne + bouclier + conseils */}
       <AbsoluteFill style={{ opacity: 1 - tipsOut, scale: String(1 + tipsOut * 0.1) }}>
-        <AbsoluteFill style={{ alignItems: "center", paddingTop: 150 }}>
+        <AbsoluteFill style={{ alignItems: "center", paddingTop: 225 }}>
           <WordReveal text="PROTÉGEZ VOS DONNÉES" at={cA} size={84} weight={800} letterSpacing={1} colors={{ "DONNÉES": C.cyan }} />
         </AbsoluteFill>
         <div style={{ position: "absolute", left: 540 - 360, top: 880 + (1 - shield) * 80, opacity: 0.95 }}>
@@ -118,7 +118,7 @@ export const Scene5Protection: React.FC = () => {
             />
           </svg>
         </div>
-        <div style={{ position: "absolute", left: 0, right: 0, top: 420, perspective: 1400 }}>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 470, perspective: 1400 }}>
           {TIPS.map((tip, i) => (
             <TipCard key={tip.id} t={t} at={ats[i]} depth={depthOf(i)} tip={tip} index={i} />
           ))}
