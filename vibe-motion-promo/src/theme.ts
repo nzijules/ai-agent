@@ -28,18 +28,17 @@ export const HEIGHT = 1920;
 
 // Scene timeline (in frames)
 const ORDER: [string, number][] = [
-  ["hook", 105],
-  ["problem", 120],
-  ["reveal", 115],
-  ["book", 165],
-  ["learn1", 190],
-  ["learn2", 165],
-  ["demo", 185],
-  ["projects", 165],
-  ["audience", 170],
-  ["receive", 160],
-  ["price", 170],
-  ["cta", 180],
+  ["hook", 210],
+  ["problem", 175],
+  ["reveal", 95],
+  ["book", 110],
+  ["demo", 130],
+  ["program", 180],
+  ["usage", 190],
+  ["receive", 140],
+  ["price", 295],
+  ["steps", 185],
+  ["cta", 210],
 ];
 
 export const SCENES: Record<string, { from: number; dur: number }> = {};
@@ -50,3 +49,16 @@ for (const [k, d] of ORDER) {
 }
 
 export const TOTAL = acc;
+
+// Voice-over segments: [start, end] in seconds inside voiceover.mp3,
+// and the scene they are attached to (played VO_DELAY frames after scene start).
+export const VO_DELAY = 5;
+export const VO: { scene: string; start: number; end: number }[] = [
+  { scene: "hook", start: 0, end: 6.6 },
+  { scene: "problem", start: 6.7, end: 12.3 },
+  { scene: "reveal", start: 12.4, end: 23.3 },
+  { scene: "usage", start: 23.3, end: 29.35 },
+  { scene: "price", start: 29.35, end: 38.85 },
+  { scene: "steps", start: 38.85, end: 44.65 },
+  { scene: "cta", start: 44.65, end: 50.76 },
+];

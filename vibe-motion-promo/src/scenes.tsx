@@ -184,10 +184,10 @@ export const Demo: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const win = spring({ frame: frame - 2, fps, config: { damping: 14 } });
-  const typed = Math.floor(interpolate(frame, [16, 76], [0, PROMPT.length], clamp));
+  const typed = Math.floor(interpolate(frame, [8, 46], [0, PROMPT.length], clamp));
   const cursorOn = Math.floor(frame / 8) % 2 === 0;
-  const stepStart = 86;
-  const progress = interpolate(frame, [stepStart, stepStart + 72], [0, 100], {
+  const stepStart = 52;
+  const progress = interpolate(frame, [stepStart, stepStart + 50], [0, 100], {
     ...clamp,
     easing: Easing.inOut(Easing.quad),
   });
@@ -237,7 +237,7 @@ export const Demo: React.FC = () => {
           </div>
           <div style={{ marginTop: 16 }}>
             {STEPS.map((s, i) => {
-              const d = stepStart + i * 18;
+              const d = stepStart + i * 11;
               const o = interpolate(frame, [d, d + 8], [0, 1], clamp);
               return (
                 <div
