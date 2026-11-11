@@ -1,5 +1,6 @@
 import { AbsoluteFill, Audio, Composition, Sequence, interpolate, staticFile } from "remotion";
 import { Background, Logo } from "./components";
+import { PhoneWall } from "./phonewall";
 import { Book, Demo, Reveal } from "./scenes";
 import { Cta, Price, Receive } from "./scenes2";
 import { Hook, Problem, Program, Steps, Usage } from "./scenes3";
@@ -64,6 +65,9 @@ export const Promo: React.FC = () => (
       </Sequence>
     ))}
     <Background />
+    <Sequence from={0} durationInFrames={SCENES.hook.dur + SCENES.problem.dur}>
+      <PhoneWall dur={SCENES.hook.dur + SCENES.problem.dur} />
+    </Sequence>
     {LIST.map(([k, C]) => (
       <Sequence key={k} from={SCENES[k].from} durationInFrames={SCENES[k].dur}>
         <C />
@@ -74,6 +78,7 @@ export const Promo: React.FC = () => (
 );
 
 export const RemotionRoot: React.FC = () => (
+  <>
   <Composition
     id="VibeMotionPromo"
     component={Promo}
@@ -82,4 +87,5 @@ export const RemotionRoot: React.FC = () => (
     width={WIDTH}
     height={HEIGHT}
   />
+  </>
 );

@@ -1,14 +1,13 @@
 import React from "react";
 import {
   Easing,
-  Img,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { Pill, Pop, Scene, clamp } from "./components";
+import { Book3D } from "./book3d";
 import { C, SCENES } from "./theme";
 
 const H1: React.CSSProperties = {
@@ -285,7 +284,9 @@ export const Book: React.FC<{ dur?: number; small?: boolean }> = () => {
   const { fps } = useVideoConfig();
   const s = spring({ frame: frame - 8, fps, config: { damping: 13, mass: 1.2 } });
   const float = Math.sin(frame / 20) * 14;
-  const rot = interpolate(s, [0, 1], [-70, -12]) + Math.sin(frame / 35) * 4;
+  const rot =
+    interpolate(frame, [0, 70], [-335, 24], { ...clamp, easing: Easing.out(Easing.cubic) }) +
+    Math.sin(Math.max(0, frame - 70) / 14) * 10;
   return (
     <Scene dur={SCENES.book.dur}>
       <Pop delay={0} style={{ marginBottom: 30 }}>
@@ -305,15 +306,14 @@ export const Book: React.FC<{ dur?: number; small?: boolean }> = () => {
             background: `radial-gradient(circle, rgba(60,200,255,${0.45 * s}) 0%, transparent 65%)`,
           }}
         />
-        <Img
-          src={staticFile("book.png")}
+        <Book3D
+          width={470}
+          rotY={rot}
+          rotX={6}
           style={{
-            width: 600,
-            transform: `translateY(${(1 - s) * 500 + float}px) rotateY(${rot}deg) scale(${0.6 + 0.4 * s})`,
+            transform: `translateY(${(1 - s) * 400 + float}px) scale(${0.7 + 0.3 * s})`,
             opacity: Math.min(1, s * 2),
-            WebkitMaskImage:
-              "radial-gradient(ellipse 58% 56% at 50% 50%, #000 82%, transparent 100%)",
-            filter: "drop-shadow(0 50px 60px rgba(0,0,0,0.6))",
+            filter: "drop-shadow(0 50px 50px rgba(0,0,0,0.55))",
           }}
         />
       </div>

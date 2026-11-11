@@ -143,7 +143,7 @@ export const Scene: React.FC<{
       style={{
         opacity: Math.min(enter, exit),
         transform: `scale(${scale})`,
-        filter: `blur(${blur}px)`,
+        filter: blur > 0.01 ? `blur(${blur}px)` : undefined,
         fontFamily: FONT,
         color: C.white,
         alignItems: "center",

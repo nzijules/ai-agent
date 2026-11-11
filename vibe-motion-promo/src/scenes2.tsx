@@ -1,14 +1,13 @@
 import React from "react";
 import {
   Easing,
-  Img,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { Pill, Pop, Scene, clamp } from "./components";
+import { Book3D } from "./book3d";
 import { C, SCENES } from "./theme";
 
 export const TITLE: React.CSSProperties = {
@@ -94,13 +93,14 @@ export const Receive: React.FC = () => {
   const b = spring({ frame: frame - 2, fps, config: { damping: 13 } });
   return (
     <Scene dur={SCENES.receive.dur}>
-      <Img
-        src={staticFile("book.png")}
+      <Book3D
+        width={220}
+        rotY={22 + Math.sin(frame / 18) * 18}
+        rotX={5}
         style={{
-          width: 300,
-          transform: `scale(${b}) rotate(${-5 + Math.sin(frame / 20) * 2}deg)`,
+          transform: `scale(${b})`,
           filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.6))",
-          marginBottom: 30,
+          marginBottom: 40,
         }}
       />
       <Pop delay={6} style={{ ...TITLE, marginBottom: 20 }}>
@@ -226,12 +226,13 @@ export const Cta: React.FC = () => {
       <Pop delay={8} style={{ ...TITLE, fontSize: 92, color: C.yellow }}>
         et lance-toi !
       </Pop>
-      <Img
-        src={staticFile("book.png")}
+      <Book3D
+        width={300}
+        rotY={interpolate(frame, [0, 50], [-160, 22], { ...clamp, easing: Easing.out(Easing.cubic) }) + Math.sin(frame / 20) * 15}
+        rotX={5}
         style={{
-          width: 400,
           marginTop: 50,
-          transform: `scale(${b}) rotate(${-4 + Math.sin(frame / 25) * 2}deg) translateY(${Math.sin(frame / 18) * 10}px)`,
+          transform: `scale(${b}) translateY(${Math.sin(frame / 18) * 10}px)`,
           filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.6))",
         }}
       />

@@ -14,77 +14,9 @@ const ic = {
 
 /* ---------- 1. Hook — synced with "Tu vois ces vidéos animées…" ---------- */
 export const Hook: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  // floating "brand video" mock cards
-  const cards = [
-    { x: -330, y: -560, r: -10, c: C.yellow, d: 6 },
-    { x: 320, y: -470, r: 8, c: C.cyan, d: 14 },
-    { x: -300, y: 520, r: 7, c: "#FF5FD2", d: 22 },
-    { x: 330, y: 600, r: -8, c: C.red, d: 30 },
-  ];
   return (
     <Scene dur={SCENES.hook.dur}>
-      {cards.map((k, i) => {
-        const s = spring({ frame: frame - k.d, fps, config: { damping: 14 } });
-        const play = (frame * 3 + i * 40) % 100;
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: 540 + k.x - 130,
-              top: 960 + k.y - 90 + Math.sin((frame + i * 20) / 18) * 12,
-              width: 260,
-              height: 180,
-              borderRadius: 24,
-              background: "rgba(8,14,48,0.9)",
-              border: `3px solid ${k.c}`,
-              boxShadow: `0 0 40px ${k.c}55`,
-              transform: `rotate(${k.r}deg) scale(${s})`,
-              opacity: s * 0.95,
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                left: 20,
-                top: 22,
-                width: 120 + (play % 50),
-                height: 18,
-                borderRadius: 9,
-                background: k.c,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                left: 20,
-                top: 56,
-                width: 160,
-                height: 12,
-                borderRadius: 6,
-                background: "rgba(255,255,255,0.35)",
-              }}
-            />
-            <svg width={56} height={56} viewBox="0 0 48 48" style={{ position: "absolute", left: 100, top: 86 }}>
-              <circle cx="24" cy="24" r="21" fill="rgba(255,255,255,0.15)" />
-              <path d="M19 15v18l15-9z" fill="#fff" />
-            </svg>
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                bottom: 0,
-                height: 8,
-                width: `${play}%`,
-                background: k.c,
-              }}
-            />
-          </div>
-        );
-      })}
+      <div style={{ textShadow: "0 6px 30px rgba(0,0,0,0.9)", display: "contents" }}>
       <Pop delay={4} style={{ fontSize: 60, fontWeight: 800, color: C.muted }}>
         Tu vois ces
       </Pop>
@@ -97,6 +29,7 @@ export const Hook: React.FC = () => {
       <Pop delay={100} style={{ fontSize: 54, fontWeight: 700, marginTop: 34, color: C.white }}>
         qui attirent toute l’attention ?
       </Pop>
+      </div>
     </Scene>
   );
 };
