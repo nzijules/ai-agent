@@ -1,18 +1,41 @@
-import { AbsoluteFill, Composition, Sequence } from "remotion";
+import { AbsoluteFill, Audio, Composition, Sequence, interpolate, staticFile } from "remotion";
 import { Background, Logo } from "./components";
-import { Benefits, Book, Cta, Demo, Hook, Problem, Reveal } from "./scenes";
+import { Book, Demo, Hook, Problem, Reveal } from "./scenes";
+import { Audience, Cta, Learn1, Learn2, Price, Projects, Receive } from "./scenes2";
 import { FPS, HEIGHT, SCENES, TOTAL, WIDTH } from "./theme";
+
+const LIST: [keyof typeof SCENES, React.FC][] = [
+  ["hook", Hook],
+  ["problem", Problem],
+  ["reveal", Reveal],
+  ["book", Book],
+  ["learn1", Learn1],
+  ["learn2", Learn2],
+  ["demo", Demo],
+  ["projects", Projects],
+  ["audience", Audience],
+  ["receive", Receive],
+  ["price", Price],
+  ["cta", Cta],
+];
 
 export const Promo: React.FC = () => (
   <AbsoluteFill>
+    <Audio
+      src={staticFile("music.mp3")}
+      volume={(f) =>
+        interpolate(f, [0, 15, TOTAL - 45, TOTAL], [0, 0.85, 0.85, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        })
+      }
+    />
     <Background />
-    <Sequence from={SCENES.hook.from} durationInFrames={SCENES.hook.dur}><Hook /></Sequence>
-    <Sequence from={SCENES.problem.from} durationInFrames={SCENES.problem.dur}><Problem /></Sequence>
-    <Sequence from={SCENES.reveal.from} durationInFrames={SCENES.reveal.dur}><Reveal /></Sequence>
-    <Sequence from={SCENES.demo.from} durationInFrames={SCENES.demo.dur}><Demo /></Sequence>
-    <Sequence from={SCENES.book.from} durationInFrames={SCENES.book.dur}><Book /></Sequence>
-    <Sequence from={SCENES.benefits.from} durationInFrames={SCENES.benefits.dur}><Benefits /></Sequence>
-    <Sequence from={SCENES.cta.from} durationInFrames={SCENES.cta.dur}><Cta /></Sequence>
+    {LIST.map(([k, C]) => (
+      <Sequence key={k} from={SCENES[k].from} durationInFrames={SCENES[k].dur}>
+        <C />
+      </Sequence>
+    ))}
     <Logo />
   </AbsoluteFill>
 );

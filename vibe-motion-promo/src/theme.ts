@@ -27,14 +27,26 @@ export const WIDTH = 1080;
 export const HEIGHT = 1920;
 
 // Scene timeline (in frames)
-export const SCENES = {
-  hook: { from: 0, dur: 105 },
-  problem: { from: 105, dur: 120 },
-  reveal: { from: 225, dur: 115 },
-  demo: { from: 340, dur: 185 },
-  book: { from: 525, dur: 165 },
-  benefits: { from: 690, dur: 150 },
-  cta: { from: 840, dur: 165 },
-};
+const ORDER: [string, number][] = [
+  ["hook", 105],
+  ["problem", 120],
+  ["reveal", 115],
+  ["book", 165],
+  ["learn1", 190],
+  ["learn2", 165],
+  ["demo", 185],
+  ["projects", 165],
+  ["audience", 170],
+  ["receive", 160],
+  ["price", 170],
+  ["cta", 180],
+];
 
-export const TOTAL = SCENES.cta.from + SCENES.cta.dur;
+export const SCENES: Record<string, { from: number; dur: number }> = {};
+let acc = 0;
+for (const [k, d] of ORDER) {
+  SCENES[k] = { from: acc, dur: d };
+  acc += d;
+}
+
+export const TOTAL = acc;

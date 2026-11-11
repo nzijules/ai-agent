@@ -8,7 +8,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { Icon, Pill, Pop, Scene, clamp } from "./components";
+import { Pill, Pop, Scene, clamp } from "./components";
 import { C, SCENES } from "./theme";
 
 const H1: React.CSSProperties = {
@@ -83,11 +83,11 @@ const Struck: React.FC<{ delay: number; text: string }> = ({ delay, text }) => {
 export const Problem: React.FC = () => (
   <Scene dur={SCENES.problem.dur}>
     <Pop delay={2} style={{ ...H1, marginBottom: 30 }}>
-      Fini les
+      Plus besoin de
     </Pop>
-    <Struck delay={10} text="logiciels complexes" />
-    <Struck delay={30} text="heures de montage" />
-    <Struck delay={50} text="devis hors de prix" />
+    <Struck delay={10} text="After Effects" />
+    <Struck delay={30} text="Premiere Pro" />
+    <Struck delay={50} text="logiciels complexes" />
     <Pop delay={78} from="scale" style={{ ...H2, marginTop: 70, color: C.yellow }}>
       Place à l’IA.
     </Pop>
@@ -193,8 +193,11 @@ export const Demo: React.FC = () => {
   });
   return (
     <Scene dur={SCENES.demo.dur}>
-      <Pop delay={0} style={{ ...H2, marginBottom: 50 }}>
-        Un prompt. <span style={{ color: C.yellow }}>Une vidéo.</span>
+      <Pop delay={0} style={{ ...H2, marginBottom: 14 }}>
+        Tu pilotes. <span style={{ color: "#FF8A3D" }}>Claude Code</span> produit.
+      </Pop>
+      <Pop delay={6} style={{ ...SUB, fontSize: 40, marginBottom: 46 }}>
+        De vraies animations, pas des diaporamas.
       </Pop>
       <div
         style={{
@@ -328,133 +331,3 @@ export const Book: React.FC<{ dur?: number; small?: boolean }> = () => {
   );
 };
 
-/* 6. BENEFITS */
-const BENEFITS: { icon: "code" | "clap" | "layers"; title: string; sub: string }[] = [
-  { icon: "code", title: "Du script à l’animation", sub: "La méthode complète, étape par étape" },
-  { icon: "clap", title: "Scènes, animations & transitions IA", sub: "Des prompts prêts à copier" },
-  { icon: "layers", title: "Projet complet & réutilisable", sub: "Ton modèle pour toutes tes vidéos" },
-];
-
-export const Benefits: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  return (
-    <Scene dur={SCENES.benefits.dur}>
-      <Pop delay={0} style={{ ...H1, fontSize: 92, marginBottom: 60 }}>
-        Dans ce <span style={{ color: C.yellow }}>guide</span>
-      </Pop>
-      {BENEFITS.map((b, i) => {
-        const s = spring({ frame: frame - 14 - i * 16, fps, config: { damping: 14 } });
-        return (
-          <div
-            key={b.title}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 36,
-              width: 900,
-              padding: "34px 40px",
-              marginTop: 30,
-              borderRadius: 32,
-              textAlign: "left",
-              background: "linear-gradient(120deg, rgba(30,75,255,0.28), rgba(255,255,255,0.06))",
-              border: "2px solid rgba(60,200,255,0.35)",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
-              opacity: s,
-              transform: `translateX(${(1 - s) * (i % 2 ? 300 : -300)}px)`,
-            }}
-          >
-            <div
-              style={{
-                flexShrink: 0,
-                width: 130,
-                height: 130,
-                borderRadius: 30,
-                background: "rgba(4,10,44,0.8)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Icon name={b.icon} />
-            </div>
-            <div>
-              <div style={{ fontSize: 46, fontWeight: 800, lineHeight: 1.15 }}>{b.title}</div>
-              <div style={{ fontSize: 34, fontWeight: 500, color: C.muted, marginTop: 8 }}>
-                {b.sub}
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </Scene>
-  );
-};
-
-/* 7. CTA */
-export const Cta: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const b = spring({ frame: frame - 10, fps, config: { damping: 12 } });
-  const btn = spring({ frame: frame - 40, fps, config: { damping: 10 } });
-  const pulse = 1 + Math.max(0, Math.sin((frame - 50) / 6)) * 0.05 * (frame > 50 ? 1 : 0);
-  const ring = ((frame - 50) % 40) / 40;
-  return (
-    <Scene dur={SCENES.cta.dur + 10}>
-      <Pop delay={0} style={{ ...H1, fontSize: 96 }}>
-        Crée ta 1<sup style={{ fontSize: 50 }}>re</sup> vidéo
-      </Pop>
-      <Pop delay={8} style={{ ...H1, fontSize: 96, color: C.yellow }}>
-        dès aujourd’hui
-      </Pop>
-      <Img
-        src={staticFile("book.png")}
-        style={{
-          width: 430,
-          marginTop: 50,
-          transform: `scale(${b}) rotate(${-4 + Math.sin(frame / 25) * 2}deg) translateY(${Math.sin(frame / 18) * 10}px)`,
-          WebkitMaskImage:
-            "radial-gradient(ellipse 58% 56% at 50% 50%, #000 82%, transparent 100%)",
-          filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.6))",
-        }}
-      />
-      <div style={{ position: "relative", marginTop: 60 }}>
-        {frame > 50 && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: 60,
-              border: `4px solid ${C.yellow}`,
-              transform: `scale(${1 + ring * 0.25})`,
-              opacity: 1 - ring,
-            }}
-          />
-        )}
-        <div
-          style={{
-            background: C.yellow,
-            color: C.navy,
-            fontSize: 54,
-            fontWeight: 900,
-            padding: "30px 70px",
-            borderRadius: 60,
-            boxShadow: `0 20px 60px ${C.yellow}77`,
-            transform: `scale(${btn * pulse})`,
-          }}
-        >
-          Je télécharge le guide →
-        </div>
-      </div>
-      <Pop delay={60} style={{ ...SUB, marginTop: 44, color: C.white, fontWeight: 700 }}>
-        Lien en description
-      </Pop>
-      <Pop
-        delay={72}
-        style={{ fontSize: 32, fontWeight: 700, letterSpacing: 6, color: C.muted, marginTop: 30 }}
-      >
-        AROSOFT · APPRENDRE · CRÉER · RÉUSSIR
-      </Pop>
-    </Scene>
-  );
-};
