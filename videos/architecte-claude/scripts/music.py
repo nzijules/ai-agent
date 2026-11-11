@@ -6,7 +6,7 @@ import wave
 import numpy as np
 
 SR = 44100
-DUR = 91.0
+DUR = 88.0
 BPM = 104
 BEAT = 60 / BPM
 BAR = 4 * BEAT
@@ -14,7 +14,7 @@ N = int(SR * DUR)
 rng = np.random.default_rng(7)
 
 # Débuts de scènes (s) : accroche, Awa, métier, architecte, plan, chantier, visites, clés, révélation, secret, CTA
-SCENES = [0, 6, 13, 20.5, 28.5, 37.5, 48, 56, 60, 71, 77]
+SCENES = [0, 6.6, 14.0, 21.35, 27.0, 36.2, 47.05, 53.25, 55.8, 67.05, 71.25]
 
 L = np.zeros(N)
 R = np.zeros(N)

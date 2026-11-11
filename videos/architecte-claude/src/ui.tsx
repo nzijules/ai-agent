@@ -17,47 +17,40 @@ const Grid: React.FC<{dark: boolean}> = ({dark}) => {
   );
 };
 
-/* ---------- Sous-titres karaoké ---------- */
-const chunkText = (text: string, max = 24) => {
-  const words = text.replace(/ »/g, '\u00A0»').replace(/« /g, '«\u00A0').replace(/ ([?!:])/g, '\u00A0$1').split(' ');
-  const chunks: string[][] = [];
-  let cur: string[] = [];
-  for (const w of words) {
-    const len = [...cur, w].join(' ').length;
-    if (cur.length && (len > max || /[.?!:…»]$/.test(cur[cur.length - 1]))) {
-      chunks.push(cur);
+/* ---------- Sous-titres karaoké (calés mot par mot sur la voix off) ---------- */
+type Chunk = {ws: {w: string; s: number}[]; s: number; e: number};
+const buildChunks = (words: [string, number, number][], offset: number, max = 24): Chunk[] => {
+  const chunks: Chunk[] = [];
+  let cur: {w: string; s: number}[] = [];
+  let last = 0;
+  words.forEach(([w, s, e], i) => {
+    const len = [...cur.map((c) => c.w), w].join(' ').length;
+    const prevEnd = i > 0 ? words[i - 1][2] : 0;
+    const gap = s - prevEnd;
+    if (cur.length && (len > max || /[.?!:…]$/.test(cur[cur.length - 1].w) || gap > 0.35)) {
+      chunks.push({ws: cur, s: cur[0].s, e: last + 0.5});
       cur = [];
     }
-    cur.push(w);
-  }
-  if (cur.length) chunks.push(cur);
+    cur.push({w, s: s + offset});
+    last = e + offset;
+  });
+  if (cur.length) chunks.push({ws: cur, s: cur[0].s, e: last + 0.8});
   return chunks;
 };
 
-export const Captions: React.FC<{text: string; startSec?: number; endSec: number; dark: boolean}> = ({
-  text,
-  startSec = 0.25,
-  endSec,
-  dark,
+export const Captions: React.FC<{words: [string, number, number][]; offset: number; isDark: (t: number) => boolean}> = ({
+  words,
+  offset,
+  isDark,
 }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
-  const chunks = chunkText(text);
-  const total = text.replace(/\s/g, '').length;
-  const span = endSec - startSec;
-  let acc = 0;
-  const timed = chunks.map((words) => {
-    const ws = words.map((w) => {
-      const s = startSec + (acc / total) * span;
-      acc += w.length;
-      return {w, s, e: startSec + (acc / total) * span};
-    });
-    return {ws, s: ws[0].s, e: ws[ws.length - 1].e};
-  });
-  const idx = timed.findIndex((c, i) => t >= c.s && (i === timed.length - 1 || t < timed[i + 1].s));
+  const chunks = React.useMemo(() => buildChunks(words, offset), [words, offset]);
+  const idx = chunks.findIndex((c, i) => t >= c.s - 0.05 && t < Math.min(c.e, i < chunks.length - 1 ? chunks[i + 1].s - 0.05 : c.e));
   if (idx < 0) return null;
-  const c = timed[idx];
-  const appear = interpolate(t, [c.s, c.s + 0.12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const c = chunks[idx];
+  const dark = isDark(t);
+  const appear = interpolate(t, [c.s - 0.05, c.s + 0.08], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <div style={{position: 'absolute', left: 80, right: 80, top: 1585, display: 'flex', justifyContent: 'center'}}>
       <div
@@ -94,13 +87,12 @@ export const SceneFrame: React.FC<{
   line1: string;
   line2: string;
   footer: string;
-  vo: string;
+  vo?: string;
   voEnd?: number;
   children: React.ReactNode;
-}> = ({dark = false, eyebrow, line1, line2, footer, vo, voEnd, children}) => {
+}> = ({dark = false, eyebrow, line1, line2, footer, children}) => {
   const frame = useCurrentFrame();
   const {durationInFrames} = useVideoConfig();
-  const durSec = durationInFrames / FPS;
   const a1 = t01(frame, 0.1, 0.7);
   const a2 = t01(frame, 0.3, 0.7);
   const ink = dark ? C.white : C.navy;
@@ -143,7 +135,6 @@ export const SceneFrame: React.FC<{
           <div style={{position: 'absolute', left: 0, top: -1, height: 5, background: accent, width: `${(frame / durationInFrames) * 100}%`}} />
         </div>
       </div>
-      <Captions text={vo} endSec={voEnd ?? durSec - 0.7} dark={dark} />
     </AbsoluteFill>
   );
 };

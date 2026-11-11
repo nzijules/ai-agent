@@ -15,8 +15,8 @@ export const S1Hook: React.FC = () => {
   rows.forEach((n, r) => {
     for (let i = 0; i < n; i++) bricks.push([480 - (n * 150) / 2 + i * 150, 690 - r * 78]);
   });
-  const drop = t01(f, 2.6, 0.9, (x) => 1 - Math.pow(1 - x, 3));
-  const bounce = Math.sin(t01(f, 3.5, 0.5) * Math.PI) * 20;
+  const drop = t01(f, 4.4, 0.9, (x) => 1 - Math.pow(1 - x, 3));
+  const bounce = Math.sin(t01(f, 5.3, 0.4) * Math.PI) * 20;
   return (
     <SceneFrame
       dark
@@ -37,7 +37,7 @@ export const S1Hook: React.FC = () => {
           <rect x={500} y={0} width={170} height={80} rx={10} fill={C.blue} />
           <text x={585} y={56} fill={C.white} fontFamily="monospace" fontWeight={700} fontSize={44} textAnchor="middle">&lt;/&gt;</text>
         </g>
-        <text x={480} y={200} fill={C.yellow} fontFamily={display} fontWeight={800} fontSize={120} textAnchor="middle" opacity={t01(f, 4.2, 0.4)} style={{scale: String(0.6 + 0.4 * pop(f, 4.2))}} transform-origin="480 170">?</text>
+        <text x={480} y={200} fill={C.yellow} fontFamily={display} fontWeight={800} fontSize={120} textAnchor="middle" opacity={t01(f, 5.7, 0.3)} style={{scale: String(0.6 + 0.4 * pop(f, 5.7))}} transform-origin="480 170">?</text>
       </svg>
     </SceneFrame>
   );
@@ -48,8 +48,8 @@ export const S2Awa: React.FC = () => {
   const f = useCurrentFrame();
   const enter = t01(f, 0.2, 0.8);
   const blink = f % 90 > 84;
-  const b1 = pop(f, 1.0), b2 = pop(f, 1.2), cloud = pop(f, 1.4, 0.6);
-  const house = t01(f, 1.8, 0.8);
+  const b1 = pop(f, 2.2), b2 = pop(f, 2.4), cloud = pop(f, 2.6, 0.6);
+  const house = t01(f, 3.0, 0.8);
   return (
     <SceneFrame
       eyebrow="Voici Awa"
@@ -80,9 +80,9 @@ export const S2Awa: React.FC = () => {
         </g>
       </svg>
       <div style={{position: 'absolute', left: 470, top: 400, display: 'flex', flexDirection: 'column', gap: 22, alignItems: 'flex-start'}}>
-        <Pill p={pop(f, 3.4)}>3 chambres</Pill>
-        <Pill p={pop(f, 4.4)} bg={C.navy}>Grande terrasse</Pill>
-        <Pill p={pop(f, 5.4)} bg={C.yellow} color={C.navy}>Beaucoup de lumière</Pill>
+        <Pill p={pop(f, 4.1)}>3 chambres</Pill>
+        <Pill p={pop(f, 5.1)} bg={C.navy}>Grande terrasse</Pill>
+        <Pill p={pop(f, 6.3)} bg={C.yellow} color={C.navy}>Beaucoup de lumière</Pill>
       </div>
     </SceneFrame>
   );
@@ -92,8 +92,8 @@ export const S2Awa: React.FC = () => {
 export const S3NotJob: React.FC = () => {
   const f = useCurrentFrame();
   const appear = t01(f, 0.2, 0.7);
-  const draw = t01(f, 0.5, 2.4);
-  const stamp = pop(f, 4.0, 0.4);
+  const draw = t01(f, 0.6, 3.3);
+  const stamp = pop(f, 5.0, 0.4);
   return (
     <SceneFrame
       eyebrow="Plans, béton, électricité ?"
@@ -135,8 +135,8 @@ export const S3NotJob: React.FC = () => {
 export const S4Architect: React.FC = () => {
   const f = useCurrentFrame();
   const quote = '« Trois chambres, une grande terrasse, beaucoup de lumière. »';
-  const typed = Math.round(interpolate(f, [3.6 * FPS, 6.2 * FPS], [0, quote.length], clamp));
-  const arch = t01(f, 0.4, 0.8);
+  const typed = Math.round(interpolate(f, [4.2 * FPS, 5.5 * FPS], [0, quote.length], clamp));
+  const arch = t01(f, 1.1, 0.7);
   return (
     <SceneFrame
       dark
@@ -153,15 +153,15 @@ export const S4Architect: React.FC = () => {
         <g transform="translate(170 590) scale(0.85)" opacity={t01(f, 0.2)}>
           <Awa />
         </g>
-        <g opacity={t01(f, 1.8, 0.4)}>
+        <g opacity={t01(f, 2.9, 0.3)}>
           <rect x={420} y={640} width={140} height={90} rx={12} fill="none" stroke={C.sky} strokeWidth={5} strokeDasharray="14 10" />
-          <path d="M440 650 L540 720 M540 650 L440 720" stroke={C.red} strokeWidth={10} strokeLinecap="round" opacity={t01(f, 2.4, 0.3)} />
+          <path d="M440 650 L540 720 M540 650 L440 720" stroke={C.red} strokeWidth={10} strokeLinecap="round" opacity={t01(f, 3.4, 0.3)} />
           <text x={490} y={770} fill={C.sky} fontSize={28} textAnchor="middle" fontFamily={body}>pas de plans</text>
         </g>
       </svg>
       <Bubble
         dark={false}
-        progress={pop(f, 3.4)}
+        progress={pop(f, 4.0)}
         style={{left: 40, top: 40, width: 640}}
         text={
           <>
@@ -177,9 +177,9 @@ export const S4Architect: React.FC = () => {
 /* 5 ─ Le plan */
 export const S5Plan: React.FC = () => {
   const f = useCurrentFrame();
-  const draw = t01(f, 0.3, 2.0);
-  const labels = t01(f, 2.0, 0.6);
-  const move = t01(f, 6.6, 0.9);
+  const draw = t01(f, 1.4, 2.0);
+  const labels = t01(f, 3.2, 0.6);
+  const move = t01(f, 8.2, 0.6);
   const ox = 140, oy = 40, s = 600;
   const kx = interpolate(move, [0, 1], [ox + 310, ox + 310]);
   const ky = interpolate(move, [0, 1], [oy + 10, oy + 300]);
@@ -217,12 +217,12 @@ export const S5Plan: React.FC = () => {
           <rect x={kx} y={ky} width={280} height={270} rx={14} fill={C.yellow} />
           <text x={kx + 140} y={ky + 150} fill={C.navy} fontFamily={display} fontWeight={800} fontSize={44} textAnchor="middle">Cuisine</text>
         </g>
-        <g opacity={t01(f, 7.6, 0.3)} style={{scale: String(pop(f, 7.6))}} transform-origin={`${ox + 560} ${oy + 340}`}>
+        <g opacity={t01(f, 8.7, 0.2)} style={{scale: String(pop(f, 8.7, 0.35))}} transform-origin={`${ox + 560} ${oy + 340}`}>
           <circle cx={ox + 560} cy={oy + 340} r={34} fill={C.green} />
           <path d={`M${ox + 544} ${oy + 340} l12 12 l20 -24`} stroke={C.white} strokeWidth={8} fill="none" strokeLinecap="round" />
         </g>
       </svg>
-      <Bubble progress={pop(f, 5.4)} dark style={{left: 220, top: -70, width: 640}} text="« Mets la cuisine côté jardin. »" tail="right" />
+      <Bubble progress={pop(f, 7.6)} dark style={{left: 220, top: -70, width: 640}} text="« Mets la cuisine côté jardin. »" tail="right" />
     </SceneFrame>
   );
 };
@@ -260,8 +260,8 @@ export const S6Site: React.FC = () => {
   const f = useCurrentFrame();
   const t = f / FPS;
   const swing = Math.sin(t * 2.2) * 6;
-  const tapped = t > 8.4;
-  const roof = t01(f, 8.6, 0.7, (x) => 1 - Math.pow(1 - x, 3));
+  const tapped = t > 9.9;
+  const roof = t01(f, 10.1, 0.6, (x) => 1 - Math.pow(1 - x, 3));
   const rows = 6;
   return (
     <SceneFrame
@@ -301,9 +301,9 @@ export const S6Site: React.FC = () => {
         </g>
       </svg>
       <div style={{position: 'absolute', left: 0, top: -10, display: 'flex', flexDirection: 'column', gap: 14}}>
-        <Trade label="Maçon" icon="hammer" p={pop(f, 1.6)} active={t > 1.6 && t < 2.6} />
-        <Trade label="Électricien" icon="bolt" p={pop(f, 2.5)} active={t > 2.5 && t < 3.5} />
-        <Trade label="Plombier" icon="wrench" p={pop(f, 3.4)} active={t > 3.4 && t < 4.6} />
+        <Trade label="Maçon" icon="hammer" p={pop(f, 2.4)} active={t > 2.4 && t < 3.1} />
+        <Trade label="Électricien" icon="bolt" p={pop(f, 3.1)} active={t > 3.1 && t < 4.0} />
+        <Trade label="Plombier" icon="wrench" p={pop(f, 4.0)} active={t > 4.0 && t < 5.2} />
       </div>
       <div
         style={{
@@ -317,14 +317,14 @@ export const S6Site: React.FC = () => {
           boxShadow: '0 16px 44px rgba(19,28,58,0.22)',
           fontFamily: display,
           color: C.navy,
-          scale: String(pop(f, 6.6) * (t > 9.6 ? interpolate(t, [9.6, 9.9], [1, 0], clamp) : 1)),
+          scale: String(pop(f, 7.8) * (t > 10.5 ? interpolate(t, [10.5, 10.8], [1, 0], clamp) : 1)),
           transformOrigin: '50% 100%',
         }}
       >
         <div style={{fontSize: 26, fontWeight: 600, color: C.blue, letterSpacing: 3}}>L'ARCHITECTE</div>
         <div style={{fontSize: 42, fontWeight: 800, marginTop: 6, whiteSpace: 'nowrap'}}>« On pose le toit ? »</div>
         <div style={{display: 'flex', gap: 14, marginTop: 20}}>
-          <div style={{background: C.blue, color: C.white, fontSize: 34, fontWeight: 700, padding: '10px 30px', borderRadius: 12, scale: tapped ? String(interpolate(t, [8.4, 8.5, 8.65], [1, 0.88, 1], clamp)) : '1', outline: tapped ? `6px solid ${C.yellow}` : 'none'}}>Oui</div>
+          <div style={{background: C.blue, color: C.white, fontSize: 34, fontWeight: 700, padding: '10px 30px', borderRadius: 12, scale: tapped ? String(interpolate(t, [9.9, 10.0, 10.15], [1, 0.88, 1], clamp)) : '1', outline: tapped ? `6px solid ${C.yellow}` : 'none'}}>Oui</div>
           <div style={{background: '#E3E8F5', fontSize: 34, fontWeight: 700, padding: '10px 26px', borderRadius: 12}}>Pas encore</div>
         </div>
       </div>
@@ -335,8 +335,8 @@ export const S6Site: React.FC = () => {
 /* 7 ─ Les visites */
 export const S7Visit: React.FC = () => {
   const f = useCurrentFrame();
-  const grow = t01(f, 3.9, 0.6);
-  const color = t01(f, 6.0, 0.8);
+  const grow = t01(f, 3.6, 0.5);
+  const color = t01(f, 5.0, 0.7);
   const wall = interpolate(color, [0, 1], [0, 1]);
   const mix = (a: number[], b: number[]) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * wall)).join(',')})`;
   const ww = 150 + 70 * grow;
@@ -358,7 +358,7 @@ export const S7Visit: React.FC = () => {
         <path d={`M${695} 460 V${590 + (ww - 150) / 2}`} stroke={C.navy} strokeWidth={6} opacity={0.4} />
       </svg>
       <Bubble progress={pop(f, 3.3)} dark style={{left: 0, top: 10}} text="« Agrandis cette fenêtre. »" />
-      <Bubble progress={pop(f, 5.4)} style={{right: 0, top: 150}} text="« Plutôt du bleu, ici. »" tail="right" />
+      <Bubble progress={pop(f, 4.7)} style={{right: 0, top: 150}} text="« Plutôt du bleu, ici. »" tail="right" />
     </SceneFrame>
   );
 };
@@ -366,8 +366,8 @@ export const S7Visit: React.FC = () => {
 /* 8 ─ Les clés */
 export const S8Keys: React.FC = () => {
   const f = useCurrentFrame();
-  const k = pop(f, 0.6, 0.7);
-  const burst = t01(f, 1.0, 0.8);
+  const k = pop(f, 0.3, 0.6);
+  const burst = t01(f, 1.7, 0.6);
   return (
     <SceneFrame eyebrow="Le grand jour" line1="Et un jour…" line2="les clés." footer="Le projet est livré." vo="Et un jour… on lui remet les clés." voEnd={3.2}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
@@ -384,7 +384,7 @@ export const S8Keys: React.FC = () => {
         </g>
       </svg>
       <div style={{position: 'absolute', left: 0, right: 0, top: 640, display: 'flex', justifyContent: 'center'}}>
-        <Pill p={pop(f, 1.6)} bg={C.navy}>Bienvenue chez toi, Awa !</Pill>
+        <Pill p={pop(f, 1.9)} bg={C.navy}>Bienvenue chez toi, Awa !</Pill>
       </div>
     </SceneFrame>
   );
@@ -393,11 +393,11 @@ export const S8Keys: React.FC = () => {
 /* 9 ─ La révélation : le tableau de correspondance */
 const MAP: [string, string, number][] = [
   ['Ton envie', 'Ta demande', 2.6],
-  ["Le plan de l'architecte", 'Le mode Plan', 6.2],
-  ['Maçon, électricien…', 'Les outils', 7.6],
-  ['« On pose le toit ? »', 'Ta permission', 8.5],
-  ['Les visites', 'Tes retours', 9.3],
-  ['Les clés', 'Ton projet fini', 10.0],
+  ["Le plan de l'architecte", 'Le mode Plan', 6.9],
+  ['Maçon, électricien…', 'Les outils', 8.6],
+  ['« On pose le toit ? »', 'Ta permission', 9.4],
+  ['Les visites', 'Tes retours', 10.0],
+  ['Les clés', 'Ton projet fini', 10.6],
 ];
 export const S9Reveal: React.FC = () => {
   const f = useCurrentFrame();
@@ -447,9 +447,9 @@ export const S9Reveal: React.FC = () => {
 export const S10Secret: React.FC = () => {
   const f = useCurrentFrame();
   const prompt = "Crée une vidéo TikTok qui explique Claude Code avec l'histoire d'un architecte. 11 scènes, aux couleurs d'AroSoft.";
-  const typed = Math.round(interpolate(f, [0.6 * FPS, 3.4 * FPS], [0, prompt.length], clamp));
-  const player = pop(f, 3.6, 0.6);
-  const prog = t01(f, 3.9, 2.0, (x) => x);
+  const typed = Math.round(interpolate(f, [0.3 * FPS, 2.6 * FPS], [0, prompt.length], clamp));
+  const player = pop(f, 2.8, 0.5);
+  const prog = t01(f, 3.0, 1.6, (x) => x);
   return (
     <SceneFrame dark eyebrow="Un petit secret" line1="Cette vidéo ?" line2="Décrite à Claude." footer="Le même principe, appliqué à la vidéo." vo="D'ailleurs, cette vidéo ? Je ne l'ai pas montée. Je l'ai décrite à Claude.">
       <div style={{background: '#0A0F22', borderRadius: 26, border: '2px solid #26304F', overflow: 'hidden', opacity: t01(f, 0.1)}}>
@@ -486,11 +486,11 @@ export const S11CTA: React.FC = () => {
   const {durationInFrames} = useVideoConfig();
   const t = f / FPS;
   const end = durationInFrames / FPS;
-  const cover = pop(f, 0.8, 0.8);
+  const cover = pop(f, 7.2, 0.8);
   const float = Math.sin(t * 2) * 10;
-  const price = pop(f, 7.4, 0.45);
-  const btn = pop(f, 9.4, 0.5);
-  const pulse = t > 10 ? 1 + Math.sin((t - 10) * 6) * 0.03 : 1;
+  const price = pop(f, 10.0, 0.45);
+  const btn = pop(f, 11.0, 0.5);
+  const pulse = t > 11.6 ? 1 + Math.sin((t - 11.6) * 6) * 0.03 : 1;
   const outro = t01(f, end - 2.0, 0.5);
   return (
     <AbsoluteFill>
@@ -503,6 +503,17 @@ export const S11CTA: React.FC = () => {
         vo="Tu vois, tu n'as pas besoin de savoir faire. Juste de savoir ce que tu veux : Claude se charge de la réalisation. J'ai préparé un guide pratique, pas à pas, pour toi, à seulement 10 000 F. Télécharge-le, et réalise ta première vidéo dès aujourd'hui !"
         voEnd={end - 2.2}
       >
+        <div style={{position: 'absolute', left: 0, right: 0, top: 60, display: 'flex', flexDirection: 'column', gap: 34, alignItems: 'center', opacity: 1 - t01(f, 6.7, 0.4)}}>
+          <Pill p={pop(f, 1.7)} bg="rgba(255,255,255,0.08)" style={{fontSize: 50, padding: '22px 38px'}}>
+            <span style={{color: C.red, fontWeight: 800}}>✕</span> <span style={{textDecoration: t > 2.2 ? 'line-through' : 'none', textDecorationThickness: 5}}>Savoir faire</span>
+          </Pill>
+          <Pill p={pop(f, 3.0)} bg={C.white} color={C.navy} style={{fontSize: 50, padding: '22px 38px'}}>
+            <span style={{color: C.green, fontWeight: 800}}>✓</span> Savoir ce que tu veux
+          </Pill>
+          <Pill p={pop(f, 4.5)} bg={C.blue} style={{fontSize: 50, padding: '22px 38px'}}>
+            <span style={{color: C.yellow, fontWeight: 800}}>✳</span> Claude réalise
+          </Pill>
+        </div>
         <div style={{position: 'absolute', inset: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
           <Img
             src={staticFile('cover.png')}
