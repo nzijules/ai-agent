@@ -45,6 +45,8 @@ Le rendu utilise un Chrome/Chromium local. Si Remotion ne peut pas télécharger
 ```bash
 npx remotion render AroSoftPub out/arosoft_pub_tiktok.mp4 --codec=h264 --audio-codec=aac --crf=18
 npx remotion still CouvertureTikTok out/couverture_tiktok.png
+# normalisation sonore TikTok (-14 LUFS), sans ré-encoder l'image :
+ffmpeg -i out/arosoft_pub_tiktok.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -movflags +faststart out/final.mp4
 node scripts/export-srt.mjs                                   # out/sous-titres.srt
 npx remotion render VoiceStem out/stem_voix.wav --codec=wav    # pistes séparées
 npx remotion render MusicStem out/stem_musique.wav --codec=wav
