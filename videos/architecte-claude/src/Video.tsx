@@ -4,18 +4,22 @@ import {AbsoluteFill, interpolate, Sequence, staticFile} from 'remotion';
 import {TransitionSeries, linearTiming, springTiming} from '@remotion/transitions';
 import {slide} from '@remotion/transitions/slide';
 import {fade} from '@remotion/transitions/fade';
-import {S1Hook, S2Awa, S3NotJob, S4Architect, S5Plan, S6Site, S7Visit, S8Keys, S9Reveal, S10Secret, S11CTA} from './scenes';
+import {S0Hook, S1Hook, S2Awa, S3NotJob, S4Architect, S5Plan, S6Site, S7Visit, S8Keys, S9Reveal, S10Secret, S11CTA} from './scenes';
 import {Captions} from './ui';
 import {WORDS} from './words';
 import {FPS} from './theme';
 
 export const TRANSITION = 12;
-/** La voix off démarre à 0,4 s. */
-export const VO_OFFSET = 0.4;
+/** Accroche TikTok de 6,4 s avant l'histoire ; sa voix démarre à 0,15 s. */
+export const HOOK_SEC = 6.4;
+export const HOOK_VO_OFFSET = 0.15;
+/** La voix off principale démarre 0,4 s après le début de l'histoire. */
+export const VO_OFFSET = HOOK_SEC + 0.4;
 
 // Durée de chaque scène (secondes) : chaque scène commence sur le premier mot de son paragraphe.
 export const SCENES: {id: string; sec: number; C: React.FC; dark: boolean; enter?: 'fade'}[] = [
-  {id: 'Accroche', sec: 6.6, C: S1Hook, dark: true},
+  {id: 'AccrocheTikTok', sec: HOOK_SEC, C: S0Hook, dark: true},
+  {id: 'Briques', sec: 6.6, C: S1Hook, dark: true},
   {id: 'Awa', sec: 7.4, C: S2Awa, dark: false},
   {id: 'PasSonMetier', sec: 7.35, C: S3NotJob, dark: false},
   {id: 'Architecte', sec: 5.65, C: S4Architect, dark: true},
@@ -46,6 +50,11 @@ export const ArchitecteClaude: React.FC = () => (
       src={staticFile('musique.mp3')}
       volume={(f) => interpolate(f, [TOTAL - 60, TOTAL], [HAS_VOICE ? 0.14 : 0.55, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
     />
+    {HAS_VOICE && (
+      <Sequence from={Math.round(HOOK_VO_OFFSET * FPS)} name="Voix accroche">
+        <Audio src={staticFile('voix-accroche.mp3')} />
+      </Sequence>
+    )}
     {HAS_VOICE && (
       <Sequence from={Math.round(VO_OFFSET * FPS)} name="Voix off">
         <Audio src={staticFile('voix-off.mp3')} />

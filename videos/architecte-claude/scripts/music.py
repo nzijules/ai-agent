@@ -6,15 +6,17 @@ import wave
 import numpy as np
 
 SR = 44100
-DUR = 88.0
+DUR = 94.4
 BPM = 104
 BEAT = 60 / BPM
 BAR = 4 * BEAT
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
 
-# Débuts de scènes (s) : accroche, Awa, métier, architecte, plan, chantier, visites, clés, révélation, secret, CTA
-SCENES = [0, 6.6, 14.0, 21.35, 27.0, 36.2, 47.05, 53.25, 55.8, 67.05, 71.25]
+# Débuts de scènes (s) : accroche TikTok, briques, Awa, métier, architecte, plan, chantier, visites, clés, révélation, secret, CTA
+HOOK = 6.4
+NON = 3.05  # « Eh bien, non ! »
+SCENES = [0] + [HOOK + x for x in [0, 6.6, 14.0, 21.35, 27.0, 36.2, 47.05, 53.25, 55.8, 67.05, 71.25]]
 
 L = np.zeros(N)
 R = np.zeros(N)
@@ -117,7 +119,7 @@ CHORDS = [
 ]
 MELODY = [659.25, 587.33, 523.25, 587.33, 659.25, 783.99, 659.25, 587.33]
 
-reveal, cta, keys_t = SCENES[8], SCENES[10], SCENES[7]
+reveal, cta, keys_t = SCENES[9], SCENES[11], SCENES[8]
 bar_i = 0
 t = 0.0
 while t < DUR:
@@ -148,7 +150,7 @@ while t < DUR:
                 if big:
                     add(clap(), bt, 0.08)
     # marimba : motif léger, plus présent après la révélation
-    if t >= SCENES[2] and not breakdown:
+    if t >= SCENES[3] and not breakdown:
         for k, f in enumerate(MELODY):
             if big or k % 2 == 0:
                 add(note(f if not big or t < cta else f * 1.0, 0.4, 'marimba'), t + k * BEAT / 2, 0.07 if big else 0.05, pan=0.25)
@@ -156,6 +158,20 @@ while t < DUR:
     bar_i += 1
 
 # effets
+def boom():
+    n = int(1.4 * SR)
+    t = np.arange(n) / SR
+    f = 40 + 120 * np.exp(-t * 18)
+    low = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 3.5)
+    hit = lowpass(rng.standard_normal(n), 0.3) * np.exp(-t * 14)
+    return low + 0.5 * hit
+
+
+# accroche : tic-tac de tension, puis impact sur « NON ! »
+for k in range(int(NON / (BEAT / 2))):
+    add(rim(), k * BEAT / 2, 0.06 + 0.06 * k / 12, pan=0.2 if k % 2 else -0.2)
+add(boom(), NON, 0.9)
+add(lowpass(whoosh(0.6), 0.25), NON - 0.55, 0.7)
 for s in SCENES[1:]:
     add(lowpass(whoosh(0.45), 0.25), s - 0.3, 0.6)
 add(clink(), keys_t + 0.6, 0.25)

@@ -516,15 +516,14 @@ export const S11CTA: React.FC = () => {
         </div>
         <div style={{position: 'absolute', inset: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
           <Img
-            src={staticFile('cover.png')}
+            src={staticFile('livre-3d.png')}
             style={{
-              width: 470,
-              borderRadius: 10,
-              boxShadow: '0 30px 70px rgba(0,0,0,0.5)',
+              width: 450,
+              filter: 'drop-shadow(0px 34px 40px rgba(0,0,0,0.55))',
               scale: String(cover),
               rotate: `${-4 + (1 - cover) * -20}deg`,
               translate: `0px ${float}px`,
-              marginTop: -20,
+              marginTop: -60,
             }}
           />
         </div>
@@ -572,6 +571,163 @@ export const S11CTA: React.FC = () => {
       {/* carte de fin AroSoft */}
       <AbsoluteFill style={{background: `radial-gradient(circle at 50% 45%, ${C.navy2} 0%, ${C.navy} 65%)`, opacity: outro, alignItems: 'center', justifyContent: 'center'}}>
         <Img src={staticFile('logo-full-light.png')} style={{width: 820, scale: String(0.9 + 0.1 * outro)}} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+/* 0 ─ Accroche TikTok (3 premières secondes) */
+// Temps (s) dans la scène ; la voix de l'accroche démarre à 0,15 s.
+const HOOK_WORDS: [string, number][] = [
+  ['Tu', 0.2], ['crois', 0.38], ['encore', 0.62], ['que', 0.95], ["l'IA,", 1.1], ["c'est", 1.5], ['pour', 1.68], ['les', 1.86], ['informaticiens\u00A0?', 2.0],
+];
+const NON = 3.05;
+const RESTE = 4.25;
+
+export const S0Hook: React.FC = () => {
+  const f = useCurrentFrame();
+  const t = f / FPS;
+  const stamp = pop(f, NON, 0.35);
+  const shakeAmt = t > NON + 0.1 && t < NON + 0.55 ? (1 - (t - NON - 0.1) / 0.45) * 22 : 0;
+  const shakeX = Math.sin(t * 90) * shakeAmt;
+  const shakeY = Math.cos(t * 77) * shakeAmt;
+  const codeScroll = (t * 140) % 64;
+  const dimDev = t01(f, NON, 0.3);
+  const reste = pop(f, RESTE, 0.45);
+  const arrow = Math.abs(Math.sin((t - RESTE) * 5)) * 26;
+  const lines = [
+    [0, 4, 7, 3],
+    [1, 6, 4],
+    [1, 3, 8, 2],
+    [2, 5, 5],
+    [1, 7, 3],
+    [0, 3, 6, 4],
+    [1, 5, 2, 4],
+    [2, 6, 3],
+    [0, 4, 4, 5],
+    [1, 8, 3],
+  ];
+  const palette = [C.sky, C.yellow, '#9B8CFF', C.claude, '#5FE3B0'];
+  return (
+    <AbsoluteFill style={{background: `radial-gradient(circle at 50% 40%, ${C.navy2} 0%, ${C.navy} 70%)`, fontFamily: body, color: C.white, overflow: 'hidden'}}>
+      <AbsoluteFill style={{translate: `${shakeX}px ${shakeY}px`}}>
+        <AbsoluteFill
+          style={{
+            backgroundImage: 'linear-gradient(rgba(127,178,255,0.07) 2px, transparent 2px), linear-gradient(90deg, rgba(127,178,255,0.07) 2px, transparent 2px)',
+            backgroundSize: '90px 90px',
+          }}
+        />
+        <div style={{position: 'absolute', top: 100, right: 80}}>
+          <Img src={staticFile('logo-mark-light.png')} style={{width: 118}} />
+        </div>
+        {/* Titre mot par mot */}
+        <div style={{position: 'absolute', top: 230, left: 80, right: 80, fontFamily: display, fontWeight: 800, fontSize: 104, lineHeight: 1.06, letterSpacing: -2}}>
+          {HOOK_WORDS.map(([w, s], i) => {
+            const p = pop(f, s - 0.05, 0.3);
+            const last = i === HOOK_WORDS.length - 1;
+            return (
+              <span
+                key={i}
+                style={{
+                  display: 'inline-block',
+                  marginRight: 26,
+                  opacity: Math.min(1, p * 2),
+                  scale: String(0.6 + 0.4 * p),
+                  color: last ? C.yellow : C.white,
+                  position: 'relative',
+                }}
+              >
+                {w}
+                {last && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      left: -6,
+                      top: '52%',
+                      height: 14,
+                      borderRadius: 7,
+                      background: C.red,
+                      width: `${t01(f, NON, 0.25) * 104}%`,
+                      rotate: '-3deg',
+                    }}
+                  />
+                )}
+              </span>
+            );
+          })}
+        </div>
+        {/* Le cliché de l'informaticien */}
+        <div style={{position: 'absolute', top: 700, left: 60, right: 60, height: 720, opacity: 1 - 0.65 * dimDev, filter: `saturate(${1 - dimDev})`}}>
+          <svg viewBox="0 0 960 720" width="100%" height="100%">
+            <defs>
+              <clipPath id="screen">
+                <rect x={230} y={40} width={500} height={330} rx={14} />
+              </clipPath>
+            </defs>
+            <rect x={210} y={20} width={540} height={370} rx={26} fill="#0B1022" stroke="#2A3A6E" strokeWidth={6} />
+            <g clipPath="url(#screen)">
+              <g style={{translate: `0px ${-codeScroll}px`}}>
+                {[...lines, ...lines].map((row, r) => {
+                  let x = 260 + row[0] * 30;
+                  return row.slice(1).map((len, k) => {
+                    const el = <rect key={`${r}-${k}`} x={x} y={70 + r * 32} width={len * 18} height={14} rx={7} fill={palette[(r + k) % palette.length]} opacity={0.85} />;
+                    x += len * 18 + 16;
+                    return el;
+                  });
+                })}
+              </g>
+            </g>
+            <rect x={450} y={390} width={60} height={70} fill="#2A3A6E" />
+            <rect x={360} y={455} width={240} height={18} rx={9} fill="#2A3A6E" />
+            {/* développeur de dos : capuche + casque */}
+            <path d="M330 720 q0 -190 150 -190 q150 0 150 190 z" fill="#3B4C82" />
+            <circle cx={480} cy={520} r={88} fill="#2E3D6E" />
+            <path d="M392 520 a88 88 0 0 1 176 0" stroke={C.claude} strokeWidth={16} fill="none" />
+            <rect x={378} y={500} width={26} height={56} rx={12} fill={C.claude} />
+            <rect x={556} y={500} width={26} height={56} rx={12} fill={C.claude} />
+            <rect x={120} y={620} width={720} height={16} rx={8} fill="#2A3A6E" />
+          </svg>
+        </div>
+        {/* NON ! */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 860,
+            display: 'flex',
+            justifyContent: 'center',
+            opacity: Math.min(1, stamp * 3),
+          }}
+        >
+          <div
+            style={{
+              fontFamily: display,
+              fontWeight: 800,
+              fontSize: 230,
+              color: C.white,
+              background: C.red,
+              padding: '10px 60px 24px',
+              borderRadius: 34,
+              rotate: '-8deg',
+              scale: String(2.2 - 1.2 * stamp),
+              boxShadow: '0 24px 60px rgba(225,38,45,0.45)',
+              letterSpacing: -4,
+            }}
+          >
+            NON !
+          </div>
+        </div>
+        {/* Reste jusqu'à la fin */}
+        <div style={{position: 'absolute', left: 0, right: 0, top: 1300, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18}}>
+          <Pill p={reste} bg={C.yellow} color={C.navy} style={{fontSize: 54, padding: '22px 44px'}}>
+            Reste jusqu'à la fin
+          </Pill>
+          <div style={{fontFamily: display, fontWeight: 700, fontSize: 46, opacity: t01(f, 5.35, 0.3)}}>je t'explique.</div>
+          <svg width={80} height={90} viewBox="0 0 80 90" style={{opacity: Math.min(1, reste * 2), translate: `0px ${arrow}px`}}>
+            <path d="M40 6 V70 M12 46 L40 76 L68 46" stroke={C.yellow} strokeWidth={12} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </AbsoluteFill>
     </AbsoluteFill>
   );
