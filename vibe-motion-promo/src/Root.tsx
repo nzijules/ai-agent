@@ -1,9 +1,9 @@
 import { AbsoluteFill, Audio, Composition, Sequence, interpolate, staticFile } from "remotion";
 import { Background, Logo } from "./components";
 import { PhoneWall } from "./phonewall";
-import { Book, Demo, Reveal } from "./scenes";
+import { Book, Reveal } from "./scenes";
 import { Cta, Price, Receive } from "./scenes2";
-import { Hook, Problem, Program, Steps, Usage } from "./scenes3";
+import { AiMade, Hook, Problem, Program, Steps, Usage } from "./scenes3";
 import { FPS, HEIGHT, SCENES, TOTAL, VO, VO_DELAY, WIDTH } from "./theme";
 
 const LIST: [string, React.FC][] = [
@@ -11,7 +11,7 @@ const LIST: [string, React.FC][] = [
   ["problem", Problem],
   ["reveal", Reveal],
   ["book", Book],
-  ["demo", Demo],
+  ["ai", AiMade],
   ["program", Program],
   ["usage", Usage],
   ["receive", Receive],

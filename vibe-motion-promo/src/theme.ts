@@ -28,17 +28,17 @@ export const HEIGHT = 1920;
 
 // Scene timeline (in frames)
 const ORDER: [string, number][] = [
-  ["hook", 190],
-  ["problem", 170],
+  ["hook", 160],
+  ["problem", 160],
   ["reveal", 95],
-  ["book", 100],
-  ["demo", 120],
-  ["program", 165],
-  ["usage", 185],
-  ["receive", 120],
-  ["price", 330],
-  ["steps", 200],
-  ["cta", 200],
+  ["book", 120],
+  ["ai", 230],
+  ["program", 150],
+  ["usage", 160],
+  ["receive", 110],
+  ["price", 340],
+  ["steps", 150],
+  ["cta", 160],
 ];
 
 export const SCENES: Record<string, { from: number; dur: number }> = {};
@@ -54,11 +54,19 @@ export const TOTAL = acc;
 // and the scene they are attached to (played VO_DELAY frames after scene start).
 export const VO_DELAY = 5;
 export const VO: { scene: string; start: number; end: number }[] = [
-  { scene: "hook", start: 0, end: 5.85 },
-  { scene: "problem", start: 5.85, end: 11.1 },
-  { scene: "reveal", start: 11.1, end: 20.45 },
-  { scene: "usage", start: 20.45, end: 26.1 },
-  { scene: "price", start: 26.1, end: 36.75 },
-  { scene: "steps", start: 36.75, end: 43.0 },
-  { scene: "cta", start: 43.0, end: 48.76 },
+  { scene: "hook", start: 0.000, end: 4.810 },
+  { scene: "problem", start: 4.810, end: 9.562 },
+  { scene: "reveal", start: 9.562, end: 16.457 },
+  { scene: "ai", start: 16.457, end: 23.571 },
+  { scene: "usage", start: 23.571, end: 28.248 },
+  { scene: "price", start: 28.248, end: 38.971 },
+  { scene: "steps", start: 38.971, end: 43.400 },
+  { scene: "cta", start: 43.400, end: 47.238 },
 ];
+
+// In-scene cue points (frames from scene start) synced to the voice-over
+export const TIMING = {
+  ai: { made: 68, ask: 174, receive: 194 },
+  price: { guide: 58, amount: 135, promise: 175, pill: 262 },
+  cta: { click: 44 },
+};

@@ -2,7 +2,7 @@ import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { Pill, Pop, Scene, clamp } from "./components";
 import { LEARN, Row, TITLE } from "./scenes2";
-import { C, SCENES } from "./theme";
+import { C, SCENES, TIMING } from "./theme";
 
 const ic = {
   fill: "none",
@@ -26,7 +26,7 @@ export const Hook: React.FC = () => {
       <Pop delay={42} style={{ fontSize: 58, fontWeight: 800, marginTop: 24 }}>
         des <Pill color={C.yellow} style={{ padding: "2px 24px 8px" }}>grandes marques</Pill>
       </Pop>
-      <Pop delay={100} style={{ fontSize: 54, fontWeight: 700, marginTop: 34, color: C.white }}>
+      <Pop delay={92} style={{ fontSize: 54, fontWeight: 700, marginTop: 34, color: C.white }}>
         qui attirent toute l’attention ?
       </Pop>
       </div>
@@ -37,7 +37,7 @@ export const Hook: React.FC = () => {
 /* ---------- 2. "Et si tu pouvais, toi aussi, les créer…" ---------- */
 export const Problem: React.FC = () => {
   const frame = useCurrentFrame();
-  const strike = interpolate(frame, [106, 120], [0, 106], clamp);
+  const strike = interpolate(frame, [98, 112], [0, 106], clamp);
   return (
     <Scene dur={SCENES.problem.dur}>
       <Pop delay={4} style={{ ...TITLE, fontSize: 96 }}>
@@ -46,10 +46,10 @@ export const Problem: React.FC = () => {
       <Pop delay={14} style={{ ...TITLE, fontSize: 96, marginTop: 4 }}>
         tu pouvais les créer ?
       </Pop>
-      <Pop delay={86} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
+      <Pop delay={80} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
         même sans être
       </Pop>
-      <Pop delay={92} from="scale" style={{ position: "relative", marginTop: 20 }}>
+      <Pop delay={86} from="scale" style={{ position: "relative", marginTop: 20 }}>
         <span style={{ fontSize: 64, fontWeight: 900 }}>
           <Pill color={C.red} textColor={C.white} rotate={-1.5}>
             expert en motion design
@@ -120,7 +120,7 @@ const USAGE: { title: string; sub: string; at: number; icon: React.ReactNode }[]
   {
     title: "Tes clients",
     sub: "Pubs TikTok, Facebook, Instagram, corporate…",
-    at: 82,
+    at: 41,
     icon: (
       <>
         <circle cx="17" cy="16" r="7" {...ic} />
@@ -132,7 +132,7 @@ const USAGE: { title: string; sub: string; at: number; icon: React.ReactNode }[]
   {
     title: "Gagner de l’argent",
     sub: "Propose la création vidéo comme service",
-    at: 114,
+    at: 75,
     icon: (
       <>
         <rect x="4" y="12" width="40" height="24" rx="4" {...ic} stroke={C.yellow} />
@@ -206,8 +206,8 @@ export const Usage: React.FC = () => {
 /* ---------- Tu achètes → accès automatique → tu apprends ---------- */
 const STEPS: { n: string; title: string; at: number }[] = [
   { n: "1", title: "Tu achètes", at: 6 },
-  { n: "2", title: "Tu reçois ton accès automatiquement", at: 46 },
-  { n: "3", title: "Tu commences à apprendre immédiatement", at: 108 },
+  { n: "2", title: "Tu reçois ton accès automatiquement", at: 35 },
+  { n: "3", title: "Tu commences à apprendre immédiatement", at: 83 },
 ];
 
 export const Steps: React.FC = () => {
@@ -275,6 +275,75 @@ export const Steps: React.FC = () => {
           </div>
         );
       })}
+    </Scene>
+  );
+};
+
+/* ---------- "Cette vidéo a été faite avec l'IA — demandez et recevez" ---------- */
+const AI_PROMPT = "Crée une vidéo promo animée pour mon ebook Vibe Motion Design";
+
+export const AiMade: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const T = TIMING.ai;
+  const typed = Math.floor(interpolate(frame, [T.made, T.made + 34], [0, AI_PROMPT.length], clamp));
+  const done = spring({ frame: frame - (T.made + 40), fps, config: { damping: 12 } });
+  const card = spring({ frame: frame - (T.made - 6), fps, config: { damping: 14 } });
+  return (
+    <Scene dur={SCENES.ai.dur}>
+      <Pop delay={2} style={{ fontSize: 50, fontWeight: 700, color: C.muted }}>
+        D’ailleurs…
+      </Pop>
+      <Pop delay={8} style={{ ...TITLE, fontSize: 104, marginTop: 10 }}>
+        cette vidéo ?
+      </Pop>
+      <Pop delay={T.made - 4} from="scale" style={{ fontSize: 66, fontWeight: 900, marginTop: 24 }}>
+        <Pill color={C.yellow}>Faite avec l’IA</Pill>
+      </Pop>
+      <div
+        style={{
+          marginTop: 50,
+          width: 900,
+          borderRadius: 28,
+          background: "rgba(8,14,48,0.92)",
+          border: "2px solid rgba(60,200,255,0.35)",
+          boxShadow: "0 30px 90px rgba(0,0,0,0.5)",
+          padding: "26px 34px",
+          textAlign: "left",
+          opacity: card,
+          transform: `translateY(${(1 - card) * 120}px)`,
+        }}
+      >
+        <div style={{ fontSize: 30, fontWeight: 700, marginBottom: 10 }}>
+          <span style={{ color: "#FF8A3D" }}>✳</span> Claude Code
+        </div>
+        <div style={{ fontSize: 36, fontWeight: 500, lineHeight: 1.4, minHeight: 100 }}>
+          <span style={{ color: "#FF5FD2", fontWeight: 700 }}>&gt; </span>
+          {AI_PROMPT.slice(0, typed)}
+          <span style={{ color: C.cyan, opacity: Math.floor(frame / 8) % 2 ? 0 : 1 }}>▌</span>
+        </div>
+        <div
+          style={{
+            marginTop: 12,
+            fontSize: 38,
+            fontWeight: 800,
+            color: "#28C840",
+            opacity: done,
+            transform: `scale(${0.8 + 0.2 * done})`,
+            transformOrigin: "left center",
+          }}
+        >
+          ✓ Vidéo prête : promo.mp4
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: 24, marginTop: 70, alignItems: "baseline" }}>
+        <Pop delay={T.ask} from="scale" style={{ ...TITLE, fontSize: 84, whiteSpace: "nowrap" }}>
+          Demandez,
+        </Pop>
+        <Pop delay={T.receive} from="scale" style={{ ...TITLE, fontSize: 84, color: C.yellow, whiteSpace: "nowrap" }}>
+          et recevez.
+        </Pop>
+      </div>
     </Scene>
   );
 };

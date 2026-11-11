@@ -8,7 +8,7 @@ import {
 } from "remotion";
 import { Pill, Pop, Scene, clamp } from "./components";
 import { Book3D } from "./book3d";
-import { C, SCENES } from "./theme";
+import { C, SCENES, TIMING } from "./theme";
 
 export const TITLE: React.CSSProperties = {
   fontSize: 84,
@@ -116,95 +116,50 @@ export const Receive: React.FC = () => {
   );
 };
 
-/* ---------- Prix ---------- */
-const fmt = (n: number) => n.toLocaleString("fr-FR").replace(/ | /g, " ");
-
+/* ---------- Prix : guide pratique à 10 000 FCFA ---------- */
 export const Price: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const strike = interpolate(frame, [176, 188], [0, 108], { ...clamp, easing: Easing.out(Easing.quad) });
-  const count = Math.round(
-    interpolate(frame, [266, 292], [25000, 10000], { ...clamp, easing: Easing.out(Easing.cubic) }) / 100,
-  ) * 100;
-  const pop = spring({ frame: frame - 290, fps, config: { damping: 8, stiffness: 200 } });
-  const badge = spring({ frame: frame - 296, fps, config: { damping: 9 } });
+  const T = TIMING.price;
+  const amount = spring({ frame: frame - T.amount, fps, config: { damping: 8, stiffness: 180 } });
+  const glow = 0.5 + 0.5 * Math.sin(frame / 8);
   return (
     <Scene dur={SCENES.price.dur}>
-      <Pop delay={4} from="scale" style={{ fontSize: 76, fontWeight: 900 }}>
+      <Pop delay={4} from="scale" style={{ fontSize: 74, fontWeight: 900 }}>
         <Pill color={C.yellow}>La bonne nouvelle !</Pill>
       </Pop>
-      <Pop delay={60} style={{ fontSize: 44, fontWeight: 700, color: C.muted, marginTop: 60 }}>
-        Normalement vendue
+      <Pop delay={T.guide} style={{ fontSize: 46, fontWeight: 700, color: C.muted, marginTop: 60 }}>
+        J’ai préparé pour toi
       </Pop>
-      <Pop delay={120} style={{ position: "relative", marginTop: 16 }}>
-        <span style={{ fontSize: 88, fontWeight: 800, color: "rgba(255,255,255,0.6)" }}>
-          25 000 FCFA
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            left: "-4%",
-            top: "50%",
-            height: 12,
-            width: `${strike}%`,
-            background: C.red,
-            borderRadius: 6,
-            transform: "rotate(-6deg)",
-            boxShadow: `0 0 20px ${C.red}`,
-          }}
-        />
+      <Pop delay={T.guide + 8} style={{ ...TITLE, fontSize: 92, marginTop: 6 }}>
+        un guide pratique
       </Pop>
-      <div style={{ position: "relative", marginTop: 40 }}>
-        <div
-          style={{
-            fontSize: 190,
-            fontWeight: 900,
-            lineHeight: 1,
-            letterSpacing: -6,
-            color: C.yellow,
-            opacity: interpolate(frame, [262, 270], [0, 1], clamp),
-            transform: `scale(${1 + pop * 0.08 - (frame > 290 ? 0.08 : 0)})`,
-            textShadow: `0 20px 60px ${C.yellow}66`,
-          }}
-        >
-          {fmt(count)}
-        </div>
-        <div
-          style={{
-            fontSize: 70,
-            fontWeight: 900,
-            color: C.yellow,
-            opacity: interpolate(frame, [262, 270], [0, 1], clamp),
-          }}
-        >
-          FCFA
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            right: -190,
-            top: -150,
-            width: 170,
-            height: 170,
-            borderRadius: 85,
-            background: C.red,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 56,
-            fontWeight: 900,
-            transform: `scale(${badge}) rotate(${12 - badge * 4}deg)`,
-            boxShadow: `0 16px 50px ${C.red}88`,
-          }}
-        >
-          -60%
-        </div>
+      <Pop delay={T.amount - 12} style={{ fontSize: 46, fontWeight: 700, color: C.muted, marginTop: 50 }}>
+        à seulement
+      </Pop>
+      <div
+        style={{
+          fontSize: 170,
+          fontWeight: 900,
+          lineHeight: 1,
+          letterSpacing: -5,
+          color: C.yellow,
+          marginTop: 10,
+          opacity: Math.min(1, amount * 1.5),
+          transform: `scale(${0.5 + 0.5 * amount})`,
+          textShadow: `0 0 ${40 + glow * 40}px ${C.yellow}77`,
+          whiteSpace: "nowrap",
+        }}
+      >
+        10 000 <span style={{ fontSize: 80 }}>FCFA</span>
       </div>
-      <Pop delay={300} style={{ fontSize: 46, fontWeight: 700, marginTop: 60 }}>
-        Offre valable jusqu’au <span style={{ color: C.yellow }}>31 décembre</span>
+      <Pop delay={T.promise} style={{ fontSize: 50, fontWeight: 800, marginTop: 60 }}>
+        Ta 1<sup style={{ fontSize: 28 }}>re</sup> vidéo motion design
       </Pop>
-      <Pop delay={306} style={{ fontSize: 40, fontWeight: 500, color: C.muted, marginTop: 20 }}>
-        Accès immédiat après paiement
+      <Pop delay={T.pill} from="scale" style={{ fontSize: 50, fontWeight: 900, marginTop: 16 }}>
+        <Pill color={C.red} textColor={C.white} rotate={-1.5}>
+          pas à pas, dès aujourd’hui
+        </Pill>
       </Pop>
     </Scene>
   );
@@ -214,30 +169,25 @@ export const Price: React.FC = () => {
 export const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const b = spring({ frame: frame - 10, fps, config: { damping: 12 } });
-  const btn = spring({ frame: frame - 36, fps, config: { damping: 10 } });
-  const pulse = frame > 50 ? 1 + Math.max(0, Math.sin((frame - 50) / 6)) * 0.05 : 1;
-  const ring = (((frame - 50) % 40) + 40) % 40 / 40;
+  const T = TIMING.cta;
+  const b = spring({ frame: frame - 6, fps, config: { damping: 12 } });
+  const btn = spring({ frame: frame - T.click, fps, config: { damping: 10 } });
+  const pulse = frame > T.click + 14 ? 1 + Math.max(0, Math.sin((frame - T.click) / 6)) * 0.05 : 1;
+  const ring = ((((frame - T.click) % 40) + 40) % 40) / 40;
+  const bounce = Math.abs(Math.sin(frame / 7)) * 22;
   return (
     <Scene dur={SCENES.cta.dur + 10}>
-      <Pop delay={0} style={{ ...TITLE, fontSize: 92 }}>
-        Clique sur le lien
-      </Pop>
-      <Pop delay={8} style={{ ...TITLE, fontSize: 92, color: C.yellow }}>
-        et lance-toi !
+      <Pop delay={2} style={{ ...TITLE, fontSize: 100, color: C.yellow }}>
+        N’hésite plus !
       </Pop>
       <Book3D
-        width={300}
+        width={290}
         rotY={interpolate(frame, [0, 50], [-160, 22], { ...clamp, easing: Easing.out(Easing.cubic) }) + Math.sin(frame / 20) * 15}
         rotX={5}
-        style={{
-          marginTop: 50,
-          transform: `scale(${b}) translateY(${Math.sin(frame / 18) * 10}px)`,
-          filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.6))",
-        }}
+        style={{ marginTop: 50, transform: `scale(${b}) translateY(${Math.sin(frame / 18) * 10}px)` }}
       />
-      <div style={{ position: "relative", marginTop: 60 }}>
-        {frame > 50 && (
+      <div style={{ position: "relative", marginTop: 70 }}>
+        {frame > T.click + 14 && (
           <div
             style={{
               position: "absolute",
@@ -253,28 +203,31 @@ export const Cta: React.FC = () => {
           style={{
             background: C.yellow,
             color: C.navy,
-            fontSize: 54,
+            fontSize: 52,
             fontWeight: 900,
-            padding: "30px 70px",
+            padding: "30px 64px",
             borderRadius: 60,
             boxShadow: `0 20px 60px ${C.yellow}77`,
             transform: `scale(${btn * pulse})`,
+            whiteSpace: "nowrap",
           }}
         >
-          J’accède à la formation →
+          Je télécharge mon ebook
         </div>
       </div>
-      <Pop delay={56} style={{ fontSize: 46, fontWeight: 800, marginTop: 50 }}>
-        arosoft.mychariow.com
+      <Pop delay={T.click + 6} style={{ fontSize: 44, fontWeight: 800, marginTop: 40 }}>
+        Clique sur le lien ci-dessous
       </Pop>
-      <Pop delay={64} style={{ fontSize: 38, fontWeight: 500, color: C.muted, marginTop: 12 }}>
-        Lien en description
-      </Pop>
-      <Pop
-        delay={74}
-        style={{ fontSize: 30, fontWeight: 700, letterSpacing: 6, color: C.muted, marginTop: 40 }}
+      <svg
+        width={90}
+        height={90}
+        viewBox="0 0 48 48"
+        style={{ marginTop: 10, transform: `translateY(${bounce}px)`, opacity: interpolate(frame, [T.click + 10, T.click + 18], [0, 1], clamp) }}
       >
-        AROSOFT · APPRENDRE · CRÉER · RÉUSSIR
+        <path d="M24 6v32M10 26l14 14 14-14" fill="none" stroke={C.yellow} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <Pop delay={T.click + 20} style={{ fontSize: 34, fontWeight: 700, color: C.muted, marginTop: 10 }}>
+        arosoft.mychariow.com
       </Pop>
     </Scene>
   );
