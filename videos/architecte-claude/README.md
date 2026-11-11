@@ -10,13 +10,17 @@ Réalisée avec [Remotion](https://www.remotion.dev), aux couleurs d'AroSoft (bl
 npm install
 npx remotion studio            # aperçu et retouches
 npx remotion render ArchitecteClaude out/architecte-claude.mp4
+npx remotion still Couverture out/couverture.png   # image de couverture TikTok
 ```
+
+L'image de couverture prête à l'emploi est dans `export/couverture-tiktok.png` (1080×1920). Le texte important reste dans la zone centrale 3:4, celle que TikTok garde dans la grille du profil.
 
 ## Où modifier quoi
 
 - `src/Video.tsx` : ordre et durée de chaque scène (en secondes)
 - `src/scenes.tsx` : les 11 scènes (textes, illustrations, animations)
 - `src/ui.tsx` : mise en page commune, sous-titres karaoké, personnages
+- `src/Cover.tsx` : image de couverture TikTok
 - `src/theme.ts` : couleurs et polices
 - `public/` : logos sans fond (versions claire et sombre), livre 3D détouré (`livre-3d.png`), polices Sora et Inter, musique
 - `scripts/music.py` : génère la musique de fond originale (afro-house douce, 104 BPM) calée sur les scènes
