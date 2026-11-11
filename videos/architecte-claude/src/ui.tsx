@@ -122,9 +122,7 @@ export const SceneFrame: React.FC<{
         <div style={{fontSize: 26, fontWeight: 700, letterSpacing: 6, opacity: 0.7}}>
           CLAUDE CODE <span style={{color: accent}}>·</span> SANS JARGON
         </div>
-        <div style={{background: C.white, borderRadius: 22, padding: 10, boxShadow: '0 6px 20px rgba(19,28,58,0.15)'}}>
-          <Img src={staticFile('logo-mark.png')} style={{width: 92, height: 'auto', display: 'block'}} />
-        </div>
+        <Img src={staticFile(dark ? 'logo-mark-light.png' : 'logo-mark.png')} style={{width: 118, height: 'auto', display: 'block'}} />
       </div>
       {/* titre */}
       <div style={{position: 'absolute', top: 270, left: 80, right: 80}}>

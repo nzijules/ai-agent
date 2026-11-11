@@ -1,4 +1,6 @@
 import React from 'react';
+import {Audio} from '@remotion/media';
+import {interpolate, staticFile} from 'remotion';
 import {TransitionSeries, linearTiming, springTiming} from '@remotion/transitions';
 import {slide} from '@remotion/transitions/slide';
 import {fade} from '@remotion/transitions/fade';
@@ -23,7 +25,16 @@ export const SCENES: {id: string; sec: number; C: React.FC; enter?: 'fade'}[] = 
 export const sceneFrames = (i: number) => Math.round(SCENES[i].sec * FPS) + (i < SCENES.length - 1 ? TRANSITION : 0);
 export const TOTAL = SCENES.reduce((a, _, i) => a + sceneFrames(i), 0) - TRANSITION * (SCENES.length - 1);
 
+// Mettre à true quand public/voix-off.mp3 existe : la musique baisse alors sous la voix.
+export const HAS_VOICE = false;
+
 export const ArchitecteClaude: React.FC = () => (
+  <>
+  <Audio
+    src={staticFile('musique.mp3')}
+    volume={(f) => interpolate(f, [TOTAL - 60, TOTAL], [HAS_VOICE ? 0.16 : 0.55, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
+  />
+  {HAS_VOICE && <Audio src={staticFile('voix-off.mp3')} />}
   <TransitionSeries>
     {SCENES.flatMap(({id, C, enter}, i) => {
       const items = [];
@@ -43,4 +54,5 @@ export const ArchitecteClaude: React.FC = () => (
       return items;
     })}
   </TransitionSeries>
+  </>
 );

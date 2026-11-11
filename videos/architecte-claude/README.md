@@ -18,6 +18,15 @@ npx remotion render ArchitecteClaude out/architecte-claude.mp4
 - `src/scenes.tsx` : les 11 scènes (textes, illustrations, animations)
 - `src/ui.tsx` : mise en page commune, sous-titres karaoké, personnages
 - `src/theme.ts` : couleurs et polices
-- `public/` : logo, couverture de l'ebook, polices Sora et Inter
+- `public/` : logos sans fond (versions claire et sombre), couverture de l'ebook, polices Sora et Inter, musique
+- `scripts/music.py` : génère la musique de fond originale (afro-house douce, 104 BPM) calée sur les scènes
 
-La vidéo est muette pour l'instant. Pour ajouter la voix off, place un fichier `public/voix-off.mp3` et ajoute `<Audio src={staticFile('voix-off.mp3')} />` dans `src/Video.tsx`. Ajuste ensuite les durées des scènes pour suivre la voix.
+```bash
+python3 scripts/music.py public/musique.wav && ffmpeg -i public/musique.wav -b:a 192k public/musique.mp3
+```
+
+## Ajouter la voix off
+
+1. Place le fichier dans `public/voix-off.mp3`.
+2. Dans `src/Video.tsx`, passe `HAS_VOICE` à `true` : la voix est ajoutée et la musique baisse automatiquement sous la voix.
+3. Ajuste les durées des scènes dans `SCENES` pour suivre la voix.

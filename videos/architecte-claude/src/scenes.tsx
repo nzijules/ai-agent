@@ -559,8 +559,8 @@ export const S11CTA: React.FC = () => {
         </div>
       </SceneFrame>
       {/* carte de fin AroSoft */}
-      <AbsoluteFill style={{background: C.white, opacity: outro, alignItems: 'center', justifyContent: 'center'}}>
-        <Img src={staticFile('logo-full.jpg')} style={{width: 900, scale: String(0.9 + 0.1 * outro)}} />
+      <AbsoluteFill style={{background: `radial-gradient(circle at 50% 45%, ${C.navy2} 0%, ${C.navy} 65%)`, opacity: outro, alignItems: 'center', justifyContent: 'center'}}>
+        <Img src={staticFile('logo-full-light.png')} style={{width: 820, scale: String(0.9 + 0.1 * outro)}} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
