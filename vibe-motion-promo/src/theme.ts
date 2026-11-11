@@ -28,17 +28,17 @@ export const HEIGHT = 1920;
 
 // Scene timeline (in frames)
 const ORDER: [string, number][] = [
-  ["hook", 210],
-  ["problem", 175],
+  ["hook", 190],
+  ["problem", 170],
   ["reveal", 95],
-  ["book", 110],
-  ["demo", 130],
-  ["program", 180],
-  ["usage", 190],
-  ["receive", 140],
-  ["price", 295],
-  ["steps", 185],
-  ["cta", 210],
+  ["book", 100],
+  ["demo", 120],
+  ["program", 165],
+  ["usage", 185],
+  ["receive", 120],
+  ["price", 330],
+  ["steps", 200],
+  ["cta", 200],
 ];
 
 export const SCENES: Record<string, { from: number; dur: number }> = {};
@@ -54,11 +54,11 @@ export const TOTAL = acc;
 // and the scene they are attached to (played VO_DELAY frames after scene start).
 export const VO_DELAY = 5;
 export const VO: { scene: string; start: number; end: number }[] = [
-  { scene: "hook", start: 0, end: 6.6 },
-  { scene: "problem", start: 6.7, end: 12.3 },
-  { scene: "reveal", start: 12.4, end: 23.3 },
-  { scene: "usage", start: 23.3, end: 29.35 },
-  { scene: "price", start: 29.35, end: 38.85 },
-  { scene: "steps", start: 38.85, end: 44.65 },
-  { scene: "cta", start: 44.65, end: 50.76 },
+  { scene: "hook", start: 0, end: 5.85 },
+  { scene: "problem", start: 5.85, end: 11.1 },
+  { scene: "reveal", start: 11.1, end: 20.45 },
+  { scene: "usage", start: 20.45, end: 26.1 },
+  { scene: "price", start: 26.1, end: 36.75 },
+  { scene: "steps", start: 36.75, end: 43.0 },
+  { scene: "cta", start: 43.0, end: 48.76 },
 ];

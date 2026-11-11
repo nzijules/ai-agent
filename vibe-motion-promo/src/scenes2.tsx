@@ -122,21 +122,21 @@ const fmt = (n: number) => n.toLocaleString("fr-FR").replace(/ | /g, " ");
 export const Price: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const strike = interpolate(frame, [150, 162], [0, 108], { ...clamp, easing: Easing.out(Easing.quad) });
+  const strike = interpolate(frame, [176, 188], [0, 108], { ...clamp, easing: Easing.out(Easing.quad) });
   const count = Math.round(
-    interpolate(frame, [222, 250], [25000, 10000], { ...clamp, easing: Easing.out(Easing.cubic) }) / 100,
+    interpolate(frame, [266, 292], [25000, 10000], { ...clamp, easing: Easing.out(Easing.cubic) }) / 100,
   ) * 100;
-  const pop = spring({ frame: frame - 248, fps, config: { damping: 8, stiffness: 200 } });
-  const badge = spring({ frame: frame - 256, fps, config: { damping: 9 } });
+  const pop = spring({ frame: frame - 290, fps, config: { damping: 8, stiffness: 200 } });
+  const badge = spring({ frame: frame - 296, fps, config: { damping: 9 } });
   return (
     <Scene dur={SCENES.price.dur}>
       <Pop delay={4} from="scale" style={{ fontSize: 76, fontWeight: 900 }}>
         <Pill color={C.yellow}>La bonne nouvelle !</Pill>
       </Pop>
-      <Pop delay={70} style={{ fontSize: 44, fontWeight: 700, color: C.muted, marginTop: 60 }}>
+      <Pop delay={60} style={{ fontSize: 44, fontWeight: 700, color: C.muted, marginTop: 60 }}>
         Normalement vendue
       </Pop>
-      <Pop delay={110} style={{ position: "relative", marginTop: 16 }}>
+      <Pop delay={120} style={{ position: "relative", marginTop: 16 }}>
         <span style={{ fontSize: 88, fontWeight: 800, color: "rgba(255,255,255,0.6)" }}>
           25 000 FCFA
         </span>
@@ -162,8 +162,8 @@ export const Price: React.FC = () => {
             lineHeight: 1,
             letterSpacing: -6,
             color: C.yellow,
-            opacity: interpolate(frame, [218, 226], [0, 1], clamp),
-            transform: `scale(${1 + pop * 0.08 - (frame > 248 ? 0.08 : 0)})`,
+            opacity: interpolate(frame, [262, 270], [0, 1], clamp),
+            transform: `scale(${1 + pop * 0.08 - (frame > 290 ? 0.08 : 0)})`,
             textShadow: `0 20px 60px ${C.yellow}66`,
           }}
         >
@@ -174,7 +174,7 @@ export const Price: React.FC = () => {
             fontSize: 70,
             fontWeight: 900,
             color: C.yellow,
-            opacity: interpolate(frame, [218, 226], [0, 1], clamp),
+            opacity: interpolate(frame, [262, 270], [0, 1], clamp),
           }}
         >
           FCFA
@@ -200,10 +200,10 @@ export const Price: React.FC = () => {
           -60%
         </div>
       </div>
-      <Pop delay={258} style={{ fontSize: 46, fontWeight: 700, marginTop: 60 }}>
+      <Pop delay={300} style={{ fontSize: 46, fontWeight: 700, marginTop: 60 }}>
         Offre valable jusqu’au <span style={{ color: C.yellow }}>31 décembre</span>
       </Pop>
-      <Pop delay={264} style={{ fontSize: 40, fontWeight: 500, color: C.muted, marginTop: 20 }}>
+      <Pop delay={306} style={{ fontSize: 40, fontWeight: 500, color: C.muted, marginTop: 20 }}>
         Accès immédiat après paiement
       </Pop>
     </Scene>

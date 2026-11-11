@@ -25,8 +25,8 @@ const VO_WINDOWS = VO.map((v) => {
   return [from, from + Math.round((v.end - v.start) * FPS)] as const;
 });
 
-const MUSIC_FULL = 0.6;
-const MUSIC_DUCKED = 0.16;
+const MUSIC_FULL = 0.09;
+const MUSIC_DUCKED = 0.035;
 
 const musicVolume = (f: number) => {
   let duck = 0;

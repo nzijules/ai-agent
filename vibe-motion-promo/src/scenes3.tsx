@@ -94,7 +94,7 @@ export const Hook: React.FC = () => {
       <Pop delay={42} style={{ fontSize: 58, fontWeight: 800, marginTop: 24 }}>
         des <Pill color={C.yellow} style={{ padding: "2px 24px 8px" }}>grandes marques</Pill>
       </Pop>
-      <Pop delay={110} style={{ fontSize: 54, fontWeight: 700, marginTop: 34, color: C.white }}>
+      <Pop delay={100} style={{ fontSize: 54, fontWeight: 700, marginTop: 34, color: C.white }}>
         qui attirent toute l’attention ?
       </Pop>
     </Scene>
@@ -104,7 +104,7 @@ export const Hook: React.FC = () => {
 /* ---------- 2. "Et si tu pouvais, toi aussi, les créer…" ---------- */
 export const Problem: React.FC = () => {
   const frame = useCurrentFrame();
-  const strike = interpolate(frame, [100, 114], [0, 106], clamp);
+  const strike = interpolate(frame, [106, 120], [0, 106], clamp);
   return (
     <Scene dur={SCENES.problem.dur}>
       <Pop delay={4} style={{ ...TITLE, fontSize: 96 }}>
@@ -113,10 +113,10 @@ export const Problem: React.FC = () => {
       <Pop delay={14} style={{ ...TITLE, fontSize: 96, marginTop: 4 }}>
         tu pouvais les créer ?
       </Pop>
-      <Pop delay={78} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
+      <Pop delay={86} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
         même sans être
       </Pop>
-      <Pop delay={84} from="scale" style={{ position: "relative", marginTop: 20 }}>
+      <Pop delay={92} from="scale" style={{ position: "relative", marginTop: 20 }}>
         <span style={{ fontSize: 64, fontWeight: 900 }}>
           <Pill color={C.red} textColor={C.white} rotate={-1.5}>
             expert en motion design
@@ -187,7 +187,7 @@ const USAGE: { title: string; sub: string; at: number; icon: React.ReactNode }[]
   {
     title: "Tes clients",
     sub: "Pubs TikTok, Facebook, Instagram, corporate…",
-    at: 52,
+    at: 82,
     icon: (
       <>
         <circle cx="17" cy="16" r="7" {...ic} />
@@ -199,7 +199,7 @@ const USAGE: { title: string; sub: string; at: number; icon: React.ReactNode }[]
   {
     title: "Gagner de l’argent",
     sub: "Propose la création vidéo comme service",
-    at: 96,
+    at: 114,
     icon: (
       <>
         <rect x="4" y="12" width="40" height="24" rx="4" {...ic} stroke={C.yellow} />
@@ -273,8 +273,8 @@ export const Usage: React.FC = () => {
 /* ---------- Tu achètes → accès automatique → tu apprends ---------- */
 const STEPS: { n: string; title: string; at: number }[] = [
   { n: "1", title: "Tu achètes", at: 6 },
-  { n: "2", title: "Tu reçois ton accès automatiquement", at: 34 },
-  { n: "3", title: "Tu commences à apprendre immédiatement", at: 92 },
+  { n: "2", title: "Tu reçois ton accès automatiquement", at: 46 },
+  { n: "3", title: "Tu commences à apprendre immédiatement", at: 108 },
 ];
 
 export const Steps: React.FC = () => {
