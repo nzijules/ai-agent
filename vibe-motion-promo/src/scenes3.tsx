@@ -37,7 +37,7 @@ export const Hook: React.FC = () => {
 /* ---------- 2. "Et si tu pouvais, toi aussi, les créer…" ---------- */
 export const Problem: React.FC = () => {
   const frame = useCurrentFrame();
-  const strike = interpolate(frame, [98, 112], [0, 106], clamp);
+  const strike = interpolate(frame, [112, 126], [0, 106], clamp);
   return (
     <Scene dur={SCENES.problem.dur}>
       <Pop delay={4} style={{ ...TITLE, fontSize: 96 }}>
@@ -46,10 +46,10 @@ export const Problem: React.FC = () => {
       <Pop delay={14} style={{ ...TITLE, fontSize: 96, marginTop: 4 }}>
         tu pouvais les créer ?
       </Pop>
-      <Pop delay={80} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
+      <Pop delay={92} style={{ fontSize: 56, fontWeight: 700, marginTop: 80, color: C.muted }}>
         même sans être
       </Pop>
-      <Pop delay={86} from="scale" style={{ position: "relative", marginTop: 20 }}>
+      <Pop delay={98} from="scale" style={{ position: "relative", marginTop: 20 }}>
         <span style={{ fontSize: 64, fontWeight: 900 }}>
           <Pill color={C.red} textColor={C.white} rotate={-1.5}>
             expert en motion design
@@ -120,7 +120,7 @@ const USAGE: { title: string; sub: string; at: number; icon: React.ReactNode }[]
   {
     title: "Tes clients",
     sub: "Pubs TikTok, Facebook, Instagram, corporate…",
-    at: 41,
+    at: 37,
     icon: (
       <>
         <circle cx="17" cy="16" r="7" {...ic} />
